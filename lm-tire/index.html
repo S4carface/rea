@@ -12,28 +12,6 @@
 <meta property="og:title" content="L&amp;M Tire Auto Repair, Worcester MA">
 <meta property="og:description" content="New and used tires and car repair. 598 West Boylston St. Call 508-853-3322. English, Português, Español.">
 <meta property="og:image" content="https://raw.githubusercontent.com/S4carface/rea/claude/project-thread-fntvvx/lm-tire/logo.webp">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["AutoRepair", "TireShop"],
-  "name": "L&M Tire Auto Repair",
-  "telephone": "+1-508-853-3322",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "598 West Boylston Street",
-    "addressLocality": "Worcester",
-    "addressRegion": "MA",
-    "postalCode": "01606",
-    "addressCountry": "US"
-  },
-  "availableLanguage": ["English", "Portuguese", "Spanish"],
-  "makesOffer": [
-    {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "New tires"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Used tires"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Car repair"}}
-  ]
-}
-</script>
 <link rel="preload" as="image" href="logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -265,21 +243,21 @@ footer img{height:40px;width:auto}
   <div class="wrap">
     <svg aria-hidden="true"><use href="#i-snow"/></svg>
     <span data-i18n="winter">Winter is coming to Worcester. Ask us about winter tires.</span>
-    <a href="#quote" data-i18n="winterCta">Get a price</a>
+    <a href="#quote" data-go="quote" data-i18n="winterCta">Get a price</a>
   </div>
 </div>
 
 <header>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="L&amp;M Tire Auto Repair">
+    <a class="brand" href="#top" data-go="top" aria-label="L&amp;M Tire Auto Repair">
       <img src="logo.webp" alt="" width="56" height="34">
       <span>L&amp;M TIRE</span>
     </a>
     <nav class="links" aria-label="Sections">
-      <a href="#services" data-i18n="navSvc">Services</a>
-      <a href="#quote" data-i18n="navQuote">Get a price</a>
-      <a href="#contact" data-i18n="navCall">Call us</a>
-      <a href="#visit" data-i18n="navVisit">Location</a>
+      <a href="#services" data-go="services" data-i18n="navSvc">Services</a>
+      <a href="#quote" data-go="quote" data-i18n="navQuote">Get a price</a>
+      <a href="#contact" data-go="contact" data-i18n="navCall">Call us</a>
+      <a href="#visit" data-go="visit" data-i18n="navVisit">Location</a>
     </nav>
     <div class="langs" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -299,7 +277,7 @@ footer img{height:40px;width:auto}
         <p class="sub rise d3" data-i18n="sub">Need tires today or a fix for your car? Stop by or call. We'll tell you straight what it needs and what it costs.</p>
         <div class="cta rise d4">
           <a class="btn btn-red" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span><span data-i18n="call">Call</span> 508-853-3322</span></a>
-          <a class="btn btn-ghost" href="#quote"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="textPrice">Text us for a price</span></a>
+          <a class="btn btn-ghost" href="#quote" data-go="quote"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="textPrice">Text us for a price</span></a>
         </div>
         <div class="speak rise d5" aria-label="Languages spoken">
           <span class="chip">English</span><span class="chip">Português</span><span class="chip">Español</span>
@@ -483,7 +461,7 @@ footer img{height:40px;width:auto}
       </div>
       <div class="visit">
         <div class="map">
-          <iframe title="Map to L&amp;M Tire Auto Repair, 598 West Boylston Street, Worcester MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=598+West+Boylston+Street,+Worcester,+MA+01606&amp;z=15&amp;output=embed"></iframe>
+          <iframe title="Map to L&amp;M Tire Auto Repair, 598 West Boylston Street, Worcester MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-src="https://maps.google.com/maps?q=598+West+Boylston+Street,+Worcester,+MA+01606&amp;z=15&amp;output=embed"></iframe>
         </div>
         <div class="addr">
           <address>598 West Boylston Street<br>Worcester, MA 01606</address>
@@ -526,7 +504,7 @@ footer img{height:40px;width:auto}
 
 <nav class="dock" aria-label="Quick actions">
   <a class="call" href="tel:+15088533322"><svg aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
-  <a href="#quote"><svg aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="dockPrice">Price</span></a>
+  <a href="#quote" data-go="quote"><svg aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="dockPrice">Price</span></a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="dockMap">Directions</span></a>
 </nav>
 <div class="toast" id="toast" role="status"></div>
@@ -618,6 +596,11 @@ footer img{height:40px;width:auto}
       copy(url,function(){show(T[lang].linkCopied)});
     });
   });
+
+  // in-page links, map and Google info set from script so they also work in page previewers
+  document.addEventListener("click",function(e){var a=e.target.closest("[data-go]");if(!a)return;var t=document.getElementById(a.getAttribute("data-go"));if(t){e.preventDefault();t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}});
+  document.querySelectorAll("iframe[data-src]").forEach(function(f){f.src=f.getAttribute("data-src")});
+  var ld=document.createElement("script");ld.type="application/ld+json";ld.text="{\"@context\": \"https://schema.org\", \"@type\": [\"AutoRepair\", \"TireShop\"], \"name\": \"L&M Tire Auto Repair\", \"telephone\": \"+1-508-853-3322\", \"address\": {\"@type\": \"PostalAddress\", \"streetAddress\": \"598 West Boylston Street\", \"addressLocality\": \"Worcester\", \"addressRegion\": \"MA\", \"postalCode\": \"01606\", \"addressCountry\": \"US\"}, \"availableLanguage\": [\"English\", \"Portuguese\", \"Spanish\"], \"makesOffer\": [{\"@type\": \"Offer\", \"itemOffered\": {\"@type\": \"Product\", \"name\": \"New tires\"}}, {\"@type\": \"Offer\", \"itemOffered\": {\"@type\": \"Product\", \"name\": \"Used tires\"}}, {\"@type\": \"Offer\", \"itemOffered\": {\"@type\": \"Service\", \"name\": \"Car repair\"}}]}";document.head.appendChild(ld);
 
   var start=(location.hash||"").replace("#","");
   if(!T[start]){start=null;try{start=localStorage.getItem("lm-lang")}catch(e){}}
