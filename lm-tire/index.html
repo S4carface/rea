@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>L&amp;M Tire Auto Repair | New &amp; Used Tires, Car Repair | Worcester, MA</title>
-<meta name="description" content="New and used tires, winter tires and car repair at 598 West Boylston Street (Route 12), Worcester, MA 01606. Call 508-853-3322. We speak English, Português and Español.">
-<meta name="keywords" content="tires Worcester, used tires Worcester MA, new tires, winter tires, auto repair Worcester, brakes, oil change, pneus usados Worcester, llantas usadas Worcester, West Boylston Street">
-<meta name="theme-color" content="#0c0d14">
+<title>L&amp;M Tire Auto Repair | Tires &amp; Auto Repair in Worcester, MA</title>
+<meta name="description" content="New and used tires, tire repair and auto repair at 598 West Boylston Street, Worcester, MA. Open Mon–Fri 8–6, Sat 8–12. Call 508-853-3322 or book online. English, Português, Español.">
+<meta name="theme-color" content="#0b0c14">
 <meta name="format-detection" content="telephone=yes">
 <meta name="apple-mobile-web-app-title" content="L&amp;M Tire">
 <link rel="icon" href="logo-sm.webp">
@@ -14,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L&amp;M Tire Auto Repair">
 <meta property="og:title" content="L&amp;M Tire Auto Repair, Worcester MA">
-<meta property="og:description" content="New and used tires and car repair. 598 West Boylston St. Call 508-853-3322. English, Português, Español.">
+<meta property="og:description" content="New and used tires and auto repair on West Boylston St. Mon–Fri 8–6, Sat 8–12. Call 508-853-3322.">
 <meta property="og:image" content="https://raw.githubusercontent.com/S4carface/rea/claude/project-thread-fntvvx/lm-tire/logo.webp">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="pt_BR">
@@ -24,278 +23,329 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://maps.google.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,800;100..125,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700;100..125,800;100..125,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Layout: one dark "shop floor" page. Logo hero over a rolling tread band, then services, warning signs, a text-for-a-price form, people to call, tire tips, FAQ and a real map. Phones get a fixed Call / Price / Directions bar. */
+/* Layout: premium dark automotive one-pager. Utility bar with live open status, hero with headline + "shop card" (status, today's hours, address, call), trust strip, service grid, how-it-works, booking form, warning signs, hours + map, people, tips, FAQ, closing call to action, footer with hours. Phones get a fixed Call / Book / Directions bar. */
 :root{
-  --bg:#0c0d14;--bg-2:#13152a;--bg-3:#1a1d36;
-  --blue:#3b3f9e;--blue-hi:#6a6fe0;--red:#e8333b;--red-hi:#f2464e;--green:#1fae5b;--amber:#f5b83d;
-  --fg:#f4f4f7;--fg-2:rgba(244,244,247,.78);--fg-3:rgba(244,244,247,.58);--line:rgba(244,244,247,.13);
+  --bg:#0b0c14;--bg-2:#121426;--bg-3:#191c34;
+  --blue:#3b3f9e;--blue-2:#2a2e78;--blue-hi:#7277ec;--red:#e8333b;--red-hi:#f4474f;--green:#22b363;--amber:#f5b83d;
+  --fg:#f5f5f8;--fg-2:rgba(245,245,248,.8);--fg-3:rgba(245,245,248,.62);--line:rgba(245,245,248,.12);--line-2:rgba(245,245,248,.2);
   --display:"Archivo","Arial Black","Arial Narrow",Arial,sans-serif;
   --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
   --ease:cubic-bezier(0.22,1,0.36,1);
+  --r-lg:28px;--r-md:20px;
   color-scheme:dark;
 }
 html,body{background:var(--bg);color:var(--fg);margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
-body{font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:calc(78px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:calc(80px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
 @media(min-width:900px){body{padding-bottom:0}}
 img{max-width:100%}
 [hidden]{display:none!important}
 ::selection{background:var(--red);color:#fff}
 a{color:inherit}
-.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
 @media(min-width:900px){.wrap{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
-:focus-visible{outline:3px solid var(--blue-hi);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--blue-hi);outline-offset:3px;border-radius:8px}
 svg.i{width:18px;height:18px;flex:none}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:30;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;text-decoration:none}
 .skip:focus{top:12px}
+.tnum{font-variant-numeric:tabular-nums}
 
-/* banner */
-.season{background:var(--blue);color:#fff;font-size:14px;font-weight:500}
-.season .wrap{display:flex;gap:6px 14px;align-items:center;justify-content:center;flex-wrap:wrap;padding-block:9px;text-align:center}
-.season a{font-weight:700;text-underline-offset:3px}
-.season svg{width:16px;height:16px;flex:none}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--fg-3);flex:none}
+.is-open .dot{background:var(--green);box-shadow:0 0 0 4px rgba(34,179,99,.2)}
+.is-closed .dot{background:var(--red);box-shadow:0 0 0 4px rgba(232,51,59,.18)}
+
+/* utility bar */
+.util{background:#07080e;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--fg-2)}
+.util .wrap{display:flex;align-items:center;gap:6px 22px;padding-block:8px;flex-wrap:wrap;justify-content:center}
+@media(min-width:760px){.util .wrap{justify-content:space-between}}
+.util .grp{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;justify-content:center}
+.util .st{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--fg)}
+.util a{text-decoration:none}
+.util a:hover{color:var(--fg)}
+.util .hide-s{display:none}
+@media(min-width:760px){.util .hide-s{display:inline}}
 
 /* header */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(12,13,20,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease)}
-header.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.35)}
-header .wrap{display:flex;align-items:center;gap:16px;padding-block:10px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(11,12,20,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease)}
+header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.4)}
+header .wrap{display:flex;align-items:center;gap:14px;padding-block:10px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;min-width:0}
-.brand img{height:34px;width:auto}
-.brand span{font-family:var(--display);font-weight:800;font-stretch:112%;font-size:15px;letter-spacing:.01em;white-space:nowrap}
-nav.links{display:none;gap:20px;font-size:14px;color:var(--fg-2)}
-nav.links a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.brand img{height:38px;width:auto}
+.brand b{display:block;font-family:var(--display);font-weight:800;font-stretch:112%;font-size:15px;letter-spacing:.01em;line-height:1.05;white-space:nowrap}
+.brand small{display:block;font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+nav.links{display:none;gap:22px;font-size:14.5px;font-weight:500;color:var(--fg-2)}
+nav.links a{text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
 nav.links a:hover,nav.links a.on{color:var(--fg);border-color:var(--red)}
-@media(min-width:1080px){nav.links{display:flex}}
+@media(min-width:1140px){nav.links{display:flex}}
 .langs{display:flex;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:3px}
-.langs button{all:unset;cursor:pointer;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.08em;padding:8px 11px;border-radius:999px;color:var(--fg-3);transition:background .25s var(--ease),color .25s var(--ease)}
+.langs button{all:unset;cursor:pointer;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.06em;padding:8px 10px;border-radius:999px;color:var(--fg-3);transition:background .25s var(--ease),color .25s var(--ease)}
 .langs button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
-.btn.hdr-call{display:none}
-@media(min-width:760px){.btn.hdr-call{display:inline-flex}}
-@media(max-width:420px){.brand span{display:none}}
+.hdr-cta{display:none;gap:8px}
+@media(min-width:760px){.hdr-cta{display:flex}}
+@media(max-width:400px){.brand small{display:none}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;box-sizing:border-box;text-decoration:none;font-weight:600;font-size:15px;padding:11px 22px;border-radius:999px;border:0;cursor:pointer;font-family:var(--body);transition:transform .2s var(--ease),background .2s var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;box-sizing:border-box;text-decoration:none;font-weight:600;font-size:15.5px;padding:12px 24px;border-radius:999px;border:0;cursor:pointer;font-family:var(--body);transition:transform .2s var(--ease),background .2s var(--ease);white-space:nowrap}
 .btn:active{transform:scale(.98)}
-.btn-red{background:var(--red);color:#fff}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 8px 24px rgba(232,51,59,.28)}
 .btn-red:hover{background:var(--red-hi);transform:translateY(-1px)}
-.btn-ghost{background:rgba(244,244,247,.06);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
-.btn-ghost:hover{background:rgba(244,244,247,.12)}
+.btn-light{background:var(--fg);color:var(--bg)}
+.btn-light:hover{background:#fff;transform:translateY(-1px)}
+.btn-ghost{background:rgba(245,245,248,.06);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn-ghost:hover{background:rgba(245,245,248,.12)}
 .btn-wa{background:var(--green);color:#fff}
-.btn-wa:hover{background:#25c467}
+.btn-wa:hover{background:#27c56e}
 .btn-sm{padding:8px 16px;font-size:14px;min-height:40px}
+.btn-lg{padding:15px 28px;font-size:16.5px;min-height:56px}
 
 /* hero */
-.hero{position:relative;overflow:hidden;padding-block:48px 0}
-.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:radial-gradient(60% 55% at 70% 40%,rgba(59,63,158,.38),transparent 70%);pointer-events:none}
-.hero-grid{position:relative;display:grid;gap:32px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:48px;padding-bottom:24px}}
-.eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(232,51,59,.18);flex:none}
-h1{font-family:var(--display);font-weight:900;font-stretch:118%;text-transform:uppercase;font-size:clamp(40px,7.4vw,84px);line-height:.92;letter-spacing:-.02em;margin:18px 0 0;text-wrap:balance}
+.hero{position:relative;overflow:hidden;padding-block:clamp(28px,5vw,52px) 0;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(55% 60% at 78% 30%,rgba(59,63,158,.45),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(232,51,59,.10),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.06;background:repeating-linear-gradient(115deg,transparent 0 18px,#fff 18px 20px,transparent 20px 56px);-webkit-mask:linear-gradient(180deg,#000,transparent 80%);mask:linear-gradient(180deg,#000,transparent 80%)}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:980px){.hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;padding-bottom:28px}}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--fg-2);background:rgba(245,245,248,.06);box-shadow:inset 0 0 0 1px var(--line);padding:7px 14px 7px 10px;border-radius:999px}
+.kicker svg{width:16px;height:16px;color:#9ec5ff}
+h1{font-family:var(--display);font-weight:900;font-stretch:120%;text-transform:uppercase;font-size:clamp(38px,6.2vw,84px);line-height:.92;letter-spacing:-.025em;margin:22px 0 0;text-wrap:balance}
 h1 .red{color:var(--red)}
 h1 .line{display:block}
-.sub{font-size:clamp(16px,1.6vw,19px);color:var(--fg-2);max-width:34rem;margin:20px 0 0}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.proof{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;padding:0;list-style:none;font-size:14px;color:var(--fg-2)}
+.lede{font-size:clamp(17px,1.7vw,20px);color:var(--fg-2);max-width:36rem;margin-top:22px;line-height:1.55}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.proof{display:flex;flex-wrap:wrap;gap:10px 22px;margin:28px 0 0;padding:0;list-style:none;font-size:14.5px;color:var(--fg-2)}
 .proof li{display:flex;align-items:center;gap:8px}
-.proof svg{width:16px;height:16px;color:var(--green);flex:none}
-.logo-stage{position:relative;display:flex;justify-content:center}
-.logo-stage img{width:100%;max-width:560px;height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.55));animation:roll-in 1.1s var(--ease) .15s both}
-@keyframes roll-in{from{opacity:0;transform:translateX(60px) rotate(2deg)}to{opacity:1;transform:none}}
+.proof svg{width:17px;height:17px;color:var(--green);flex:none}
+.shopcard{position:relative;background:linear-gradient(165deg,var(--bg-3),var(--bg-2));border-radius:32px;box-shadow:inset 0 0 0 1px var(--line),0 30px 80px rgba(0,0,0,.45);padding:28px;display:grid;gap:20px;overflow:hidden}
+.shopcard::before{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(59,63,158,.55),transparent);pointer-events:none}
+.shopcard .logo{position:relative;display:block;width:100%;max-width:400px;height:auto;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55));animation:roll-in 1.1s var(--ease) .1s both}
+@keyframes roll-in{from{opacity:0;transform:translateX(40px) rotate(2deg)}to{opacity:1;transform:none}}
+.sc-status{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+.sc-rows{border-top:1px solid var(--line)}
+.sc-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.sc-row > span:first-child{color:var(--fg-3)}
+.sc-row > :last-child{text-align:right;min-width:0;overflow-wrap:anywhere}
+.sc-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .rise{animation:rise .8s var(--ease) both}
-.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}.d5{animation-delay:.52s}
-@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.26s}.d4{animation-delay:.38s}.d5{animation-delay:.5s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-/* tread band */
-.tread{position:relative;height:58px;margin-top:40px;background:#07080d;border-block:1px solid var(--line);overflow:hidden}
-.tread::before{content:"";position:absolute;inset:8px 0;background:
-  repeating-linear-gradient(115deg,transparent 0 14px,#1c1e2c 14px 30px,transparent 30px 44px),
-  repeating-linear-gradient(65deg,transparent 0 14px,#1c1e2c 14px 30px,transparent 30px 44px);
-  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  background-size:88px 100%,88px 100%;background-position:0 0,44px 0;animation:roll 2.4s linear infinite}
-.tread::after{content:"";position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;background:repeating-linear-gradient(90deg,#07080d 0 20px,transparent 20px 44px);animation:roll2 2.4s linear infinite}
+.tread{position:relative;height:54px;margin-top:44px;background:#06070c;border-block:1px solid var(--line);overflow:hidden}
+.tread::before{content:"";position:absolute;inset:8px 0;background:repeating-linear-gradient(115deg,transparent 0 14px,#1d2032 14px 30px,transparent 30px 44px),repeating-linear-gradient(65deg,transparent 0 14px,#1d2032 14px 30px,transparent 30px 44px);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);background-size:88px 100%,88px 100%;background-position:0 0,44px 0;animation:roll 2.6s linear infinite}
 @keyframes roll{to{background-position:-88px 0,-44px 0}}
-@keyframes roll2{to{background-position:-44px 0}}
+
+/* trust strip */
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+@media(min-width:900px){.trust{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.trust div{background:var(--bg-2);padding:20px;display:grid;gap:4px;align-content:start}
+.trust b{font-family:var(--display);font-stretch:110%;font-weight:800;font-size:18px;line-height:1.15}
+.trust span{font-size:14px;color:var(--fg-2)}
 
 /* sections */
-section.block{padding-block:72px}
+section.block{padding-block:84px}
 section.tight{padding-top:0}
-@media(min-width:900px){section.block{padding-block:100px}section.tight{padding-top:0}}
-.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:42rem}
-h2{font-family:var(--display);font-weight:900;font-stretch:115%;text-transform:uppercase;font-size:clamp(30px,4.6vw,52px);line-height:.95;letter-spacing:-.015em;margin:0;text-wrap:balance}
-.sec-head p{color:var(--fg-2);margin:0;font-size:17px}
-h3{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:22px;line-height:1.15;margin:0}
+@media(min-width:900px){section.block{padding-block:112px}section.tight{padding-top:0}}
+.sec-head{display:grid;gap:14px;margin-bottom:40px;max-width:46rem}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--red);flex:none}
+h2{font-family:var(--display);font-weight:900;font-stretch:116%;text-transform:uppercase;font-size:clamp(32px,4.8vw,56px);line-height:.95;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sec-head p{color:var(--fg-2);font-size:17.5px;max-width:40rem}
+h3{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:21px;line-height:1.15;margin:0}
 
 /* services */
-.services{display:grid;gap:20px}
-@media(min-width:820px){.services{grid-template-columns:1fr 1fr}}
-.svc{background:var(--bg-2);border-radius:28px;padding:28px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:16px;align-content:start;min-width:0}
-.svc-top{display:flex;align-items:center;gap:14px}
-.svc-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;flex:none}
-.svc-icon svg{width:28px;height:28px}
-.svc.tires .svc-icon{background:var(--red)}
-.svc.repair .svc-icon{background:var(--blue)}
-.svc h3{font-size:24px}
-.svc p{margin:0;color:var(--fg-2)}
-.svc ul{list-style:none;padding:0;margin:0}
-.svc li{border-top:1px solid var(--line)}
-.svc li a{display:flex;gap:12px;align-items:center;padding:12px 0;text-decoration:none}
-.svc li a::before{content:"";width:6px;height:6px;border-radius:50%;flex:none}
-.svc li a::after{content:"→";margin-left:auto;color:var(--fg-3);font-size:14px;transition:transform .2s var(--ease),color .2s}
-.svc li a:hover::after{transform:translateX(3px);color:var(--fg)}
-.svc.tires li a::before{background:var(--red)}
-.svc.repair li a::before{background:var(--blue-hi)}
-.note{font-size:14px;color:var(--fg-3);margin:0}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.compare div{background:var(--bg-3);border-radius:16px;padding:14px}
-.compare b{display:block;font-size:15px}
-.compare span{font-size:13.5px;color:var(--fg-2)}
+.svc-grid{display:grid;gap:14px}
+@media(min-width:620px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.svc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.svc{position:relative;background:var(--bg-2);border-radius:var(--r-md);padding:24px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.svc:hover{transform:translateY(-3px);background:var(--bg-3);box-shadow:inset 0 0 0 1px var(--line-2),0 18px 40px rgba(0,0,0,.35)}
+.svc .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(232,51,59,.14);color:#ff7a80}
+.svc.rp .ic{background:rgba(114,119,236,.16);color:#a9adff}
+.svc .ic svg{width:26px;height:26px}
+.svc p{color:var(--fg-2);font-size:15px}
+.svc .go{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;text-decoration:none;color:var(--fg);margin-top:4px}
+.svc .go::after{content:"→";transition:transform .2s var(--ease)}
+.svc .go:hover::after{transform:translateX(4px)}
+.svc .go::before{content:"";position:absolute;inset:0;border-radius:inherit}
+.svc.feature{background:linear-gradient(160deg,var(--blue),var(--blue-2));box-shadow:none}
+.svc.feature .ic{background:rgba(255,255,255,.16);color:#fff}
+.svc.feature p{color:rgba(255,255,255,.88)}
+.svc-note{margin-top:18px;font-size:14.5px;color:var(--fg-3)}
+@media(max-width:619px){.svc{grid-template-columns:44px 1fr;grid-template-rows:none;column-gap:14px;row-gap:6px;padding:18px}.svc .ic{width:44px;height:44px;grid-row:span 3}.svc .ic svg{width:22px;height:22px}.svc h3{font-size:19px;align-self:center}.svc p{font-size:14.5px}.steps4 li{padding:20px}}
+
+/* how it works */
+.steps4{display:grid;gap:14px;counter-reset:st;list-style:none;padding:0;margin:0}
+@media(min-width:760px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1080px){.steps4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.steps4 li{counter-increment:st;background:var(--bg-2);border-radius:var(--r-md);padding:24px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:10px;align-content:start}
+.steps4 li::before{content:"0" counter(st);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--red)}
+.steps4 p{color:var(--fg-2);font-size:15px}
+
+/* booking */
+.book{display:grid;gap:30px;background:linear-gradient(160deg,var(--blue) 0%,var(--blue-2) 100%);border-radius:36px;padding:clamp(22px,4vw,52px);position:relative;overflow:hidden}
+.book::after{content:"";position:absolute;inset:auto -120px -160px auto;width:420px;height:420px;border-radius:50%;border:56px solid rgba(255,255,255,.05);pointer-events:none}
+@media(min-width:980px){.book{grid-template-columns:.9fr 1.1fr;align-items:start;gap:52px}}
+.book h2{font-size:clamp(30px,4vw,48px)}
+.book .lead{color:rgba(255,255,255,.9);margin-top:14px;font-size:17px}
+.next{margin-top:26px;background:rgba(0,0,0,.2);border-radius:var(--r-md);padding:20px;display:grid;gap:12px}
+.next h3{font-size:17px}
+.next ol{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:n}
+.next li{display:flex;gap:12px;color:rgba(255,255,255,.92);font-size:15px;counter-increment:n}
+.next li::before{content:counter(n);flex:none;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:12px}
+.hours-mini{margin-top:18px;font-size:14.5px;color:rgba(255,255,255,.85)}
+.form{position:relative;z-index:1;background:#0a0b12;border-radius:26px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.4);display:grid;gap:18px;min-width:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#151729;border-radius:999px;padding:4px;gap:4px;border:0;margin:0}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span.s{display:flex;justify-content:center;align-items:center;gap:8px;min-height:44px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;color:var(--fg-2)}
+.seg input:checked+span.s{background:var(--fg);color:var(--bg)}
+.seg input:focus-visible+span.s{outline:3px solid var(--blue-hi);outline-offset:2px}
+.field{display:grid;gap:8px;min-width:0;border:0;padding:0;margin:0}
+.field label,.lbl{font-size:13.5px;font-weight:600;color:var(--fg-2)}
+.opt{font-weight:400;color:var(--fg-3)}
+.field input,.field select,.field textarea{width:100%;box-sizing:border-box;background:#151729;border:1px solid var(--line);color:var(--fg);font-family:var(--body);font-size:16px;padding:12px 14px;border-radius:12px;min-height:48px}
+.field select:disabled{opacity:.55}
+.field textarea{min-height:76px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue-hi);box-shadow:0 0 0 3px rgba(114,119,236,.25)}
+.field input::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.7}
+.hint{font-size:13px;color:var(--fg-3)}
+.hint.warn{color:var(--amber)}
+#size{font-family:var(--mono);font-weight:700;font-size:19px;letter-spacing:.05em;text-transform:uppercase}
+#size.bad{border-color:var(--amber)}
+.sizes{display:flex;flex-wrap:wrap;gap:6px}
+.sizes button{all:unset;cursor:pointer;font-family:var(--mono);font-size:12.5px;padding:8px 10px;border-radius:999px;background:#151729;box-shadow:inset 0 0 0 1px var(--line);color:var(--fg-2)}
+.sizes button:hover,.sizes button:focus-visible{color:var(--fg);box-shadow:inset 0 0 0 1px var(--blue-hi)}
+.row2{display:grid;gap:16px}
+@media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+.preview{background:#151729;border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--fg-2);white-space:pre-wrap;max-height:160px;overflow:auto;margin-top:8px}
+details.pv summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--fg-2);padding:4px 0}
+.send{display:grid;gap:10px}
+@media(min-width:480px){.send{grid-template-columns:1fr 1fr}}
+.tiny{font-size:13px;color:var(--fg-3)}
+.linkbtn{all:unset;cursor:pointer;color:var(--fg-2);text-decoration:underline;text-underline-offset:3px;font-size:13px}
 
 /* signs */
 .signs{display:grid;gap:12px}
 @media(min-width:640px){.signs{grid-template-columns:1fr 1fr}}
 @media(min-width:1000px){.signs{grid-template-columns:repeat(3,1fr)}}
-.sign{display:flex;gap:14px;align-items:flex-start;background:var(--bg-2);border-radius:20px;padding:18px 20px;box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;transition:background .2s}
+.sign{display:flex;gap:14px;align-items:flex-start;background:var(--bg-2);border-radius:18px;padding:18px 20px;box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;transition:background .2s}
 .sign:hover{background:var(--bg-3)}
-.sign svg{width:22px;height:22px;color:var(--amber);flex:none;margin-top:2px}
+.sign svg{width:22px;height:22px;color:var(--amber);flex:none;margin-top:3px}
 .sign b{display:block;font-size:16px}
 .sign span{font-size:14px;color:var(--fg-2)}
 
-/* quote */
-.reader{display:grid;gap:28px;background:linear-gradient(160deg,var(--blue) 0%,#262a73 100%);border-radius:32px;padding:clamp(22px,4vw,48px)}
-@media(min-width:900px){.reader{grid-template-columns:1fr 1.15fr;align-items:start;gap:48px}}
-.reader h2{font-size:clamp(28px,3.8vw,44px)}
-.reader .lead{color:rgba(255,255,255,.88);margin:12px 0 0}
-.steps{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px;counter-reset:s}
-.steps li{display:flex;gap:12px;align-items:flex-start;color:rgba(255,255,255,.9);counter-increment:s}
-.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:13px}
-.sidewall-art{margin-top:24px;max-width:340px}
-.sidewall-art svg{width:100%;height:auto;display:block}
-.sidewall-art p{font-size:13px;color:rgba(255,255,255,.75);margin:8px 0 0}
-.form{background:#0b0c12;border-radius:22px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.35);display:grid;gap:16px;min-width:0}
-.field{display:grid;gap:8px;min-width:0;border:0;padding:0;margin:0}
-.field label,.field legend,.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);padding:0}
-.field input,.field select,.field textarea{width:100%;box-sizing:border-box;background:#151726;border:1px solid var(--line);color:var(--fg);font-family:var(--body);font-size:16px;padding:12px 14px;border-radius:12px;min-height:46px}
-.field textarea{min-height:76px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue-hi);box-shadow:0 0 0 3px rgba(106,111,224,.25)}
-#size{font-family:var(--mono);font-weight:700;font-size:clamp(22px,5vw,30px);letter-spacing:.06em;text-transform:uppercase}
-#size.bad{border-color:var(--amber)}
-.sizes{display:flex;flex-wrap:wrap;gap:6px}
-.sizes button{all:unset;cursor:pointer;font-family:var(--mono);font-size:12.5px;padding:7px 10px;border-radius:999px;background:#151726;box-shadow:inset 0 0 0 1px var(--line);color:var(--fg-2)}
-.sizes button:hover,.sizes button:focus-visible{color:var(--fg);box-shadow:inset 0 0 0 1px var(--blue-hi)}
-.row2{display:grid;gap:16px}
-@media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
-.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.part{background:#151726;border-radius:14px;padding:12px;min-width:0}
-.part b{display:block;font-family:var(--mono);font-size:clamp(18px,3vw,24px);font-variant-numeric:tabular-nums}
-.part span{display:block;font-size:12.5px;color:var(--fg-3);line-height:1.35;margin-top:4px}
-.part:nth-child(1) b{color:#ff6b72}.part:nth-child(3) b{color:#9da1ff}
-.reader-msg{font-size:14px;color:var(--fg-2);margin:0;min-height:1.4em}
-.reader-msg.warn{color:var(--amber)}
-.pills{display:flex;flex-wrap:wrap;gap:8px}
-.pills label{position:relative}
-.pills input{position:absolute;opacity:0;pointer-events:none}
-.pills span{display:inline-block;padding:9px 14px;border-radius:999px;background:#151726;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;cursor:pointer;font-family:var(--body);text-transform:none;letter-spacing:0;color:var(--fg-2)}
-.pills input:checked+span{background:var(--fg);color:var(--bg);box-shadow:none}
-.pills input:focus-visible+span{outline:3px solid var(--blue-hi);outline-offset:2px}
-.preview{background:#151726;border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--fg-2);white-space:pre-wrap;margin:0;max-height:160px;overflow:auto}
-.send{display:grid;gap:10px}
-@media(min-width:480px){.send{grid-template-columns:1fr 1fr}}
-.tiny{font-size:13px;color:var(--fg-3);margin:0}
-.linkbtn{all:unset;cursor:pointer;color:var(--fg-2);text-decoration:underline;text-underline-offset:3px;font-size:13px}
+/* hours + visit */
+.visit{display:grid;gap:18px}
+@media(min-width:980px){.visit{grid-template-columns:1fr 1fr;align-items:stretch}}
+.card{background:var(--bg-2);border-radius:var(--r-lg);padding:28px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:18px;align-content:start;min-width:0}
+.hours-table{width:100%;border-collapse:collapse;font-size:16px}
+.hours-table th,.hours-table td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:500}
+.hours-table td{text-align:right;color:var(--fg-2)}
+.hours-table tr.today th,.hours-table tr.today td{color:var(--fg);font-weight:700}
+.tag{margin-left:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 8px;border-radius:999px;vertical-align:2px}
+.status-line{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.addr address{font-style:normal;font-family:var(--display);font-weight:800;font-stretch:108%;font-size:clamp(24px,3vw,30px);line-height:1.1}
+.addr .meta{color:var(--fg-2);font-size:15px}
+.near{display:flex;flex-wrap:wrap;gap:6px}
+.near span{font-size:13px;padding:4px 10px;border-radius:999px;background:rgba(245,245,248,.07);color:var(--fg-2)}
+.map{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:360px;background:#10121d;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center}
+@media(min-width:980px){.map{grid-column:1/-1}}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map .wait{color:var(--fg-3);font-size:14px}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px}
 
 /* people */
-.people{display:grid;gap:16px}
+.people{display:grid;gap:14px}
 @media(min-width:760px){.people{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.person{background:var(--bg-2);border-radius:24px;padding:26px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:14px;align-content:start;min-width:0}
+.person{background:var(--bg-2);border-radius:var(--r-md);padding:24px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:12px;align-content:start;min-width:0}
 .person.main{background:var(--red);box-shadow:none}
-.person .role{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3)}
-.person.main .role{color:rgba(255,255,255,.8)}
+.person .role{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3)}
+.person.main .role{color:rgba(255,255,255,.85)}
 .person .name{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:26px;line-height:1}
-.phone{font-family:var(--mono);font-weight:700;font-size:clamp(20px,2.3vw,24px);letter-spacing:.02em;font-variant-numeric:tabular-nums;user-select:all;text-decoration:none}
+.phone{font-family:var(--mono);font-weight:700;font-size:clamp(20px,2.3vw,23px);letter-spacing:.02em;font-variant-numeric:tabular-nums;text-decoration:none}
 .tongues{display:flex;flex-wrap:wrap;gap:6px}
-.tongues span{font-size:12.5px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(244,244,247,.08)}
+.tongues span{font-size:12.5px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(245,245,248,.08)}
 .person.main .tongues span{background:rgba(255,255,255,.18)}
 .p-actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn-call{background:var(--fg);color:var(--bg)}
-.person.main .btn-call{background:#fff;color:var(--red)}
+.person.main .btn-light{color:#c4222a}
 .person.main .btn-ghost{background:rgba(255,255,255,.16);box-shadow:none;color:#fff}
-.save-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
 
 /* tips */
-.tips{display:grid;gap:16px}
+.tips{display:grid;gap:14px}
 @media(min-width:760px){.tips{grid-template-columns:1fr 1fr}}
-.tip{background:var(--bg-2);border-radius:24px;padding:24px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:10px;align-content:start}
+.tip{background:var(--bg-2);border-radius:var(--r-md);padding:24px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:10px;align-content:start}
 .tip .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
-.tip p{margin:0;color:var(--fg-2)}
+.tip p{color:var(--fg-2)}
 
 /* faq */
-.faq{display:grid;gap:10px;max-width:820px}
-.faq details{background:var(--bg-2);border-radius:18px;box-shadow:inset 0 0 0 1px var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:24px}
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--bg-2);border-radius:16px;box-shadow:inset 0 0 0 1px var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-family:var(--mono);font-size:22px;color:var(--fg-3);transition:transform .25s var(--ease)}
 .faq details[open] summary::after{transform:rotate(45deg)}
-.faq p{margin:0;padding:0 22px 20px;color:var(--fg-2)}
+.faq details p{padding:0 22px 20px;color:var(--fg-2)}
 
-/* visit */
-.visit{display:grid;gap:24px}
-@media(min-width:900px){.visit{grid-template-columns:1.1fr 1fr;align-items:stretch}}
-.map{position:relative;border-radius:28px;overflow:hidden;min-height:340px;background:#10121d;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center}
-.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.map .wait{color:var(--fg-3);font-size:14px}
-.addr{background:var(--bg-2);border-radius:28px;padding:30px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:18px;align-content:start;min-width:0}
-.addr address{font-style:normal;font-family:var(--display);font-weight:800;font-stretch:108%;font-size:clamp(24px,3vw,32px);line-height:1.1}
-.addr dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0;font-size:15px}
-.addr dt{color:var(--fg-3);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding-top:3px}
-.addr dd{margin:0;color:var(--fg-2)}
-.near{display:flex;flex-wrap:wrap;gap:6px}
-.near span{font-size:13px;padding:4px 10px;border-radius:999px;background:rgba(244,244,247,.07);color:var(--fg-2)}
+/* closing call to action */
+.final{background:var(--red);border-radius:36px;padding:clamp(28px,5vw,60px);display:grid;gap:24px;align-items:center;position:relative;overflow:hidden}
+.final::after{content:"";position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(115deg,transparent 0 18px,#000 18px 22px,transparent 22px 56px);pointer-events:none}
+@media(min-width:900px){.final{grid-template-columns:1.3fr auto}}
+.final h2{font-size:clamp(30px,4.4vw,52px)}
+.final p{color:rgba(255,255,255,.92);margin-top:12px;font-size:17px}
+.final .btnrow{position:relative;z-index:1}
+.final .btn-light{color:#c4222a}
+.final .btn-ghost{background:rgba(0,0,0,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.4);color:#fff}
 
 /* review + share */
-.duo{display:grid;gap:16px}
+.duo{display:grid;gap:14px}
 @media(min-width:820px){.duo{grid-template-columns:1fr 1fr}}
-.panel{background:var(--bg-2);border-radius:28px;padding:28px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:14px;align-content:start}
-.panel p{margin:0;color:var(--fg-2)}
-.stars{display:flex;gap:4px;color:var(--amber)}
-.stars svg{width:22px;height:22px}
+.panel{background:var(--bg-2);border-radius:var(--r-md);padding:26px;box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:12px;align-content:start}
+.panel p{color:var(--fg-2)}
 .share{display:flex;flex-wrap:wrap;gap:10px}
 
-footer{border-top:1px solid var(--line);padding-block:36px;color:var(--fg-3);font-size:14px}
-footer .wrap{display:grid;gap:18px}
-@media(min-width:760px){footer .wrap{grid-template-columns:auto 1fr auto;align-items:center}}
-footer img{height:40px;width:auto}
-footer nav{display:flex;flex-wrap:wrap;gap:8px 18px}
-footer nav a{text-decoration:none;color:var(--fg-2)}
-footer nav a:hover{color:var(--fg)}
-.top{all:unset;cursor:pointer;color:var(--fg-2);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+footer{border-top:1px solid var(--line);padding-block:48px 36px;color:var(--fg-3);font-size:14.5px;background:#07080e}
+.fgrid{display:grid;gap:30px}
+@media(min-width:860px){.fgrid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.fgrid h3{font-size:15px;color:var(--fg);margin-bottom:12px;font-family:var(--body);font-weight:700}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fgrid a{text-decoration:none;color:var(--fg-2)}
+.fgrid a:hover{color:var(--fg)}
+.fgrid img{height:52px;width:auto;margin-bottom:12px}
+.fhours{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.fhours dt{color:var(--fg-2)}.fhours dd{margin:0}
+.fbottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+.top{all:unset;cursor:pointer;color:var(--fg-2);text-decoration:underline;text-underline-offset:3px}
 
 /* phone action bar */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:12;background:rgba(12,13,20,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;transition:transform .25s var(--ease)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:12;background:rgba(11,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;transition:transform .25s var(--ease)}
 .dock.away{transform:translateY(110%)}
-.dock a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;font-size:12px;font-weight:600;padding:8px 4px;border-radius:14px;background:rgba(244,244,247,.07);min-height:44px;box-sizing:border-box;justify-content:center}
+.dock a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;font-size:12.5px;font-weight:600;padding:8px 4px;border-radius:14px;background:rgba(245,245,248,.07);min-height:50px;box-sizing:border-box}
 .dock a.call{background:var(--red);color:#fff}
+.dock a.bk{background:var(--fg);color:var(--bg)}
 .dock svg{width:20px;height:20px}
 @media(min-width:900px){.dock{display:none}}
 
-.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--fg);color:var(--bg);font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:20;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
+.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--fg);color:var(--bg);font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:20;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* reveal on scroll: visible by default, only animates once JS marks the page */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
 }
-@media (prefers-contrast:more){:root{--fg-2:#fff;--fg-3:rgba(255,255,255,.85);--line:rgba(255,255,255,.4)}}
+@media (prefers-contrast:more){:root{--fg-2:#fff;--fg-3:rgba(255,255,255,.88);--line:rgba(255,255,255,.4)}}
 @media print{
   :root{--bg:#fff;--bg-2:#fff;--bg-3:#fff;--fg:#000;--fg-2:#222;--fg-3:#444;--line:#bbb}
-  .dock,.season,.tread,.langs,.map,.share,.send,.toast,nav.links,.hdr-call{display:none!important}
+  .dock,.util,.tread,.langs,.map,.share,.send,.toast,nav.links,.hdr-cta,.final,.skip{display:none!important}
   header{position:static;background:#fff}
-  .reader{background:#fff;color:#000}
+  .book{background:#fff;color:#000}
   section.block{padding-block:24px}
+  .js .rv{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -306,42 +356,60 @@ footer nav a:hover{color:var(--fg)}
   <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-msg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
-  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.300-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.200 5.200 0 0 0 1.1 2.8 11.900 11.900 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2s.2-1.1.1-1.2l-.4-.2z"/></symbol>
-  <symbol id="i-snow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9M9 3l3 3 3-3M9 21l3-3 3 3M3 9l3 3-3 3M21 9l-3 3 3 3"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 10h18M8 2.5v4M16 2.5v4"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2s.2-1.1.1-1.2l-.4-.2z"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-tire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="4"/><path d="M12 2.5v5.5M12 16v5.5M2.5 12H8M16 12h5.5"/></g></symbol>
+  <symbol id="i-balance" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M6 7h12"/><path d="m6 7-3 7h6zM18 7l-3 7h6z"/></g></symbol>
+  <symbol id="i-patch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 9l6 6M15 9l-6 6"/></g></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></g></symbol>
+  <symbol id="i-brake" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path stroke-linecap="round" d="M4 8a9 9 0 0 0 0 8M20 8a9 9 0 0 1 0 8"/></g></symbol>
+  <symbol id="i-oil" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/></symbol>
+  <symbol id="i-susp" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3"/><path d="m8 5 8 2-8 2 8 2-8 2 8 2-8 2"/></g></symbol>
+  <symbol id="i-engine" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h3l2-2h5l2 2h2v3h2v-2h1v6h-1v-2h-2v3h-3l-2 2H9l-2-2H4z"/></symbol>
 </svg>
 
-<div class="season" role="region" aria-label="Winter tires">
+<div class="util" role="region" aria-label="Shop status">
   <div class="wrap">
-    <svg aria-hidden="true"><use href="#i-snow"/></svg>
-    <span data-i18n="winter">Winter is coming to Worcester. Ask us about winter tires.</span>
-    <a href="#quote" data-go="quote" data-need="winter" data-i18n="winterCta">Get a price</a>
+    <div class="grp">
+      <span class="st" id="utilStatus"><span class="dot"></span><span class="txt" data-i18n="hoursCompact">Mon–Fri 8–6 · Sat 8–12</span></span>
+      <span class="hide-s" data-i18n="hoursShort">Mon–Fri 8 AM–6 PM · Sat 8 AM–12 PM · Sun closed</span>
+    </div>
+    <div class="grp">
+      <a class="hide-s" href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener">598 West Boylston St, Worcester</a>
+      <a href="tel:+15088533322" class="tnum">508-853-3322</a>
+    </div>
   </div>
 </div>
 
 <header id="hdr">
   <div class="wrap">
     <a class="brand" href="#top" data-go="top" aria-label="L&amp;M Tire Auto Repair, back to top">
-      <img src="logo-sm.webp" alt="" width="56" height="34">
-      <span>L&amp;M TIRE</span>
+      <img src="logo-sm.webp" alt="" width="63" height="38">
+      <span><b>L&amp;M TIRE</b><small data-i18n="brandSub">Auto Repair · Worcester</small></span>
     </a>
     <nav class="links" aria-label="Sections">
       <a href="#services" data-go="services" data-i18n="navSvc">Services</a>
-      <a href="#quote" data-go="quote" data-i18n="navQuote">Get a price</a>
-      <a href="#contact" data-go="contact" data-i18n="navCall">Call us</a>
-      <a href="#tips" data-go="tips" data-i18n="navTips">Tire tips</a>
-      <a href="#visit" data-go="visit" data-i18n="navVisit">Location</a>
+      <a href="#how" data-go="how" data-i18n="navHow">How it works</a>
+      <a href="#book" data-go="book" data-i18n="navBook">Book</a>
+      <a href="#hours" data-go="hours" data-i18n="navHours">Hours &amp; location</a>
+      <a href="#contact" data-go="contact" data-i18n="navCall">Contact</a>
     </nav>
     <div class="langs" role="group" aria-label="Language / Idioma">
       <button type="button" data-lang="en" aria-pressed="true" lang="en" title="English">EN</button>
       <button type="button" data-lang="pt" aria-pressed="false" lang="pt" title="Português">PT</button>
       <button type="button" data-lang="es" aria-pressed="false" lang="es" title="Español">ES</button>
     </div>
-    <a class="btn btn-red btn-sm hdr-call" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>508-853-3322</a>
+    <div class="hdr-cta">
+      <a class="btn btn-ghost btn-sm" href="#book" data-go="book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="bookShort">Book</span></a>
+      <a class="btn btn-red btn-sm" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span class="tnum">508-853-3322</span></a>
+    </div>
   </div>
 </header>
 
@@ -349,155 +417,149 @@ footer nav a:hover{color:var(--fg)}
   <section class="hero" id="top" aria-labelledby="h1">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow rise d1" data-i18n="eyebrow">598 West Boylston St · Worcester, MA</div>
-        <h1 id="h1" class="rise d2"><span class="line" data-i18n="h1a">New &amp; used tires.</span><span class="line red" data-i18n="h1b">Honest car repair.</span></h1>
-        <p class="sub rise d3" data-i18n="sub">Need tires today or a fix for your car? Stop by or call. We'll tell you straight what it needs and what it costs.</p>
+        <span class="kicker rise d1"><svg aria-hidden="true"><use href="#i-snow"/></svg><span data-i18n="kicker">Ask about winter tires</span></span>
+        <h1 id="h1" class="rise d2"><span class="line" data-i18n="h1a">Tires &amp; auto repair</span><span class="line red" data-i18n="h1b">in Worcester.</span></h1>
+        <p class="lede rise d3" data-i18n="lede">New and used tires, tire repair and mechanical work on West Boylston Street. Talk straight to the owners, in English, Português or Español.</p>
         <div class="cta rise d4">
-          <a class="btn btn-red" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span><span data-i18n="call">Call</span> 508-853-3322</span></a>
-          <a class="btn btn-ghost" href="#quote" data-go="quote"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="textPrice">Text us for a price</span></a>
+          <a class="btn btn-red btn-lg" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="callNow">Call Now</span></a>
+          <a class="btn btn-light btn-lg" href="#book" data-go="book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="bookAppt">Book an Appointment</span></a>
         </div>
         <ul class="proof rise d5">
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p1">New and used tires</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p2">Talk to the owners</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p1">New &amp; used tires</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="p2">Open Monday to Saturday</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>English · Português · Español</span></li>
         </ul>
       </div>
-      <div class="logo-stage">
-        <img src="logo.webp" alt="L&amp;M Tire Auto Repair logo" width="1100" height="664" fetchpriority="high" decoding="async">
-      </div>
+      <aside class="shopcard rise d3" aria-label="Shop information">
+        <img class="logo" src="logo.webp" alt="L&amp;M Tire Auto Repair logo" width="1100" height="664" fetchpriority="high" decoding="async">
+        <div class="sc-status" id="cardStatus"><span class="dot"></span><span class="txt" data-i18n="hoursShort">Mon–Fri 8 AM–6 PM · Sat 8 AM–12 PM · Sun closed</span></div>
+        <div class="sc-rows">
+          <div class="sc-row"><span data-i18n="todayLbl">Today</span><span id="todayHours" class="tnum">—</span></div>
+          <div class="sc-row"><span data-i18n="addrLbl">Address</span><span>598 West Boylston St</span></div>
+          <div class="sc-row"><span data-i18n="phoneLbl">Phone</span><a href="tel:+15088533322" class="tnum" style="text-decoration:none">508-853-3322</a></div>
+        </div>
+        <div class="sc-actions">
+          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="directions">Directions</span></a>
+          <a class="btn btn-ghost" href="#hours" data-go="hours"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><span data-i18n="allHours">All hours</span></a>
+        </div>
+      </aside>
     </div>
     <div class="tread" aria-hidden="true"></div>
   </section>
 
+  <section class="block" style="padding-block:44px 0" aria-label="Why customers choose us">
+    <div class="wrap">
+      <div class="trust rv">
+        <div><b data-i18n="tr1t">New &amp; used tires</b><span data-i18n="tr1d">Pick what fits your budget.</span></div>
+        <div><b data-i18n="tr2t">Talk to the owners</b><span data-i18n="tr2d">Cid and Leo answer your calls.</span></div>
+        <div><b data-i18n="tr3t">3 languages</b><span>English · Português · Español</span></div>
+        <div><b data-i18n="tr4t">Open 6 days</b><span data-i18n="tr4d">Mon–Fri 8–6 · Sat 8–12</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="services" aria-labelledby="svcTitle">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow" data-i18n="svcEyebrow">What we do</div>
-        <h2 id="svcTitle" data-i18n="svcTitle">Tires and mechanical work, under one roof</h2>
-        <p data-i18n="svcSub">Tap any service to ask for a price.</p>
+      <div class="sec-head rv">
+        <div class="eyebrow" data-i18n="svcEyebrow">Services</div>
+        <h2 id="svcTitle" data-i18n="svcTitle">Everything your tires and car need</h2>
+        <p data-i18n="svcSub">Tap a service to book it or ask for a price.</p>
       </div>
-      <div class="services">
-        <article class="svc tires">
-          <div class="svc-top">
-            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg></div>
-            <h3 data-i18n="tiresTitle">Tires</h3>
-          </div>
-          <p data-i18n="tiresText">New tires and good used tires for every budget.</p>
-          <div class="compare">
-            <div><b data-i18n="cNew">New</b><span data-i18n="cNewT">Longest life. Full tread.</span></div>
-            <div><b data-i18n="cUsed">Used</b><span data-i18n="cUsedT">Lowest price. Ask us about tread left.</span></div>
-          </div>
-          <ul>
-            <li><a href="#quote" data-go="quote" data-need="new" data-i18n="t1">New tires</a></li>
-            <li><a href="#quote" data-go="quote" data-need="used" data-i18n="t2">Quality used tires</a></li>
-            <li><a href="#quote" data-go="quote" data-need="winter" data-i18n="t6">Winter tires</a></li>
-            <li><a href="#quote" data-go="quote" data-need="other" data-i18n="t3">Mounting and balancing</a></li>
-            <li><a href="#quote" data-go="quote" data-need="other" data-i18n="t4">Flat tire repair</a></li>
-            <li><a href="#quote" data-go="quote" data-need="other" data-i18n="t5">Tire rotation</a></li>
-          </ul>
-        </article>
-        <article class="svc repair">
-          <div class="svc-top">
-            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg></div>
-            <h3 data-i18n="repairTitle">Car repair</h3>
-          </div>
-          <p data-i18n="repairText">Mechanical work to keep your car safe on the road.</p>
-          <ul>
-            <li><a href="#quote" data-go="quote" data-need="repair" data-note="r1" data-i18n="r1">Brakes</a></li>
-            <li><a href="#quote" data-go="quote" data-need="repair" data-note="r2" data-i18n="r2">Oil changes</a></li>
-            <li><a href="#quote" data-go="quote" data-need="repair" data-note="r3" data-i18n="r3">Suspension and steering</a></li>
-            <li><a href="#quote" data-go="quote" data-need="repair" data-note="r4" data-i18n="r4">Check engine light</a></li>
-            <li><a href="#quote" data-go="quote" data-need="repair" data-i18n="r5">General repairs</a></li>
-          </ul>
-          <p class="note" data-i18n="noBody">We don't do body work or paint.</p>
-        </article>
+      <div class="svc-grid">
+        <article class="svc feature rv"><div class="ic"><svg aria-hidden="true"><use href="#i-tire"/></svg></div><h3 data-i18n="sv1t">New &amp; used tires</h3><p data-i18n="sv1d">Brand-new tires for the longest life, or good used tires for the lowest price. Send us your size and we'll tell you what we have.</p><a class="go" href="#book" data-go="book" data-need="new" data-mode="price" data-i18n="askPrice">Ask for a price</a></article>
+        <article class="svc rv"><div class="ic"><svg aria-hidden="true"><use href="#i-snow"/></svg></div><h3 data-i18n="sv2t">Winter tires</h3><p data-i18n="sv2d">Get ready for Worcester winters. Ask us what we have in your size.</p><a class="go" href="#book" data-go="book" data-need="winter" data-mode="price" data-i18n="askPrice">Ask for a price</a></article>
+        <article class="svc rv"><div class="ic"><svg aria-hidden="true"><use href="#i-balance"/></svg></div><h3 data-i18n="sv3t">Installation &amp; balancing</h3><p data-i18n="sv3d">Tires mounted and balanced so your car rides smooth, without shaking at highway speed.</p><a class="go" href="#book" data-go="book" data-need="mount" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rv"><div class="ic"><svg aria-hidden="true"><use href="#i-patch"/></svg></div><h3 data-i18n="sv4t">Flat tire repair</h3><p data-i18n="sv4d">A nail or a slow leak? Bring it in and we'll check if the tire can be fixed.</p><a class="go" href="#book" data-go="book" data-need="flat" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rv"><div class="ic"><svg aria-hidden="true"><use href="#i-rotate"/></svg></div><h3 data-i18n="sv5t">Tire rotation</h3><p data-i18n="sv5d">Helps your tires wear evenly and last longer.</p><a class="go" href="#book" data-go="book" data-need="rotation" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rp rv"><div class="ic"><svg aria-hidden="true"><use href="#i-brake"/></svg></div><h3 data-i18n="sv6t">Brakes</h3><p data-i18n="sv6d">Squeaking, grinding or a soft pedal? Have your brakes checked.</p><a class="go" href="#book" data-go="book" data-need="brakes" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rp rv"><div class="ic"><svg aria-hidden="true"><use href="#i-oil"/></svg></div><h3 data-i18n="sv7t">Oil changes</h3><p data-i18n="sv7d">Keep your engine healthy with regular oil changes.</p><a class="go" href="#book" data-go="book" data-need="oil" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rp rv"><div class="ic"><svg aria-hidden="true"><use href="#i-susp"/></svg></div><h3 data-i18n="sv8t">Suspension &amp; steering</h3><p data-i18n="sv8d">Bumpy ride, clunks, or the car pulls to one side? We'll take a look.</p><a class="go" href="#book" data-go="book" data-need="susp" data-mode="book" data-i18n="bookIt">Book this</a></article>
+        <article class="svc rp rv"><div class="ic"><svg aria-hidden="true"><use href="#i-engine"/></svg></div><h3 data-i18n="sv9t">Check engine light</h3><p data-i18n="sv9d">We read the code and explain what it means before any work.</p><a class="go" href="#book" data-go="book" data-need="cel" data-mode="book" data-i18n="bookIt">Book this</a></article>
       </div>
+      <p class="svc-note rv"><span data-i18n="svcMore">Something else? We do general repairs too, just ask.</span> <span data-i18n="noBody">We don't do body work or paint.</span></p>
     </div>
   </section>
 
-  <section class="block tight" id="signs" aria-labelledby="signsTitle">
+  <section class="block tight" id="how" aria-labelledby="howTitle">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow" data-i18n="sgEyebrow">Warning signs</div>
-        <h2 id="signsTitle" data-i18n="sgTitle">Does your car do this?</h2>
-        <p data-i18n="sgSub">These are signs to get it checked soon. Tap one to tell us about it.</p>
+      <div class="sec-head rv">
+        <div class="eyebrow" data-i18n="howEyebrow">How it works</div>
+        <h2 id="howTitle" data-i18n="howTitle">First time here? Here's what to expect</h2>
       </div>
-      <div class="signs">
-        <a class="sign" href="#quote" data-go="quote" data-need="repair" data-note="g1t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g1t">Brakes squeak or grind</b><span data-i18n="g1d">Your brake pads may be worn out.</span></div></a>
-        <a class="sign" href="#quote" data-go="quote" data-need="repair" data-note="g2t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g2t">Check engine light is on</b><span data-i18n="g2d">We can read the code and tell you what it means.</span></div></a>
-        <a class="sign" href="#quote" data-go="quote" data-need="other" data-note="g3t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g3t">Shaking at highway speed</b><span data-i18n="g3d">Often a tire that needs balancing.</span></div></a>
-        <a class="sign" href="#quote" data-go="quote" data-need="repair" data-note="g4t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g4t">Car pulls to one side</b><span data-i18n="g4d">Could be tires or suspension.</span></div></a>
-        <a class="sign" href="#quote" data-go="quote" data-need="new" data-note="g5t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g5t">Bulge or crack on the tire</b><span data-i18n="g5d">This is not safe. Replace that tire soon.</span></div></a>
-        <a class="sign" href="#quote" data-go="quote" data-need="other" data-note="g6t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g6t">Tire keeps losing air</b><span data-i18n="g6d">It may have a nail or a leak we can fix.</span></div></a>
-      </div>
+      <ol class="steps4">
+        <li class="rv"><h3 data-i18n="h1t">Call, text or book</h3><p data-i18n="h1d">Call 508-853-3322, or use the form below to pick a day and time. It takes about a minute.</p></li>
+        <li class="rv"><h3 data-i18n="h2t">We confirm with you</h3><p data-i18n="h2d">Cid replies by text to confirm your time and answer questions, in your language.</p></li>
+        <li class="rv"><h3 data-i18n="h3t">Bring your car in</h3><p data-i18n="h3d">Come to 598 West Boylston Street at your time. We look at your car and tell you what it needs.</p></li>
+        <li class="rv"><h3 data-i18n="h4t">Back on the road</h3><p data-i18n="h4d">When the work is done, we go over it with you and you're on your way.</p></li>
+      </ol>
     </div>
   </section>
 
-  <section class="block tight" id="quote" aria-labelledby="qTitle">
+  <section class="block tight" id="book" aria-labelledby="bookTitle">
     <div class="wrap">
-      <div class="reader">
+      <div class="book">
         <div>
-          <div class="eyebrow" style="color:rgba(255,255,255,.75)" data-i18n="qEyebrow">Get a price</div>
-          <h2 id="qTitle" data-i18n="qTitle">Text us for a price</h2>
-          <p class="lead" data-i18n="qLead">Fill this in and press Send. Your phone opens a text with everything written for you. Cid answers in English, Português or Español.</p>
-          <ol class="steps">
-            <li data-i18n="s1">Find the size on the side of your tire, like 225/65R17.</li>
-            <li data-i18n="s2">Tell us your car and what you need.</li>
-            <li data-i18n="s3">Press Send by text or WhatsApp.</li>
-          </ol>
-          <div class="sidewall-art">
-            <svg viewBox="0 0 340 175" role="img" aria-labelledby="swT">
-              <title id="swT">Where to find the tire size on the side of a tire</title>
-              <path d="M20 172 A 150 150 0 0 1 320 172" fill="none" stroke="#0b0c12" stroke-width="58"/>
-              <path d="M44 172 A 126 126 0 0 1 296 172" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-dasharray="2 7"/>
-              <path id="arc" d="M38 172 A 132 132 0 0 1 302 172" fill="none"/>
-              <text font-family="JetBrains Mono, monospace" font-weight="700" font-size="17" fill="#fff" letter-spacing="1.5"><textPath href="#arc" startOffset="50%" text-anchor="middle">P225/65R17 98H</textPath></text>
-            </svg>
-            <p data-i18n="swHint">The size is printed on the side of the tire in letters like these.</p>
+          <div class="eyebrow" style="color:rgba(255,255,255,.8)" data-i18n="bkEyebrow">Book or get a price</div>
+          <h2 id="bookTitle">Book an appointment</h2>
+          <p class="lead" data-i18n="bkLead">Pick a service and a time that works for you. No account, no app.</p>
+          <div class="next">
+            <h3 data-i18n="nxTitle">What happens after you press Send</h3>
+            <ol>
+              <li data-i18n="nx1">Your phone opens a text (or WhatsApp) to Cid with your request already written.</li>
+              <li data-i18n="nx2">Send it. Cid texts you back to confirm, usually during business hours.</li>
+              <li id="nx3">Your appointment is set once Cid confirms it.</li>
+            </ol>
           </div>
+          <p class="hours-mini" data-i18n="bkHours">Open Mon–Fri 8 AM–6 PM and Sat 8 AM–12 PM. Closed Sunday. In a hurry? Call 508-853-3322.</p>
         </div>
-        <form class="form" id="qform" novalidate>
+        <form class="form" id="qform" novalidate aria-labelledby="bookTitle">
+          <fieldset class="seg">
+            <legend class="sr" data-i18n="modeLegend" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Request type</legend>
+            <label><input type="radio" name="mode" value="book" checked><span class="s"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="modeBook">Book a visit</span></span></label>
+            <label><input type="radio" name="mode" value="price"><span class="s"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="modePrice">Get a price</span></span></label>
+          </fieldset>
           <div class="field">
-            <label for="size" data-i18n="sizeLabel">Tire size (on the side of your tire)</label>
-            <input id="size" value="" placeholder="225/65R17" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16" aria-describedby="rmsg">
-            <div class="sizes" aria-label="Common sizes">
-              <span class="lbl" style="align-self:center" data-i18n="common">Common:</span>
-              <button type="button">205/55R16</button><button type="button">215/55R17</button><button type="button">215/60R16</button><button type="button">225/65R17</button><button type="button">235/65R17</button>
-            </div>
+            <label for="need" data-i18n="needLabel">What do you need?</label>
+            <select id="need">
+              <option value="new" data-i18n="o1">New tires</option>
+              <option value="used" data-i18n="o2">Used tires</option>
+              <option value="winter" data-i18n="o3">Winter tires</option>
+              <option value="mount" data-i18n="o4">Installation &amp; balancing</option>
+              <option value="flat" data-i18n="o5">Flat tire repair</option>
+              <option value="rotation" data-i18n="o6">Tire rotation</option>
+              <option value="brakes" data-i18n="o7">Brakes</option>
+              <option value="oil" data-i18n="o8">Oil change</option>
+              <option value="susp" data-i18n="o9">Suspension &amp; steering</option>
+              <option value="cel" data-i18n="o10">Check engine light</option>
+              <option value="other" data-i18n="o11">Something else</option>
+            </select>
           </div>
-          <div class="parts" aria-hidden="true">
-            <div class="part"><b id="pw">—</b><span data-i18n="pWidth">width (mm)</span></div>
-            <div class="part"><b id="pr">—</b><span data-i18n="pRatio">sidewall height (%)</span></div>
-            <div class="part"><b id="pd">—</b><span data-i18n="pRim">wheel size</span></div>
-          </div>
-          <p class="reader-msg" id="rmsg" aria-live="polite"></p>
-          <div class="row2">
+          <div id="tireFields" class="row2">
             <div class="field">
-              <label for="need" data-i18n="needLabel">What do you need?</label>
-              <select id="need">
-                <option value="new" data-i18n="o1">New tires</option>
-                <option value="used" data-i18n="o2">Used tires</option>
-                <option value="winter" data-i18n="o3">Winter tires</option>
-                <option value="repair" data-i18n="o4">Car repair</option>
-                <option value="other" data-i18n="o5">Something else</option>
-              </select>
+              <label for="size"><span data-i18n="sizeLabel">Tire size</span> <span class="opt" data-i18n="optional">(optional)</span></label>
+              <input id="size" placeholder="225/65R17" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16" aria-describedby="rmsg">
+              <span class="hint" id="rmsg" aria-live="polite">On the side of your tire.</span>
             </div>
-            <div class="field" id="qtyField">
+            <div class="field">
               <label for="qty" data-i18n="qtyLabel">How many tires?</label>
               <select id="qty"><option>1</option><option>2</option><option selected>4</option><option value="?" data-i18n="notSure">Not sure</option></select>
             </div>
           </div>
-          <fieldset class="field">
-            <legend data-i18n="whenLabel">When?</legend>
-            <div class="pills">
-              <label><input type="radio" name="when" value="w1" checked><span data-i18n="w1">Just a price</span></label>
-              <label><input type="radio" name="when" value="w2"><span data-i18n="w2">Today</span></label>
-              <label><input type="radio" name="when" value="w3"><span data-i18n="w3">This week</span></label>
+          <div class="sizes" id="sizeChips" role="group" aria-label="Common tire sizes"><button type="button">205/55R16</button><button type="button">215/55R17</button><button type="button">215/60R16</button><button type="button">225/65R17</button><button type="button">235/65R17</button></div>
+          <div id="whenFields" class="row2">
+            <div class="field">
+              <label for="day" data-i18n="dayLabel">Day</label>
+              <input id="day" type="date" aria-describedby="dayHint">
+              <span class="hint" id="dayHint" aria-live="polite"></span>
             </div>
-          </fieldset>
+            <div class="field">
+              <label for="time" data-i18n="timeLabel">Time</label>
+              <select id="time"></select>
+            </div>
+          </div>
           <div class="row2">
             <div class="field">
-              <label for="car" data-i18n="carLabel">Your car (year, make, model)</label>
+              <label for="car"><span data-i18n="carLabel">Your car</span> <span class="opt" data-i18n="optional">(optional)</span></label>
               <input id="car" autocomplete="off" data-i18n-ph="carPh" placeholder="2015 Honda Civic" maxlength="60">
             </div>
             <div class="field">
@@ -506,64 +568,117 @@ footer nav a:hover{color:var(--fg)}
             </div>
           </div>
           <div class="field">
-            <label for="notes" data-i18n="notesLabel">Anything else? (optional)</label>
+            <label for="notes"><span data-i18n="notesLabel">Anything else?</span> <span class="opt" data-i18n="optional">(optional)</span></label>
             <textarea id="notes" data-i18n-ph="notesPh" placeholder="Example: brakes are squeaking" maxlength="400"></textarea>
           </div>
-          <div class="field">
-            <span class="lbl" data-i18n="previewLbl">Your message</span>
-            <p class="preview" id="preview" aria-live="polite"></p>
-          </div>
+          <details class="pv"><summary data-i18n="previewLbl">See the message you'll send</summary><p class="preview" id="preview" aria-live="polite"></p></details>
           <div class="send">
             <a class="btn btn-red" id="sendSms" href="sms:+13048066047"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="sendText">Send by text</span></a>
             <a class="btn btn-wa" id="sendWa" href="https://wa.me/13048066047" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="sendWa">Send on WhatsApp</span></a>
           </div>
-          <p class="tiny"><span data-i18n="qTiny">Goes to Cid at 304-806-6047. You can add a photo of your tire in the message. Prefer to talk? Call 508-853-3322.</span> <button type="button" class="linkbtn" id="clearForm" data-i18n="clear">Clear form</button></p>
+          <p class="tiny"><span data-i18n="qTiny">Goes to Cid at 304-806-6047. You can add a photo of your tire before sending.</span> <button type="button" class="linkbtn" id="clearForm" data-i18n="clear">Clear form</button></p>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight" id="signs" aria-labelledby="signsTitle">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow" data-i18n="sgEyebrow">Warning signs</div>
+        <h2 id="signsTitle" data-i18n="sgTitle">Does your car do this?</h2>
+        <p data-i18n="sgSub">These are signs to get it checked soon. Tap one to book a check.</p>
+      </div>
+      <div class="signs">
+        <a class="sign rv" href="#book" data-go="book" data-need="brakes" data-mode="book" data-note="g1t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g1t">Brakes squeak or grind</b><span data-i18n="g1d">Your brake pads may be worn out.</span></div></a>
+        <a class="sign rv" href="#book" data-go="book" data-need="cel" data-mode="book" data-note="g2t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g2t">Check engine light is on</b><span data-i18n="g2d">We can read the code and tell you what it means.</span></div></a>
+        <a class="sign rv" href="#book" data-go="book" data-need="mount" data-mode="book" data-note="g3t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g3t">Shaking at highway speed</b><span data-i18n="g3d">Often a tire that needs balancing.</span></div></a>
+        <a class="sign rv" href="#book" data-go="book" data-need="susp" data-mode="book" data-note="g4t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g4t">Car pulls to one side</b><span data-i18n="g4d">Could be tires or suspension.</span></div></a>
+        <a class="sign rv" href="#book" data-go="book" data-need="new" data-mode="price" data-note="g5t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g5t">Bulge or crack on the tire</b><span data-i18n="g5d">This is not safe. Replace that tire soon.</span></div></a>
+        <a class="sign rv" href="#book" data-go="book" data-need="flat" data-mode="book" data-note="g6t"><svg aria-hidden="true"><use href="#i-warn"/></svg><div><b data-i18n="g6t">Tire keeps losing air</b><span data-i18n="g6d">It may have a nail or a leak we can fix.</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight" id="hours" aria-labelledby="hoursTitle">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow" data-i18n="hrEyebrow">Hours &amp; location</div>
+        <h2 id="hoursTitle" data-i18n="hrTitle">Come see us</h2>
+      </div>
+      <div class="visit">
+        <div class="card rv">
+          <div class="status-line" id="hoursStatus"><span class="dot"></span><span class="txt" data-i18n="hoursShort">Mon–Fri 8 AM–6 PM · Sat 8 AM–12 PM · Sun closed</span></div>
+          <table class="hours-table tnum">
+            <caption class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i18n="fHours">Hours</caption>
+            <tbody id="hoursBody">
+              <tr><th scope="row">Monday – Friday</th><td>8:00 AM – 6:00 PM</td></tr>
+              <tr><th scope="row">Saturday</th><td>8:00 AM – 12:00 PM</td></tr>
+              <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+            </tbody>
+          </table>
+          <p class="hint" data-i18n="holidayNote">Holiday hours may change. Call to check.</p>
+        </div>
+        <div class="card addr rv">
+          <address>598 West Boylston Street<br>Worcester, MA 01606</address>
+          <p class="meta" data-i18n="area">On Route 12 in Greendale, near Quinsigamond Community College.</p>
+          <div class="near" role="list" aria-label="Nearby towns"><span role="listitem">West Boylston</span><span role="listitem">Holden</span><span role="listitem">Paxton</span><span role="listitem">Shrewsbury</span><span role="listitem">Boylston</span><span role="listitem">Sterling</span></div>
+          <div class="btnrow">
+            <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><span>Google Maps</span></a>
+            <a class="btn btn-ghost" href="https://maps.apple.com/?daddr=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener">Apple Maps</a>
+            <a class="btn btn-ghost" href="https://waze.com/ul?q=598%20West%20Boylston%20Street%20Worcester%20MA%2001606&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+            <button class="btn btn-ghost" type="button" data-copy="598 West Boylston Street, Worcester, MA 01606" data-i18n="copyAddr">Copy address</button>
+          </div>
+        </div>
+        <div class="map rv" id="mapBox">
+          <span class="wait" data-i18n="mapLoading">Loading map…</span>
+          <iframe title="Map: L&amp;M Tire Auto Repair, 598 West Boylston Street, Worcester MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-src="https://maps.google.com/maps?q=598+West+Boylston+Street,+Worcester,+MA+01606&amp;z=15&amp;output=embed"></iframe>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="block tight" id="contact" aria-labelledby="ctTitle">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow" data-i18n="ctEyebrow">Call us</div>
+      <div class="sec-head rv">
+        <div class="eyebrow" data-i18n="ctEyebrow">Contact</div>
         <h2 id="ctTitle" data-i18n="ctTitle">Talk to us in your language</h2>
-        <p data-i18n="ctSub">You talk straight to the owners.</p>
+        <p data-i18n="ctSub">Call the shop, or reach the owners directly.</p>
       </div>
       <div class="people">
-        <article class="person main">
+        <article class="person main rv">
           <div class="role" data-i18n="shopRole">The shop</div>
           <div class="name">L&amp;M Tire</div>
           <a class="phone" href="tel:+15088533322">508-853-3322</a>
           <div class="p-actions">
-            <a class="btn btn-call btn-sm" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
+            <a class="btn btn-light btn-sm" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
             <button class="btn btn-ghost btn-sm" type="button" data-copy="508-853-3322" data-i18n="copy">Copy</button>
           </div>
         </article>
-        <article class="person">
+        <article class="person rv">
           <div class="role" data-i18n="ownerRole">Owner</div>
           <div class="name">Cid</div>
           <a class="phone" href="tel:+13048066047">304-806-6047</a>
           <div class="tongues"><span lang="pt">Português</span><span lang="en">English</span><span lang="es">Español</span></div>
           <div class="p-actions">
-            <a class="btn btn-call btn-sm" href="tel:+13048066047"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
+            <a class="btn btn-light btn-sm" href="tel:+13048066047"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
             <a class="btn btn-ghost btn-sm" href="sms:+13048066047"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="text">Text</span></a>
             <a class="btn btn-wa btn-sm" href="https://wa.me/13048066047" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
           </div>
         </article>
-        <article class="person">
+        <article class="person rv">
           <div class="role" data-i18n="partnerRole">Partner</div>
           <div class="name">Leo</div>
           <a class="phone" href="tel:+17742889675">774-288-9675</a>
           <div class="tongues"><span lang="pt">Português</span></div>
           <div class="p-actions">
-            <a class="btn btn-call btn-sm" href="tel:+17742889675"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
+            <a class="btn btn-light btn-sm" href="tel:+17742889675"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
             <a class="btn btn-ghost btn-sm" href="sms:+17742889675"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="text">Text</span></a>
             <a class="btn btn-wa btn-sm" href="https://wa.me/17742889675" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
           </div>
         </article>
       </div>
-      <div class="save-row">
+      <div class="btnrow" style="margin-top:18px">
         <button class="btn btn-ghost" type="button" id="saveContact"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg><span data-i18n="saveContact">Save L&amp;M Tire to your contacts</span></button>
       </div>
     </div>
@@ -571,66 +686,47 @@ footer nav a:hover{color:var(--fg)}
 
   <section class="block tight" id="tips" aria-labelledby="tipsTitle">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head rv">
         <div class="eyebrow" data-i18n="tpEyebrow">Tire tips</div>
         <h2 id="tipsTitle" data-i18n="tpTitle">Keep your tires safe</h2>
       </div>
       <div class="tips">
-        <article class="tip"><div class="k" data-i18n="k1">Tread</div><h3 data-i18n="tp1t">Do the penny test</h3><p data-i18n="tp1d">Put a penny in the tread with Lincoln's head upside down. If you can see all of his head, the tread is too low and it's time for new tires.</p></article>
-        <article class="tip"><div class="k" data-i18n="k2">Air</div><h3 data-i18n="tp2t">Check the air once a month</h3><p data-i18n="tp2d">Check when the tires are cold. The right pressure for your car is on a sticker inside the driver's door.</p></article>
-        <article class="tip"><div class="k" data-i18n="k3">Winter</div><h3 data-i18n="tp3t">Cold weather lowers tire pressure</h3><p data-i18n="tp3d">Tires lose about 1 PSI for every 10°F drop. When the tire light comes on after a cold night, add air.</p></article>
-        <article class="tip"><div class="k" data-i18n="k4">Wear</div><h3 data-i18n="tp4t">Rotate your tires</h3><p data-i18n="tp4d">Rotating about every 5,000 to 7,500 miles helps them wear evenly and last longer.</p></article>
+        <article class="tip rv"><div class="k" data-i18n="k1">Tread</div><h3 data-i18n="tp1t">Do the penny test</h3><p data-i18n="tp1d">Put a penny in the tread with Lincoln's head upside down. If you can see all of his head, the tread is too low and it's time for new tires.</p></article>
+        <article class="tip rv"><div class="k" data-i18n="k2">Air</div><h3 data-i18n="tp2t">Check the air once a month</h3><p data-i18n="tp2d">Check when the tires are cold. The right pressure for your car is on a sticker inside the driver's door.</p></article>
+        <article class="tip rv"><div class="k" data-i18n="k3">Winter</div><h3 data-i18n="tp3t">Cold weather lowers tire pressure</h3><p data-i18n="tp3d">Tires lose about 1 PSI for every 10°F drop. When the tire light comes on after a cold night, add air.</p></article>
+        <article class="tip rv"><div class="k" data-i18n="k4">Wear</div><h3 data-i18n="tp4t">Rotate your tires</h3><p data-i18n="tp4d">Rotating about every 5,000 to 7,500 miles helps them wear evenly and last longer.</p></article>
       </div>
     </div>
   </section>
 
   <section class="block tight" id="faq" aria-labelledby="faqTitle">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head rv">
         <div class="eyebrow" data-i18n="faqEyebrow">Questions</div>
         <h2 id="faqTitle" data-i18n="faqTitle">Good to know</h2>
       </div>
       <div class="faq">
-        <details><summary data-i18n="f1q">Do you sell used tires?</summary><p data-i18n="f1a">Yes. We sell new tires and good used tires, so you can pick what fits your budget.</p></details>
-        <details><summary data-i18n="f2q">How do I get a price for tires?</summary><p data-i18n="f2a">Send us the size from the side of your tire (like 225/65R17) or your car's year, make and model. Use the form above, or call 508-853-3322.</p></details>
-        <details><summary data-i18n="f6q">Do you have winter tires?</summary><p data-i18n="f6a">Ask us. Send your tire size and we'll tell you what we have.</p></details>
-        <details><summary data-i18n="f3q">Do you speak Portuguese or Spanish?</summary><p data-i18n="f3a">Yes. Cid speaks Portuguese, English and Spanish. Leo speaks Portuguese.</p></details>
-        <details><summary data-i18n="f4q">Do you do body work?</summary><p data-i18n="f4a">No. We do tires and mechanical repairs, not body work or paint.</p></details>
-        <details><summary data-i18n="f7q">Where are you?</summary><p data-i18n="f7a">598 West Boylston Street (Route 12) in Worcester, MA 01606, in the Greendale area near Quinsigamond Community College.</p></details>
-        <details><summary data-i18n="f5q">What are your hours?</summary><p data-i18n="f5a">Call 508-853-3322 and we'll tell you today's hours.</p></details>
+        <details class="rv"><summary data-i18n="f5q">What are your hours?</summary><p data-i18n="f5a">Monday to Friday 8 AM to 6 PM, Saturday 8 AM to 12 PM. Closed Sunday.</p></details>
+        <details class="rv"><summary data-i18n="f8q">Do I need an appointment?</summary><p data-i18n="f8a">Booking ahead is the easiest way to get a time that works for you. You can also call 508-853-3322 to ask if we can see you today.</p></details>
+        <details class="rv"><summary data-i18n="f1q">Do you sell used tires?</summary><p data-i18n="f1a">Yes. We sell new tires and good used tires, so you can pick what fits your budget.</p></details>
+        <details class="rv"><summary data-i18n="f2q">How do I get a price for tires?</summary><p data-i18n="f2a">Send us the size from the side of your tire (like 225/65R17) or your car's year, make and model. Use the form above, or call 508-853-3322.</p></details>
+        <details class="rv"><summary data-i18n="f3q">Do you speak Portuguese or Spanish?</summary><p data-i18n="f3a">Yes. Cid speaks Portuguese, English and Spanish. Leo speaks Portuguese.</p></details>
+        <details class="rv"><summary data-i18n="f4q">Do you do body work?</summary><p data-i18n="f4a">No. We do tires and mechanical repairs, not body work or paint.</p></details>
+        <details class="rv"><summary data-i18n="f7q">Where are you?</summary><p data-i18n="f7a">598 West Boylston Street (Route 12) in Worcester, MA 01606, in the Greendale area near Quinsigamond Community College.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="block tight" id="visit" aria-labelledby="visitTitle">
+  <section class="block tight" aria-labelledby="finalTitle">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow" data-i18n="visitEyebrow">Visit</div>
-        <h2 id="visitTitle" data-i18n="visitTitle">Find the shop</h2>
-      </div>
-      <div class="visit">
-        <div class="map" id="mapBox">
-          <span class="wait" data-i18n="mapLoading">Loading map…</span>
-          <iframe title="Map: L&amp;M Tire Auto Repair, 598 West Boylston Street, Worcester MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-src="https://maps.google.com/maps?q=598+West+Boylston+Street,+Worcester,+MA+01606&amp;z=15&amp;output=embed"></iframe>
+      <div class="final rv">
+        <div>
+          <h2 id="finalTitle" data-i18n="fnTitle">Ready when you are</h2>
+          <p data-i18n="fnText">Call the shop or book a time. We're open Monday to Saturday.</p>
         </div>
-        <div class="addr">
-          <address>598 West Boylston Street<br>Worcester, MA 01606</address>
-          <dl>
-            <dt data-i18n="phoneLbl">Phone</dt><dd><a href="tel:+15088533322">508-853-3322</a></dd>
-            <dt data-i18n="hoursLbl">Hours</dt><dd data-i18n="hours">Call for today's hours</dd>
-            <dt data-i18n="areaLbl">Area</dt><dd data-i18n="area">Route 12, Greendale, near Quinsigamond Community College</dd>
-            <dt data-i18n="langLbl">Languages</dt><dd>English · Português · Español</dd>
-          </dl>
-          <div>
-            <div class="lbl" style="margin-bottom:8px" data-i18n="nearLbl">Close to</div>
-            <div class="near"><span>West Boylston</span><span>Holden</span><span>Paxton</span><span>Shrewsbury</span><span>Boylston</span><span>Sterling</span></div>
-          </div>
-          <div class="cta" style="margin-top:4px">
-            <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="directions">Get directions</span></a>
-            <a class="btn btn-ghost" href="https://maps.apple.com/?daddr=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><span data-i18n="appleMaps">Apple Maps</span></a>
-            <a class="btn btn-ghost" href="https://waze.com/ul?q=598%20West%20Boylston%20Street%20Worcester%20MA%2001606&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
-            <button class="btn btn-ghost" type="button" data-copy="598 West Boylston Street, Worcester, MA 01606" data-i18n="copyAddr">Copy address</button>
-          </div>
+        <div class="btnrow">
+          <a class="btn btn-light btn-lg" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span class="tnum">508-853-3322</span></a>
+          <a class="btn btn-ghost btn-lg" href="#book" data-go="book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="bookAppt">Book an Appointment</span></a>
         </div>
       </div>
     </div>
@@ -638,15 +734,14 @@ footer nav a:hover{color:var(--fg)}
 
   <section class="block tight" aria-label="Reviews and sharing">
     <div class="wrap duo">
-      <div class="panel">
-        <div class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+      <div class="panel rv">
         <h3 data-i18n="rvTitle">Happy with us? Tell others on Google</h3>
-        <p data-i18n="rvText">A short review helps other drivers in Worcester find an honest shop.</p>
-        <div><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=L%26M+Tire+Auto+Repair+598+West+Boylston+Street+Worcester+MA" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg><span data-i18n="google">See us on Google</span></a></div>
+        <p data-i18n="rvText">A short review helps other drivers in Worcester find us.</p>
+        <div><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=L%26M+Tire+Auto+Repair+598+West+Boylston+Street+Worcester+MA" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg><span data-i18n="google">Find us on Google</span></a></div>
       </div>
-      <div class="panel">
+      <div class="panel rv">
         <h3 data-i18n="shareTitle">Send this page to a friend</h3>
-        <p data-i18n="shareText">Copy a link that opens the site already in their language.</p>
+        <p data-i18n="shareText">Share a link that opens the site already in their language.</p>
         <div class="share">
           <button class="btn btn-ghost btn-sm" type="button" data-share="en"><svg class="i" aria-hidden="true"><use href="#i-link"/></svg>English</button>
           <button class="btn btn-ghost btn-sm" type="button" data-share="pt" lang="pt"><svg class="i" aria-hidden="true"><use href="#i-link"/></svg>Português</button>
@@ -659,79 +754,194 @@ footer nav a:hover{color:var(--fg)}
 
 <footer>
   <div class="wrap">
-    <img src="logo-sm.webp" alt="L&amp;M Tire Auto Repair" width="66" height="40" loading="lazy">
-    <nav aria-label="Footer">
-      <a href="#services" data-go="services" data-i18n="navSvc">Services</a>
-      <a href="#quote" data-go="quote" data-i18n="navQuote">Get a price</a>
-      <a href="#contact" data-go="contact" data-i18n="navCall">Call us</a>
-      <a href="#faq" data-go="faq" data-i18n="navFaq">Questions</a>
-      <a href="#visit" data-go="visit" data-i18n="navVisit">Location</a>
-    </nav>
-    <button class="top" type="button" data-go="top" data-i18n="backTop">Back to top ↑</button>
-    <span style="grid-column:1/-1">© <span id="yr">2026</span> L&amp;M Tire Auto Repair · 598 West Boylston St, Worcester, MA 01606 · <a href="tel:+15088533322">508-853-3322</a></span>
+    <div class="fgrid">
+      <div>
+        <img src="logo-sm.webp" alt="L&amp;M Tire Auto Repair" width="86" height="52" loading="lazy">
+        <p data-i18n="fAbout">New and used tires and auto repair in Worcester, MA.</p>
+      </div>
+      <div>
+        <h3 data-i18n="fHours">Hours</h3>
+        <dl class="fhours tnum">
+          <dt data-i18n="monFri">Mon–Fri</dt><dd>8:00 AM – 6:00 PM</dd>
+          <dt data-i18n="sat">Saturday</dt><dd>8:00 AM – 12:00 PM</dd>
+          <dt data-i18n="sun">Sunday</dt><dd data-i18n="closed">Closed</dd>
+        </dl>
+      </div>
+      <div>
+        <h3 data-i18n="fVisit">Visit</h3>
+        <ul>
+          <li>598 West Boylston Street<br>Worcester, MA 01606</li>
+          <li><a href="tel:+15088533322" class="tnum">508-853-3322</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener" data-i18n="directions">Directions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="fLinks">On this page</h3>
+        <ul>
+          <li><a href="#services" data-go="services" data-i18n="navSvc">Services</a></li>
+          <li><a href="#how" data-go="how" data-i18n="navHow">How it works</a></li>
+          <li><a href="#book" data-go="book" data-i18n="navBook">Book</a></li>
+          <li><a href="#faq" data-go="faq" data-i18n="navFaq">Questions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>© <span id="yr">2026</span> L&amp;M Tire Auto Repair</span>
+      <button class="top" type="button" data-go="top" data-i18n="backTop">Back to top ↑</button>
+    </div>
   </div>
 </footer>
 
 <nav class="dock" id="dock" aria-label="Quick actions">
   <a class="call" href="tel:+15088533322"><svg aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="call">Call</span></a>
-  <a href="#quote" data-go="quote"><svg aria-hidden="true"><use href="#i-msg"/></svg><span data-i18n="dockPrice">Price</span></a>
-  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="dockMap">Directions</span></a>
+  <a class="bk" href="#book" data-go="book"><svg aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="bookShort">Book</span></a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=598+West+Boylston+Street,+Worcester,+MA+01606" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="directions">Directions</span></a>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
+  document.documentElement.classList.add("js");
+  /* Opening hours in shop time (America/New_York). Key = day of week (0 = Sunday), value = [open, close] in minutes from midnight. */
+  var HOURS={0:null,1:[480,1080],2:[480,1080],3:[480,1080],4:[480,1080],5:[480,1080],6:[480,720]};
+
   var T={
-    en:{skip:"Skip to content",winter:"Winter is coming to Worcester. Ask us about winter tires.",winterCta:"Get a price",navSvc:"Services",navQuote:"Get a price",navCall:"Call us",navTips:"Tire tips",navFaq:"Questions",navVisit:"Location",eyebrow:"598 West Boylston St · Worcester, MA",h1a:"New & used tires.",h1b:"Honest car repair.",sub:"Need tires today or a fix for your car? Stop by or call. We'll tell you straight what it needs and what it costs.",call:"Call",text:"Text",textPrice:"Text us for a price",directions:"Get directions",p1:"New and used tires",p2:"Talk to the owners",
-      svcEyebrow:"What we do",svcTitle:"Tires and mechanical work, under one roof",svcSub:"Tap any service to ask for a price.",tiresTitle:"Tires",tiresText:"New tires and good used tires for every budget.",cNew:"New",cNewT:"Longest life. Full tread.",cUsed:"Used",cUsedT:"Lowest price. Ask us about tread left.",t1:"New tires",t2:"Quality used tires",t6:"Winter tires",t3:"Mounting and balancing",t4:"Flat tire repair",t5:"Tire rotation",repairTitle:"Car repair",repairText:"Mechanical work to keep your car safe on the road.",r1:"Brakes",r2:"Oil changes",r3:"Suspension and steering",r4:"Check engine light",r5:"General repairs",noBody:"We don't do body work or paint.",
-      sgEyebrow:"Warning signs",sgTitle:"Does your car do this?",sgSub:"These are signs to get it checked soon. Tap one to tell us about it.",g1t:"Brakes squeak or grind",g1d:"Your brake pads may be worn out.",g2t:"Check engine light is on",g2d:"We can read the code and tell you what it means.",g3t:"Shaking at highway speed",g3d:"Often a tire that needs balancing.",g4t:"Car pulls to one side",g4d:"Could be tires or suspension.",g5t:"Bulge or crack on the tire",g5d:"This is not safe. Replace that tire soon.",g6t:"Tire keeps losing air",g6d:"It may have a nail or a leak we can fix.",
-      qEyebrow:"Get a price",qTitle:"Text us for a price",qLead:"Fill this in and press Send. Your phone opens a text with everything written for you. Cid answers in English, Português or Español.",s1:"Find the size on the side of your tire, like 225/65R17.",s2:"Tell us your car and what you need.",s3:"Press Send by text or WhatsApp.",swHint:"The size is printed on the side of the tire in letters like these.",sizeLabel:"Tire size (on the side of your tire)",common:"Common:",pWidth:"width (mm)",pRatio:"sidewall height (%)",pRim:"wheel size",needLabel:"What do you need?",o1:"New tires",o2:"Used tires",o3:"Winter tires",o4:"Car repair",o5:"Something else",qtyLabel:"How many tires?",notSure:"Not sure",whenLabel:"When?",w1:"Just a price",w2:"Today",w3:"This week",carLabel:"Your car (year, make, model)",carPh:"2015 Honda Civic",nameLabel:"Your name",notesLabel:"Anything else? (optional)",notesPh:"Example: brakes are squeaking",previewLbl:"Your message",sendText:"Send by text",sendWa:"Send on WhatsApp",qTiny:"Goes to Cid at 304-806-6047. You can add a photo of your tire in the message. Prefer to talk? Call 508-853-3322.",clear:"Clear form",cleared:"Form cleared",
-      ctEyebrow:"Call us",ctTitle:"Talk to us in your language",ctSub:"You talk straight to the owners.",shopRole:"The shop",ownerRole:"Owner",partnerRole:"Partner",copy:"Copy",copied:"Copied",saveContact:"Save L&M Tire to your contacts",
+    en:{skip:"Skip to content",brandSub:"Auto Repair · Worcester",navSvc:"Services",navHow:"How it works",navBook:"Book",navHours:"Hours & location",navCall:"Contact",navFaq:"Questions",bookShort:"Book",hoursCompact:"Mon–Fri 8–6 · Sat 8–12",hoursShort:"Mon–Fri 8 AM–6 PM · Sat 8 AM–12 PM · Sun closed",
+      kicker:"Ask about winter tires",h1a:"Tires & auto repair",h1b:"in Worcester.",lede:"New and used tires, tire repair and mechanical work on West Boylston Street. Talk straight to the owners, in English, Português or Español.",callNow:"Call Now",bookAppt:"Book an Appointment",p1:"New & used tires",p2:"Open Monday to Saturday",
+      todayLbl:"Today",addrLbl:"Address",phoneLbl:"Phone",directions:"Directions",allHours:"All hours",
+      openNow:"Open now",closedNow:"Closed now",until:"until",opens:"opens",today:"today",tomorrow:"tomorrow",closedToday:"Closed today",
+      tr1t:"New & used tires",tr1d:"Pick what fits your budget.",tr2t:"Talk to the owners",tr2d:"Cid and Leo answer your calls.",tr3t:"3 languages",tr4t:"Open 6 days",tr4d:"Mon–Fri 8–6 · Sat 8–12",
+      svcEyebrow:"Services",svcTitle:"Everything your tires and car need",svcSub:"Tap a service to book it or ask for a price.",askPrice:"Ask for a price",bookIt:"Book this",
+      sv1t:"New & used tires",sv1d:"Brand-new tires for the longest life, or good used tires for the lowest price. Send us your size and we'll tell you what we have.",sv2t:"Winter tires",sv2d:"Get ready for Worcester winters. Ask us what we have in your size.",sv3t:"Installation & balancing",sv3d:"Tires mounted and balanced so your car rides smooth, without shaking at highway speed.",sv4t:"Flat tire repair",sv4d:"A nail or a slow leak? Bring it in and we'll check if the tire can be fixed.",sv5t:"Tire rotation",sv5d:"Helps your tires wear evenly and last longer.",sv6t:"Brakes",sv6d:"Squeaking, grinding or a soft pedal? Have your brakes checked.",sv7t:"Oil changes",sv7d:"Keep your engine healthy with regular oil changes.",sv8t:"Suspension & steering",sv8d:"Bumpy ride, clunks, or the car pulls to one side? We'll take a look.",sv9t:"Check engine light",sv9d:"We read the code and explain what it means before any work.",svcMore:"Something else? We do general repairs too, just ask.",noBody:"We don't do body work or paint.",
+      howEyebrow:"How it works",howTitle:"First time here? Here's what to expect",h1t:"Call, text or book",h1d:"Call 508-853-3322, or use the form below to pick a day and time. It takes about a minute.",h2t:"We confirm with you",h2d:"Cid replies by text to confirm your time and answer questions, in your language.",h3t:"Bring your car in",h3d:"Come to 598 West Boylston Street at your time. We look at your car and tell you what it needs.",h4t:"Back on the road",h4d:"When the work is done, we go over it with you and you're on your way.",
+      bkEyebrow:"Book or get a price",bkTitle:"Book an appointment",bkTitlePrice:"Get a price",bkLead:"Pick a service and a time that works for you. No account, no app.",nxTitle:"What happens after you press Send",nx1:"Your phone opens a text (or WhatsApp) to Cid with your request already written.",nx2:"Send it. Cid texts you back to confirm, usually during business hours.",nx3:"Your appointment is set once Cid confirms it.",nx3p:"Cid replies with a price or with questions about your car.",bkHours:"Open Mon–Fri 8 AM–6 PM and Sat 8 AM–12 PM. Closed Sunday. In a hurry? Call 508-853-3322.",
+      modeLegend:"Request type",modeBook:"Book a visit",modePrice:"Get a price",needLabel:"What do you need?",o1:"New tires",o2:"Used tires",o3:"Winter tires",o4:"Installation & balancing",o5:"Flat tire repair",o6:"Tire rotation",o7:"Brakes",o8:"Oil change",o9:"Suspension & steering",o10:"Check engine light",o11:"Something else",sizeLabel:"Tire size",optional:"(optional)",sizeHint:"On the side of your tire.",qtyLabel:"How many tires?",notSure:"Not sure",dayLabel:"Day",timeLabel:"Time",sundayClosed:"We're closed on Sundays. Please pick another day.",satNote:"Saturday hours are 8 AM to 12 PM.",pickDay:"Pick a day first",noTimesLeft:"No times left today. Please pick another day.",carLabel:"Your car",carPh:"2015 Honda Civic",nameLabel:"Your name",notesLabel:"Anything else?",notesPh:"Example: brakes are squeaking",previewLbl:"See the message you'll send",sendText:"Send by text",sendWa:"Send on WhatsApp",qTiny:"Goes to Cid at 304-806-6047. You can add a photo of your tire before sending.",clear:"Clear form",cleared:"Form cleared",
+      sgEyebrow:"Warning signs",sgTitle:"Does your car do this?",sgSub:"These are signs to get it checked soon. Tap one to book a check.",g1t:"Brakes squeak or grind",g1d:"Your brake pads may be worn out.",g2t:"Check engine light is on",g2d:"We can read the code and tell you what it means.",g3t:"Shaking at highway speed",g3d:"Often a tire that needs balancing.",g4t:"Car pulls to one side",g4d:"Could be tires or suspension.",g5t:"Bulge or crack on the tire",g5d:"This is not safe. Replace that tire soon.",g6t:"Tire keeps losing air",g6d:"It may have a nail or a leak we can fix.",
+      hrEyebrow:"Hours & location",hrTitle:"Come see us",holidayNote:"Holiday hours may change. Call to check.",area:"On Route 12 in Greendale, near Quinsigamond Community College.",copyAddr:"Copy address",mapLoading:"Loading map…",todayTag:"Today",closed:"Closed",
+      days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      ctEyebrow:"Contact",ctTitle:"Talk to us in your language",ctSub:"Call the shop, or reach the owners directly.",shopRole:"The shop",ownerRole:"Owner",partnerRole:"Partner",call:"Call",text:"Text",copy:"Copy",copied:"Copied",saveContact:"Save L&M Tire to your contacts",
       tpEyebrow:"Tire tips",tpTitle:"Keep your tires safe",k1:"Tread",k2:"Air",k3:"Winter",k4:"Wear",tp1t:"Do the penny test",tp1d:"Put a penny in the tread with Lincoln's head upside down. If you can see all of his head, the tread is too low and it's time for new tires.",tp2t:"Check the air once a month",tp2d:"Check when the tires are cold. The right pressure for your car is on a sticker inside the driver's door.",tp3t:"Cold weather lowers tire pressure",tp3d:"Tires lose about 1 PSI for every 10°F drop. When the tire light comes on after a cold night, add air.",tp4t:"Rotate your tires",tp4d:"Rotating about every 5,000 to 7,500 miles helps them wear evenly and last longer.",
-      faqEyebrow:"Questions",faqTitle:"Good to know",f1q:"Do you sell used tires?",f1a:"Yes. We sell new tires and good used tires, so you can pick what fits your budget.",f2q:"How do I get a price for tires?",f2a:"Send us the size from the side of your tire (like 225/65R17) or your car's year, make and model. Use the form above, or call 508-853-3322.",f6q:"Do you have winter tires?",f6a:"Ask us. Send your tire size and we'll tell you what we have.",f3q:"Do you speak Portuguese or Spanish?",f3a:"Yes. Cid speaks Portuguese, English and Spanish. Leo speaks Portuguese.",f4q:"Do you do body work?",f4a:"No. We do tires and mechanical repairs, not body work or paint.",f7q:"Where are you?",f7a:"598 West Boylston Street (Route 12) in Worcester, MA 01606, in the Greendale area near Quinsigamond Community College.",f5q:"What are your hours?",f5a:"Call 508-853-3322 and we'll tell you today's hours.",
-      visitEyebrow:"Visit",visitTitle:"Find the shop",mapLoading:"Loading map…",phoneLbl:"Phone",hoursLbl:"Hours",hours:"Call for today's hours",areaLbl:"Area",area:"Route 12, Greendale, near Quinsigamond Community College",langLbl:"Languages",nearLbl:"Close to",appleMaps:"Apple Maps",copyAddr:"Copy address",
-      rvTitle:"Happy with us? Tell others on Google",rvText:"A short review helps other drivers in Worcester find an honest shop.",google:"See us on Google",shareTitle:"Send this page to a friend",shareText:"Copy a link that opens the site already in their language.",linkCopied:"Link copied",backTop:"Back to top ↑",dockPrice:"Price",dockMap:"Directions",
-      ok:"Size: ",bad:"Type it like this: 225/65R17",
-      msgHi:"Hi L&M Tire!",msgName:"My name is ",msgNeed:"I need: ",msgQty:"How many: ",msgSize:"Tire size: ",msgCar:"My car: ",msgWhen:"When: ",msgNotes:"Notes: ",msgSrc:"(From your website)"},
-    pt:{skip:"Ir para o conteúdo",winter:"O inverno está chegando em Worcester. Pergunte sobre pneus de inverno.",winterCta:"Pedir preço",navSvc:"Serviços",navQuote:"Pedir preço",navCall:"Ligue",navTips:"Dicas",navFaq:"Perguntas",navVisit:"Endereço",eyebrow:"598 West Boylston St · Worcester, MA",h1a:"Pneus novos e usados.",h1b:"Mecânica honesta.",sub:"Precisa de pneus hoje ou de um conserto no carro? Passe aqui ou ligue. A gente fala direto o que o carro precisa e quanto custa.",call:"Ligar",text:"Mensagem",textPrice:"Peça o preço por mensagem",directions:"Como chegar",p1:"Pneus novos e usados",p2:"Fale direto com os donos",
-      svcEyebrow:"O que fazemos",svcTitle:"Pneus e mecânica no mesmo lugar",svcSub:"Toque em um serviço para pedir o preço.",tiresTitle:"Pneus",tiresText:"Pneus novos e usados de qualidade para todo bolso.",cNew:"Novo",cNewT:"Dura mais. Banda completa.",cUsed:"Usado",cUsedT:"Mais barato. Pergunte quanto de banda tem.",t1:"Pneus novos",t2:"Pneus usados de qualidade",t6:"Pneus de inverno",t3:"Montagem e balanceamento",t4:"Conserto de pneu furado",t5:"Rodízio de pneus",repairTitle:"Mecânica",repairText:"Serviços mecânicos para manter seu carro seguro na estrada.",r1:"Freios",r2:"Troca de óleo",r3:"Suspensão e direção",r4:"Luz de injeção (check engine)",r5:"Consertos em geral",noBody:"Não fazemos funilaria nem pintura.",
-      sgEyebrow:"Sinais de alerta",sgTitle:"Seu carro está assim?",sgSub:"Esses sinais pedem uma revisão logo. Toque em um para contar pra gente.",g1t:"Freio chiando ou raspando",g1d:"As pastilhas podem estar gastas.",g2t:"Luz de injeção acesa",g2d:"A gente lê o código e explica o que é.",g3t:"Tremendo na estrada",g3d:"Muitas vezes é pneu precisando de balanceamento.",g4t:"Carro puxando para um lado",g4d:"Pode ser pneu ou suspensão.",g5t:"Bolha ou rachadura no pneu",g5d:"Não é seguro. Troque esse pneu logo.",g6t:"Pneu sempre perdendo ar",g6d:"Pode ser um prego ou vazamento que dá pra consertar.",
-      qEyebrow:"Pedir preço",qTitle:"Peça o preço por mensagem",qLead:"Preencha e aperte Enviar. Seu celular abre uma mensagem já escrita. O Cid responde em português, inglês ou espanhol.",s1:"Veja a medida na lateral do pneu, tipo 225/65R17.",s2:"Diga qual é o seu carro e o que precisa.",s3:"Aperte Enviar por SMS ou WhatsApp.",swHint:"A medida vem escrita na lateral do pneu, assim.",sizeLabel:"Medida do pneu (na lateral do pneu)",common:"Comuns:",pWidth:"largura (mm)",pRatio:"altura do perfil (%)",pRim:"aro",needLabel:"O que você precisa?",o1:"Pneus novos",o2:"Pneus usados",o3:"Pneus de inverno",o4:"Mecânica",o5:"Outra coisa",qtyLabel:"Quantos pneus?",notSure:"Não sei",whenLabel:"Quando?",w1:"Só o preço",w2:"Hoje",w3:"Esta semana",carLabel:"Seu carro (ano, marca, modelo)",carPh:"Honda Civic 2015",nameLabel:"Seu nome",notesLabel:"Mais alguma coisa? (opcional)",notesPh:"Exemplo: o freio está chiando",previewLbl:"Sua mensagem",sendText:"Enviar por SMS",sendWa:"Enviar no WhatsApp",qTiny:"Vai para o Cid no 304-806-6047. Você pode mandar foto do pneu na mensagem. Prefere falar? Ligue 508-853-3322.",clear:"Limpar",cleared:"Formulário limpo",
-      ctEyebrow:"Ligue para nós",ctTitle:"Fale com a gente no seu idioma",ctSub:"Você fala direto com os donos.",shopRole:"A loja",ownerRole:"Dono",partnerRole:"Sócio",copy:"Copiar",copied:"Copiado",saveContact:"Salvar a L&M Tire nos contatos",
+      faqEyebrow:"Questions",faqTitle:"Good to know",f5q:"What are your hours?",f5a:"Monday to Friday 8 AM to 6 PM, Saturday 8 AM to 12 PM. Closed Sunday.",f8q:"Do I need an appointment?",f8a:"Booking ahead is the easiest way to get a time that works for you. You can also call 508-853-3322 to ask if we can see you today.",f1q:"Do you sell used tires?",f1a:"Yes. We sell new tires and good used tires, so you can pick what fits your budget.",f2q:"How do I get a price for tires?",f2a:"Send us the size from the side of your tire (like 225/65R17) or your car's year, make and model. Use the form above, or call 508-853-3322.",f3q:"Do you speak Portuguese or Spanish?",f3a:"Yes. Cid speaks Portuguese, English and Spanish. Leo speaks Portuguese.",f4q:"Do you do body work?",f4a:"No. We do tires and mechanical repairs, not body work or paint.",f7q:"Where are you?",f7a:"598 West Boylston Street (Route 12) in Worcester, MA 01606, in the Greendale area near Quinsigamond Community College.",
+      fnTitle:"Ready when you are",fnText:"Call the shop or book a time. We're open Monday to Saturday.",rvTitle:"Happy with us? Tell others on Google",rvText:"A short review helps other drivers in Worcester find us.",google:"Find us on Google",shareTitle:"Send this page to a friend",shareText:"Share a link that opens the site already in their language.",linkCopied:"Link copied",
+      fAbout:"New and used tires and auto repair in Worcester, MA.",fHours:"Hours",monFri:"Mon–Fri",sat:"Saturday",sun:"Sunday",fVisit:"Visit",fLinks:"On this page",backTop:"Back to top ↑",
+      bad:"Check the size. It looks like 225/65R17.",okSize:"Size: ",
+      msgHiBook:"Hi L&M Tire! I'd like to book an appointment.",msgHiPrice:"Hi L&M Tire! I'd like a price.",msgName:"Name: ",msgNeed:"Service: ",msgQty:"Tires: ",msgSize:"Tire size: ",msgCar:"Car: ",msgWhen:"Preferred time: ",msgNotes:"Notes: ",msgSrc:"(Sent from your website)",at:"at"},
+    pt:{skip:"Ir para o conteúdo",brandSub:"Mecânica · Worcester",navSvc:"Serviços",navHow:"Como funciona",navBook:"Agendar",navHours:"Horário e endereço",navCall:"Contato",navFaq:"Perguntas",bookShort:"Agendar",hoursCompact:"Seg–Sex 8h–18h · Sáb 8h–12h",hoursShort:"Seg–Sex 8h–18h · Sáb 8h–12h · Dom fechado",
+      kicker:"Pergunte sobre pneus de inverno",h1a:"Pneus e mecânica",h1b:"em Worcester.",lede:"Pneus novos e usados, conserto de pneu e mecânica na West Boylston Street. Fale direto com os donos, em português, inglês ou espanhol.",callNow:"Ligar agora",bookAppt:"Agendar horário",p1:"Pneus novos e usados",p2:"Aberto de segunda a sábado",
+      todayLbl:"Hoje",addrLbl:"Endereço",phoneLbl:"Telefone",directions:"Como chegar",allHours:"Ver horários",
+      openNow:"Aberto agora",closedNow:"Fechado agora",until:"até",opens:"abre",today:"hoje",tomorrow:"amanhã",closedToday:"Fechado hoje",
+      tr1t:"Pneus novos e usados",tr1d:"Escolha o que cabe no bolso.",tr2t:"Fale com os donos",tr2d:"Cid e Leo atendem você.",tr3t:"3 idiomas",tr4t:"Aberto 6 dias",tr4d:"Seg–Sex 8h–18h · Sáb 8h–12h",
+      svcEyebrow:"Serviços",svcTitle:"Tudo o que seus pneus e seu carro precisam",svcSub:"Toque em um serviço para agendar ou pedir o preço.",askPrice:"Pedir preço",bookIt:"Agendar",
+      sv1t:"Pneus novos e usados",sv1d:"Pneus novos para durar mais, ou usados bons pelo menor preço. Mande a medida que a gente diz o que tem.",sv2t:"Pneus de inverno",sv2d:"Prepare-se para o inverno de Worcester. Pergunte o que temos na sua medida.",sv3t:"Montagem e balanceamento",sv3d:"Pneus montados e balanceados para o carro andar macio, sem tremer na estrada.",sv4t:"Conserto de pneu furado",sv4d:"Prego ou vazamento lento? Traga que a gente vê se dá para consertar.",sv5t:"Rodízio de pneus",sv5d:"Ajuda os pneus a gastar por igual e durar mais.",sv6t:"Freios",sv6d:"Chiando, raspando ou pedal mole? Faça uma revisão dos freios.",sv7t:"Troca de óleo",sv7d:"Mantenha o motor saudável com troca de óleo em dia.",sv8t:"Suspensão e direção",sv8d:"Carro batendo, com barulho ou puxando para um lado? A gente olha.",sv9t:"Luz de injeção",sv9d:"Lemos o código e explicamos o que é antes de qualquer serviço.",svcMore:"Outra coisa? Fazemos consertos em geral, é só perguntar.",noBody:"Não fazemos funilaria nem pintura.",
+      howEyebrow:"Como funciona",howTitle:"Primeira vez? Veja como é",h1t:"Ligue, mande mensagem ou agende",h1d:"Ligue 508-853-3322 ou use o formulário abaixo para escolher dia e hora. Leva um minuto.",h2t:"A gente confirma",h2d:"O Cid responde por mensagem para confirmar o horário e tirar dúvidas, no seu idioma.",h3t:"Traga o carro",h3d:"Venha à 598 West Boylston Street no seu horário. A gente olha o carro e diz o que precisa.",h4t:"De volta à estrada",h4d:"Quando o serviço termina, a gente explica o que foi feito e você segue viagem.",
+      bkEyebrow:"Agende ou peça o preço",bkTitle:"Agende um horário",bkTitlePrice:"Peça o preço",bkLead:"Escolha o serviço e o horário. Sem cadastro, sem aplicativo.",nxTitle:"O que acontece quando você aperta Enviar",nx1:"Seu celular abre uma mensagem (ou WhatsApp) para o Cid já escrita.",nx2:"Envie. O Cid responde para confirmar, normalmente no horário comercial.",nx3:"Seu horário fica marcado quando o Cid confirmar.",nx3p:"O Cid responde com o preço ou com perguntas sobre o carro.",bkHours:"Aberto Seg–Sex 8h–18h e Sáb 8h–12h. Domingo fechado. Com pressa? Ligue 508-853-3322.",
+      modeLegend:"Tipo de pedido",modeBook:"Agendar",modePrice:"Pedir preço",needLabel:"O que você precisa?",o1:"Pneus novos",o2:"Pneus usados",o3:"Pneus de inverno",o4:"Montagem e balanceamento",o5:"Conserto de pneu furado",o6:"Rodízio de pneus",o7:"Freios",o8:"Troca de óleo",o9:"Suspensão e direção",o10:"Luz de injeção",o11:"Outra coisa",sizeLabel:"Medida do pneu",optional:"(opcional)",sizeHint:"Fica na lateral do pneu.",qtyLabel:"Quantos pneus?",notSure:"Não sei",dayLabel:"Dia",timeLabel:"Hora",sundayClosed:"Domingo estamos fechados. Escolha outro dia.",satNote:"Sábado o horário é das 8h às 12h.",pickDay:"Escolha o dia primeiro",noTimesLeft:"Não há mais horários hoje. Escolha outro dia.",carLabel:"Seu carro",carPh:"Honda Civic 2015",nameLabel:"Seu nome",notesLabel:"Mais alguma coisa?",notesPh:"Exemplo: o freio está chiando",previewLbl:"Ver a mensagem que vai ser enviada",sendText:"Enviar por SMS",sendWa:"Enviar no WhatsApp",qTiny:"Vai para o Cid no 304-806-6047. Você pode juntar uma foto do pneu antes de enviar.",clear:"Limpar",cleared:"Formulário limpo",
+      sgEyebrow:"Sinais de alerta",sgTitle:"Seu carro está assim?",sgSub:"Esses sinais pedem uma revisão logo. Toque em um para agendar.",g1t:"Freio chiando ou raspando",g1d:"As pastilhas podem estar gastas.",g2t:"Luz de injeção acesa",g2d:"A gente lê o código e explica o que é.",g3t:"Tremendo na estrada",g3d:"Muitas vezes é pneu precisando de balanceamento.",g4t:"Carro puxando para um lado",g4d:"Pode ser pneu ou suspensão.",g5t:"Bolha ou rachadura no pneu",g5d:"Não é seguro. Troque esse pneu logo.",g6t:"Pneu sempre perdendo ar",g6d:"Pode ser um prego ou vazamento que dá pra consertar.",
+      hrEyebrow:"Horário e endereço",hrTitle:"Venha nos ver",holidayNote:"Em feriados o horário pode mudar. Ligue para confirmar.",area:"Na Route 12, em Greendale, perto do Quinsigamond Community College.",copyAddr:"Copiar endereço",mapLoading:"Carregando mapa…",todayTag:"Hoje",closed:"Fechado",
+      days:["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
+      ctEyebrow:"Contato",ctTitle:"Fale com a gente no seu idioma",ctSub:"Ligue para a loja ou fale direto com os donos.",shopRole:"A loja",ownerRole:"Dono",partnerRole:"Sócio",call:"Ligar",text:"Mensagem",copy:"Copiar",copied:"Copiado",saveContact:"Salvar a L&M Tire nos contatos",
       tpEyebrow:"Dicas",tpTitle:"Cuide dos seus pneus",k1:"Banda",k2:"Ar",k3:"Inverno",k4:"Desgaste",tp1t:"Faça o teste da moeda",tp1d:"Coloque um penny na banda com a cabeça do Lincoln para baixo. Se der para ver a cabeça toda, a banda está baixa e é hora de trocar.",tp2t:"Calibre uma vez por mês",tp2d:"Calibre com os pneus frios. A pressão certa do seu carro está num adesivo na porta do motorista.",tp3t:"O frio baixa a pressão do pneu",tp3d:"O pneu perde cerca de 1 PSI a cada 10°F de queda. Se a luz do pneu acender depois de uma noite fria, calibre.",tp4t:"Faça o rodízio",tp4d:"Fazer o rodízio a cada 5.000 a 7.500 milhas ajuda o pneu a gastar por igual e durar mais.",
-      faqEyebrow:"Perguntas",faqTitle:"Bom saber",f1q:"Vocês vendem pneus usados?",f1a:"Sim. Vendemos pneus novos e usados de qualidade, para você escolher o que cabe no bolso.",f2q:"Como peço o preço de pneus?",f2a:"Mande a medida da lateral do pneu (tipo 225/65R17) ou o ano, marca e modelo do carro. Use o formulário acima ou ligue 508-853-3322.",f6q:"Vocês têm pneus de inverno?",f6a:"Pergunte. Mande a medida do pneu que a gente diz o que tem.",f3q:"Vocês falam português ou espanhol?",f3a:"Sim. O Cid fala português, inglês e espanhol. O Leo fala português.",f4q:"Vocês fazem funilaria?",f4a:"Não. Fazemos pneus e mecânica, não funilaria nem pintura.",f7q:"Onde fica a loja?",f7a:"598 West Boylston Street (Route 12), Worcester, MA 01606, na região de Greendale, perto do Quinsigamond Community College.",f5q:"Qual é o horário?",f5a:"Ligue 508-853-3322 que a gente informa o horário de hoje.",
-      visitEyebrow:"Visite",visitTitle:"Onde fica a loja",mapLoading:"Carregando mapa…",phoneLbl:"Telefone",hoursLbl:"Horário",hours:"Ligue para saber o horário de hoje",areaLbl:"Região",area:"Route 12, Greendale, perto do Quinsigamond Community College",langLbl:"Idiomas",nearLbl:"Perto de",appleMaps:"Apple Maps",copyAddr:"Copiar endereço",
-      rvTitle:"Gostou? Conte no Google",rvText:"Uma avaliação curta ajuda outros motoristas de Worcester a achar uma oficina honesta.",google:"Veja no Google",shareTitle:"Mande esta página para um amigo",shareText:"Copie um link que já abre o site no idioma da pessoa.",linkCopied:"Link copiado",backTop:"Voltar ao topo ↑",dockPrice:"Preço",dockMap:"Como chegar",
-      ok:"Medida: ",bad:"Digite assim: 225/65R17",
-      msgHi:"Olá L&M Tire!",msgName:"Meu nome é ",msgNeed:"Preciso de: ",msgQty:"Quantos: ",msgSize:"Medida do pneu: ",msgCar:"Meu carro: ",msgWhen:"Quando: ",msgNotes:"Obs: ",msgSrc:"(Pelo site)"},
-    es:{skip:"Ir al contenido",winter:"Llega el invierno a Worcester. Pregunte por llantas de invierno.",winterCta:"Pedir precio",navSvc:"Servicios",navQuote:"Pedir precio",navCall:"Llámenos",navTips:"Consejos",navFaq:"Preguntas",navVisit:"Dirección",eyebrow:"598 West Boylston St · Worcester, MA",h1a:"Llantas nuevas y usadas.",h1b:"Mecánica honesta.",sub:"¿Necesita llantas hoy o arreglar su carro? Pase o llame. Le decimos claro lo que necesita y cuánto cuesta.",call:"Llamar",text:"Mensaje",textPrice:"Pida precio por mensaje",directions:"Cómo llegar",p1:"Llantas nuevas y usadas",p2:"Hable con los dueños",
-      svcEyebrow:"Lo que hacemos",svcTitle:"Llantas y mecánica en un solo lugar",svcSub:"Toque un servicio para pedir precio.",tiresTitle:"Llantas",tiresText:"Llantas nuevas y usadas de calidad para todo presupuesto.",cNew:"Nueva",cNewT:"Dura más. Banda completa.",cUsed:"Usada",cUsedT:"Más barata. Pregunte cuánta banda le queda.",t1:"Llantas nuevas",t2:"Llantas usadas de calidad",t6:"Llantas de invierno",t3:"Montaje y balanceo",t4:"Reparación de ponchaduras",t5:"Rotación de llantas",repairTitle:"Mecánica",repairText:"Trabajo mecánico para mantener su carro seguro en la carretera.",r1:"Frenos",r2:"Cambio de aceite",r3:"Suspensión y dirección",r4:"Luz de check engine",r5:"Reparaciones generales",noBody:"No hacemos carrocería ni pintura.",
-      sgEyebrow:"Señales de alerta",sgTitle:"¿Su carro hace esto?",sgSub:"Son señales para revisarlo pronto. Toque una para contarnos.",g1t:"Frenos chillan o raspan",g1d:"Las pastillas pueden estar gastadas.",g2t:"Luz de check engine encendida",g2d:"Leemos el código y le explicamos qué es.",g3t:"Vibra en la autopista",g3d:"Muchas veces es una llanta que necesita balanceo.",g4t:"El carro se va hacia un lado",g4d:"Pueden ser las llantas o la suspensión.",g5t:"Burbuja o grieta en la llanta",g5d:"No es seguro. Cambie esa llanta pronto.",g6t:"La llanta pierde aire",g6d:"Puede ser un clavo o una fuga que se puede reparar.",
-      qEyebrow:"Pedir precio",qTitle:"Pida precio por mensaje",qLead:"Llene esto y presione Enviar. Su teléfono abre un mensaje ya escrito. Cid responde en español, inglés o portugués.",s1:"Busque la medida en el costado de la llanta, como 225/65R17.",s2:"Díganos su carro y qué necesita.",s3:"Presione Enviar por mensaje o WhatsApp.",swHint:"La medida está escrita en el costado de la llanta, así.",sizeLabel:"Medida de la llanta (en el costado)",common:"Comunes:",pWidth:"ancho (mm)",pRatio:"altura del perfil (%)",pRim:"rin",needLabel:"¿Qué necesita?",o1:"Llantas nuevas",o2:"Llantas usadas",o3:"Llantas de invierno",o4:"Mecánica",o5:"Otra cosa",qtyLabel:"¿Cuántas llantas?",notSure:"No sé",whenLabel:"¿Cuándo?",w1:"Solo el precio",w2:"Hoy",w3:"Esta semana",carLabel:"Su carro (año, marca, modelo)",carPh:"Honda Civic 2015",nameLabel:"Su nombre",notesLabel:"¿Algo más? (opcional)",notesPh:"Ejemplo: los frenos chillan",previewLbl:"Su mensaje",sendText:"Enviar por mensaje",sendWa:"Enviar por WhatsApp",qTiny:"Le llega a Cid al 304-806-6047. Puede mandar una foto de la llanta en el mensaje. ¿Prefiere hablar? Llame al 508-853-3322.",clear:"Borrar",cleared:"Formulario borrado",
-      ctEyebrow:"Llámenos",ctTitle:"Hable con nosotros en su idioma",ctSub:"Usted habla directo con los dueños.",shopRole:"El taller",ownerRole:"Dueño",partnerRole:"Socio",copy:"Copiar",copied:"Copiado",saveContact:"Guardar L&M Tire en sus contactos",
+      faqEyebrow:"Perguntas",faqTitle:"Bom saber",f5q:"Qual é o horário?",f5a:"Segunda a sexta das 8h às 18h, sábado das 8h às 12h. Domingo fechado.",f8q:"Preciso agendar?",f8a:"Agendar é o jeito mais fácil de garantir um horário bom para você. Você também pode ligar 508-853-3322 para saber se dá para atender hoje.",f1q:"Vocês vendem pneus usados?",f1a:"Sim. Vendemos pneus novos e usados de qualidade, para você escolher o que cabe no bolso.",f2q:"Como peço o preço de pneus?",f2a:"Mande a medida da lateral do pneu (tipo 225/65R17) ou o ano, marca e modelo do carro. Use o formulário acima ou ligue 508-853-3322.",f3q:"Vocês falam português ou espanhol?",f3a:"Sim. O Cid fala português, inglês e espanhol. O Leo fala português.",f4q:"Vocês fazem funilaria?",f4a:"Não. Fazemos pneus e mecânica, não funilaria nem pintura.",f7q:"Onde fica a loja?",f7a:"598 West Boylston Street (Route 12), Worcester, MA 01606, na região de Greendale, perto do Quinsigamond Community College.",
+      fnTitle:"Estamos prontos",fnText:"Ligue para a loja ou agende um horário. Abrimos de segunda a sábado.",rvTitle:"Gostou? Conte no Google",rvText:"Uma avaliação curta ajuda outros motoristas de Worcester a nos encontrar.",google:"Veja no Google",shareTitle:"Mande esta página para um amigo",shareText:"Compartilhe um link que já abre o site no idioma da pessoa.",linkCopied:"Link copiado",
+      fAbout:"Pneus novos e usados e mecânica em Worcester, MA.",fHours:"Horário",monFri:"Seg–Sex",sat:"Sábado",sun:"Domingo",fVisit:"Endereço",fLinks:"Nesta página",backTop:"Voltar ao topo ↑",
+      bad:"Confira a medida. É parecida com 225/65R17.",okSize:"Medida: ",
+      msgHiBook:"Olá L&M Tire! Quero agendar um horário.",msgHiPrice:"Olá L&M Tire! Quero saber um preço.",msgName:"Nome: ",msgNeed:"Serviço: ",msgQty:"Pneus: ",msgSize:"Medida do pneu: ",msgCar:"Carro: ",msgWhen:"Horário que prefiro: ",msgNotes:"Obs: ",msgSrc:"(Enviado pelo site)",at:"às"},
+    es:{skip:"Ir al contenido",brandSub:"Mecánica · Worcester",navSvc:"Servicios",navHow:"Cómo funciona",navBook:"Reservar",navHours:"Horario y dirección",navCall:"Contacto",navFaq:"Preguntas",bookShort:"Reservar",hoursCompact:"Lun–Vie 8–6 · Sáb 8–12",hoursShort:"Lun–Vie 8 AM–6 PM · Sáb 8 AM–12 PM · Dom cerrado",
+      kicker:"Pregunte por llantas de invierno",h1a:"Llantas y mecánica",h1b:"en Worcester.",lede:"Llantas nuevas y usadas, reparación de llantas y mecánica en West Boylston Street. Hable directo con los dueños, en español, inglés o portugués.",callNow:"Llamar ahora",bookAppt:"Reservar una cita",p1:"Llantas nuevas y usadas",p2:"Abierto de lunes a sábado",
+      todayLbl:"Hoy",addrLbl:"Dirección",phoneLbl:"Teléfono",directions:"Cómo llegar",allHours:"Ver horario",
+      openNow:"Abierto ahora",closedNow:"Cerrado ahora",until:"hasta las",opens:"abre",today:"hoy",tomorrow:"mañana",closedToday:"Cerrado hoy",
+      tr1t:"Llantas nuevas y usadas",tr1d:"Elija según su presupuesto.",tr2t:"Hable con los dueños",tr2d:"Cid y Leo contestan sus llamadas.",tr3t:"3 idiomas",tr4t:"Abierto 6 días",tr4d:"Lun–Vie 8–6 · Sáb 8–12",
+      svcEyebrow:"Servicios",svcTitle:"Todo lo que necesitan sus llantas y su carro",svcSub:"Toque un servicio para reservarlo o pedir precio.",askPrice:"Pedir precio",bookIt:"Reservar",
+      sv1t:"Llantas nuevas y usadas",sv1d:"Llantas nuevas para que duren más, o usadas en buen estado al mejor precio. Envíenos la medida y le decimos qué tenemos.",sv2t:"Llantas de invierno",sv2d:"Prepárese para el invierno de Worcester. Pregunte qué tenemos en su medida.",sv3t:"Montaje y balanceo",sv3d:"Llantas montadas y balanceadas para que el carro ande suave, sin vibrar en la autopista.",sv4t:"Reparación de ponchaduras",sv4d:"¿Un clavo o una fuga lenta? Tráigala y vemos si se puede reparar.",sv5t:"Rotación de llantas",sv5d:"Ayuda a que se gasten parejo y duren más.",sv6t:"Frenos",sv6d:"¿Chillan, raspan o el pedal está suave? Revise sus frenos.",sv7t:"Cambio de aceite",sv7d:"Cuide su motor con cambios de aceite a tiempo.",sv8t:"Suspensión y dirección",sv8d:"¿Golpes, ruidos o el carro se va hacia un lado? Lo revisamos.",sv9t:"Luz de check engine",sv9d:"Leemos el código y le explicamos qué es antes de cualquier trabajo.",svcMore:"¿Otra cosa? También hacemos reparaciones generales, solo pregunte.",noBody:"No hacemos carrocería ni pintura.",
+      howEyebrow:"Cómo funciona",howTitle:"¿Primera vez? Esto es lo que pasa",h1t:"Llame, escriba o reserve",h1d:"Llame al 508-853-3322 o use el formulario de abajo para elegir día y hora. Toma un minuto.",h2t:"Le confirmamos",h2d:"Cid le responde por mensaje para confirmar la hora y contestar preguntas, en su idioma.",h3t:"Traiga su carro",h3d:"Venga a 598 West Boylston Street a su hora. Revisamos el carro y le decimos qué necesita.",h4t:"De vuelta al camino",h4d:"Cuando terminamos, le explicamos lo que hicimos y sigue su camino.",
+      bkEyebrow:"Reserve o pida precio",bkTitle:"Reserve una cita",bkTitlePrice:"Pida precio",bkLead:"Elija el servicio y la hora. Sin cuenta, sin aplicación.",nxTitle:"Qué pasa cuando presiona Enviar",nx1:"Su teléfono abre un mensaje (o WhatsApp) a Cid ya escrito.",nx2:"Envíelo. Cid le responde para confirmar, normalmente en horario de trabajo.",nx3:"Su cita queda lista cuando Cid la confirma.",nx3p:"Cid le responde con el precio o con preguntas sobre su carro.",bkHours:"Abierto Lun–Vie 8 AM–6 PM y Sáb 8 AM–12 PM. Domingo cerrado. ¿Tiene prisa? Llame al 508-853-3322.",
+      modeLegend:"Tipo de solicitud",modeBook:"Reservar",modePrice:"Pedir precio",needLabel:"¿Qué necesita?",o1:"Llantas nuevas",o2:"Llantas usadas",o3:"Llantas de invierno",o4:"Montaje y balanceo",o5:"Reparación de ponchaduras",o6:"Rotación de llantas",o7:"Frenos",o8:"Cambio de aceite",o9:"Suspensión y dirección",o10:"Luz de check engine",o11:"Otra cosa",sizeLabel:"Medida de la llanta",optional:"(opcional)",sizeHint:"Está en el costado de la llanta.",qtyLabel:"¿Cuántas llantas?",notSure:"No sé",dayLabel:"Día",timeLabel:"Hora",sundayClosed:"Los domingos estamos cerrados. Elija otro día.",satNote:"El sábado abrimos de 8 AM a 12 PM.",pickDay:"Elija el día primero",noTimesLeft:"No quedan horas hoy. Elija otro día.",carLabel:"Su carro",carPh:"Honda Civic 2015",nameLabel:"Su nombre",notesLabel:"¿Algo más?",notesPh:"Ejemplo: los frenos chillan",previewLbl:"Ver el mensaje que se enviará",sendText:"Enviar por mensaje",sendWa:"Enviar por WhatsApp",qTiny:"Le llega a Cid al 304-806-6047. Puede agregar una foto de la llanta antes de enviar.",clear:"Borrar",cleared:"Formulario borrado",
+      sgEyebrow:"Señales de alerta",sgTitle:"¿Su carro hace esto?",sgSub:"Son señales para revisarlo pronto. Toque una para reservar una revisión.",g1t:"Frenos chillan o raspan",g1d:"Las pastillas pueden estar gastadas.",g2t:"Luz de check engine encendida",g2d:"Leemos el código y le explicamos qué es.",g3t:"Vibra en la autopista",g3d:"Muchas veces es una llanta que necesita balanceo.",g4t:"El carro se va hacia un lado",g4d:"Pueden ser las llantas o la suspensión.",g5t:"Burbuja o grieta en la llanta",g5d:"No es seguro. Cambie esa llanta pronto.",g6t:"La llanta pierde aire",g6d:"Puede ser un clavo o una fuga que se puede reparar.",
+      hrEyebrow:"Horario y dirección",hrTitle:"Visítenos",holidayNote:"En días festivos el horario puede cambiar. Llame para confirmar.",area:"En la Route 12, en Greendale, cerca de Quinsigamond Community College.",copyAddr:"Copiar dirección",mapLoading:"Cargando mapa…",todayTag:"Hoy",closed:"Cerrado",
+      days:["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],
+      ctEyebrow:"Contacto",ctTitle:"Hable con nosotros en su idioma",ctSub:"Llame al taller o hable directo con los dueños.",shopRole:"El taller",ownerRole:"Dueño",partnerRole:"Socio",call:"Llamar",text:"Mensaje",copy:"Copiar",copied:"Copiado",saveContact:"Guardar L&M Tire en sus contactos",
       tpEyebrow:"Consejos",tpTitle:"Cuide sus llantas",k1:"Banda",k2:"Aire",k3:"Invierno",k4:"Desgaste",tp1t:"Haga la prueba del centavo",tp1d:"Ponga un penny en la banda con la cabeza de Lincoln hacia abajo. Si ve toda la cabeza, la banda está baja y es hora de cambiarlas.",tp2t:"Revise el aire una vez al mes",tp2d:"Revíselo con las llantas frías. La presión correcta está en una etiqueta en la puerta del conductor.",tp3t:"El frío baja la presión",tp3d:"Las llantas pierden cerca de 1 PSI por cada 10°F que baja la temperatura. Si se prende la luz de llantas tras una noche fría, póngales aire.",tp4t:"Rote sus llantas",tp4d:"Rotarlas cada 5,000 a 7,500 millas ayuda a que se gasten parejo y duren más.",
-      faqEyebrow:"Preguntas",faqTitle:"Bueno saber",f1q:"¿Venden llantas usadas?",f1a:"Sí. Vendemos llantas nuevas y usadas de calidad, para que elija según su presupuesto.",f2q:"¿Cómo pido precio de llantas?",f2a:"Envíenos la medida del costado de la llanta (como 225/65R17) o el año, marca y modelo de su carro. Use el formulario de arriba o llame al 508-853-3322.",f6q:"¿Tienen llantas de invierno?",f6a:"Pregúntenos. Envíe la medida y le decimos qué tenemos.",f3q:"¿Hablan español o portugués?",f3a:"Sí. Cid habla español, inglés y portugués. Leo habla portugués.",f4q:"¿Hacen carrocería?",f4a:"No. Hacemos llantas y mecánica, no carrocería ni pintura.",f7q:"¿Dónde están?",f7a:"598 West Boylston Street (Route 12), Worcester, MA 01606, en Greendale, cerca de Quinsigamond Community College.",f5q:"¿Cuál es el horario?",f5a:"Llame al 508-853-3322 y le decimos el horario de hoy.",
-      visitEyebrow:"Visítenos",visitTitle:"Dónde estamos",mapLoading:"Cargando mapa…",phoneLbl:"Teléfono",hoursLbl:"Horario",hours:"Llame para saber el horario de hoy",areaLbl:"Zona",area:"Route 12, Greendale, cerca de Quinsigamond Community College",langLbl:"Idiomas",nearLbl:"Cerca de",appleMaps:"Apple Maps",copyAddr:"Copiar dirección",
-      rvTitle:"¿Le gustó? Cuéntelo en Google",rvText:"Una reseña corta ayuda a otros conductores de Worcester a encontrar un taller honesto.",google:"Véanos en Google",shareTitle:"Envíe esta página a un amigo",shareText:"Copie un enlace que abre el sitio ya en su idioma.",linkCopied:"Enlace copiado",backTop:"Volver arriba ↑",dockPrice:"Precio",dockMap:"Cómo llegar",
-      ok:"Medida: ",bad:"Escríbalo así: 225/65R17",
-      msgHi:"¡Hola L&M Tire!",msgName:"Me llamo ",msgNeed:"Necesito: ",msgQty:"Cuántas: ",msgSize:"Medida de llanta: ",msgCar:"Mi carro: ",msgWhen:"Cuándo: ",msgNotes:"Notas: ",msgSrc:"(Desde su sitio web)"}
+      faqEyebrow:"Preguntas",faqTitle:"Bueno saber",f5q:"¿Cuál es el horario?",f5a:"Lunes a viernes de 8 AM a 6 PM, sábado de 8 AM a 12 PM. Domingo cerrado.",f8q:"¿Necesito cita?",f8a:"Reservar es la forma más fácil de tener una hora que le convenga. También puede llamar al 508-853-3322 para ver si lo podemos atender hoy.",f1q:"¿Venden llantas usadas?",f1a:"Sí. Vendemos llantas nuevas y usadas de calidad, para que elija según su presupuesto.",f2q:"¿Cómo pido precio de llantas?",f2a:"Envíenos la medida del costado de la llanta (como 225/65R17) o el año, marca y modelo de su carro. Use el formulario de arriba o llame al 508-853-3322.",f3q:"¿Hablan español o portugués?",f3a:"Sí. Cid habla español, inglés y portugués. Leo habla portugués.",f4q:"¿Hacen carrocería?",f4a:"No. Hacemos llantas y mecánica, no carrocería ni pintura.",f7q:"¿Dónde están?",f7a:"598 West Boylston Street (Route 12), Worcester, MA 01606, en Greendale, cerca de Quinsigamond Community College.",
+      fnTitle:"Listos cuando usted lo esté",fnText:"Llame al taller o reserve una hora. Abrimos de lunes a sábado.",rvTitle:"¿Le gustó? Cuéntelo en Google",rvText:"Una reseña corta ayuda a otros conductores de Worcester a encontrarnos.",google:"Véanos en Google",shareTitle:"Envíe esta página a un amigo",shareText:"Comparta un enlace que abre el sitio ya en su idioma.",linkCopied:"Enlace copiado",
+      fAbout:"Llantas nuevas y usadas y mecánica en Worcester, MA.",fHours:"Horario",monFri:"Lun–Vie",sat:"Sábado",sun:"Domingo",fVisit:"Dirección",fLinks:"En esta página",backTop:"Volver arriba ↑",
+      bad:"Revise la medida. Se parece a 225/65R17.",okSize:"Medida: ",
+      msgHiBook:"¡Hola L&M Tire! Quiero reservar una cita.",msgHiPrice:"¡Hola L&M Tire! Quiero saber un precio.",msgName:"Nombre: ",msgNeed:"Servicio: ",msgQty:"Llantas: ",msgSize:"Medida: ",msgCar:"Carro: ",msgWhen:"Hora que prefiero: ",msgNotes:"Notas: ",msgSrc:"(Enviado desde su sitio web)",at:"a las"}
   };
-  var lang="en",pendingNote=null;
+  var lang="en";
   function $(id){return document.getElementById(id)}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+  /* shop-time helpers */
+  function shopNow(){
+    var d=new Date(),o={};
+    try{new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"numeric",hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(d).forEach(function(x){o[x.type]=x.value})}
+    catch(e){return {dow:d.getDay(),min:d.getHours()*60+d.getMinutes(),ymd:d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}}
+    var dows={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    return {dow:dows[o.weekday],min:(+o.hour%24)*60+(+o.minute),ymd:o.year+"-"+o.month+"-"+o.day};
+  }
+  function fmt(m){
+    var h=Math.floor(m/60),mm=m%60;
+    if(lang==="pt") return h+"h"+(mm?String(mm).padStart(2,"0"):"");
+    return (h%12||12)+(mm?":"+String(mm).padStart(2,"0"):"")+" "+(h>=12?"PM":"AM");
+  }
+  function range(r){return r?fmt(r[0])+" – "+fmt(r[1]):T[lang].closed}
+  function statusText(){
+    var t=T[lang],n=shopNow(),h=HOURS[n.dow];
+    if(h&&n.min>=h[0]&&n.min<h[1]) return {open:true,txt:t.openNow+" · "+t.until+" "+fmt(h[1])};
+    if(h&&n.min<h[0]) return {open:false,txt:t.closedNow+" · "+t.opens+" "+t.today+" "+fmt(h[0])};
+    for(var i=1;i<=7;i++){var d=(n.dow+i)%7;if(HOURS[d]) return {open:false,txt:t.closedNow+" · "+t.opens+" "+(i===1?t.tomorrow:t.days[d])+" "+fmt(HOURS[d][0])}}
+    return {open:false,txt:t.closedNow};
+  }
+  function paintStatus(){
+    var s=statusText(),n=shopNow();
+    ["utilStatus","cardStatus","hoursStatus"].forEach(function(id){var el=$(id);el.classList.toggle("is-open",s.open);el.classList.toggle("is-closed",!s.open);el.querySelector(".txt").textContent=s.txt;});
+    $("todayHours").textContent=HOURS[n.dow]?range(HOURS[n.dow]):T[lang].closedToday;
+    var body=$("hoursBody");body.textContent="";
+    [1,2,3,4,5,6,0].forEach(function(d){
+      var tr=document.createElement("tr"),th=document.createElement("th"),td=document.createElement("td");
+      th.scope="row";th.textContent=T[lang].days[d];td.textContent=range(HOURS[d]);
+      if(d===n.dow){tr.className="today";var tg=document.createElement("span");tg.className="tag";tg.textContent=T[lang].todayTag;th.appendChild(tg)}
+      tr.appendChild(th);tr.appendChild(td);body.appendChild(tr);
+    });
+  }
 
   function setLang(l){
     if(!T[l]) l="en"; lang=l;
     document.documentElement.lang=l;
-    document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n"); if(T[l][k]!=null) el.textContent=T[l][k];});
+    document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n"); if(typeof T[l][k]==="string") el.textContent=T[l][k];});
     document.querySelectorAll("[data-i18n-ph]").forEach(function(el){var k=el.getAttribute("data-i18n-ph"); if(T[l][k]!=null) el.placeholder=T[l][k];});
     document.querySelectorAll(".langs button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===l));});
     store("lm-lang",l);
-    readSize();buildMsg();
+    paintStatus();syncMode();buildTimes(true);readSize();buildMsg();
   }
   document.querySelectorAll(".langs button").forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.lang)})});
 
-  /* size reader */
+  /* booking form */
+  var TIRE_NEEDS=["new","used","winter","mount"];
+  function mode(){var m=document.querySelector('input[name="mode"]:checked');return m?m.value:"book"}
+  function setMode(v){var m=document.querySelector('input[name="mode"][value="'+v+'"]');if(m){m.checked=true;syncMode()}}
+  function syncMode(){
+    var book=mode()==="book";
+    $("whenFields").hidden=!book;
+    $("bookTitle").textContent=book?T[lang].bkTitle:T[lang].bkTitlePrice;
+    $("nx3").textContent=book?T[lang].nx3:T[lang].nx3p;
+  }
+  function syncNeed(){var tire=TIRE_NEEDS.indexOf($("need").value)>-1;$("tireFields").hidden=!tire;$("sizeChips").hidden=!tire}
+  var day=$("day"),time=$("time");
+  (function(){var n=shopNow();day.min=n.ymd;var d=new Date(n.ymd+"T12:00:00");d.setDate(d.getDate()+60);day.max=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")})();
+  function opt(v,txt){var o=document.createElement("option");o.value=v;o.textContent=txt;return o}
+  function buildTimes(keep){
+    var prev=time.value,hint=$("dayHint");time.textContent="";hint.textContent="";hint.classList.remove("warn");
+    if(!day.value){time.appendChild(opt("",T[lang].pickDay));time.disabled=true;return}
+    var dow=new Date(day.value+"T12:00:00").getDay(),h=HOURS[dow];
+    if(!h){hint.textContent=T[lang].sundayClosed;hint.classList.add("warn");time.appendChild(opt("","—"));time.disabled=true;return}
+    if(dow===6) hint.textContent=T[lang].satNote;
+    var n=shopNow(),isToday=day.value===n.ymd;
+    for(var m=h[0];m<=h[1]-60;m+=30){if(isToday&&m<n.min+30)continue;time.appendChild(opt(String(m),fmt(m)))}
+    if(!time.options.length){time.appendChild(opt("","—"));time.disabled=true;hint.textContent=T[lang].noTimesLeft;hint.classList.add("warn");return}
+    time.disabled=false;
+    if(keep&&prev){for(var i=0;i<time.options.length;i++)if(time.options[i].value===prev)time.value=prev}
+  }
   var size=$("size");
   function parseSize(){
     var v=size.value.toUpperCase().replace(/\s+/g," ").trim();
@@ -739,69 +949,62 @@ footer nav a:hover{color:var(--fg)}
     return {v:v,m:m,clean:m?m[1]+"/"+m[2]+"R"+m[3]:v};
   }
   function readSize(){
-    var r=parseSize(),m=r.m,msg=$("rmsg");
-    size.classList.toggle("bad",!!(r.v&&!m&&r.v.length>6));
-    msg.classList.toggle("warn",!!(r.v&&!m));
-    if(m){$("pw").textContent=m[1];$("pr").textContent=m[2];$("pd").textContent=m[3]+"″";msg.textContent=T[lang].ok+r.clean;}
-    else{$("pw").textContent="—";$("pr").textContent="—";$("pd").textContent="—";msg.textContent=r.v?T[lang].bad:"";}
+    var r=parseSize(),msg=$("rmsg"),bad=!!(r.v&&!r.m&&r.v.length>5);
+    size.classList.toggle("bad",bad);size.setAttribute("aria-invalid",bad?"true":"false");msg.classList.toggle("warn",bad);
+    msg.textContent=r.m?T[lang].okSize+r.clean:(bad?T[lang].bad:T[lang].sizeHint);
   }
-  document.querySelectorAll(".sizes button").forEach(function(b){b.addEventListener("click",function(){size.value=b.textContent;readSize();buildMsg();saveDraft();})});
+  document.querySelectorAll("#sizeChips button").forEach(function(b){b.addEventListener("click",function(){size.value=b.textContent;readSize();buildMsg();saveDraft();})});
 
-  /* message */
   function buildMsg(){
-    var t=T[lang],r=parseSize(),need=$("need"),lines=[t.msgHi];
+    var t=T[lang],r=parseSize(),need=$("need"),book=mode()==="book",lines=[book?t.msgHiBook:t.msgHiPrice];
     var nm=$("name").value.trim(),car=$("car").value.trim(),notes=$("notes").value.trim();
-    var w=document.querySelector('input[name="when"]:checked');
-    if(nm) lines.push(t.msgName+nm+".");
+    if(nm) lines.push(t.msgName+nm);
     lines.push(t.msgNeed+need.options[need.selectedIndex].text);
-    if(need.value!=="repair"){
-      var q=$("qty");lines.push(t.msgQty+q.options[q.selectedIndex].text);
-      if(r.v) lines.push(t.msgSize+r.clean);
-    }
+    if(TIRE_NEEDS.indexOf(need.value)>-1){var q=$("qty");lines.push(t.msgQty+q.options[q.selectedIndex].text);if(r.v)lines.push(t.msgSize+r.clean)}
     if(car) lines.push(t.msgCar+car);
-    if(w) lines.push(t.msgWhen+t[w.value]);
+    if(book&&day.value&&time.value){
+      var d=new Date(day.value+"T12:00:00"),label;
+      try{label=d.toLocaleDateString(lang==="pt"?"pt-BR":lang==="es"?"es-US":"en-US",{weekday:"long",month:"long",day:"numeric"})}catch(e){label=day.value}
+      lines.push(t.msgWhen+label+" "+t.at+" "+fmt(+time.value));
+    }
     if(notes) lines.push(t.msgNotes+notes);
     lines.push(t.msgSrc);
-    var text=lines.join("\n");
+    var text=lines.join("\n"),body=encodeURIComponent(text);
     $("preview").textContent=text;
-    var body=encodeURIComponent(text);
     var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
     $("sendSms").href="sms:+13048066047"+(ios?"&":"?")+"body="+body;
     $("sendWa").href="https://wa.me/13048066047?text="+body;
   }
-  function syncQty(){$("qtyField").hidden=$("need").value==="repair"}
-  var FIELDS=["size","need","qty","car","name","notes"];
-  function saveDraft(){var d={};FIELDS.forEach(function(id){d[id]=$(id).value});var w=document.querySelector('input[name="when"]:checked');d.when=w?w.value:"w1";store("lm-draft",JSON.stringify(d))}
-  function loadDraft(){var raw=store("lm-draft");if(!raw)return;try{var d=JSON.parse(raw);FIELDS.forEach(function(id){if(d[id]!=null)$(id).value=d[id]});var w=document.querySelector('input[name="when"][value="'+d.when+'"]');if(w)w.checked=true;}catch(e){}}
-  FIELDS.forEach(function(id){["input","change"].forEach(function(ev){$(id).addEventListener(ev,function(){if(id==="size")readSize();if(id==="need")syncQty();buildMsg();saveDraft();})})});
-  document.querySelectorAll('input[name="when"]').forEach(function(r){r.addEventListener("change",function(){buildMsg();saveDraft()})});
+  var FIELDS=["need","size","qty","day","car","name","notes"];
+  function saveDraft(){var d={};FIELDS.forEach(function(id){d[id]=$(id).value});d.time=time.value;d.mode=mode();store("lm-draft2",JSON.stringify(d))}
+  function loadDraft(){var raw=store("lm-draft2");if(!raw)return;try{var d=JSON.parse(raw);FIELDS.forEach(function(id){if(d[id]!=null)$(id).value=d[id]});if(day.value&&day.value<day.min)day.value="";if(d.mode)setMode(d.mode);buildTimes();if(d.time)time.value=d.time;}catch(e){}}
+  FIELDS.concat(["time"]).forEach(function(id){["input","change"].forEach(function(ev){$(id).addEventListener(ev,function(){if(id==="size")readSize();if(id==="need")syncNeed();if(id==="day"&&ev==="change")buildTimes();buildMsg();saveDraft();})})});
+  document.querySelectorAll('input[name="mode"]').forEach(function(r){r.addEventListener("change",function(){syncMode();buildMsg();saveDraft()})});
   $("qform").addEventListener("submit",function(e){e.preventDefault()});
-  $("clearForm").addEventListener("click",function(){$("qform").reset();size.value="";syncQty();readSize();buildMsg();store("lm-draft","");show(T[lang].cleared)});
+  $("clearForm").addEventListener("click",function(){$("qform").reset();size.value="";day.value="";syncNeed();syncMode();buildTimes();readSize();buildMsg();store("lm-draft2","");show(T[lang].cleared)});
 
-  /* service links preselect the form */
-  function goTo(id){var t=$(id);if(!t)return;t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+  /* in-page links; service and warning-sign links fill in the form */
+  function goTo(id){var t=$(id);if(t)t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})}
   document.addEventListener("click",function(e){
     var a=e.target.closest("[data-go]");if(!a)return;
     e.preventDefault();
-    var need=a.getAttribute("data-need");
-    if(need){$("need").value=need;syncQty();}
-    var note=a.getAttribute("data-note");
-    if(note&&T[lang][note]&&!$("notes").value.trim()){$("notes").value=T[lang][note];}
-    if(need||note){buildMsg();saveDraft();}
-    goTo(a.getAttribute("data-go"));
-    if(a.getAttribute("data-go")==="main"){$("main").setAttribute("tabindex","-1");$("main").focus();}
+    var need=a.getAttribute("data-need"),md=a.getAttribute("data-mode"),note=a.getAttribute("data-note");
+    if(md)setMode(md);
+    if(need){$("need").value=need;syncNeed()}
+    if(note&&T[lang][note]&&!$("notes").value.trim())$("notes").value=T[lang][note];
+    if(need||note||md){buildMsg();saveDraft()}
+    var id=a.getAttribute("data-go");goTo(id);
+    if(id==="main"){$("main").setAttribute("tabindex","-1");$("main").focus()}
   });
 
   /* toast, copy, share */
   var toast=$("toast"),tt;
-  function show(t){toast.textContent=t;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("show")},1800);}
+  function show(t){toast.textContent=t;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("show")},1800)}
   function copy(text,done){
     function fb(){var t=document.createElement("textarea");t.value=text;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(e){}t.remove();done()}
     try{navigator.clipboard.writeText(text).then(done,fb)}catch(e){fb()}
   }
-  document.querySelectorAll("[data-copy]").forEach(function(b){
-    b.addEventListener("click",function(){var text=b.getAttribute("data-copy");copy(text,function(){show(T[lang].copied+": "+text)})});
-  });
+  document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var text=b.getAttribute("data-copy");copy(text,function(){show(T[lang].copied+": "+text)})})});
   document.querySelectorAll("[data-share]").forEach(function(b){
     b.addEventListener("click",function(){
       var url=location.href.split("#")[0]+"#"+b.dataset.share;
@@ -810,50 +1013,54 @@ footer nav a:hover{color:var(--fg)}
     });
   });
 
-  /* save contact card (vCard) */
+  /* contact card */
   $("saveContact").addEventListener("click",function(){
-    var v=["BEGIN:VCARD","VERSION:3.0","FN:L&M Tire Auto Repair","ORG:L&M Tire Auto Repair","TEL;TYPE=WORK,VOICE:+15088533322","TEL;TYPE=CELL:+13048066047","TEL;TYPE=CELL:+17742889675","ADR;TYPE=WORK:;;598 West Boylston Street;Worcester;MA;01606;USA","NOTE:Cid 304-806-6047 (PT/EN/ES), Leo 774-288-9675 (PT)","END:VCARD"].join("\r\n");
+    var v=["BEGIN:VCARD","VERSION:3.0","FN:L&M Tire Auto Repair","ORG:L&M Tire Auto Repair","TEL;TYPE=WORK,VOICE:+15088533322","TEL;TYPE=CELL:+13048066047","TEL;TYPE=CELL:+17742889675","ADR;TYPE=WORK:;;598 West Boylston Street;Worcester;MA;01606;USA","NOTE:Mon-Fri 8 AM-6 PM\\, Sat 8 AM-12 PM\\, Sun closed. Cid 304-806-6047 (PT/EN/ES)\\, Leo 774-288-9675 (PT)","END:VCARD"].join("\r\n");
     var blob=new Blob([v],{type:"text/vcard"}),a=document.createElement("a");
     a.href=URL.createObjectURL(blob);a.download="LM-Tire.vcf";document.body.appendChild(a);a.click();
     setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000);
   });
 
-  /* header shadow, active nav, dock hides while typing */
+  /* header shadow, active nav, dock hides while typing, gentle reveal */
   var hdr=$("hdr"),dock=$("dock");
   addEventListener("scroll",function(){hdr.classList.toggle("scrolled",scrollY>8)},{passive:true});
   document.addEventListener("focusin",function(e){if(e.target.matches("input,textarea,select"))dock.classList.add("away")});
   document.addEventListener("focusout",function(){dock.classList.remove("away")});
+  var rvs=document.querySelectorAll(".rv");
   if("IntersectionObserver" in window){
     var navs=document.querySelectorAll("nav.links a");
-    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){navs.forEach(function(a){a.classList.toggle("on",a.getAttribute("data-go")===en.target.id)})}})},{rootMargin:"-45% 0px -50% 0px"});
-    ["services","quote","contact","tips","visit"].forEach(function(id){var s=$(id);if(s)io.observe(s)});
-  }
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)navs.forEach(function(a){a.classList.toggle("on",a.getAttribute("data-go")===en.target.id)})})},{rootMargin:"-45% 0px -50% 0px"});
+    ["services","how","book","hours","contact"].forEach(function(id){io.observe($(id))});
+    var ro=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");ro.unobserve(en.target)}})},{rootMargin:"0px 0px -6% 0px"});
+    rvs.forEach(function(el){ro.observe(el)});
+    setTimeout(function(){rvs.forEach(function(el){el.classList.add("in")})},3500);
+  } else rvs.forEach(function(el){el.classList.add("in")});
 
-  /* map loads only when close to the screen */
+  /* map loads when near the screen */
   var frame=document.querySelector("#mapBox iframe");
   function loadMap(){if(!frame.src)frame.src=frame.getAttribute("data-src")}
   if("IntersectionObserver" in window){var mo=new IntersectionObserver(function(es){if(es[0].isIntersecting){loadMap();mo.disconnect()}},{rootMargin:"600px"});mo.observe($("mapBox"))}else loadMap();
 
-  /* Google business info + FAQ, added from script so it also works in page previewers */
+  /* business info for search engines (added from script so it also works in page previewers) */
   var ld={"@context":"https://schema.org","@graph":[
-    {"@type":["AutoRepair","TireShop"],"name":"L&M Tire Auto Repair","telephone":"+1-508-853-3322","image":"https://raw.githubusercontent.com/S4carface/rea/claude/project-thread-fntvvx/lm-tire/logo.webp",
+    {"@type":["AutoRepair","TireShop"],"name":"L&M Tire Auto Repair","alternateName":"LM Tire Auto Repair","telephone":"+1-508-853-3322","image":"https://raw.githubusercontent.com/S4carface/rea/claude/project-thread-fntvvx/lm-tire/logo.webp",
      "address":{"@type":"PostalAddress","streetAddress":"598 West Boylston Street","addressLocality":"Worcester","addressRegion":"MA","postalCode":"01606","addressCountry":"US"},
+     "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"12:00"}],
      "areaServed":["Worcester","West Boylston","Holden","Paxton","Shrewsbury","Boylston","Sterling"],
      "knowsLanguage":["en","pt","es"],
      "contactPoint":[{"@type":"ContactPoint","telephone":"+1-304-806-6047","name":"Cid","availableLanguage":["Portuguese","English","Spanish"],"contactType":"customer service"},{"@type":"ContactPoint","telephone":"+1-774-288-9675","name":"Leo","availableLanguage":["Portuguese"],"contactType":"customer service"}],
-     "makesOffer":["New tires","Used tires","Winter tires","Mounting and balancing","Flat tire repair","Tire rotation","Brakes","Oil changes","Suspension and steering","Check engine light diagnosis"].map(function(n){return {"@type":"Offer","itemOffered":{"@type":"Service","name":n}}})},
-    {"@type":"FAQPage","mainEntity":["f1","f2","f6","f3","f4","f7","f5"].map(function(k){return {"@type":"Question","name":T.en[k+"q"],"acceptedAnswer":{"@type":"Answer","text":T.en[k+"a"]}}})}
+     "makesOffer":["New tires","Used tires","Winter tires","Tire installation and balancing","Flat tire repair","Tire rotation","Brakes","Oil changes","Suspension and steering","Check engine light diagnosis"].map(function(n){return {"@type":"Offer","itemOffered":{"@type":"Service","name":n}}})},
+    {"@type":"FAQPage","mainEntity":["f5","f8","f1","f2","f3","f4","f7"].map(function(k){return {"@type":"Question","name":T.en[k+"q"],"acceptedAnswer":{"@type":"Answer","text":T.en[k+"a"]}}})}
   ]};
   var s=document.createElement("script");s.type="application/ld+json";s.text=JSON.stringify(ld);document.head.appendChild(s);
 
   $("yr").textContent=new Date().getFullYear();
-
-  /* start: language from link (#pt / #es), then saved choice, then phone language */
-  loadDraft();syncQty();
+  loadDraft();syncNeed();
   var start=(location.hash||"").replace("#","");
-  if(!T[start]){start=store("lm-lang");}
-  if(!T[start]){var nl=(navigator.language||"").slice(0,2);start=(nl==="pt"||nl==="es")?nl:"en";}
+  if(!T[start])start=store("lm-lang");
+  if(!T[start]){var nl=(navigator.language||"").slice(0,2);start=(nl==="pt"||nl==="es")?nl:"en"}
   setLang(start);
+  setInterval(paintStatus,60000);
   addEventListener("hashchange",function(){var h=location.hash.replace("#","");if(T[h])setLang(h)});
 })();
 </script>
