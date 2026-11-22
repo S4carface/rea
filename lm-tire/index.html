@@ -134,6 +134,14 @@ h1 .line{display:block}
 
 
 /* hero motion: night-road light streaks + spinning wheel */
+.hero-video{position:absolute;inset:0;z-index:-3;overflow:hidden;opacity:0;transition:opacity 1.2s var(--ease)}
+.hero-video video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-video::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,12,20,.94) 0%,rgba(11,12,20,.78) 42%,rgba(11,12,20,.35) 75%,rgba(11,12,20,.55) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+@media(min-width:980px){.hero-video{left:28%;-webkit-mask:linear-gradient(90deg,transparent,#000 30%);mask:linear-gradient(90deg,transparent,#000 30%)}.hero-video::after{background:linear-gradient(90deg,rgba(11,12,20,.6),transparent 40%),linear-gradient(0deg,var(--bg) 0%,transparent 28%)}.hero-video video{object-position:60% 50%}}
+@media(max-width:979px){.hero-video::after{background:linear-gradient(180deg,rgba(11,12,20,.55) 0%,rgba(11,12,20,.82) 45%,var(--bg) 100%)}}
+.hero.has-video .hero-video{opacity:1}
+.hero.has-video .wheel{display:none}
+.hero.has-video .hero-fx{opacity:.5}
 .hero-fx{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .hero-fx canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-vis{position:relative}
@@ -355,7 +363,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 36px;color:var(--fg-3
 @media (prefers-contrast:more){:root{--fg-2:#fff;--fg-3:rgba(255,255,255,.88);--line:rgba(255,255,255,.4)}}
 @media print{
   :root{--bg:#fff;--bg-2:#fff;--bg-3:#fff;--fg:#000;--fg-2:#222;--fg-3:#444;--line:#bbb}
-  .dock,.util,.marq,.hero-fx,.wheel,.langs,.map,.share,.send,.toast,nav.links,.hdr-cta,.final,.skip{display:none!important}
+  .dock,.util,.marq,.hero-fx,.hero-video,.wheel,.langs,.map,.share,.send,.toast,nav.links,.hdr-cta,.final,.skip{display:none!important}
   header{position:static;background:#fff}
   .book{background:#fff;color:#000}
   section.block{padding-block:24px}
@@ -429,6 +437,7 @@ footer{border-top:1px solid var(--line);padding-block:48px 36px;color:var(--fg-3
 
 <main id="main">
   <section class="hero" id="top" aria-labelledby="h1">
+    <div class="hero-video" aria-hidden="true"><video id="heroVid" muted loop playsinline preload="none" disablepictureinpicture></video></div>
     <div class="hero-fx" aria-hidden="true"><canvas id="roadFx"></canvas></div>
     <div class="wrap hero-grid">
       <div>
@@ -982,6 +991,20 @@ footer{border-top:1px solid var(--line);padding-block:48px 36px;color:var(--fg-3
     function tick(){if(!run||document.hidden)return;vel*=0.94;ang=(ang+0.55+vel)%360;var t="rotate("+ang.toFixed(2)+" 250 250)";A.setAttribute("transform",t);B.setAttribute("transform",t);requestAnimationFrame(tick)}
     document.addEventListener("visibilitychange",function(){if(!document.hidden&&run)requestAnimationFrame(tick)});
     requestAnimationFrame(tick);
+  })();
+
+
+  /* hero video (skipped when the visitor asks for less motion or saves data) */
+  (function(){
+    var v=$("heroVid");if(!v)return;
+    var c=navigator.connection;if(matchMedia("(prefers-reduced-motion: reduce)").matches||(c&&c.saveData))return;
+    var CDN="https://d2ol7oe51mr4n9.cloudfront.net/user_3J7GmwaAlfLtCAzuTR3SWln76Vo/";
+    var small=matchMedia("(max-width:700px)").matches;
+    v.poster=CDN+"5b86b41d-c1e1-45a0-b536-e2c5fb0b0132.jpg";
+    v.src=CDN+(small?"bfb4615a-e863-4864-9bca-beb9e16df0e0.mp4":"bbded592-c98d-431c-aa0f-7557af21cadb.mp4");
+    v.addEventListener("playing",function(){$("top").classList.add("has-video")},{once:true});
+    var p=v.play();if(p&&p.catch)p.catch(function(){});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(e){if(e[0].isIntersecting){var q=v.play();if(q&&q.catch)q.catch(function(){})}else v.pause()}).observe($("top"));
   })();
 
   /* hero background: night-road light streaks */
