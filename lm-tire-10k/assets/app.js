@@ -2008,7 +2008,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* RF2: sound. Real recordings for squeal / grind / clunk, plus an optional calm ambient loop behind a header "Sound" toggle.
-   Off by default, never starts on page load, remembered on this device, pauses when the tab is hidden, ducks under the samples. */
+   On by default (starts on the first tap or key press, since browsers block sound before that), remembered on this device, pauses when the tab is hidden, ducks under the samples. */
 (() => {
   const KEY = 'lm-sound';
   const AC = window.AudioContext || window.webkitAudioContext;
@@ -2066,11 +2066,16 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const top = $('.top .easy-btn') || $('.lng'); if (top) top.after(mk('in-top'));
   const menuEasy = $('#mMenu .easy-btn'); if (menuEasy) menuEasy.after(mk('wide'));
   // remembered "on": wait for the visitor's first tap or key press on the page, never start by itself
-  let saved = false; try { saved = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  // Music is ON by default (Netto asked for it to play right away). Browsers block sound until the visitor
+  // touches the page, so we try once on load and otherwise start on the first tap, click or key press.
+  // A visitor who turns it off with the Sound button stays off on this device.
+  let saved = true; try { saved = localStorage.getItem(KEY) !== '0'; } catch (e) {}
   if (saved) {
     on = true; waiting = true; paint();
-    const go = e => { if (e.target.closest && e.target.closest('.snd-btn')) return; waiting = false; ['pointerdown', 'keydown'].forEach(t => removeEventListener(t, go, true)); if (on && !document.hidden) start(); };
-    ['pointerdown', 'keydown'].forEach(t => addEventListener(t, go, true));
+    const EV = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
+    const go = e => { if (e && e.target && e.target.closest && e.target.closest('.snd-btn')) return; waiting = false; EV.forEach(t => removeEventListener(t, go, true)); if (on && !document.hidden) start(); };
+    EV.forEach(t => addEventListener(t, go, true));
+    try { const p = amb.play(); if (p && p.then) p.then(() => { if (!waiting) return; waiting = false; EV.forEach(t => removeEventListener(t, go, true)); amb.pause(); start(); }).catch(() => {}); } catch (e) {}
   } else paint();
   document.addEventListener('visibilitychange', () => { if (document.hidden) { if (!amb.paused) { ramp(0, 200); setTimeout(() => amb.pause(), 220); } } else if (on && !waiting) start(); });
   document.addEventListener('lm:lang', () => setTimeout(paint, 0));
