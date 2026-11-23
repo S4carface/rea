@@ -1194,9 +1194,10 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const SFX = {};
   function play(kind, btn){
     let a = SFX[kind];
-    if (!a) { a = SFX[kind] = new Audio(); a.preload = 'none'; a.src = 'assets/sfx-' + kind + '.mp3'; LM.sound && LM.sound.attach(a, 0.55); a.addEventListener('ended', () => done(kind)); a.addEventListener('pause', () => done(kind)); }
+    if (!a) { a = SFX[kind] = new Audio(); a.crossOrigin = 'anonymous'; a.preload = 'auto'; a.src = 'assets/sfx-' + kind + '.mp3'; a.volume = 1; a.addEventListener('ended', () => done(kind)); a.addEventListener('pause', () => done(kind)); }
     Object.keys(SFX).forEach(k => { if (k !== kind && !SFX[k].paused) SFX[k].pause(); });
     try { a.currentTime = 0; } catch (e) {}
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
     LM.sound && LM.sound.duck(true);
     const p = a.play(); if (p && p.catch) p.catch(() => done(kind));
     box.querySelectorAll('button[data-s]').forEach(x => x.classList.toggle('on', x === btn));
@@ -2012,7 +2013,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const KEY = 'lm-sound';
   const AC = window.AudioContext || window.webkitAudioContext;
   let ctx = null, master = null, ambGain = null, on = false, ducked = false, waiting = false;
-  const amb = new Audio(); amb.preload = 'none'; amb.loop = true; amb.src = 'assets/ambient-loop.mp3';
+  const amb = new Audio(); amb.crossOrigin = 'anonymous'; amb.preload = 'none'; amb.loop = true; amb.src = 'assets/ambient-loop.mp3';
   const AMB_VOL = 0.25, DUCK_VOL = 0.05;
   const pending = [];
   function graph(){
@@ -2038,6 +2039,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   }
   const level = () => (ducked ? DUCK_VOL : AMB_VOL);
   function start(){
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
     graph(); if (ctx && ctx.state === 'suspended') ctx.resume();
     if (!ctx) amb.volume = 0;
     const p = amb.play(); if (p && p.then) p.then(() => ramp(level(), 1200)).catch(() => {}); else ramp(level(), 1200);
