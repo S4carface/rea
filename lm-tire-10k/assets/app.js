@@ -1471,7 +1471,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R71: service dial: a big tire you turn to pick a service (click a label, use arrows, or drag on desktop) ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const head = $('#services .sec-head'); if (!head) return;
   const S = ['New tires', 'Used tires', 'Winter tires', 'Installation & balancing', 'Flat tire repair: plugs and patches', 'Tire rotation', 'Wheel alignment', 'Brakes', 'Oil change', 'Suspension & steering', 'Check engine light'];
   const SHORT = ['New tires', 'Used tires', 'Winter', 'Balancing', 'Plug/patch', 'Rotation', 'Alignment', 'Brakes', 'Oil change', 'Suspension', 'Engine light'];
