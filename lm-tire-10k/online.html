@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/S4carface/rea@a1c29edfea00ad0b280cee0baf17400a3aba3445/lm-tire-10k/assets/hero-poster.webp" type="image/webp" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
+<script>window.LM_CALM=true</script>
 <script>(function(){var s=document.createElement("script");s.type="application/ld+json";s.text="\n{\"@context\":\"https://schema.org\",\"@type\":\"AutoRepair\",\"name\":\"L&M Tire Auto Repair\",\"foundingDate\":\"2013\",\"telephone\":\"+1-508-853-3322\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"598 West Boylston Street\",\"addressLocality\":\"Worcester\",\"addressRegion\":\"MA\",\"postalCode\":\"01606\",\"addressCountry\":\"US\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"08:00\",\"closes\":\"18:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"08:00\",\"closes\":\"12:00\"}],\"knowsLanguage\":[\"en\",\"pt\",\"es\"],\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":42.3119935,\"longitude\":-71.7974734},\"hasMap\":\"https://www.openstreetmap.org/?mlat=42.3119935&mlon=-71.7974734#map=18/42.3119935/-71.7974734\",\"areaServed\":{\"@type\":\"City\",\"name\":\"Worcester, MA\"},\"image\":\"https://cdn.jsdelivr.net/gh/S4carface/rea@a1c29edfea00ad0b280cee0baf17400a3aba3445/lm-tire-10k/assets/hero-poster.jpg\",\"logo\":\"https://cdn.jsdelivr.net/gh/S4carface/rea@a1c29edfea00ad0b280cee0baf17400a3aba3445/lm-tire-10k/assets/icon-512.png\",\"contactPoint\":[{\"@type\":\"ContactPoint\",\"telephone\":\"+1-508-853-3322\",\"contactType\":\"customer service\",\"availableLanguage\":[\"English\"]},{\"@type\":\"ContactPoint\",\"telephone\":\"+1-304-806-6047\",\"contactType\":\"reservations\",\"availableLanguage\":[\"English\",\"Spanish\"]},{\"@type\":\"ContactPoint\",\"telephone\":\"+1-774-288-9675\",\"contactType\":\"customer service\",\"availableLanguage\":[\"Portuguese\"]}],\"hasOfferCatalog\":{\"@type\":\"OfferCatalog\",\"name\":\"Tire and auto repair services\",\"itemListElement\":[{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"New tires\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Used tires\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Winter tires\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Tire installation and balancing\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Flat tire repair: plugs and patches\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Tire rotation\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Wheel alignment\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Brake repair\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Oil change\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Suspension and steering repair\"}},{\"@type\":\"Offer\",\"itemOffered\":{\"@type\":\"Service\",\"name\":\"Check engine light diagnosis\"}}]}}\n";document.head.appendChild(s)})()</script>
 <style>
 :root{
@@ -1336,6 +1337,21 @@ fieldset{min-width:0}
 .st{grid-template-columns:minmax(0,1fr)}
 @media (max-width:360px){.st b{font-size:1rem}.st{padding:16px 14px}}
 
+/* ===== Calm version (2026-11-23): fewer effects, tools moved to a "Tire Help" view ===== */
+.view-help main > section:not([data-tab]){display:none!important}
+html:not(.view-help) main > section[data-tab="help"]{display:none!important}
+.tread{display:none!important}
+.tools{display:none!important}
+.live-badge{display:none!important}
+.help-intro{padding-top:120px}
+.help-intro .back-home{display:inline-block;margin-bottom:18px;color:var(--accent,#8a90ff);text-decoration:none;font-size:.9rem}
+.help-toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.help-toc a{display:inline-block;padding:10px 16px;border:1px solid rgba(243,242,246,.18);border-radius:999px;color:inherit;text-decoration:none;font-size:.95rem}
+.help-toc a:hover{border-color:rgba(243,242,246,.5)}
+.help-promo .hp-card{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:28px;border:1px solid rgba(243,242,246,.14);border-radius:20px;background:rgba(255,255,255,.03)}
+.help-promo h2{margin:.2em 0}
+@media (max-width:600px){.help-promo .hp-card{padding:22px}.help-promo .btn{width:100%;justify-content:center}}
+
 </style>
 </head>
 <body>
@@ -1380,6 +1396,7 @@ fieldset{min-width:0}
   <nav aria-label="Main">
     <a class="link" href="#services" data-hash="services">Services</a>
     <div class="tools"><button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button></div>
+    <a class="link" href="#help" data-hash="help">Tire Help</a>
     <a class="link" href="#visit" data-hash="visit">Hours</a>
     <a class="link" href="#faq" data-hash="faq">FAQ</a>
     <div class="lng" role="group" aria-label="Language / Idioma">
@@ -1497,9 +1514,30 @@ fieldset{min-width:0}
   </div>
 </section>
 
+<section id="help-promo" class="help-promo" aria-labelledby="hp-h">
+  <div class="wrap">
+    <div class="hp-card">
+      <div><p class="kicker mono">Free tire help</p><h2 id="hp-h">Not sure what you need?</h2><p class="lede">Penny test, plug or patch, tire size, brake sounds and more, on their own page.</p></div>
+      <a class="btn btn-ghost" href="#help" data-hash="help">Open tire help</a>
+    </div>
+  </div>
+</section>
+
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="pick" class="pick" aria-labelledby="pick-h">
+<section data-tab="help" id="help" class="help-intro" aria-labelledby="help-h">
+  <div class="wrap">
+    <a class="back-home mono" href="#services" data-hash="services">&larr; Back to the shop</a>
+    <p class="kicker mono">Tire help</p>
+    <h2 id="help-h">Free tire tools</h2>
+    <p class="lede">Quick checks you can do from your phone. When you're ready, text or call us and we'll take a look.</p>
+    <nav class="help-toc" aria-label="Tire tools">
+      <a href="#symptoms" data-hash="symptoms">What is my car doing?</a><a href="#patch" data-hash="patch">Plug, patch or new tire?</a><a href="#tread" data-hash="tread">Penny test</a><a href="#size" data-hash="size">Tire size and quote</a><a href="#pick" data-hash="pick">Which tires fit you?</a><a href="#oil" data-hash="oil">Next oil change</a><a href="#tips" data-hash="tips">Tire care tips</a>
+    </nav>
+  </div>
+</section>
+
+<section data-tab="help" id="pick" class="pick" aria-labelledby="pick-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">New, used or winter?</p>
@@ -1520,7 +1558,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="symptoms" class="symp" aria-labelledby="symp-h">
+<section data-tab="help" id="symptoms" class="symp" aria-labelledby="symp-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Not sure what it needs?</p>
@@ -1557,7 +1595,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="size" class="size" aria-labelledby="size-h">
+<section data-tab="help" id="size" class="size" aria-labelledby="size-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Tire quote by text</p>
@@ -1595,7 +1633,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="patch" class="patch" aria-labelledby="patch-h">
+<section data-tab="help" id="patch" class="patch" aria-labelledby="patch-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Flat tire?</p>
@@ -1621,7 +1659,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="tread" class="tdepth" aria-labelledby="td-h">
+<section data-tab="help" id="tread" class="tdepth" aria-labelledby="td-h">
   <div class="wrap td-grid">
     <div class="sec-head">
       <p class="kicker mono rv">The penny test</p>
@@ -1655,7 +1693,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="winter" class="winter" aria-labelledby="win-h" hidden>
+<section data-tab="help" id="winter" class="winter" aria-labelledby="win-h" hidden>
   <div class="wrap win-grid">
     <div class="sec-head">
       <p class="kicker mono rv">Worcester winter check</p>
@@ -1680,7 +1718,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="oil" class="oil" aria-labelledby="oil-h">
+<section data-tab="help" id="oil" class="oil" aria-labelledby="oil-h">
   <div class="wrap oil-grid">
     <div class="sec-head">
       <p class="kicker mono rv">Oil change reminder</p>
@@ -1702,7 +1740,7 @@ fieldset{min-width:0}
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="tips" class="tips" aria-labelledby="tips-h">
+<section data-tab="help" id="tips" class="tips" aria-labelledby="tips-h">
   <div class="wrap">
     <div class="sec-head tips-head">
       <div><p class="kicker mono rv">Tire care in 30 seconds</p>
@@ -1894,7 +1932,7 @@ fieldset{min-width:0}
   </div>
 </section>
 
-<section class="final" aria-labelledby="final-h">
+<section data-tab="both" class="final" aria-labelledby="final-h">
   <div class="final-in">
     <p class="kicker mono rv">598 West Boylston Street · Worcester</p>
     <h2 id="final-h" class="rv" style="--i:1">Bring it in.<br><span class="ol">We'll get you rolling.</span></h2>
@@ -2765,7 +2803,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R14: speedometer scroll gauge (desktop) that names the section you're in; tap to go back to top ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const NAMES = { top: 'Start', facts: 'At a glance', start: 'Start here', services: 'Services', pick: 'Tire chooser', symptoms: 'Checker', size: 'Tire quote', patch: 'Plug or patch', tread: 'Penny test', winter: 'Winter', oil: 'Oil reminder', tips: 'Tire care', how: 'How to book', languages: 'Languages', visit: 'Hours', faq: 'FAQ', book: 'Book' };
   const g = document.createElement('button'); g.type = 'button'; g.className = 'gauge'; g.setAttribute('aria-label', 'Back to top');
   const ticks = Array.from({ length: 13 }, (_, i) => { const a = (-120 + i * 20) * Math.PI / 180, r1 = i % 3 ? 37 : 33; return `<line x1="${50 + Math.sin(a) * r1}" y1="${50 - Math.cos(a) * r1}" x2="${50 + Math.sin(a) * 41}" y2="${50 - Math.cos(a) * 41}"/>`; }).join('');
@@ -2860,7 +2898,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R19: cursor spotlight on panels + magnetic red buttons (mouse only) ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   const SPOT = '.card, .symp-btn, .odo-card, .td-card, .contact, #bookForm, .symp-out, .size-form, .leg, .week';
   document.addEventListener('pointermove', e => {
@@ -2991,7 +3029,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   if (mbNew) { mb = document.createElement('button'); mb.type = 'button'; mb.className = 'menu-btn'; mb.setAttribute('aria-expanded', 'false'); mb.setAttribute('aria-controls', 'mMenu'); mb.setAttribute('aria-label', 'Menu'); }
   if (mbNew) { mb.innerHTML = '<i></i><i></i><i></i>'; nav.appendChild(mb); }
   const mm = document.createElement('div'); mm.className = 'm-menu'; mm.id = 'mMenu'; mm.hidden = true; mm.setAttribute('role', 'dialog'); mm.setAttribute('aria-modal', 'true'); mm.setAttribute('aria-label', 'Menu');
-  const ALL = [['#services', 'Services'], ...LINKS.map(l => [l[0], l[1]]), ['#visit', 'Hours & directions'], ['#faq', 'Questions']];
+  const ALL = window.LM_CALM ? [['#services', 'Services'], ['#help', 'Tire Help (free tools)'], ['#book', 'Book'], ['#visit', 'Hours & directions'], ['#faq', 'Questions']] : [['#services', 'Services'], ...LINKS.map(l => [l[0], l[1]]), ['#visit', 'Hours & directions'], ['#faq', 'Questions']];
   mm.innerHTML = `<nav aria-label="Menu">${ALL.map((l, i) => `<a href="${l[0]}" style="--i:${i}">${l[1]}</a>`).join('')}</nav>
     <div class="m-cta"><a class="btn btn-red" href="tel:+15088533322">Call 508-853-3322</a><a class="btn btn-ghost" href="${sms(SHOP.text, "Hi, I'd like to book an appointment at L&M Tire.")}">Text to book</a></div>
     <p class="m-addr">598 West Boylston Street, Worcester · Mon to Fri 8 to 6 · Sat 8 to 12</p>`;
@@ -3046,7 +3084,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R27: "pick up where you left off" for returning visitors ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const KEY = 'lm-intent';
   const save = (label, href) => { try { localStorage.setItem(KEY, JSON.stringify({ label, href, t: Date.now() })); } catch (e) {} };
   const sz = $('#sz');
@@ -3121,7 +3159,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R33: a little tire rolls along the booking-steps line as you scroll, lighting each step it reaches ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const ol = $('#how .steps'); if (!ol) return;
   const t = document.createElement('div'); t.className = 'roller'; t.setAttribute('aria-hidden', 'true');
   t.innerHTML = '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#15161f" stroke="#e8333b" stroke-width="5"/><circle cx="20" cy="20" r="8" fill="none" stroke="#8a90ff" stroke-width="3"/><path d="M20 3v8M20 29v8M3 20h8M29 20h8" stroke="#2c2f45" stroke-width="3"/></svg>';
@@ -3161,7 +3199,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R36: kinetic section titles: words rise out of a mask, one after another ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (reduced()) return;
   const heads = $$('main section:not(.hero) h2');
   function wrap(h){
@@ -3286,7 +3324,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R43: one gentle "before you go" card on desktop, once per visit ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   let armed = false; setTimeout(() => armed = true, 15000);
   const KEY = 'lm-exit';
@@ -3360,7 +3398,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R45: garage-door reveal on the big tool panels ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const els = $$('.symp-out, .size-wall, .td-card, .win-card, #bookForm, .patch-svg, .quiz, .photo');
   els.forEach(e => e.classList.add('gdoor'));
   // panels that sit outside an observed section still open when seen
@@ -3642,7 +3680,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R64: the background light changes mood with each part of the page (red for repairs and urgency, blue for tires and planning, green for "ready") ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const env = $('.env'); if (!env) return;
   const MOOD = { facts: 'blue', services: 'red', pick: 'blue', symptoms: 'red', size: 'blue', patch: 'red', tread: 'amber', winter: 'blue', oil: 'amber', how: 'red', book: 'green', languages: 'blue', visit: 'blue', faq: 'red' };
   const secs = Object.keys(MOOD).map(id => document.getElementById(id)).filter(Boolean);
@@ -3742,7 +3780,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R70: race-start lights above the hero headline on first visit: five reds light up, then everything flips green ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const k = $('.b1 .kicker'); if (!k || reduced() || sessionStorage.getItem('lm-lights')) return;
   sessionStorage.setItem('lm-lights', '1');
   const row = document.createElement('div'); row.className = 'lights'; row.setAttribute('aria-hidden', 'true');
@@ -4015,7 +4053,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R84: section dividers become tire tracks that lay themselves down as you scroll ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   $$('.tread').forEach(t => {
     if (t.querySelector('.tracks')) return;
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -4062,7 +4100,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R87: a small burst of red, blue and white confetti when a booking text is ready (skipped for reduced motion) ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const form = $('#bookForm'); if (!form) return;
   function burst(){
     if (reduced()) return;
@@ -4081,7 +4119,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R90: when the shop is open, every Call button wears a live green "Open" badge; when closed, Text buttons get a "Book now" badge ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const calls = $$('a.btn[href^="tel:"]'), texts = $$('a.btn[href^="sms:"], .bar [data-cta="book"]');
   const add = (el, cls, t) => { let b = el.querySelector('.live-badge'); if (!b) { b = document.createElement('span'); b.className = 'live-badge'; b.setAttribute('aria-hidden', 'true'); el.appendChild(b); } b.className = 'live-badge ' + cls; b.textContent = t; };
   const del = el => { const b = el.querySelector('.live-badge'); if (b) b.remove(); };
@@ -4095,7 +4133,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R91: the floating "Text us" button reads the room: its label and ready-made text change with the section you're looking at ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const fab = $('#qrFab'); if (!fab) return;
   const lab = fab.querySelector('span'); const base = lab.textContent;
   const CTX = {
@@ -4354,7 +4392,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   // Music is ON by default (Netto asked for it to play right away). Browsers block sound until the visitor
   // touches the page, so we try once on load and otherwise start on the first tap, click or key press.
   // A visitor who turns it off with the Sound button stays off on this device.
-  let saved = true; try { saved = localStorage.getItem(KEY) !== '0'; } catch (e) {}
+  let saved = false; try { saved = localStorage.getItem(KEY) === '1'; } catch (e) {} // calm version: music off until the visitor turns it on
   if (saved) {
     on = true; waiting = true; paint();
     const EV = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
@@ -4418,6 +4456,37 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const ds = $('.dial-svc'); if (ds) new MutationObserver(() => { if ((LM.lang || 'en') !== 'en' && SV[ds.textContent]) { ds.dataset.enSv = ds.textContent; ds.textContent = SV[ds.textContent][LM.lang === 'pt' ? 0 : 1]; } }).observe(ds, { childList: true, characterData: true, subtree: true });
   if (LM.lang && LM.lang !== 'en') apply(LM.lang);
 })();
+
+/* CALM1: two views on one page. "Tire Help" holds the tools (sections marked data-tab="help"); everything else is the shop view.
+   Any link to a section in the other view switches views first, then scrolls there. */
+(() => {
+  const root = document.documentElement;
+  const HELP = new Set([...document.querySelectorAll('main section[data-tab="help"]')].map(s => s.id).filter(Boolean));
+  if (!HELP.size) return;
+  const isHelp = () => root.classList.contains('view-help');
+  function show(id, smooth){
+    const want = HELP.has(id);
+    const changed = want !== isHelp();
+    root.classList.toggle('view-help', want);
+    const el = id && document.getElementById(id);
+    if (changed) window.scrollTo(0, 0);
+    if (el && !(changed && (id === 'help' || id === 'top'))) requestAnimationFrame(() => el.scrollIntoView({ behavior: smooth && !changed ? 'smooth' : 'auto' }));
+    if (changed) window.dispatchEvent(new Event('scroll'));
+  }
+  window.LM.showView = show;
+  if (window.LM.goBook) { const g = window.LM.goBook; window.LM.goBook = (...args) => { if (isHelp()) show('book', false); return g(...args); }; }
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1); if (!id || id === 'main') return;
+    if (HELP.has(id) === isHelp()) return;            // same view: let the normal link do its thing
+    if (!HELP.has(id) && !document.getElementById(id)) return;
+    e.preventDefault();
+    setTimeout(() => show(id, true), 0);
+  }, true);
+  const h = decodeURIComponent((location.hash || '').slice(1));
+  if (HELP.has(h)) show(h, false);
+})();
+
 })();
 
 </script>
