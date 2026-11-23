@@ -784,8 +784,8 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const svg = $('.patch-svg'); if (!svg) return;
   const R = {
-    center: ['Often a plug or a patch', 'A small nail or screw in the middle of the tread can often be repaired. A plug works well here and is much quicker. A patch is also available. We check the tire first and tell you which one fits.', 'Hi L&M Tire, I have a nail in the middle of my tread. Can it be plugged or patched? When can I come in?', 462, 400],
-    shoulder: ['Needs a closer look', 'The edge of the tread flexes a lot, so a plug or patch may not be safe there. Bring it in and we will check whether it can be repaired or needs a new tire.', 'Hi L&M Tire, my tire has damage near the edge of the tread. Can you check it? My size is: ', 352, 470],
+    center: ['Often a plug or a patch', 'A small nail or screw in the middle of the tread can often be repaired. A plug works well here and is much quicker. A patch is also available. We check the tire first and tell you which one fits.', 'Hi L&M Tire, I have a nail in the middle of my tread. Can it be plugged or patched? When can I come in?', 480, 420],
+    shoulder: ['Needs a closer look', 'The edge of the tread flexes a lot, so a plug or patch may not be safe there. Bring it in and we will check whether it can be repaired or needs a new tire.', 'Hi L&M Tire, my tire has damage near the edge of the tread. Can you check it? My size is: ', 322, 470],
     side: ['A new tire', 'Sidewall damage means a new tire: plugs and patches are not safe in the sidewall. We sell new and used tires and can help you pick one.', 'Hi L&M Tire, my tire sidewall is damaged. I need a tire. My size is: ', 858, 452]
   };
   const nail = svg.querySelector('.nail'), out = $('.patch-out'), res = $('.patch-res'), q = $('.patch-q');

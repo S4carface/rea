@@ -959,6 +959,7 @@ footer .ask-review{max-width:1200px;margin:28px auto 0;text-align:center}
 .nail line{stroke:#e9ebf5;stroke-width:9;stroke-linecap:round}
 .nail rect{fill:#e9ebf5;stroke:#5c5f73;stroke-width:3}
 .nail-ring{fill:none;stroke:#f3f2f6;stroke-width:4;opacity:0}
+.nail-hole{fill:rgba(0,0,0,.7)}.nail image{filter:drop-shadow(3px 4px 4px rgba(0,0,0,.55))}
 .nail .nail-in{transform:translateY(-70px);opacity:0}
 .nail.in .nail-in{transform:none;opacity:1;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .2s}
 .nail.in .nail-ring{animation:nailring .9s var(--ease-out) .35s both}
