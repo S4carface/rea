@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <link rel="preload" as="image" href="assets/hero-poster.webp" type="image/webp" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
+<script>window.LM_CALM=true</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AutoRepair","name":"L&M Tire Auto Repair","foundingDate":"2013","telephone":"+1-508-853-3322","address":{"@type":"PostalAddress","streetAddress":"598 West Boylston Street","addressLocality":"Worcester","addressRegion":"MA","postalCode":"01606","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"12:00"}],"knowsLanguage":["en","pt","es"],"geo":{"@type":"GeoCoordinates","latitude":42.3119935,"longitude":-71.7974734},"hasMap":"https://www.openstreetmap.org/?mlat=42.3119935&mlon=-71.7974734#map=18/42.3119935/-71.7974734","areaServed":{"@type":"City","name":"Worcester, MA"},"image":"assets/hero-poster.jpg","logo":"assets/icon-512.png","contactPoint":[{"@type":"ContactPoint","telephone":"+1-508-853-3322","contactType":"customer service","availableLanguage":["English"]},{"@type":"ContactPoint","telephone":"+1-304-806-6047","contactType":"reservations","availableLanguage":["English","Spanish"]},{"@type":"ContactPoint","telephone":"+1-774-288-9675","contactType":"customer service","availableLanguage":["Portuguese"]}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Tire and auto repair services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"New tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Used tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Winter tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Tire installation and balancing"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Flat tire repair: plugs and patches"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Tire rotation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Wheel alignment"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Brake repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Oil change"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Suspension and steering repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Check engine light diagnosis"}}]}}
 </script>
@@ -380,6 +381,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <nav aria-label="Main">
     <a class="link" href="#services">Services</a>
     <div class="tools"><button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button></div>
+    <a class="link" href="#help">Tire Help</a>
     <a class="link" href="#visit">Hours</a>
     <a class="link" href="#faq">FAQ</a>
     <div class="lng" role="group" aria-label="Language / Idioma">
@@ -497,9 +499,30 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
+<section id="help-promo" class="help-promo" aria-labelledby="hp-h">
+  <div class="wrap">
+    <div class="hp-card">
+      <div><p class="kicker mono">Free tire help</p><h2 id="hp-h">Not sure what you need?</h2><p class="lede">Penny test, plug or patch, tire size, brake sounds and more, on their own page.</p></div>
+      <a class="btn btn-ghost" href="#help">Open tire help</a>
+    </div>
+  </div>
+</section>
+
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="pick" class="pick" aria-labelledby="pick-h">
+<section data-tab="help" id="help" class="help-intro" aria-labelledby="help-h">
+  <div class="wrap">
+    <a class="back-home mono" href="#services">&larr; Back to the shop</a>
+    <p class="kicker mono">Tire help</p>
+    <h2 id="help-h">Free tire tools</h2>
+    <p class="lede">Quick checks you can do from your phone. When you're ready, text or call us and we'll take a look.</p>
+    <nav class="help-toc" aria-label="Tire tools">
+      <a href="#symptoms">What is my car doing?</a><a href="#patch">Plug, patch or new tire?</a><a href="#tread">Penny test</a><a href="#size">Tire size and quote</a><a href="#pick">Which tires fit you?</a><a href="#oil">Next oil change</a><a href="#tips">Tire care tips</a>
+    </nav>
+  </div>
+</section>
+
+<section data-tab="help" id="pick" class="pick" aria-labelledby="pick-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">New, used or winter?</p>
@@ -520,7 +543,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="symptoms" class="symp" aria-labelledby="symp-h">
+<section data-tab="help" id="symptoms" class="symp" aria-labelledby="symp-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Not sure what it needs?</p>
@@ -557,7 +580,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="size" class="size" aria-labelledby="size-h">
+<section data-tab="help" id="size" class="size" aria-labelledby="size-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Tire quote by text</p>
@@ -595,7 +618,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="patch" class="patch" aria-labelledby="patch-h">
+<section data-tab="help" id="patch" class="patch" aria-labelledby="patch-h">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono rv">Flat tire?</p>
@@ -621,7 +644,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="tread" class="tdepth" aria-labelledby="td-h">
+<section data-tab="help" id="tread" class="tdepth" aria-labelledby="td-h">
   <div class="wrap td-grid">
     <div class="sec-head">
       <p class="kicker mono rv">The penny test</p>
@@ -655,7 +678,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="winter" class="winter" aria-labelledby="win-h" hidden>
+<section data-tab="help" id="winter" class="winter" aria-labelledby="win-h" hidden>
   <div class="wrap win-grid">
     <div class="sec-head">
       <p class="kicker mono rv">Worcester winter check</p>
@@ -680,7 +703,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="oil" class="oil" aria-labelledby="oil-h">
+<section data-tab="help" id="oil" class="oil" aria-labelledby="oil-h">
   <div class="wrap oil-grid">
     <div class="sec-head">
       <p class="kicker mono rv">Oil change reminder</p>
@@ -702,7 +725,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="tips" class="tips" aria-labelledby="tips-h">
+<section data-tab="help" id="tips" class="tips" aria-labelledby="tips-h">
   <div class="wrap">
     <div class="sec-head tips-head">
       <div><p class="kicker mono rv">Tire care in 30 seconds</p>
@@ -894,7 +917,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<section class="final" aria-labelledby="final-h">
+<section data-tab="both" class="final" aria-labelledby="final-h">
   <div class="final-in">
     <p class="kicker mono rv">598 West Boylston Street · Worcester</p>
     <h2 id="final-h" class="rv" style="--i:1">Bring it in.<br><span class="ol">We'll get you rolling.</span></h2>

@@ -480,7 +480,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R14: speedometer scroll gauge (desktop) that names the section you're in; tap to go back to top ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const NAMES = { top: 'Start', facts: 'At a glance', start: 'Start here', services: 'Services', pick: 'Tire chooser', symptoms: 'Checker', size: 'Tire quote', patch: 'Plug or patch', tread: 'Penny test', winter: 'Winter', oil: 'Oil reminder', tips: 'Tire care', how: 'How to book', languages: 'Languages', visit: 'Hours', faq: 'FAQ', book: 'Book' };
   const g = document.createElement('button'); g.type = 'button'; g.className = 'gauge'; g.setAttribute('aria-label', 'Back to top');
   const ticks = Array.from({ length: 13 }, (_, i) => { const a = (-120 + i * 20) * Math.PI / 180, r1 = i % 3 ? 37 : 33; return `<line x1="${50 + Math.sin(a) * r1}" y1="${50 - Math.cos(a) * r1}" x2="${50 + Math.sin(a) * 41}" y2="${50 - Math.cos(a) * 41}"/>`; }).join('');
@@ -575,7 +575,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R19: cursor spotlight on panels + magnetic red buttons (mouse only) ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   const SPOT = '.card, .symp-btn, .odo-card, .td-card, .contact, #bookForm, .symp-out, .size-form, .leg, .week';
   document.addEventListener('pointermove', e => {
@@ -706,7 +706,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   if (mbNew) { mb = document.createElement('button'); mb.type = 'button'; mb.className = 'menu-btn'; mb.setAttribute('aria-expanded', 'false'); mb.setAttribute('aria-controls', 'mMenu'); mb.setAttribute('aria-label', 'Menu'); }
   if (mbNew) { mb.innerHTML = '<i></i><i></i><i></i>'; nav.appendChild(mb); }
   const mm = document.createElement('div'); mm.className = 'm-menu'; mm.id = 'mMenu'; mm.hidden = true; mm.setAttribute('role', 'dialog'); mm.setAttribute('aria-modal', 'true'); mm.setAttribute('aria-label', 'Menu');
-  const ALL = [['#services', 'Services'], ...LINKS.map(l => [l[0], l[1]]), ['#visit', 'Hours & directions'], ['#faq', 'Questions']];
+  const ALL = window.LM_CALM ? [['#services', 'Services'], ['#help', 'Tire Help (free tools)'], ['#book', 'Book'], ['#visit', 'Hours & directions'], ['#faq', 'Questions']] : [['#services', 'Services'], ...LINKS.map(l => [l[0], l[1]]), ['#visit', 'Hours & directions'], ['#faq', 'Questions']];
   mm.innerHTML = `<nav aria-label="Menu">${ALL.map((l, i) => `<a href="${l[0]}" style="--i:${i}">${l[1]}</a>`).join('')}</nav>
     <div class="m-cta"><a class="btn btn-red" href="tel:+15088533322">Call 508-853-3322</a><a class="btn btn-ghost" href="${sms(SHOP.text, "Hi, I'd like to book an appointment at L&M Tire.")}">Text to book</a></div>
     <p class="m-addr">598 West Boylston Street, Worcester · Mon to Fri 8 to 6 · Sat 8 to 12</p>`;
@@ -761,7 +761,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R27: "pick up where you left off" for returning visitors ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const KEY = 'lm-intent';
   const save = (label, href) => { try { localStorage.setItem(KEY, JSON.stringify({ label, href, t: Date.now() })); } catch (e) {} };
   const sz = $('#sz');
@@ -836,7 +836,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R33: a little tire rolls along the booking-steps line as you scroll, lighting each step it reaches ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const ol = $('#how .steps'); if (!ol) return;
   const t = document.createElement('div'); t.className = 'roller'; t.setAttribute('aria-hidden', 'true');
   t.innerHTML = '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#15161f" stroke="#e8333b" stroke-width="5"/><circle cx="20" cy="20" r="8" fill="none" stroke="#8a90ff" stroke-width="3"/><path d="M20 3v8M20 29v8M3 20h8M29 20h8" stroke="#2c2f45" stroke-width="3"/></svg>';
@@ -876,7 +876,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R36: kinetic section titles: words rise out of a mask, one after another ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (reduced()) return;
   const heads = $$('main section:not(.hero) h2');
   function wrap(h){
@@ -1001,7 +1001,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R43: one gentle "before you go" card on desktop, once per visit ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   let armed = false; setTimeout(() => armed = true, 15000);
   const KEY = 'lm-exit';
@@ -1075,7 +1075,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R45: garage-door reveal on the big tool panels ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const els = $$('.symp-out, .size-wall, .td-card, .win-card, #bookForm, .patch-svg, .quiz, .photo');
   els.forEach(e => e.classList.add('gdoor'));
   // panels that sit outside an observed section still open when seen
@@ -1357,7 +1357,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R64: the background light changes mood with each part of the page (red for repairs and urgency, blue for tires and planning, green for "ready") ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const env = $('.env'); if (!env) return;
   const MOOD = { facts: 'blue', services: 'red', pick: 'blue', symptoms: 'red', size: 'blue', patch: 'red', tread: 'amber', winter: 'blue', oil: 'amber', how: 'red', book: 'green', languages: 'blue', visit: 'blue', faq: 'red' };
   const secs = Object.keys(MOOD).map(id => document.getElementById(id)).filter(Boolean);
@@ -1457,7 +1457,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R70: race-start lights above the hero headline on first visit: five reds light up, then everything flips green ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const k = $('.b1 .kicker'); if (!k || reduced() || sessionStorage.getItem('lm-lights')) return;
   sessionStorage.setItem('lm-lights', '1');
   const row = document.createElement('div'); row.className = 'lights'; row.setAttribute('aria-hidden', 'true');
@@ -1730,7 +1730,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R84: section dividers become tire tracks that lay themselves down as you scroll ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   $$('.tread').forEach(t => {
     if (t.querySelector('.tracks')) return;
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1777,7 +1777,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R87: a small burst of red, blue and white confetti when a booking text is ready (skipped for reduced motion) ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const form = $('#bookForm'); if (!form) return;
   function burst(){
     if (reduced()) return;
@@ -1796,7 +1796,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R90: when the shop is open, every Call button wears a live green "Open" badge; when closed, Text buttons get a "Book now" badge ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const calls = $$('a.btn[href^="tel:"]'), texts = $$('a.btn[href^="sms:"], .bar [data-cta="book"]');
   const add = (el, cls, t) => { let b = el.querySelector('.live-badge'); if (!b) { b = document.createElement('span'); b.className = 'live-badge'; b.setAttribute('aria-hidden', 'true'); el.appendChild(b); } b.className = 'live-badge ' + cls; b.textContent = t; };
   const del = el => { const b = el.querySelector('.live-badge'); if (b) b.remove(); };
@@ -1810,7 +1810,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 })();
 
 /* ---- R91: the floating "Text us" button reads the room: its label and ready-made text change with the section you're looking at ---- */
-(() => {
+(() => { if (window.LM_CALM) return; // calm version: turned off
   const fab = $('#qrFab'); if (!fab) return;
   const lab = fab.querySelector('span'); const base = lab.textContent;
   const CTX = {
@@ -2069,7 +2069,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   // Music is ON by default (Netto asked for it to play right away). Browsers block sound until the visitor
   // touches the page, so we try once on load and otherwise start on the first tap, click or key press.
   // A visitor who turns it off with the Sound button stays off on this device.
-  let saved = true; try { saved = localStorage.getItem(KEY) !== '0'; } catch (e) {}
+  let saved = false; try { saved = localStorage.getItem(KEY) === '1'; } catch (e) {} // calm version: music off until the visitor turns it on
   if (saved) {
     on = true; waiting = true; paint();
     const EV = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
@@ -2133,4 +2133,35 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const ds = $('.dial-svc'); if (ds) new MutationObserver(() => { if ((LM.lang || 'en') !== 'en' && SV[ds.textContent]) { ds.dataset.enSv = ds.textContent; ds.textContent = SV[ds.textContent][LM.lang === 'pt' ? 0 : 1]; } }).observe(ds, { childList: true, characterData: true, subtree: true });
   if (LM.lang && LM.lang !== 'en') apply(LM.lang);
 })();
+
+/* CALM1: two views on one page. "Tire Help" holds the tools (sections marked data-tab="help"); everything else is the shop view.
+   Any link to a section in the other view switches views first, then scrolls there. */
+(() => {
+  const root = document.documentElement;
+  const HELP = new Set([...document.querySelectorAll('main section[data-tab="help"]')].map(s => s.id).filter(Boolean));
+  if (!HELP.size) return;
+  const isHelp = () => root.classList.contains('view-help');
+  function show(id, smooth){
+    const want = HELP.has(id);
+    const changed = want !== isHelp();
+    root.classList.toggle('view-help', want);
+    const el = id && document.getElementById(id);
+    if (changed) window.scrollTo(0, 0);
+    if (el && !(changed && (id === 'help' || id === 'top'))) requestAnimationFrame(() => el.scrollIntoView({ behavior: smooth && !changed ? 'smooth' : 'auto' }));
+    if (changed) window.dispatchEvent(new Event('scroll'));
+  }
+  window.LM.showView = show;
+  if (window.LM.goBook) { const g = window.LM.goBook; window.LM.goBook = (...args) => { if (isHelp()) show('book', false); return g(...args); }; }
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1); if (!id || id === 'main') return;
+    if (HELP.has(id) === isHelp()) return;            // same view: let the normal link do its thing
+    if (!HELP.has(id) && !document.getElementById(id)) return;
+    e.preventDefault();
+    setTimeout(() => show(id, true), 0);
+  }, true);
+  const h = decodeURIComponent((location.hash || '').slice(1));
+  if (HELP.has(h)) show(h, false);
+})();
+
 })();
