@@ -2153,8 +2153,10 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   window.LM.showView = show;
   if (window.LM.goBook) { const g = window.LM.goBook; window.LM.goBook = (...args) => { if (isHelp()) show('book', false); return g(...args); }; }
   document.addEventListener('click', e => {
-    const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
-    const id = a.getAttribute('href').slice(1); if (!id || id === 'main') return;
+    const a = e.target.closest && e.target.closest('a[data-hash], a[href*="#"]'); if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const id = a.dataset.hash || (href.charAt(0) === '#' ? href.slice(1) : (href.indexOf(location.pathname + location.search + '#') >= 0 || href.indexOf('htmlpreview') >= 0 ? href.split('#').pop() : ''));
+    if (!id || id === 'main') return;
     if (HELP.has(id) === isHelp()) return;            // same view: let the normal link do its thing
     if (!HELP.has(id) && !document.getElementById(id)) return;
     e.preventDefault();
