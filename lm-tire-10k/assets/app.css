@@ -1013,3 +1013,5 @@ html:not(.view-help) main > section[data-tab="help"]{display:none!important}
 .help-promo .hp-card{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:28px;border:1px solid rgba(243,242,246,.14);border-radius:20px;background:rgba(255,255,255,.03)}
 .help-promo h2{margin:.2em 0}
 @media (max-width:600px){.help-promo .hp-card{padding:22px}.help-promo .btn{width:100%;justify-content:center}}
+.view-help main > :not(section){display:none!important}
+.help-intro .back-home{display:block;width:max-content}
