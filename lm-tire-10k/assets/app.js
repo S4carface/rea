@@ -324,9 +324,9 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 /* ---- R11: whole-page language switch (EN / PT / ES) for the key parts ---- */
 (() => {
   const D = {
-    '.top nav a.link[href="#services"]': ['Serviços', 'Servicios'],
-    '.top nav a.link[href="#visit"]': ['Horário', 'Horario'],
-    '.top nav a.link[href="#faq"]': ['Dúvidas', 'Preguntas'],
+    '.top nav a.link[href$="#services"]': ['Serviços', 'Servicios'],
+    '.top nav a.link[href$="#visit"]': ['Horário', 'Horario'],
+    '.top nav a.link[href$="#faq"]': ['Dúvidas', 'Preguntas'],
     '.top .actions .btn-ghost': ['Agendar', 'Reservar'],
     '.top .actions .btn-red': ['Ligar', 'Llamar'],
     '.b1 .kicker': ['Desde 2013 · 598 West Boylston St, Worcester', 'Desde 2013 · 598 West Boylston St, Worcester'],
@@ -692,7 +692,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   ].filter(l => { const el = $(l[0]); return el && !el.hidden; });
   // desktop dropdown
   let wrap = $('.tools');
-  if (!wrap) { wrap = document.createElement('div'); wrap.className = 'tools'; wrap.innerHTML = '<button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button>'; nav.querySelector('a.link[href="#services"]').after(wrap); }
+  if (!wrap) { wrap = document.createElement('div'); wrap.className = 'tools'; wrap.innerHTML = '<button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button>'; nav.querySelector('a.link[href$="#services"]').after(wrap); }
   wrap.insertAdjacentHTML('beforeend', `<div class="tools-menu" id="toolsMenu" hidden>${LINKS.map(l => `<a href="${l[0]}"><b>${l[1]}</b><span>${l[2]}</span></a>`).join('')}</div>`);
   const tb = wrap.querySelector('.tools-btn'), tm = wrap.querySelector('.tools-menu');
   const setT = o => { tm.hidden = !o; tb.setAttribute('aria-expanded', String(o)); };
