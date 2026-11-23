@@ -2652,6 +2652,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     '.top nav a.link[href$="#services"]': ['Serviços', 'Servicios'],
     '.top nav a.link[href$="#visit"]': ['Horário', 'Horario'],
     '.top nav a.link[href$="#faq"]': ['Dúvidas', 'Preguntas'],
+    '.top nav a.link[href$="#help"]': ['Ajuda com pneus', 'Ayuda con llantas'],
     '.top .actions .btn-ghost': ['Agendar', 'Reservar'],
     '.top .actions .btn-red': ['Ligar', 'Llamar'],
     '.b1 .kicker': ['Desde 2013 · 598 West Boylston St, Worcester', 'Desde 2013 · 598 West Boylston St, Worcester'],
@@ -3674,7 +3675,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   document.addEventListener('lm:lang', e => {
     const l = e.detail; document.title = TITLE[l] || TITLE.en; if (md) md.content = DESC[l] || DESC.en;
     const u = new URL(location.href); if (l === 'en') u.searchParams.delete('lang'); else u.searchParams.set('lang', l);
-    history.replaceState(null, '', u.pathname + (u.search ? u.search : '') + u.hash);
+    try { history.replaceState(null, '', u.pathname + (u.search ? u.search : '') + u.hash); } catch (e) {}
   });
   const want = new URLSearchParams(location.search).get('lang');
   if (want && ['en', 'pt', 'es'].includes(want) && want !== LM.lang && LM.setLang) LM.setLang(want);
