@@ -58,7 +58,8 @@ const SYMP = {
   shake: ['Tire balancing', 'A shake at higher speeds is often a wheel that needs balancing. We can check the tires and balance them.', 'Hi L&M Tire, my car shakes at higher speeds. Can I book a tire check and balance?'],
   clunk: ['Suspension & steering', 'Clunks over bumps or loose steering point to parts under the car. We work on suspension and steering.', 'Hi L&M Tire, my car clunks over bumps / the steering feels loose. Can I book a check?'],
   light: ['Check engine light', 'A warning light is the car telling you something. Bring it in and we will check what the light means.', 'Hi L&M Tire, a warning light is on in my car. Can I book a check?'],
-  flat: ['Flat tire repair', 'A tire that keeps losing air may have a puncture. Bring it in and we will check if it can be repaired.', 'Hi L&M Tire, I have a flat / a tire losing air. When can I come in?'],
+  pull: ['Wheel alignment', 'A car that pulls to one side, a steering wheel that sits off-center, or tires wearing on one edge often point to wheel alignment. We do alignments.', 'Hi L&M Tire, my car pulls to one side / the steering wheel is off-center. Can I book a wheel alignment?'],
+  flat: ['Flat tire repair: plugs and patches', 'A tire that keeps losing air may have a puncture. We do plugs and patches. Bring it in and we will check which one fits, or if it needs a new tire.', 'Hi L&M Tire, I have a flat / a tire losing air. Can it be plugged or patched? When can I come in?'],
   tread: ['New, used or winter tires', 'Thin tread grips less, most of all on wet and snowy roads. We sell new, used and winter tires.', 'Hi L&M Tire, I need tires. My size is: '],
   oil: ['Oil change', 'Keeping up with oil changes keeps the engine healthy. Text us to pick a time.', 'Hi L&M Tire, I would like to book an oil change.'],
   other: ['Tell us about it', 'Describe what you hear, feel or see. A short text is enough, and we will tell you if it is something we fix.', 'Hi L&M Tire, my car is doing this: ']
@@ -110,9 +111,9 @@ updSize();
 
 /* ---- R4: quick replies ---- */
 const QR = {
-  en: [['Book an appointment', 'Hi L&M Tire, I would like to book an appointment.'], ['Tire quote', 'Hi L&M Tire, can I get a tire quote? My tire size is: '], ['Flat tire help', 'Hi L&M Tire, I have a flat tire. When can I come in?'], ['Brakes', 'Hi L&M Tire, I need my brakes checked.'], ['Oil change', 'Hi L&M Tire, I would like an oil change.'], ['Something else', 'Hi L&M Tire, ']],
-  es: [['Hacer una cita', 'Hola L&M Tire, quiero hacer una cita.'], ['Precio de llantas', 'Hola L&M Tire, quiero un precio de llantas. Mi medida es: '], ['Llanta ponchada', 'Hola L&M Tire, tengo una llanta ponchada. ¿Cuándo puedo ir?'], ['Frenos', 'Hola L&M Tire, necesito revisar mis frenos.'], ['Cambio de aceite', 'Hola L&M Tire, quiero un cambio de aceite.'], ['Otra cosa', 'Hola L&M Tire, ']],
-  pt: [['Marcar horário', 'Olá L&M Tire, quero marcar um horário.'], ['Preço de pneus', 'Olá L&M Tire, quero um orçamento de pneus. A medida é: '], ['Pneu furado', 'Olá L&M Tire, estou com um pneu furado. Quando posso ir?'], ['Freios', 'Olá L&M Tire, preciso verificar os freios.'], ['Troca de óleo', 'Olá L&M Tire, quero fazer a troca de óleo.'], ['Outra coisa', 'Olá L&M Tire, ']]
+  en: [['Book an appointment', 'Hi L&M Tire, I would like to book an appointment.'], ['Tire quote', 'Hi L&M Tire, can I get a tire quote? My tire size is: '], ['Flat tire help', 'Hi L&M Tire, I have a flat tire. When can I come in?'], ['Wheel alignment', 'Hi L&M Tire, I would like a wheel alignment.'], ['Brakes', 'Hi L&M Tire, I need my brakes checked.'], ['Oil change', 'Hi L&M Tire, I would like an oil change.'], ['Something else', 'Hi L&M Tire, ']],
+  es: [['Hacer una cita', 'Hola L&M Tire, quiero hacer una cita.'], ['Precio de llantas', 'Hola L&M Tire, quiero un precio de llantas. Mi medida es: '], ['Llanta ponchada', 'Hola L&M Tire, tengo una llanta ponchada. ¿Cuándo puedo ir?'], ['Alineación', 'Hola L&M Tire, quiero una alineación.'], ['Frenos', 'Hola L&M Tire, necesito revisar mis frenos.'], ['Cambio de aceite', 'Hola L&M Tire, quiero un cambio de aceite.'], ['Otra cosa', 'Hola L&M Tire, ']],
+  pt: [['Marcar horário', 'Olá L&M Tire, quero marcar um horário.'], ['Preço de pneus', 'Olá L&M Tire, quero um orçamento de pneus. A medida é: '], ['Pneu furado', 'Olá L&M Tire, estou com um pneu furado. Quando posso ir?'], ['Alinhamento', 'Olá L&M Tire, quero fazer um alinhamento.'], ['Freios', 'Olá L&M Tire, preciso verificar os freios.'], ['Troca de óleo', 'Olá L&M Tire, quero fazer a troca de óleo.'], ['Outra coisa', 'Olá L&M Tire, ']]
 };
 const qr = $('#qr'), qrFab = $('#qrFab'), qrSheet = $('#qrSheet'), qrList = $('.qr-list');
 let qrLang = (navigator.language || 'en').slice(0, 2);
@@ -244,7 +245,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const row = $('.symp-res .cta-row');
   if (row) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn btn-ghost symp-book'; b.textContent = 'Book it in 4 taps';
-    const MAP = { 'Brakes': 'Brakes', 'Tire balancing': 'Installation & balancing', 'Suspension & steering': 'Suspension & steering', 'Check engine light': 'Check engine light', 'Flat tire repair': 'Flat tire repair', 'New, used or winter tires': 'New tires', 'Oil change': 'Oil change', 'Tell us about it': 'Something else' };
+    const MAP = { 'Brakes': 'Brakes', 'Tire balancing': 'Installation & balancing', 'Suspension & steering': 'Suspension & steering', 'Check engine light': 'Check engine light', 'Flat tire repair: plugs and patches': 'Flat tire repair: plugs and patches', 'Wheel alignment': 'Wheel alignment', 'New, used or winter tires': 'New tires', 'Oil change': 'Oil change', 'Tell us about it': 'Something else' };
     b.addEventListener('click', () => goBook(MAP[$('.symp-svc').textContent] || 'Something else'));
     row.appendChild(b);
   }
@@ -301,7 +302,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   function show(info){
     if (!info || !info.day || sessionStorage.getItem('lm-snow-x')) return;
     const bar = document.createElement('div'); bar.className = 'snow'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Snow alert');
-    bar.innerHTML = `<span class="snow-ic" aria-hidden="true">❄</span><p><b>Snow is in the Worcester forecast for ${info.day}.</b> <span>Get winter tires on before it lands.</span></p><a class="btn btn-red btn-sm" href="${sms(SHOP.text, 'Hi L&M Tire, I need winter tires before the snow. My tire size is: ')}">Text for winter tires</a><button type="button" class="snow-x" aria-label="Close snow alert">×</button>`;
+    bar.innerHTML = `<svg class="i snow-ic" aria-hidden="true"><use href="#i-snow"/></svg><p><b>Snow is in the Worcester forecast for ${info.day}.</b> <span>Get winter tires on before it lands.</span></p><a class="btn btn-red btn-sm" href="${sms(SHOP.text, 'Hi L&M Tire, I need winter tires before the snow. My tire size is: ')}">Text for winter tires</a><button type="button" class="snow-x" aria-label="Close snow alert">×</button>`;
     bar.querySelector('.snow-x').addEventListener('click', () => { bar.classList.add('bye'); sessionStorage.setItem('lm-snow-x', '1'); setTimeout(() => bar.hidden = true, 400); });
     document.body.appendChild(bar);
     requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('in')));
@@ -480,7 +481,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 
 /* ---- R14: speedometer scroll gauge (desktop) that names the section you're in; tap to go back to top ---- */
 (() => {
-  const NAMES = { top: 'Start', facts: 'At a glance', start: 'Start here', services: 'Services', pick: 'Tire chooser', symptoms: 'Checker', size: 'Tire quote', patch: 'Patch or new', tread: 'Penny test', winter: 'Winter', oil: 'Oil reminder', tips: 'Tire care', how: 'How to book', languages: 'Languages', visit: 'Hours', faq: 'FAQ', book: 'Book' };
+  const NAMES = { top: 'Start', facts: 'At a glance', start: 'Start here', services: 'Services', pick: 'Tire chooser', symptoms: 'Checker', size: 'Tire quote', patch: 'Plug or patch', tread: 'Penny test', winter: 'Winter', oil: 'Oil reminder', tips: 'Tire care', how: 'How to book', languages: 'Languages', visit: 'Hours', faq: 'FAQ', book: 'Book' };
   const g = document.createElement('button'); g.type = 'button'; g.className = 'gauge'; g.setAttribute('aria-label', 'Back to top');
   const ticks = Array.from({ length: 13 }, (_, i) => { const a = (-120 + i * 20) * Math.PI / 180, r1 = i % 3 ? 37 : 33; return `<line x1="${50 + Math.sin(a) * r1}" y1="${50 - Math.cos(a) * r1}" x2="${50 + Math.sin(a) * 41}" y2="${50 - Math.cos(a) * 41}"/>`; }).join('');
   g.innerHTML = `<svg viewBox="0 0 100 100" aria-hidden="true"><path class="g-arc" d="M14.5 70.5 A41 41 0 1 1 85.5 70.5"/><path class="g-fill" d="M14.5 70.5 A41 41 0 1 1 85.5 70.5" pathLength="100"/><g class="g-ticks">${ticks}</g><g class="g-needle"><line x1="50" y1="50" x2="50" y2="18"/><circle cx="50" cy="50" r="5"/></g></svg><span class="g-lbl">Start</span><span class="g-top" aria-hidden="true">↑ Top</span>`;
@@ -684,7 +685,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const LINKS = [
     ['#symptoms', 'What is my car doing?', 'Pick a symptom, get the service'],
     ['#size', 'Tire quote by text', 'Type your size, text it'],
-    ['#patch', 'Patch or new tire?', 'Tap where the nail is'],
+    ['#patch', 'Plug, patch or new tire?', 'Tap where the nail is'],
     ['#tread', 'Penny test + tire age', 'Is the tread too thin?'],
     ['#winter', 'Winter check', 'Ready for snow?'],
     ['#book', 'Book in 4 taps', 'Opens a ready text']
@@ -720,7 +721,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const row = $('.b1 .cta-row'); if (!row) return;
   let picks = $('.hero-picks'); const pNew = !picks; if (pNew) { picks = document.createElement('div'); picks.className = 'hero-picks'; }
-  const P = [['Tires', 'New tires'], ['Flat fix', 'Flat tire repair'], ['Brakes', 'Brakes'], ['Oil change', 'Oil change'], ['Warning light', 'Check engine light']];
+  const P = [['Tires', 'New tires'], ['Flat fix', 'Flat tire repair: plugs and patches'], ['Alignment', 'Wheel alignment'], ['Brakes', 'Brakes'], ['Oil change', 'Oil change'], ['Warning light', 'Check engine light']];
   if (pNew) { picks.innerHTML = `<span class="mono">I need</span>` + P.map(p => `<button type="button" data-svc="${p[1]}">${p[0]}</button>`).join(''); row.after(picks); }
   picks.addEventListener('click', e => { const b = e.target.closest('button'); if (b && LM.goBook) LM.goBook(b.dataset.svc); });
 })();
@@ -733,6 +734,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     '.symp-btn[data-s="shake"] b': ['Tremendo ou vibrando', 'Tiembla o vibra'], '.symp-btn[data-s="shake"] span': ['em velocidade mais alta', 'a más velocidad'],
     '.symp-btn[data-s="clunk"] b': ['Barulho nos buracos', 'Golpes en los baches'], '.symp-btn[data-s="clunk"] span': ['ou a direção está solta', 'o la dirección está floja'],
     '.symp-btn[data-s="light"] b': ['Uma luz de aviso acendeu', 'Se prendió una luz'], '.symp-btn[data-s="light"] span': ['no painel', 'en el tablero'],
+    '.symp-btn[data-s="pull"] b': ['Puxa para um lado', 'Se jala a un lado'], '.symp-btn[data-s="pull"] span': ['volante torto ou pneus gastando de um lado', 'volante chueco o llantas gastadas de un lado'],
     '.symp-btn[data-s="flat"] b': ['Pneu furado ou perdendo ar', 'Llanta ponchada o sin aire'], '.symp-btn[data-s="flat"] span': ['um pneu sempre fica baixo', 'una llanta se baja'],
     '.symp-btn[data-s="tread"] b': ['Pneu gasto ou neve chegando', 'Llanta gastada o viene nieve'], '.symp-btn[data-s="tread"] span': ['hora de pneus novos, usados ou de inverno', 'llantas nuevas, usadas o de invierno'],
     '.symp-btn[data-s="oil"] b': ['Hora de trocar o óleo', 'Toca cambio de aceite'], '.symp-btn[data-s="oil"] span': ['ou a luz do óleo acendeu', 'o se prendió la luz del aceite'],
@@ -741,7 +743,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     '#size .lede': ['A medida está escrita na lateral do pneu e no adesivo da porta do motorista. Parece com 205/55R16.', 'La medida está en el costado de la llanta y en la etiqueta de la puerta del conductor. Se ve así: 205/55R16.'],
     'label[for="sz"]': ['Medida do pneu', 'Medida de la llanta'],
     '.hero-picks .mono': ['Preciso de', 'Necesito'],
-    '.hero-picks [data-svc="New tires"]': ['Pneus', 'Llantas'], '.hero-picks [data-svc="Flat tire repair"]': ['Pneu furado', 'Ponchadura'], '.hero-picks [data-svc="Brakes"]': ['Freios', 'Frenos'], '.hero-picks [data-svc="Oil change"]': ['Troca de óleo', 'Cambio de aceite'], '.hero-picks [data-svc="Check engine light"]': ['Luz de aviso', 'Luz de motor'],
+    '.hero-picks [data-svc="New tires"]': ['Pneus', 'Llantas'], '.hero-picks [data-svc="Flat tire repair: plugs and patches"]': ['Pneu furado', 'Ponchadura'], '.hero-picks [data-svc="Wheel alignment"]': ['Alinhamento', 'Alineación'], '.hero-picks [data-svc="Brakes"]': ['Freios', 'Frenos'], '.hero-picks [data-svc="Oil change"]': ['Troca de óleo', 'Cambio de aceite'], '.hero-picks [data-svc="Check engine light"]': ['Luz de aviso', 'Luz de motor'],
     '#tread .kicker': ['O teste da moeda', 'La prueba del centavo'], '#td-h': ['Seu pneu está gasto?', '¿Su llanta está gastada?'],
     '#winter .kicker': ['Inverno em Worcester', 'Invierno en Worcester'], '#win-h': ['Seu carro está pronto para a neve?', '¿Su carro está listo para la nieve?'],
     '#book .lede': ['Quatro toques rápidos. Depois o app de mensagens abre com o texto pronto. Prefere falar? Ligue para a oficina.', 'Cuatro toques rápidos. Luego se abre su app de mensajes con el texto listo. ¿Prefiere hablar? Llame al taller.'],
@@ -782,15 +784,15 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const svg = $('.patch-svg'); if (!svg) return;
   const R = {
-    center: ['Often patchable', 'A small nail or screw in the middle of the tread can often be repaired from the inside. Bring it in and we will check it.', 'Hi L&M Tire, I have a nail in the middle of my tread. Can it be patched? When can I come in?', 200],
-    shoulder: ['Probably a new tire', 'Damage near the edge of the tread is hard to repair safely, because that part flexes a lot. We will look and tell you.', 'Hi L&M Tire, my tire has damage near the edge of the tread. Can you check it? My size is: ', 85],
-    side: ['A new tire', 'The sidewall cannot be safely patched. We sell new and used tires, and can usually help you pick one.', 'Hi L&M Tire, my tire sidewall is damaged. I need a tire. My size is: ', 40]
+    center: ['Often a plug or a patch', 'A small nail or screw in the middle of the tread can often be repaired. A plug works well here and is much quicker. A patch is also available. We check the tire first and tell you which one fits.', 'Hi L&M Tire, I have a nail in the middle of my tread. Can it be plugged or patched? When can I come in?', 462, 400],
+    shoulder: ['Needs a closer look', 'The edge of the tread flexes a lot, so a plug or patch may not be safe there. Bring it in and we will check whether it can be repaired or needs a new tire.', 'Hi L&M Tire, my tire has damage near the edge of the tread. Can you check it? My size is: ', 352, 470],
+    side: ['A new tire', 'Sidewall damage means a new tire: plugs and patches are not safe in the sidewall. We sell new and used tires and can help you pick one.', 'Hi L&M Tire, my tire sidewall is damaged. I need a tire. My size is: ', 858, 452]
   };
   const nail = svg.querySelector('.nail'), out = $('.patch-out'), res = $('.patch-res'), q = $('.patch-q');
   function pick(z, x, y){
     const d = R[z];
     svg.querySelectorAll('.pz').forEach(p => p.classList.toggle('on', p.dataset.z === z));
-    nail.setAttribute('transform', `translate(${x != null ? x : d[3]},${y != null ? y : 120})`); nail.classList.add('in');
+    nail.setAttribute('transform', `translate(${x != null ? x : d[3]},${y != null ? y : d[4]})`); nail.classList.remove('in'); void nail.getBoundingClientRect(); nail.classList.add('in');
     q.hidden = true; res.hidden = false;
     res.querySelector('h3').textContent = d[0]; res.querySelector('p').textContent = d[1];
     res.querySelector('a').href = sms(SHOP.text, d[2]);
@@ -1029,8 +1031,8 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const FAQ = [
     [['Vocês vendem pneus usados?', 'Sim. Vendemos pneus novos e usados. Ligue ou mande mensagem e pergunte o que temos na sua medida.'], ['¿Venden llantas usadas?', 'Sí. Vendemos llantas nuevas y usadas. Llame o mande un texto y pregunte qué tenemos en su medida.']],
     [['Vocês têm pneus de inverno?', 'Sim. Vendemos pneus de inverno, e montamos e balanceamos para você.'], ['¿Tienen llantas de invierno?', 'Sí. Vendemos llantas de invierno, y se las montamos y balanceamos.']],
-    [['Vocês consertam pneu furado?', 'Consertamos pneu furado. Traga o carro e verificamos o pneu.'], ['¿Arreglan llantas ponchadas?', 'Sí, arreglamos ponchaduras. Traiga el carro y revisamos la llanta.']],
-    [['O que mais vocês consertam?', 'Freios, troca de óleo, suspensão e direção, e luz de injeção (check engine).'], ['¿Qué más arreglan?', 'Frenos, cambios de aceite, suspensión y dirección, y la luz de check engine.']],
+    [['Vocês consertam pneu furado?', 'Sim. Fazemos tarugo e remendo. O tarugo funciona bem para um furo pequeno na banda de rodagem e é bem mais rápido; o remendo também está disponível. Dano na lateral do pneu quer dizer pneu novo. Traga o carro e verificamos o pneu.'], ['¿Arreglan llantas ponchadas?', 'Sí. Hacemos tapones y parches. El tapón funciona bien para un hoyo pequeño en la banda de rodamiento y es mucho más rápido; también hay parche. Un daño en el costado de la llanta significa llanta nueva. Traiga el carro y revisamos la llanta.']],
+    [['O que mais vocês consertam?', 'Alinhamento, freios, troca de óleo, suspensão e direção, e luz de injeção (check engine).'], ['¿Qué más arreglan?', 'Alineación, frenos, cambios de aceite, suspensión y dirección, y la luz de check engine.']],
     [['Vocês fazem funilaria ou pintura?', 'Não. Não fazemos funilaria nem pintura.'], ['¿Hacen hojalatería o pintura?', 'No. No hacemos hojalatería ni pintura.']],
     [['Quanto vai custar?', 'Depende do carro e da medida do pneu. Ligue ou mande mensagem e peça um orçamento.'], ['¿Cuánto va a costar?', 'Depende de su carro y de la medida de la llanta. Llame o mande un texto y pida un precio.']],
     [['Como eu agendo?', 'Em português, ligue ou mande mensagem para <a href="tel:+17742889675">774-288-9675</a>. Ou use o formulário abaixo.'], ['¿Cómo hago una cita?', 'Mande un texto al <a href="sms:+13048066047">304-806-6047</a> o llame al taller al <a href="tel:+15088533322">508-853-3322</a>. También puede usar el formulario.']],
@@ -1109,8 +1111,9 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     <div><b>L&amp;M Tire Auto Repair</b><br>598 West Boylston Street, Worcester, MA 01606</div>
     <table><tr><td>Shop</td><td>508-853-3322</td></tr><tr><td>Text to book</td><td>304-806-6047 (English, Español)</td></tr><tr><td>Português</td><td>774-288-9675</td></tr></table>
     <div>Mon to Fri 8 AM to 6 PM · Sat 8 AM to 12 PM · Sun closed</div>
-    <div class="glove-svc">New &amp; used tires · Winter tires · Flat repair · Brakes · Oil changes · Suspension &amp; steering · Check engine light</div>
-    <div class="glove-cut">✂ Cut out and keep in your glovebox</div></div>`;
+    <div class="glove-svc">New &amp; used tires · Winter tires · Flat repair: plugs and patches · Wheel alignment · Brakes · Oil changes · Suspension &amp; steering · Check engine light</div>
+    <div class="glove-rev"><img src="assets/review-qr.svg" alt="" width="84" height="84"><span>Happy with us? Scan to leave a Google review.</span></div>
+    <div class="glove-cut">Cut along the dashed line and keep in your glovebox</div></div>`;
   document.body.appendChild(card);
   const b = document.createElement('button'); b.type = 'button'; b.className = 'btn btn-ghost btn-sm glove-btn';
   b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M6 14h12v7H6z"/></svg>Print a glovebox card';
@@ -1157,15 +1160,15 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     '.tools-btn': ['Ferramentas <span aria-hidden="true">▾</span>', 'Herramientas <span aria-hidden="true">▾</span>'],
     '.tools-menu a[href="#symptoms"] b': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.tools-menu a[href="#symptoms"] span': ['Escolha o sintoma, veja o serviço', 'Escoja el síntoma, vea el servicio'],
     '.tools-menu a[href="#size"] b': ['Orçamento de pneus', 'Precio de llantas'], '.tools-menu a[href="#size"] span': ['Digite a medida e mande', 'Escriba la medida y mándela'],
-    '.tools-menu a[href="#patch"] b': ['Remendo ou pneu novo?', '¿Parche o llanta nueva?'], '.tools-menu a[href="#patch"] span': ['Toque onde está o prego', 'Toque donde está el clavo'],
+    '.tools-menu a[href="#patch"] b': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.tools-menu a[href="#patch"] span': ['Toque onde está o prego', 'Toque donde está el clavo'],
     '.tools-menu a[href="#tread"] b': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.tools-menu a[href="#tread"] span': ['O pneu está gasto?', '¿La llanta está gastada?'],
     '.tools-menu a[href="#winter"] b': ['Checagem de inverno', 'Revisión de invierno'], '.tools-menu a[href="#winter"] span': ['Pronto para a neve?', '¿Listo para la nieve?'],
     '.tools-menu a[href="#book"] b': ['Agende em 4 toques', 'Reserve en 4 toques'], '.tools-menu a[href="#book"] span': ['Abre uma mensagem pronta', 'Abre un texto listo'],
     '#languages .kicker': ['Fale a sua língua', 'Hable su idioma'],
     '#pick .kicker': ['Novo, usado ou de inverno?', '¿Nueva, usada o de invierno?'], '#pick-h': ['Qual pneu combina com você?', '¿Qué llantas le convienen?'],
-    '#patch .kicker': ['Pneu furado?', '¿Llanta ponchada?'], '#patch-h': ['Remendo ou pneu novo?', '¿Parche o llanta nueva?'],
+    '#patch .kicker': ['Pneu furado?', '¿Llanta ponchada?'], '#patch-h': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'],
     '.m-menu nav a[href="#services"]': ['Serviços', 'Servicios'], '.m-menu nav a[href="#visit"]': ['Horário e endereço', 'Horario y dirección'], '.m-menu nav a[href="#faq"]': ['Perguntas', 'Preguntas'],
-    '.m-menu nav a[href="#symptoms"]': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.m-menu nav a[href="#size"]': ['Orçamento de pneus', 'Precio de llantas'], '.m-menu nav a[href="#patch"]': ['Remendo ou pneu novo?', '¿Parche o llanta nueva?'], '.m-menu nav a[href="#tread"]': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.m-menu nav a[href="#winter"]': ['Checagem de inverno', 'Revisión de invierno'], '.m-menu nav a[href="#book"]': ['Agende em 4 toques', 'Reserve en 4 toques'],
+    '.m-menu nav a[href="#symptoms"]': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.m-menu nav a[href="#size"]': ['Orçamento de pneus', 'Precio de llantas'], '.m-menu nav a[href="#patch"]': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.m-menu nav a[href="#tread"]': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.m-menu nav a[href="#winter"]': ['Checagem de inverno', 'Revisión de invierno'], '.m-menu nav a[href="#book"]': ['Agende em 4 toques', 'Reserve en 4 toques'],
     '.m-cta .btn-red': ['Ligar 508-853-3322', 'Llamar 508-853-3322'], '.m-cta .btn-ghost': ['Mensagem para agendar', 'Texto para reservar'],
     '.wz-next': ['Próximo', 'Siguiente'], '.wz-back': ['Voltar', 'Atrás'],
     '.facts .odo-card:nth-child(1) p': ['O ano em que abrimos na West Boylston Street', 'El año en que abrimos en West Boylston Street'], '.facts .odo-card:nth-child(2) p': ['Línguas: inglês, português, espanhol', 'Idiomas: inglés, portugués, español'], '.facts .odo-card:nth-child(3) p': ['Dias por semana, de segunda a sábado', 'Días por semana, de lunes a sábado'], '.facts .odo-card:nth-child(4) p': ['Pneus, e também pneus de inverno', 'Llantas, y también de invierno']
@@ -1180,35 +1183,25 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 
 /* ---- R51: "Does it sound like this?" brake sounds, made live in the browser (no audio files) ---- */
 (() => {
-  const host = $('.symp-out'); if (!host || !(window.AudioContext || window.webkitAudioContext)) return;
+  const host = $('.symp-out'); if (!host) return;
   const box = document.createElement('div'); box.className = 'snd';
   box.innerHTML = `<p class="mono">Hear it</p><div class="snd-row">
-    <button type="button" data-s="squeal" aria-label="Play a brake squeal sound"><span aria-hidden="true">▶</span> Squeal</button>
-    <button type="button" data-s="grind" aria-label="Play a brake grinding sound"><span aria-hidden="true">▶</span> Grind</button>
-    <button type="button" data-s="clunk" aria-label="Play a clunk sound"><span aria-hidden="true">▶</span> Clunk</button></div>
-    <p class="snd-note">Sounds like your car? Tap the matching problem above. Plays quietly, 2 seconds.</p>`;
+    <button type="button" data-s="squeal" aria-label="Play a brake squeal sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Squeal</span></button>
+    <button type="button" data-s="grind" aria-label="Play a brake grinding sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Grind</span></button>
+    <button type="button" data-s="clunk" aria-label="Play a clunk sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Clunk</span></button></div>
+    <p class="snd-note">Sounds like your car? Tap the matching problem above. Short real recordings, played quietly.</p>`;
   host.appendChild(box);
-  let ctx;
+  const SFX = {};
   function play(kind, btn){
-    ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
-    const t = ctx.currentTime, out = ctx.createGain(); out.gain.value = 0.0001; out.connect(ctx.destination);
-    out.gain.exponentialRampToValueAtTime(kind === 'clunk' ? 0.5 : 0.12, t + 0.05);
-    out.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'clunk' ? 1.6 : 1.9));
-    if (kind === 'squeal') {
-      const o = ctx.createOscillator(), lfo = ctx.createOscillator(), lg = ctx.createGain();
-      o.type = 'sine'; o.frequency.value = 3400; lfo.frequency.value = 7; lg.gain.value = 90;
-      lfo.connect(lg); lg.connect(o.frequency); o.connect(out); o.start(t); lfo.start(t); o.stop(t + 2); lfo.stop(t + 2);
-    } else if (kind === 'grind') {
-      const len = ctx.sampleRate * 2, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
-      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (0.6 + 0.4 * Math.sin(i / ctx.sampleRate * 2 * Math.PI * 9));
-      const src = ctx.createBufferSource(); src.buffer = buf;
-      const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 900; bp.Q.value = 0.8;
-      src.connect(bp); bp.connect(out); src.start(t); src.stop(t + 2);
-    } else {
-      [0, 0.55, 1.1].forEach(dt => { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'triangle'; o.frequency.setValueAtTime(140, t + dt); o.frequency.exponentialRampToValueAtTime(50, t + dt + 0.18); g.gain.setValueAtTime(0.9, t + dt); g.gain.exponentialRampToValueAtTime(0.001, t + dt + 0.22); o.connect(g); g.connect(out); o.start(t + dt); o.stop(t + dt + 0.25); });
-    }
-    btn.classList.add('on'); setTimeout(() => btn.classList.remove('on'), 2000);
+    let a = SFX[kind];
+    if (!a) { a = SFX[kind] = new Audio(); a.preload = 'none'; a.src = 'assets/sfx-' + kind + '.mp3'; LM.sound && LM.sound.attach(a, 0.55); a.addEventListener('ended', () => done(kind)); a.addEventListener('pause', () => done(kind)); }
+    Object.keys(SFX).forEach(k => { if (k !== kind && !SFX[k].paused) SFX[k].pause(); });
+    try { a.currentTime = 0; } catch (e) {}
+    LM.sound && LM.sound.duck(true);
+    const p = a.play(); if (p && p.catch) p.catch(() => done(kind));
+    box.querySelectorAll('button[data-s]').forEach(x => x.classList.toggle('on', x === btn));
   }
+  function done(kind){ const b = box.querySelector('button[data-s="' + kind + '"]'); if (b) b.classList.remove('on'); if (!Object.values(SFX).some(x => !x.paused)) LM.sound && LM.sound.duck(false); }
   box.addEventListener('click', e => { const b = e.target.closest('button[data-s]'); if (b) play(b.dataset.s, b); });
 })();
 
@@ -1267,21 +1260,12 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 
 /* ---- R54: dashboard-style icons on the symptom buttons ---- */
 (() => {
-  const I = {
-    brakes: '<circle cx="12" cy="12" r="6"/><path d="M5 6a9 9 0 0 0 0 12M19 6a9 9 0 0 1 0 12"/><path d="M12 9v3.5M12 15v.5"/>',
-    shake: '<path d="M4 12h2l2-4 3 8 3-8 2 4h4"/>',
-    clunk: '<path d="M6 20V9l6-5 6 5v11"/><path d="M9 20v-5h6v5"/><path d="M3 12l3-3M21 12l-3-3"/>',
-    light: '<path d="M4 15h3l1-3h8l1 3h3v3H4z"/><path d="M9 12V9h6v3M11 9V7h2v2M7 18v2M17 18v2"/>',
-    flat: '<path d="M6 15a6 6 0 1 1 12 0"/><path d="M4 18h16"/><path d="M12 9v3.5M12 15v.5"/>',
-    tread: '<path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/>',
-    oil: '<path d="M3 13h4l2-2h7l5-3-3 6H9l-2 2H3z"/><path d="M20 15c0 1.2-.8 2-1.5 2s-1.5-.8-1.5-2 1.5-3 1.5-3 1.5 1.8 1.5 3z"/>',
-    other: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.5"/>'
-  };
+  const I = { brakes: 'brakelamp', shake: 'balance', clunk: 'spring', light: 'engine', flat: 'tpms', tread: 'tread', oil: 'oil', other: 'ask', pull: 'align' };
   $$('.symp-btn').forEach(b => {
     const ic = I[b.dataset.s]; if (!ic) return;
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor'); s.setAttribute('stroke-width', '1.8'); s.setAttribute('aria-hidden', 'true'); s.classList.add('symp-ic');
-    s.innerHTML = ic; b.prepend(s); b.classList.add('has-ic');
+    s.setAttribute('aria-hidden', 'true'); s.classList.add('i', 'symp-ic');
+    s.innerHTML = '<use href="#i-' + ic + '"/>'; b.prepend(s); b.classList.add('has-ic');
   });
 })();
 
@@ -1289,14 +1273,14 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const cards = $$('#services .card'); if (cards.length < 2) return;
   const ART = [
-    // tire with tread blocks
-    '<circle cx="60" cy="60" r="50"/><circle cx="60" cy="60" r="30"/><circle cx="60" cy="60" r="8"/><path d="M60 10v12M60 98v12M10 60h12M98 60h12M24.6 24.6l8.5 8.5M86.9 86.9l8.5 8.5M95.4 24.6l-8.5 8.5M33.1 86.9l-8.5 8.5"/><path d="M60 30v22M60 68v22M30 60h22M68 60h22"/>',
-    // brake disc + caliper + wrench
-    '<circle cx="54" cy="62" r="40"/><circle cx="54" cy="62" r="14"/><path d="M54 22a40 40 0 0 1 36 22"/><rect x="76" y="34" width="22" height="40" rx="8"/><path d="M40 52l-6-6M68 52l6-6M40 72l-6 6M68 72l6 6"/>'
+    // tire, side view: tread blocks around the outside, rim with five spokes
+    '<circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="26"/><circle cx="60" cy="60" r="7"/><path d="M60 8v12M86 15l-6 10.4M105 34l-10.4 6M112 60H100M105 86l-10.4-6M86 105l-6-10.4M60 112V100M34 105l6-10.4M15 86l10.4-6M8 60h12M15 34l10.4 6M34 15l6 10.4"/><path d="M60 34v19M84.7 52l-18 5.9M75.3 81l-11.1-15.4M44.7 81l11.1-15.4M35.3 52l18 5.9"/>',
+    // brake rotor with drilled holes and the caliper clamped over the top right
+    '<circle cx="54" cy="64" r="44"/><circle cx="54" cy="64" r="16"/><circle cx="54" cy="64" r="5"/><path d="M54 33v.1M75.9 42.1v.1M85 64v.1M75.9 85.9v.1M54 95v.1M32.1 85.9v.1M23 64v.1M32.1 42.1v.1"/><path d="M66 14h16a26 26 0 0 1 26 26v16a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8v-6a18 18 0 0 0-18-18h-6a8 8 0 0 1-8-8v-2a8 8 0 0 1 8-8z"/>'
   ];
   cards.forEach((c, i) => {
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    s.setAttribute('viewBox', '0 0 120 120'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor'); s.setAttribute('stroke-width', '2'); s.setAttribute('aria-hidden', 'true'); s.classList.add('card-art');
+    s.setAttribute('viewBox', '0 0 120 120'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor'); s.setAttribute('stroke-width', '2.5'); s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round'); s.setAttribute('aria-hidden', 'true'); s.classList.add('card-art');
     s.innerHTML = ART[i % ART.length];
     s.querySelectorAll('*').forEach(p => { p.setAttribute('pathLength', '1'); });
     c.prepend(s);
@@ -1306,7 +1290,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 /* ---- R56: offline? phones can still call, so say so ---- */
 (() => {
   const bar = document.createElement('div'); bar.className = 'offline'; bar.setAttribute('role', 'status'); bar.hidden = true;
-  bar.innerHTML = '<span aria-hidden="true">⚡</span><p><b>No internet right now.</b> You can still call us: <a href="tel:+15088533322">508-853-3322</a></p>';
+  bar.innerHTML = '<p><b>No internet right now.</b> You can still call us: <a href="tel:+15088533322">508-853-3322</a></p>';
   document.body.appendChild(bar);
   const upd = () => { bar.hidden = navigator.onLine; };
   addEventListener('online', upd); addEventListener('offline', upd); upd();
@@ -1360,7 +1344,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     es: 'L&M Tire Auto Repair | Llantas nuevas y usadas y reparaciones en Worcester, MA'
   };
   const md = document.querySelector('meta[name="description"]');
-  const DESC = { en: md ? md.content : '', pt: 'L&M Tire Auto Repair, 598 West Boylston Street, Worcester, MA. Pneus novos e usados, pneus de inverno, conserto de pneu furado, freios, troca de óleo. Falamos português: 774-288-9675.', es: 'L&M Tire Auto Repair, 598 West Boylston Street, Worcester, MA. Llantas nuevas y usadas, de invierno, ponchaduras, frenos, cambio de aceite. Hablamos español: 304-806-6047.' };
+  const DESC = { en: md ? md.content : '', pt: 'L&M Tire Auto Repair, 598 West Boylston Street, Worcester, MA. Pneus novos e usados, pneus de inverno, conserto de pneu furado (tarugo e remendo), alinhamento, freios, troca de óleo. Falamos português: 774-288-9675.', es: 'L&M Tire Auto Repair, 598 West Boylston Street, Worcester, MA. Llantas nuevas y usadas, de invierno, ponchaduras (tapones y parches), alineación, frenos, cambio de aceite. Hablamos español: 304-806-6047.' };
   document.addEventListener('lm:lang', e => {
     const l = e.detail; document.title = TITLE[l] || TITLE.en; if (md) md.content = DESC[l] || DESC.en;
     const u = new URL(location.href); if (l === 'en') u.searchParams.delete('lang'); else u.searchParams.set('lang', l);
@@ -1389,7 +1373,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const foot = $('.foot'); if (!foot) return;
   const col = document.createElement('div');
-  const T = [['#pick', 'Which tires fit you?'], ['#symptoms', 'What is my car doing?'], ['#size', 'Tire quote by text'], ['#patch', 'Patch or new tire?'], ['#tread', 'Penny test + tire age'], ['#oil', 'Oil change reminder'], ['#book', 'Book in 4 taps']].filter(t => document.querySelector(t[0]) && !document.querySelector(t[0]).hidden);
+  const T = [['#pick', 'Which tires fit you?'], ['#symptoms', 'What is my car doing?'], ['#size', 'Tire quote by text'], ['#patch', 'Plug, patch or new tire?'], ['#tread', 'Penny test + tire age'], ['#oil', 'Oil change reminder'], ['#book', 'Book in 4 taps']].filter(t => document.querySelector(t[0]) && !document.querySelector(t[0]).hidden);
   col.innerHTML = '<h3>Free tools</h3><ul>' + T.map(t => `<li><a href="${t[0]}">${t[1]}</a></li>`).join('') + '</ul>';
   foot.appendChild(col);
   foot.classList.add('four');
@@ -1420,13 +1404,13 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const form = $('#sizeForm'); if (!form) return;
   const box = document.createElement('div'); box.className = 'qf rv in';
   const F = [
-    ['Tire size', 'Bigger wheels and wider tires cost more.', '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>'],
-    ['New or used', 'Used tires cost less up front. New tires last longer.', '<path d="M4 12h16M12 4v16"/>'],
-    ['Type of tire', 'All-season, winter, or performance tires are priced differently.', '<path d="M12 3l2 5h5l-4 3.5 1.5 5L12 14l-4.5 2.5L9 11.5 5 8h5z"/>'],
-    ['How many', 'One tire, a pair, or a full set of four.', '<rect x="3" y="5" width="7" height="14" rx="3"/><rect x="14" y="5" width="7" height="14" rx="3"/>'],
-    ['Installation', 'Mounting and balancing so the ride is smooth.', '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.4 2.4-2.6-.4-.4-2.6z"/>']
+    ['Tire size', 'Bigger wheels and wider tires cost more.', 'rim'],
+    ['New or used', 'Used tires cost less up front. New tires last longer.', 'tread'],
+    ['Type of tire', 'All-season, winter, or performance tires are priced differently.', 'snow'],
+    ['How many', 'One tire, a pair, or a full set of four.', 'four'],
+    ['Installation', 'Mounting and balancing so the ride is smooth.', 'balance']
   ];
-  box.innerHTML = '<h3>What changes a tire quote?</h3><ul>' + F.map(f => `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">${f[2]}</svg><div><b>${f[0]}</b><span>${f[1]}</span></div></li>`).join('') + '</ul><p class="qf-note">Text us your size and ask for your options and the price.</p>';
+  box.innerHTML = '<h3>What changes a tire quote?</h3><ul>' + F.map(f => `<li><svg class="i" aria-hidden="true"><use href="#i-${f[2]}"/></svg><div><b>${f[0]}</b><span>${f[1]}</span></div></li>`).join('') + '</ul><p class="qf-note">Text us your size and ask for your options and the price.</p>';
   form.after(box);
 })();
 
@@ -1440,7 +1424,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     try { snow = JSON.parse(sessionStorage.getItem('lm-snow-v1') || 'null'); } catch (e) {}
     const t = sessionStorage.getItem('lm-temp'); if (t !== null) temp = +t;
     let label = null, svc = null, cls = '';
-    if (snow && snow.day) { label = '❄ Snow ' + (snow.day === 'today' || snow.day === 'tomorrow' ? snow.day : 'on ' + snow.day) + ': winter tires'; svc = 'Winter tires'; cls = 'wx-snow'; }
+    if (snow && snow.day) { label = 'Snow ' + (snow.day === 'today' || snow.day === 'tomorrow' ? snow.day : 'on ' + snow.day) + ': winter tires'; svc = 'Winter tires'; cls = 'wx-snow'; }
     else if (temp !== null && temp <= 35) { label = temp + '°F today: tire pressure check'; svc = 'Installation & balancing'; cls = 'cold'; }
     if (!label) return;
     done = true;
@@ -1488,8 +1472,8 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 /* ---- R71: service dial: a big tire you turn to pick a service (click a label, use arrows, or drag on desktop) ---- */
 (() => {
   const head = $('#services .sec-head'); if (!head) return;
-  const S = ['New tires', 'Used tires', 'Winter tires', 'Installation & balancing', 'Flat tire repair', 'Tire rotation', 'Brakes', 'Oil change', 'Suspension & steering', 'Check engine light'];
-  const SHORT = ['New tires', 'Used tires', 'Winter', 'Balancing', 'Flat repair', 'Rotation', 'Brakes', 'Oil change', 'Suspension', 'Engine light'];
+  const S = ['New tires', 'Used tires', 'Winter tires', 'Installation & balancing', 'Flat tire repair: plugs and patches', 'Tire rotation', 'Wheel alignment', 'Brakes', 'Oil change', 'Suspension & steering', 'Check engine light'];
+  const SHORT = ['New tires', 'Used tires', 'Winter', 'Balancing', 'Plug/patch', 'Rotation', 'Alignment', 'Brakes', 'Oil change', 'Suspension', 'Engine light'];
   const N = S.length, step = 360 / N;
   const wrap = document.createElement('div'); wrap.className = 'dial-wrap rv';
   const labels = SHORT.map((t, i) => { const a = (i * step - 90) * Math.PI / 180; return `<text x="${150 + Math.cos(a) * 112}" y="${150 + Math.sin(a) * 112}" transform="rotate(${i * step} ${150 + Math.cos(a) * 112} ${150 + Math.sin(a) * 112})" data-i="${i}">${t}</text>`; }).join('');
@@ -1521,9 +1505,9 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 
 /* ---- R72: real social proof without making any up: one tap to read (or leave) L&M Tire reviews on Google ---- */
 (() => {
-  const url = 'https://www.google.com/search?q=' + encodeURIComponent('L&M Tire Auto Repair 598 West Boylston St Worcester MA reviews');
+  const url = 'https://g.page/r/CTVdw0UmvaHLEBM';
   const mk = cls => { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.className = 'reviews-link ' + cls;
-    a.innerHTML = '<svg class="rv-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg><span>See what customers say on Google</span><span class="sr"> (opens Google in a new tab)</span>'; return a; };
+    a.innerHTML = '<span>See what customers say on Google</span><span class="sr"> (opens Google in a new tab)</span>'; return a; };
   const fin = $('.final-cta'); if (fin) fin.after(mk('in-final'));
   const contact = $('.contact'); if (contact) contact.after(mk('in-visit'));
 })();
@@ -1558,7 +1542,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const D = {
     '#start-h': ['O que traz você aqui hoje?', '¿Qué lo trae hoy?'],
     '.st:nth-child(1) b': ['Preciso de pneus', 'Necesito llantas'], '.st:nth-child(1) small': ['Novo, usado ou de inverno: veja o que serve', 'Nuevas, usadas o de invierno: vea cuál le sirve'],
-    '.st:nth-child(2) b': ['Estou com pneu furado', 'Tengo una ponchadura'], '.st:nth-child(2) small': ['Remendo ou pneu novo? Toque e veja', '¿Parche o llanta nueva? Toque y vea'],
+    '.st:nth-child(2) b': ['Estou com pneu furado', 'Tengo una ponchadura'], '.st:nth-child(2) small': ['Tarugo, remendo ou pneu novo? Toque e veja', '¿Tapón, parche o llanta nueva? Toque y vea'],
     '.st:nth-child(3) b': ['Tem um barulho estranho', 'Algo suena raro'], '.st:nth-child(3) small': ['Freios, tremores, batidas, luzes de aviso', 'Frenos, vibraciones, golpes, luces de aviso'],
     '.st:nth-child(4) b': ['Já sei o que preciso', 'Ya sé lo que necesito'], '.st:nth-child(4) small': ['Agende em 4 toques', 'Reserve en 4 toques'],
     '#tips .kicker': ['Cuidado com pneus em 30 segundos', 'Cuidado de llantas en 30 segundos'], '#tips-h': ['Cinco hábitos que economizam dinheiro.', 'Cinco hábitos que le ahorran dinero.'],
@@ -1616,11 +1600,10 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     const p = document.createElement('p');
     const paint = () => { const l = LM.lang || 'en'; p.textContent = (l !== 'en' && (n[l] || '').trim()) ? n[l] : n.text; };
     paint(); document.addEventListener('lm:lang', paint);
-    const ic = document.createElement('span'); ic.setAttribute('aria-hidden', 'true'); ic.textContent = '📣';
-    bar.append(ic, p); document.body.classList.add('has-notice');
+    bar.append(p); document.body.classList.add('has-notice');
     document.body.prepend(bar);
   }).catch(() => {});
-  LM.testNotice = t => { const b = document.createElement('div'); b.className = 'notice'; b.innerHTML = '<span aria-hidden="true">📣</span><p></p>'; b.querySelector('p').textContent = t; document.body.classList.add('has-notice'); document.body.prepend(b); };
+  LM.testNotice = t => { const b = document.createElement('div'); b.className = 'notice'; b.innerHTML = '<p></p>'; b.querySelector('p').textContent = t; document.body.classList.add('has-notice'); document.body.prepend(b); };
 })();
 
 /* ---- R79: "Find anything" search (Ctrl/⌘+K or "/" on computers, and in the Tools menu): tools, sections, FAQ answers and quick actions ---- */
@@ -1880,17 +1863,22 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     'Clunks over bumps or loose steering point to parts under the car. We work on suspension and steering.': ['Batidas nos buracos ou direção solta indicam peças embaixo do carro. Trabalhamos com suspensão e direção.', 'Golpes en los baches o dirección floja apuntan a piezas debajo del carro. Trabajamos en suspensión y dirección.'],
     'Check engine light': ['Luz de injeção (check engine)', 'Luz de check engine'],
     'A warning light is the car telling you something. Bring it in and we will check what the light means.': ['A luz de aviso é o carro dizendo algo. Traga o carro e verificamos o que a luz quer dizer.', 'La luz de aviso es el carro diciéndole algo. Tráigalo y revisamos qué significa.'],
-    'Flat tire repair': ['Conserto de pneu furado', 'Reparación de ponchaduras'],
-    'A tire that keeps losing air may have a puncture. Bring it in and we will check if it can be repaired.': ['Um pneu que sempre perde ar pode estar furado. Traga e verificamos se dá para consertar.', 'Una llanta que pierde aire puede estar ponchada. Tráigala y revisamos si se puede reparar.'],
+    'Flat tire repair: plugs and patches': ['Conserto de pneu furado: tarugo e remendo', 'Reparación de ponchaduras: tapones y parches'],
+    'A tire that keeps losing air may have a puncture. We do plugs and patches. Bring it in and we will check which one fits, or if it needs a new tire.': ['Um pneu que sempre perde ar pode estar furado. Fazemos tarugo e remendo. Traga e verificamos qual serve, ou se precisa de pneu novo.', 'Una llanta que pierde aire puede estar ponchada. Hacemos tapones y parches. Tráigala y revisamos cuál sirve, o si necesita llanta nueva.'],
+    'Wheel alignment': ['Alinhamento', 'Alineación'],
+    'A car that pulls to one side, a steering wheel that sits off-center, or tires wearing on one edge often point to wheel alignment. We do alignments.': ['Carro puxando para um lado, volante torto ou pneus gastando de um lado só geralmente indicam alinhamento. Fazemos alinhamento.', 'Un carro que se jala a un lado, el volante chueco o llantas gastadas de un lado suelen indicar alineación. Hacemos alineaciones.'],
     'New, used or winter tires': ['Pneus novos, usados ou de inverno', 'Llantas nuevas, usadas o de invierno'],
     'Thin tread grips less, most of all on wet and snowy roads. We sell new, used and winter tires.': ['Pneu gasto segura menos, principalmente na chuva e na neve. Vendemos pneus novos, usados e de inverno.', 'Una llanta gastada agarra menos, sobre todo con lluvia y nieve. Vendemos llantas nuevas, usadas y de invierno.'],
     'Oil change': ['Troca de óleo', 'Cambio de aceite'],
     'Keeping up with oil changes keeps the engine healthy. Text us to pick a time.': ['Trocar o óleo em dia mantém o motor saudável. Mande mensagem para escolher um horário.', 'Cambiar el aceite a tiempo mantiene el motor sano. Mándenos un texto para escoger una hora.'],
     'Tell us about it': ['Conte para nós', 'Cuéntenos'],
     'Describe what you hear, feel or see. A short text is enough, and we will tell you if it is something we fix.': ['Descreva o que você ouve, sente ou vê. Uma mensagem curta basta, e dizemos se é algo que consertamos.', 'Describa lo que oye, siente o ve. Un texto corto basta, y le decimos si es algo que arreglamos.'],
-    'Often patchable': ['Muitas vezes dá para remendar', 'Muchas veces se puede parchar'],
-    'Probably a new tire': ['Provavelmente pneu novo', 'Probablemente llanta nueva'],
+    'Often a plug or a patch': ['Muitas vezes tarugo ou remendo', 'Muchas veces tapón o parche'],
+    'A small nail or screw in the middle of the tread can often be repaired. A plug works well here and is much quicker. A patch is also available. We check the tire first and tell you which one fits.': ['Um prego ou parafuso pequeno no meio da banda de rodagem muitas vezes tem conserto. O tarugo funciona bem aqui e é bem mais rápido. O remendo também está disponível. Verificamos o pneu antes e dizemos qual serve.', 'Un clavo o tornillo pequeño en el centro de la banda muchas veces tiene arreglo. El tapón funciona bien aquí y es mucho más rápido. También hay parche. Revisamos la llanta primero y le decimos cuál sirve.'],
+    'Needs a closer look': ['Precisa de uma olhada de perto', 'Hay que verla de cerca'],
+    'The edge of the tread flexes a lot, so a plug or patch may not be safe there. Bring it in and we will check whether it can be repaired or needs a new tire.': ['A borda da banda de rodagem flexiona muito, então tarugo ou remendo pode não ser seguro ali. Traga e verificamos se dá para consertar ou se precisa de pneu novo.', 'El borde de la banda se flexiona mucho, así que un tapón o parche puede no ser seguro ahí. Tráigala y revisamos si se puede reparar o si necesita llanta nueva.'],
     'A new tire': ['Pneu novo', 'Llanta nueva'],
+    'Sidewall damage means a new tire: plugs and patches are not safe in the sidewall. We sell new and used tires and can help you pick one.': ['Dano na lateral quer dizer pneu novo: tarugo e remendo não são seguros na lateral. Vendemos pneus novos e usados e ajudamos você a escolher.', 'Un daño en el costado significa llanta nueva: los tapones y parches no son seguros en el costado. Vendemos llantas nuevas y usadas y le ayudamos a escoger.'],
     'Winter tires': ['Pneus de inverno', 'Llantas de invierno'], 'Used tires': ['Pneus usados', 'Llantas usadas'], 'New tires': ['Pneus novos', 'Llantas nuevas'],
     'New or used, we can show you both': ['Novo ou usado: mostramos os dois', 'Nuevas o usadas: le mostramos ambas'],
     'Installation & balancing': ['Montagem e balanceamento', 'Montaje y balanceo'], 'Tire rotation': ['Rodízio de pneus', 'Rotación de llantas'], 'Something else': ['Outra coisa', 'Otra cosa'],
@@ -1899,7 +1887,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     'Sounds like': ['Parece ser', 'Parece ser'], 'Our tip': ['Nossa dica', 'Nuestro consejo']
   };
   const REV = {}; Object.entries(T).forEach(([en, tr]) => { REV[tr[0]] = en; REV[tr[1]] = en; });
-  const targets = () => $$('.symp-svc, .symp-why, .patch-res h3, .quiz-res h3, .symp-res .kicker, .quiz-res .kicker, #bookForm .wz-chips span, #bookForm .wz-chips span b, .tod span');
+  const targets = () => $$('.symp-svc, .symp-why, .patch-res h3, .patch-res > p, .quiz-res h3, .symp-res .kicker, .quiz-res .kicker, #bookForm .wz-chips span, #bookForm .wz-chips span b, .tod span');
   let busy = false;
   function apply(){
     if (busy) return; busy = true;
@@ -1931,7 +1919,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const D = {
     '.visit-tab span': ['Minha visita', 'Mi visita'], '.visit-panel .mono': ['Minha visita', 'Mi visita'], '.visit-send': ['Mandar tudo por mensagem', 'Mandar todo por texto'], '.visit-clear': ['Limpar lista', 'Borrar lista'],
     '.add-visit': ['<span aria-hidden="true">+</span> Adicionar à minha visita', '<span aria-hidden="true">+</span> Agregar a mi visita'],
-    '.photo-btn span': ['Mande uma foto', 'Mándenos una foto'], '.snd .mono': ['Ouça', 'Escuche'], '.snd-note': ['Parece com o seu carro? Toque no problema acima. Toca baixinho, 2 segundos.', '¿Suena como su carro? Toque el problema de arriba. Suena bajito, 2 segundos.'],
+    '.photo-btn span': ['Mande uma foto', 'Mándenos una foto'], '.snd .mono': ['Ouça', 'Escuche'], '.snd-note': ['Parece com o seu carro? Toque no problema acima. Gravações reais e curtas, em volume baixo.', '¿Suena como su carro? Toque el problema de arriba. Grabaciones reales y cortas, a volumen bajo.'], '.snd-row [data-s="squeal"] .snd-l': ['Chiado', 'Chillido'], '.snd-row [data-s="grind"] .snd-l': ['Rangido', 'Rechinido'], '.snd-row [data-s="clunk"] .snd-l': ['Batida', 'Golpe'],
     '.symp-text': ['Mande mensagem sobre isso', 'Mándenos un texto sobre esto'], '.symp-book': ['Agende em 4 toques', 'Reserve en 4 toques']
   };
   function apply(l){ const k = l === 'pt' ? 0 : 1; Object.entries(D).forEach(([sel, tr]) => $$(sel).forEach(el => { if (el.dataset.en94 === undefined) el.dataset.en94 = el.innerHTML; el.innerHTML = l === 'en' ? el.dataset.en94 : tr[k]; })); bar(); if (l === 'en') document.dispatchEvent(new CustomEvent('lm:state', { detail: LM.shopState() })); }
@@ -1992,14 +1980,150 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 
 /* ---- R99: grow real reviews over time: after booking, and in the footer, customers are invited to leave a Google review ---- */
 (() => {
-  const url = 'https://www.google.com/search?q=' + encodeURIComponent('L&M Tire Auto Repair 598 West Boylston St Worcester MA') + '#lrd=';
+  const url = 'https://g.page/r/CTVdw0UmvaHLEBM/review';
   const T = { en: ['After your visit, a Google review helps other drivers find us.', 'Leave a review'], pt: ['Depois da visita, uma avaliação no Google ajuda outros motoristas a nos encontrar.', 'Deixar avaliação'], es: ['Después de su visita, una reseña en Google ayuda a otros conductores a encontrarnos.', 'Dejar una reseña'] };
   const mk = () => { const p = document.createElement('p'); p.className = 'ask-review'; p.innerHTML = '<span></span> <a target="_blank" rel="noopener"></a>'; p.querySelector('a').href = url; return p; };
   const a = mk(), b = mk();
   const sent = $('#sent'); if (sent) { const again = sent.querySelector('#again'); again ? again.before(a) : sent.appendChild(a); }
   const fine = $('.fine'); if (fine) fine.before(b);
-  const paint = () => { const t = T[LM.lang || 'en'] || T.en; [a, b].forEach(p => { p.firstChild.textContent = t[0]; p.querySelector('a').textContent = t[1] + ' →'; }); };
+  const q = document.createElement('a'); q.className = 'review-qr'; q.href = url; q.target = '_blank'; q.rel = 'noopener';
+  q.innerHTML = '<img src="assets/review-qr.svg" width="112" height="112" alt="QR code for the L&M Tire Google review page" loading="lazy"><span></span>';
+  b.after(q);
+  const QT = { en: 'Scan with your phone camera to leave a review', pt: 'Aponte a câmera do celular para avaliar', es: 'Escanee con la cámara del teléfono para dejar una reseña' };
+  const paint = () => { const t = T[LM.lang || 'en'] || T.en; [a, b].forEach(p => { p.firstChild.textContent = t[0]; p.querySelector('a').textContent = t[1] + ' →'; }); const qs = q.querySelector('span'); if (qs) qs.textContent = QT[LM.lang || 'en'] || QT.en; };
   paint(); document.addEventListener('lm:lang', () => setTimeout(paint, 0));
 })();
 
+
+/* ==== Review fixes (after round 100) ==== */
+
+/* RF1: one custom line-art icon set (sprite in index.html, ids "i-*"). Swap the leftover generic icons; drop the purely decorative ones. */
+(() => {
+  const icon = n => '<svg class="i" aria-hidden="true"><use href="#i-' + n + '"/></svg>';
+  LM.icon = icon;
+  const SWAP = { '.save-contact': 'contact', '.save-link': 'contact', '.map-btn': 'pin', '.bar-dir': 'pin', '.far-btn': 'locate', '.photo-btn': 'camera', '.glove-btn': 'print', '.faq-search': 'search', '.tool-link': 'link' };
+  Object.entries(SWAP).forEach(([sel, n]) => $$(sel).forEach(el => { const s = el.querySelector(':scope > svg:not(.i)'); if (s) s.outerHTML = icon(n); }));
+  $$('.share-btn > svg').forEach(s => s.remove());
+})();
+
+/* RF2: sound. Real recordings for squeal / grind / clunk, plus an optional calm ambient loop behind a header "Sound" toggle.
+   Off by default, never starts on page load, remembered on this device, pauses when the tab is hidden, ducks under the samples. */
+(() => {
+  const KEY = 'lm-sound';
+  const AC = window.AudioContext || window.webkitAudioContext;
+  let ctx = null, master = null, ambGain = null, on = false, ducked = false, waiting = false;
+  const amb = new Audio(); amb.preload = 'none'; amb.loop = true; amb.src = 'assets/ambient-loop.mp3';
+  const AMB_VOL = 0.25, DUCK_VOL = 0.05;
+  const pending = [];
+  function graph(){
+    if (ctx || !AC) return ctx;
+    try {
+      ctx = new AC(); master = ctx.createGain(); master.connect(ctx.destination);
+      ambGain = ctx.createGain(); ambGain.gain.value = 0; ambGain.connect(master);
+      ctx.createMediaElementSource(amb).connect(ambGain);
+      pending.splice(0).forEach(([el, v]) => wire(el, v));
+    } catch (e) { ctx = null; }
+    return ctx;
+  }
+  function wire(el, v){
+    if (el._wired) return;
+    if (!ctx) { el.volume = v; return; }
+    try { const g = ctx.createGain(); g.gain.value = v; ctx.createMediaElementSource(el).connect(g); g.connect(master); el._wired = true; } catch (e) { el.volume = v; }
+  }
+  // volume ramp: Web Audio gain where we have it (works on iPhone), element volume as a fallback
+  function ramp(to, ms){
+    if (ctx && ambGain) { const t = ctx.currentTime; ambGain.gain.cancelScheduledValues(t); ambGain.gain.setValueAtTime(ambGain.gain.value, t); ambGain.gain.linearRampToValueAtTime(to, t + ms / 1000); return; }
+    const from = amb.volume, t0 = performance.now();
+    (function f(now){ const p = Math.min(1, (now - t0) / ms); amb.volume = Math.max(0, Math.min(1, from + (to - from) * p)); if (p < 1) requestAnimationFrame(f); })(t0);
+  }
+  const level = () => (ducked ? DUCK_VOL : AMB_VOL);
+  function start(){
+    graph(); if (ctx && ctx.state === 'suspended') ctx.resume();
+    if (!ctx) amb.volume = 0;
+    const p = amb.play(); if (p && p.then) p.then(() => ramp(level(), 1200)).catch(() => {}); else ramp(level(), 1200);
+  }
+  function stop(){ ramp(0, 600); setTimeout(() => { if (!on || document.hidden) amb.pause(); }, 650); }
+  const btns = [];
+  const LBL = { en: ['Sound', 'Sound on', 'Sound off'], pt: ['Som', 'Som ligado', 'Som desligado'], es: ['Sonido', 'Sonido activado', 'Sonido apagado'] };
+  function paint(){
+    const t = LBL[LM.lang || 'en'] || LBL.en;
+    btns.forEach(b => {
+      b.setAttribute('aria-pressed', String(on));
+      b.querySelector('use').setAttribute('href', on ? '#i-sound' : '#i-mute');
+      b.querySelector('em').textContent = t[0];
+      b.title = on ? t[1] : t[2];
+      b.setAttribute('aria-label', t[0] + ': ' + (on ? t[1] : t[2]).toLowerCase());
+    });
+  }
+  function set(v, user){
+    on = v; try { localStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {}
+    paint();
+    if (v && (user || !waiting)) start(); else if (!v) stop();
+  }
+  const mk = cls => { const b = document.createElement('button'); b.type = 'button'; b.className = 'snd-btn ' + cls; b.innerHTML = '<svg class="i" aria-hidden="true"><use href="#i-mute"/></svg><em>Sound</em>'; b.addEventListener('click', () => set(!on, true)); btns.push(b); return b; };
+  const top = $('.top .easy-btn') || $('.lng'); if (top) top.after(mk('in-top'));
+  const menuEasy = $('#mMenu .easy-btn'); if (menuEasy) menuEasy.after(mk('wide'));
+  // remembered "on": wait for the visitor's first tap or key press on the page, never start by itself
+  let saved = false; try { saved = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (saved) {
+    on = true; waiting = true; paint();
+    const go = e => { if (e.target.closest && e.target.closest('.snd-btn')) return; waiting = false; ['pointerdown', 'keydown'].forEach(t => removeEventListener(t, go, true)); if (on && !document.hidden) start(); };
+    ['pointerdown', 'keydown'].forEach(t => addEventListener(t, go, true));
+  } else paint();
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { if (!amb.paused) { ramp(0, 200); setTimeout(() => amb.pause(), 220); } } else if (on && !waiting) start(); });
+  document.addEventListener('lm:lang', () => setTimeout(paint, 0));
+  LM.sound = {
+    attach(el, v){ if (graph()) wire(el, v); else pending.push([el, v]) && (el.volume = v); },
+    duck(d){ ducked = d; if (on && !amb.paused) ramp(level(), d ? 250 : 900); }
+  };
+})();
+
+/* RF3: penny test: the real 2013 Lincoln cent drops head-first into the groove when the card comes into view, and presses in a little each time the depth changes */
+(() => {
+  const card = $('.td-card'), pen = $('.td-penny'), r = $('#tdRange'); if (!card || !pen) return;
+  if (reduced()) { pen.classList.add('down'); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => pen.classList.add('down'), 250); io.disconnect(); } }), { threshold: .45 });
+  io.observe(card);
+  if (r) r.addEventListener('input', () => { pen.classList.remove('press'); void pen.getBoundingClientRect(); pen.classList.add('press'); });
+})();
+
+/* RF4: Português / Español for the services list, marquee, service dial, patch tool, sound buttons and the other new bits */
+(() => {
+  const SV = {
+    'Tires': ['Pneus', 'Llantas'], 'Repairs': ['Reparos', 'Reparaciones'],
+    'New tires': ['Pneus novos', 'Llantas nuevas'], 'Used tires': ['Pneus usados', 'Llantas usadas'], 'Winter tires': ['Pneus de inverno', 'Llantas de invierno'],
+    'Installation & balancing': ['Montagem e balanceamento', 'Montaje y balanceo'], 'Flat tire repair: plugs and patches': ['Conserto de pneu furado: tarugo e remendo', 'Reparación de ponchaduras: tapones y parches'],
+    'Tire rotation': ['Rodízio de pneus', 'Rotación de llantas'], 'Wheel alignment': ['Alinhamento', 'Alineación'], 'Brakes': ['Freios', 'Frenos'], 'Oil changes': ['Troca de óleo', 'Cambios de aceite'],
+    'Oil change': ['Troca de óleo', 'Cambio de aceite'], 'Suspension & steering': ['Suspensão e direção', 'Suspensión y dirección'], 'Check engine light': ['Luz de injeção (check engine)', 'Luz de check engine'],
+    // marquee
+    'Balancing': ['Balanceamento', 'Balanceo'], 'Plugs & patches': ['Tarugo e remendo', 'Tapones y parches'], 'Rotation': ['Rodízio', 'Rotación'], 'Suspension': ['Suspensão', 'Suspensión'], 'Steering': ['Direção', 'Dirección'], 'Since 2013': ['Desde 2013', 'Desde 2013'],
+    // dial short labels
+    'Winter': ['Inverno', 'Invierno'], 'Plug/patch': ['Tarugo/remendo', 'Tapón/parche'], 'Alignment': ['Alinhamento', 'Alineación'], 'Engine light': ['Luz do motor', 'Luz de motor'],
+    // patch photo labels
+    'middle': ['meio', 'centro'], 'edge': ['borda', 'borde'], 'sidewall': ['lateral', 'costado']
+  };
+  const REV = {}; Object.entries(SV).forEach(([en, t]) => { REV[en] = en; REV[t[0]] = en; REV[t[1]] = en; });
+  const tr = (txt, l) => { const en = REV[txt.trim()]; if (!en) return null; return l === 'en' ? en : SV[en][l === 'pt' ? 0 : 1]; };
+  const D = {
+    '#patch .lede': ['Toque na foto onde está o prego ou o dano. Fazemos tarugo e remendo, e o lugar decide qual serve, ou se precisa de pneu novo. Só olhando o pneu pessoalmente dá para ter certeza.', 'Toque la foto donde está el clavo o el daño. Hacemos tapones y parches, y el lugar decide cuál sirve, o si necesita llanta nueva. Solo viendo la llanta en persona se puede saber con seguridad.'],
+    '.patch-q': ['Toque no pneu da foto: o meio da banda de rodagem, a borda ou a lateral.', 'Toque la llanta en la foto: el centro de la banda, el borde o el costado.'],
+    '.svc-go em': ['Agendar →', 'Reservar →']
+  };
+  const SEL = '#services .card h3, #services .card .svc-go > span, .marquee span, .d-labels text, .dial-svc, .plabels text';
+  function apply(l){
+    const k = l === 'pt' ? 0 : 1;
+    $$(SEL).forEach(el => {
+      const node = el.matches('h3') ? [...el.childNodes].reverse().find(n => n.nodeType === 3 && n.textContent.trim()) : el;
+      if (!node) return;
+      if (el.dataset.enSv === undefined) { const en = REV[node.textContent.trim()]; if (!en) return; el.dataset.enSv = en; }
+      const en = el.dataset.enSv, want = l === 'en' ? en : SV[en][k];
+      if (want !== node.textContent.trim()) node.textContent = want;
+    });
+    Object.entries(D).forEach(([sel, t]) => $$(sel).forEach(el => { if (el.dataset.enRf === undefined) el.dataset.enRf = el.innerHTML; el.innerHTML = l === 'en' ? el.dataset.enRf : t[k]; }));
+  }
+  document.addEventListener('lm:lang', e => setTimeout(() => apply(e.detail), 0));
+  // the dial writes the English name each time it turns: follow it
+  const ds = $('.dial-svc'); if (ds) new MutationObserver(() => { if ((LM.lang || 'en') !== 'en' && SV[ds.textContent]) { ds.dataset.enSv = ds.textContent; ds.textContent = SV[ds.textContent][LM.lang === 'pt' ? 0 : 1]; } }).observe(ds, { childList: true, characterData: true, subtree: true });
+  if (LM.lang && LM.lang !== 'en') apply(LM.lang);
+})();
 })();

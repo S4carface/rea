@@ -910,3 +910,90 @@ a.btn{position:relative}
 .ask-review{color:var(--text-secondary);font-size:.95rem;margin:4px 0 14px}
 .ask-review a{color:#ffbe46;font-weight:700;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}
 footer .ask-review{max-width:1200px;margin:28px auto 0;text-align:center}
+
+/* review QR (Netto's Google review page) */
+.review-qr{display:inline-flex;align-items:center;gap:14px;margin:4px 0 18px;padding:10px 16px 10px 10px;border-radius:16px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:inherit;text-decoration:none;font-size:14px;max-width:360px}
+.review-qr img{width:112px;height:112px;border-radius:10px;background:#fff;flex:none}
+.review-qr:hover,.review-qr:focus-visible{background:rgba(255,255,255,.08)}
+@media print{.review-qr{display:flex}}
+
+/* ==== Review fixes ==== */
+/* one line-art icon set: same stroke and caps everywhere */
+.i{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none;overflow:visible}
+.i-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.st-ic{width:34px;height:34px;font-size:inherit}
+.live .symp-empty svg{animation:none}
+.symp-empty svg{width:56px;height:56px;color:#ffbe46;opacity:.85}
+.step .ic svg.i{stroke-width:1.6}
+.qf svg.i{width:30px;height:30px}
+.snow-ic.i{width:26px;height:26px;color:#cfe3ff}
+.contact .save-contact svg,.save-link svg,.glove-btn svg,.bar-dir svg{width:20px;height:20px}
+.save-link{display:inline-flex;align-items:center;gap:8px}
+.reviews-link{gap:0}
+
+/* sound toggle (header + phone menu) */
+.snd-btn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(12,13,22,.5);color:var(--text-secondary);font:600 .85rem var(--body);cursor:pointer;transition:background-color .25s,color .25s,border-color .25s}
+.snd-btn svg{width:20px;height:20px}
+.snd-btn em{font-style:normal}
+.snd-btn:hover{color:var(--text-primary);border-color:var(--line-strong)}
+.snd-btn[aria-pressed="true"]{color:#fff;border-color:var(--blue-bright);background:rgba(59,63,158,.55)}
+.snd-btn.wide{width:100%;justify-content:center;height:52px;margin-top:12px;font-size:1.05rem}
+@media (max-width:1180px){.top .snd-btn em{display:none}.top .snd-btn{width:40px;padding:0;justify-content:center}}
+@media (max-width:440px){.top .snd-btn{display:none}}
+@media (pointer:coarse){.top .snd-btn{height:44px;width:44px}}
+.snd-row button svg{width:16px;height:16px;color:var(--accent)}
+.snd-row button.on svg{fill:currentColor}
+
+/* patch tool on a real tire photo */
+.patch-svg{background:#0b0b0b;cursor:crosshair}
+.patch-svg image{pointer-events:none}
+.pz,.pz.side,.pz.shoulder,.pz.center{fill:rgba(255,255,255,0);stroke:rgba(243,242,246,.0);stroke-width:4;transition:fill .3s,stroke .3s}
+.patch-svg:hover .pz{stroke:rgba(243,242,246,.18);stroke-dasharray:10 12}
+.pz:hover,.pz:focus-visible{fill:rgba(138,144,255,.22);stroke:rgba(138,144,255,.8)}
+.pz:focus-visible{stroke:var(--accent);stroke-width:6;stroke-dasharray:none}
+.pz.on.center{fill:rgba(61,220,132,.3);stroke:#3ddc84;stroke-dasharray:none}
+.pz.on.shoulder{fill:rgba(255,190,70,.32);stroke:#ffbe46;stroke-dasharray:none}
+.pz.on.side{fill:rgba(232,51,59,.36);stroke:#ff6b72;stroke-dasharray:none}
+.plabels text{font:600 30px var(--mono);fill:#f3f2f6;paint-order:stroke;stroke:rgba(5,5,10,.85);stroke-width:8px;letter-spacing:.06em}
+.plabels path{stroke:rgba(243,242,246,.55);stroke-width:3;fill:none}
+.nail line{stroke:#e9ebf5;stroke-width:9;stroke-linecap:round}
+.nail rect{fill:#e9ebf5;stroke:#5c5f73;stroke-width:3}
+.nail-ring{fill:none;stroke:#f3f2f6;stroke-width:4;opacity:0}
+.nail .nail-in{transform:translateY(-70px);opacity:0}
+.nail.in .nail-in{transform:none;opacity:1;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .2s}
+.nail.in .nail-ring{animation:nailring .9s var(--ease-out) .35s both}
+@keyframes nailring{from{opacity:.9;transform:scale(.4)}to{opacity:0;transform:scale(2.2)}}
+@media (prefers-reduced-motion: reduce){.nail .nail-in{transform:none}.nail.in .nail-ring{animation:none}}
+
+/* penny test with the real coin */
+.td-penny{transform:translateY(-150px);opacity:0;transition:transform 1s cubic-bezier(.34,1.3,.5,1),opacity .4s}
+.td-penny.down{transform:none;opacity:1}
+.td-penny.press{animation:pennypress .45s var(--ease-out)}
+@keyframes pennypress{40%{transform:translateY(6px)}100%{transform:none}}
+.td-penny image{filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+
+/* oil reminder: stack before the card can get squeezed, let chips and buttons wrap, never wider than the screen */
+.oil-card{grid-template-columns:minmax(0,1fr);min-width:0}
+.oil-card fieldset,.oil-card .field{min-width:0}
+.oil-card input[type=date]{width:100%;max-width:100%;min-width:0}
+.oil-btns{display:flex;flex-wrap:wrap;gap:10px}
+.oil-btns .btn{flex:1 1 190px;width:auto;white-space:normal;text-align:center}
+.oil-btns .add-visit{flex-basis:100%}
+@media (max-width:1080px){.oil-grid{grid-template-columns:minmax(0,1fr)}.oil-grid .sec-head{max-width:720px}.oil-card{max-width:720px}}
+
+/* general guard for every two-column tool: grid and flex children may shrink, fieldsets don't force min-content */
+.svc-grid>*,.symp-grid>*,.patch-grid>*,.td-grid>*,.win-grid>*,.oil-grid>*,.book-grid>*,.visit-grid>*{min-width:0}
+fieldset{min-width:0}
+.tabs{flex-wrap:wrap;justify-content:center;max-width:100%}
+
+/* glovebox card review QR (print) */
+@media print{.glove-rev{display:flex;align-items:center;gap:10px;font-size:9pt}.glove-rev img{width:.85in;height:.85in}}
+/* header never runs off the screen: the live status shows as just its dot where space is tight (full text stays in its label) */
+@media (max-width:780px),(min-width:901px) and (max-width:1040px){.hdr-status span{display:none}.hdr-status{padding:12px}}
+.snd-row button .snd-l{color:inherit;font-size:inherit}
+@media (max-width:600px){.plabels text{font-size:44px;stroke-width:10px}}
+.plabels,.plabels *{pointer-events:none}
+@media (min-width:901px) and (max-width:1240px){html:not([lang="en"]) .hdr-status span{display:none}html:not([lang="en"]) .hdr-status{padding:12px}}
+.start-grid>*{min-width:0}.st b,.st small{overflow-wrap:break-word;hyphens:auto}
+.st{grid-template-columns:minmax(0,1fr)}
+@media (max-width:360px){.st b{font-size:1rem}.st{padding:16px 14px}}
