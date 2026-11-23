@@ -1297,12 +1297,11 @@ footer .ask-review{max-width:1200px;margin:28px auto 0;text-align:center}
 .nail line{stroke:#e9ebf5;stroke-width:9;stroke-linecap:round}
 .nail rect{fill:#e9ebf5;stroke:#5c5f73;stroke-width:3}
 .nail-ring{fill:none;stroke:#f3f2f6;stroke-width:4;opacity:0}
-.nail-hole{fill:rgba(0,0,0,.7)}.nail image{filter:drop-shadow(3px 4px 4px rgba(0,0,0,.55))}
-.nail .nail-in{transform:translateY(-70px);opacity:0}
-.nail.in .nail-in{transform:none;opacity:1;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .2s}
+.nail .nail-in{opacity:0}
+.nail.in .nail-in{opacity:1;transition:opacity .25s}
 .nail.in .nail-ring{animation:nailring .9s var(--ease-out) .35s both}
 @keyframes nailring{from{opacity:.9;transform:scale(.4)}to{opacity:0;transform:scale(2.2)}}
-@media (prefers-reduced-motion: reduce){.nail .nail-in{transform:none}.nail.in .nail-ring{animation:none}}
+@media (prefers-reduced-motion: reduce){.nail.in .nail-ring{animation:none}}
 
 /* penny test with the real coin */
 .td-penny{transform:translateY(-150px);opacity:0;transition:transform 1s cubic-bezier(.34,1.3,.5,1),opacity .4s}
@@ -1650,7 +1649,7 @@ html:not(.view-help) main > section[data-tab="help"]{display:none!important}
         <path class="pz shoulder" data-z="shoulder" tabindex="0" role="button" aria-label="Edge of the tread (shoulder)" d="M408 62Q176 438 392 862L418 866Q299 444 432 46ZM598 22Q527.5 454 575 870L660 862Q638 452 684 34Z"/>
         <path class="pz center" data-z="center" tabindex="0" role="button" aria-label="Middle of the tread" d="M432 46Q299 444 418 866L575 870Q527.5 454 598 22Z"/>
         <g class="plabels" aria-hidden="true"><text x="480" y="470">middle</text><text x="140" y="470" class="pl-edge">edge</text><path d="M210 452H312"/><text x="1010" y="470">sidewall</text><path d="M955 452H872"/></g>
-        <g class="nail" aria-hidden="true"><ellipse class="nail-hole" rx="12" ry="5"/><g class="nail-in"><image href="https://cdn.jsdelivr.net/gh/S4carface/rea@3866bf7266004e193138b175db917cbf5d1767b2/lm-tire-10k/assets/nail.webp" x="-14" y="-168" width="71" height="170"/><circle r="34" class="nail-ring"/></g></g>
+        <g class="nail" aria-hidden="true"><g class="nail-in"><image href="https://cdn.jsdelivr.net/gh/S4carface/rea@61ebfccf4642b55b446b54e5d9f853b94b41e318/lm-tire-10k/assets/nail-head.webp" x="-60" y="-62" width="120" height="110"/></g><circle r="34" class="nail-ring"/></g>
       </svg>
       <div class="patch-out" aria-live="polite">
         <p class="patch-q">Tap the tire in the photo: the middle of the tread, the edge, or the sidewall.</p>
@@ -2628,7 +2627,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   function show(info){
     if (!info || !info.day || sessionStorage.getItem('lm-snow-x')) return;
     const bar = document.createElement('div'); bar.className = 'snow'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Snow alert');
-    bar.innerHTML = `<svg class="i snow-ic" aria-hidden="true"><use href="#i-snow" data-hash="i-snow"/></svg><p><b>Snow is in the Worcester forecast for ${info.day}.</b> <span>Get winter tires on before it lands.</span></p><a class="btn btn-red btn-sm" href="${sms(SHOP.text, 'Hi L&M Tire, I need winter tires before the snow. My tire size is: ')}">Text for winter tires</a><button type="button" class="snow-x" aria-label="Close snow alert">×</button>`;
+    bar.innerHTML = `<svg class="i snow-ic" aria-hidden="true"><use href="#i-snow"/></svg><p><b>Snow is in the Worcester forecast for ${info.day}.</b> <span>Get winter tires on before it lands.</span></p><a class="btn btn-red btn-sm" href="${sms(SHOP.text, 'Hi L&M Tire, I need winter tires before the snow. My tire size is: ')}">Text for winter tires</a><button type="button" class="snow-x" aria-label="Close snow alert">×</button>`;
     bar.querySelector('.snow-x').addEventListener('click', () => { bar.classList.add('bye'); sessionStorage.setItem('lm-snow-x', '1'); setTimeout(() => bar.hidden = true, 400); });
     document.body.appendChild(bar);
     requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('in')));
@@ -2650,9 +2649,9 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 /* ---- R11: whole-page language switch (EN / PT / ES) for the key parts ---- */
 (() => {
   const D = {
-    '.top nav a.link[href="#services" data-hash="services"]': ['Serviços', 'Servicios'],
-    '.top nav a.link[href="#visit" data-hash="visit"]': ['Horário', 'Horario'],
-    '.top nav a.link[href="#faq" data-hash="faq"]': ['Dúvidas', 'Preguntas'],
+    '.top nav a.link[href$="#services"]': ['Serviços', 'Servicios'],
+    '.top nav a.link[href$="#visit"]': ['Horário', 'Horario'],
+    '.top nav a.link[href$="#faq"]': ['Dúvidas', 'Preguntas'],
     '.top .actions .btn-ghost': ['Agendar', 'Reservar'],
     '.top .actions .btn-red': ['Ligar', 'Llamar'],
     '.b1 .kicker': ['Desde 2013 · 598 West Boylston St, Worcester', 'Desde 2013 · 598 West Boylston St, Worcester'],
@@ -3018,7 +3017,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   ].filter(l => { const el = $(l[0]); return el && !el.hidden; });
   // desktop dropdown
   let wrap = $('.tools');
-  if (!wrap) { wrap = document.createElement('div'); wrap.className = 'tools'; wrap.innerHTML = '<button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button>'; nav.querySelector('a.link[href="#services" data-hash="services"]').after(wrap); }
+  if (!wrap) { wrap = document.createElement('div'); wrap.className = 'tools'; wrap.innerHTML = '<button type="button" class="link tools-btn" aria-expanded="false" aria-controls="toolsMenu">Tools <span aria-hidden="true">▾</span></button>'; nav.querySelector('a.link[href$="#services"]').after(wrap); }
   wrap.insertAdjacentHTML('beforeend', `<div class="tools-menu" id="toolsMenu" hidden>${LINKS.map(l => `<a href="${l[0]}"><b>${l[1]}</b><span>${l[2]}</span></a>`).join('')}</div>`);
   const tb = wrap.querySelector('.tools-btn'), tm = wrap.querySelector('.tools-menu');
   const setT = o => { tm.hidden = !o; tb.setAttribute('aria-expanded', String(o)); };
@@ -3484,17 +3483,17 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 (() => {
   const D = {
     '.tools-btn': ['Ferramentas <span aria-hidden="true">▾</span>', 'Herramientas <span aria-hidden="true">▾</span>'],
-    '.tools-menu a[href="#symptoms" data-hash="symptoms"] b': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.tools-menu a[href="#symptoms" data-hash="symptoms"] span': ['Escolha o sintoma, veja o serviço', 'Escoja el síntoma, vea el servicio'],
-    '.tools-menu a[href="#size" data-hash="size"] b': ['Orçamento de pneus', 'Precio de llantas'], '.tools-menu a[href="#size" data-hash="size"] span': ['Digite a medida e mande', 'Escriba la medida y mándela'],
-    '.tools-menu a[href="#patch" data-hash="patch"] b': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.tools-menu a[href="#patch" data-hash="patch"] span': ['Toque onde está o prego', 'Toque donde está el clavo'],
-    '.tools-menu a[href="#tread" data-hash="tread"] b': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.tools-menu a[href="#tread" data-hash="tread"] span': ['O pneu está gasto?', '¿La llanta está gastada?'],
-    '.tools-menu a[href="#winter" data-hash="winter"] b': ['Checagem de inverno', 'Revisión de invierno'], '.tools-menu a[href="#winter" data-hash="winter"] span': ['Pronto para a neve?', '¿Listo para la nieve?'],
-    '.tools-menu a[href="#book" data-hash="book"] b': ['Agende em 4 toques', 'Reserve en 4 toques'], '.tools-menu a[href="#book" data-hash="book"] span': ['Abre uma mensagem pronta', 'Abre un texto listo'],
+    '.tools-menu a[href="#symptoms"] b': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.tools-menu a[href="#symptoms"] span': ['Escolha o sintoma, veja o serviço', 'Escoja el síntoma, vea el servicio'],
+    '.tools-menu a[href="#size"] b': ['Orçamento de pneus', 'Precio de llantas'], '.tools-menu a[href="#size"] span': ['Digite a medida e mande', 'Escriba la medida y mándela'],
+    '.tools-menu a[href="#patch"] b': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.tools-menu a[href="#patch"] span': ['Toque onde está o prego', 'Toque donde está el clavo'],
+    '.tools-menu a[href="#tread"] b': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.tools-menu a[href="#tread"] span': ['O pneu está gasto?', '¿La llanta está gastada?'],
+    '.tools-menu a[href="#winter"] b': ['Checagem de inverno', 'Revisión de invierno'], '.tools-menu a[href="#winter"] span': ['Pronto para a neve?', '¿Listo para la nieve?'],
+    '.tools-menu a[href="#book"] b': ['Agende em 4 toques', 'Reserve en 4 toques'], '.tools-menu a[href="#book"] span': ['Abre uma mensagem pronta', 'Abre un texto listo'],
     '#languages .kicker': ['Fale a sua língua', 'Hable su idioma'],
     '#pick .kicker': ['Novo, usado ou de inverno?', '¿Nueva, usada o de invierno?'], '#pick-h': ['Qual pneu combina com você?', '¿Qué llantas le convienen?'],
     '#patch .kicker': ['Pneu furado?', '¿Llanta ponchada?'], '#patch-h': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'],
-    '.m-menu nav a[href="#services" data-hash="services"]': ['Serviços', 'Servicios'], '.m-menu nav a[href="#visit" data-hash="visit"]': ['Horário e endereço', 'Horario y dirección'], '.m-menu nav a[href="#faq" data-hash="faq"]': ['Perguntas', 'Preguntas'],
-    '.m-menu nav a[href="#symptoms" data-hash="symptoms"]': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.m-menu nav a[href="#size" data-hash="size"]': ['Orçamento de pneus', 'Precio de llantas'], '.m-menu nav a[href="#patch" data-hash="patch"]': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.m-menu nav a[href="#tread" data-hash="tread"]': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.m-menu nav a[href="#winter" data-hash="winter"]': ['Checagem de inverno', 'Revisión de invierno'], '.m-menu nav a[href="#book" data-hash="book"]': ['Agende em 4 toques', 'Reserve en 4 toques'],
+    '.m-menu nav a[href="#services"]': ['Serviços', 'Servicios'], '.m-menu nav a[href="#visit"]': ['Horário e endereço', 'Horario y dirección'], '.m-menu nav a[href="#faq"]': ['Perguntas', 'Preguntas'],
+    '.m-menu nav a[href="#symptoms"]': ['O que meu carro tem?', '¿Qué tiene mi carro?'], '.m-menu nav a[href="#size"]': ['Orçamento de pneus', 'Precio de llantas'], '.m-menu nav a[href="#patch"]': ['Tarugo, remendo ou pneu novo?', '¿Tapón, parche o llanta nueva?'], '.m-menu nav a[href="#tread"]': ['Teste da moeda + idade', 'Prueba del centavo + edad'], '.m-menu nav a[href="#winter"]': ['Checagem de inverno', 'Revisión de invierno'], '.m-menu nav a[href="#book"]': ['Agende em 4 toques', 'Reserve en 4 toques'],
     '.m-cta .btn-red': ['Ligar 508-853-3322', 'Llamar 508-853-3322'], '.m-cta .btn-ghost': ['Mensagem para agendar', 'Texto para reservar'],
     '.wz-next': ['Próximo', 'Siguiente'], '.wz-back': ['Voltar', 'Atrás'],
     '.facts .odo-card:nth-child(1) p': ['O ano em que abrimos na West Boylston Street', 'El año en que abrimos en West Boylston Street'], '.facts .odo-card:nth-child(2) p': ['Línguas: inglês, português, espanhol', 'Idiomas: inglés, portugués, español'], '.facts .odo-card:nth-child(3) p': ['Dias por semana, de segunda a sábado', 'Días por semana, de lunes a sábado'], '.facts .odo-card:nth-child(4) p': ['Pneus, e também pneus de inverno', 'Llantas, y también de invierno']
@@ -3512,9 +3511,9 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const host = $('.symp-out'); if (!host) return;
   const box = document.createElement('div'); box.className = 'snd';
   box.innerHTML = `<p class="mono">Hear it</p><div class="snd-row">
-    <button type="button" data-s="squeal" aria-label="Play a brake squeal sound"><svg class="i" aria-hidden="true"><use href="#i-play" data-hash="i-play"/></svg><span class="snd-l">Squeal</span></button>
-    <button type="button" data-s="grind" aria-label="Play a brake grinding sound"><svg class="i" aria-hidden="true"><use href="#i-play" data-hash="i-play"/></svg><span class="snd-l">Grind</span></button>
-    <button type="button" data-s="clunk" aria-label="Play a clunk sound"><svg class="i" aria-hidden="true"><use href="#i-play" data-hash="i-play"/></svg><span class="snd-l">Clunk</span></button></div>
+    <button type="button" data-s="squeal" aria-label="Play a brake squeal sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Squeal</span></button>
+    <button type="button" data-s="grind" aria-label="Play a brake grinding sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Grind</span></button>
+    <button type="button" data-s="clunk" aria-label="Play a clunk sound"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span class="snd-l">Clunk</span></button></div>
     <p class="snd-note">Sounds like your car? Tap the matching problem above. Short real recordings, played quietly.</p>`;
   host.appendChild(box);
   const SFX = {};
@@ -4037,7 +4036,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   const X = {
     sat: [['Vocês abrem no sábado?', 'Sim. Sábado das 8h às 12h. Fechamos no domingo.'], ['¿Abren el sábado?', 'Sí. Sábado de 8 AM a 12 PM. Cerramos el domingo.']],
     text: [['Posso mandar mensagem em vez de ligar?', 'Sim. Em português, mande mensagem para <a href="sms:+17742889675">774-288-9675</a>. Em inglês ou espanhol, <a href="sms:+13048066047">304-806-6047</a>.'], ['¿Puedo mandar un texto en vez de llamar?', 'Sí. Mande un texto al <a href="sms:+13048066047">304-806-6047</a> para reservar, en inglés o español.']],
-    where: [['Onde vocês ficam?', '598 West Boylston Street, Worcester, MA 01606. <a href="#visit" data-hash="visit">Veja o mapa e como chegar</a>.'], ['¿Dónde están?', '598 West Boylston Street, Worcester, MA 01606. <a href="#visit" data-hash="visit">Vea el mapa y cómo llegar</a>.']],
+    where: [['Onde vocês ficam?', '598 West Boylston Street, Worcester, MA 01606. <a href="#visit">Veja o mapa e como chegar</a>.'], ['¿Dónde están?', '598 West Boylston Street, Worcester, MA 01606. <a href="#visit">Vea el mapa y cómo llegar</a>.']],
     since: [['Há quanto tempo vocês estão abertos?', 'Abrimos na West Boylston Street em 2013.'], ['¿Desde cuándo están abiertos?', 'Abrimos en West Boylston Street en 2013.']]
   };
   const dets = $$('.faq-list details[data-x]');
@@ -4388,7 +4387,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     paint();
     if (v && (user || !waiting)) start(); else if (!v) stop();
   }
-  const mk = cls => { const b = document.createElement('button'); b.type = 'button'; b.className = 'snd-btn ' + cls; b.innerHTML = '<svg class="i" aria-hidden="true"><use href="#i-mute" data-hash="i-mute"/></svg><em>Sound</em>'; b.addEventListener('click', () => set(!on, true)); btns.push(b); return b; };
+  const mk = cls => { const b = document.createElement('button'); b.type = 'button'; b.className = 'snd-btn ' + cls; b.innerHTML = '<svg class="i" aria-hidden="true"><use href="#i-mute"/></svg><em>Sound</em>'; b.addEventListener('click', () => set(!on, true)); btns.push(b); return b; };
   const top = $('.top .easy-btn') || $('.lng'); if (top) top.after(mk('in-top'));
   const menuEasy = $('#mMenu .easy-btn'); if (menuEasy) menuEasy.after(mk('wide'));
   // remembered "on": wait for the visitor's first tap or key press on the page, never start by itself
