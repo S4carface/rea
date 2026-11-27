@@ -945,7 +945,7 @@ def main():
 def audit_identity():
     """stop the build if a public file names a person or an internal role (the site speaks as one company)"""
     from urllib.parse import unquote
-    bad = re.compile(r"(?<![^\W\d_])(Cid|Leo|Netto)(?![^\W\d_])|\b(owner|partner|co-owner|founder|officer|president|ceo)\b(?!'s manual|&#x27;s manual|\\'s manual)|\b(dono|sócio|sócios|dueño|socio|socios|fundador)\b|lmtirecorp", re.I)
+    bad = re.compile(r"(?<![^\W\d_])(?<!\\u[0-9a-fA-F]{4})(Cid|Leo|Netto)(?![^\W\d_])|\b(owner|partner|co-owner|founder|officer|president|ceo)\b(?!'s manual|&#x27;s manual|\\'s manual)|\b(dono|sócio|sócios|dueño|socio|socios|fundador)\b|lmtirecorp", re.I)
     hits = []
     for dp, _, fs in os.walk(OUT):
         for f in fs:
