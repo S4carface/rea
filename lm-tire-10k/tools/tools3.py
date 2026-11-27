@@ -497,3 +497,22 @@ TIPS = {
         ['No ignore una vibración', 'Un volante que vibra a velocidad muchas veces es una rueda que necesita balanceo.', 'book', 'Pedir balanceo'],
         ['Atienda las ponchaduras pequeñas a tiempo', 'Una fuga lenta por un clavo es más fácil de atender antes de manejar con la llanta vacía.', 'puncture', '¿Tapón, parche o llanta nueva?']]},
 }
+
+# "My visit" list (every page) and "Share this tool" (tool pages). The list is texted to the shop in the page's language.
+VISIT = {
+    'en': {'my': 'My visit', 'add': 'Add to my visit', 'send': 'Text all of it', 'clear': 'Clear list', 'remove': 'Remove',
+           'added': 'Added to your visit:', 'already': 'Already in your visit list.', 'hi': "Hi L&M Tire, I'd like to book a visit for:",
+           'share': 'Share this tool', 'copied': 'Link copied. Paste it in a text.', 'link': 'Link:',
+           'items': {'penny': 'Tread check', 'puncture': 'Flat tire', 'age': 'Tire age check', 'size': 'Tires', 'pressure': 'Tire pressure / winter check',
+                     'sounds': 'Noise check', 'lights': 'Warning light check', 'oil': 'Oil change', 'symptoms': 'Check my car', 'chooser': 'Tire advice'}},
+    'pt': {'my': 'Minha visita', 'add': 'Adicionar à minha visita', 'send': 'Mandar tudo por mensagem', 'clear': 'Limpar lista', 'remove': 'Remover',
+           'added': 'Adicionado à sua visita:', 'already': 'Já está na sua lista.', 'hi': 'Olá L&M Tire, quero marcar uma visita para:',
+           'share': 'Compartilhar esta ferramenta', 'copied': 'Link copiado. Cole numa mensagem.', 'link': 'Link:',
+           'items': {'penny': 'Ver a banda de rodagem', 'puncture': 'Pneu furado', 'age': 'Ver a idade do pneu', 'size': 'Pneus', 'pressure': 'Calibragem / revisão de inverno',
+                     'sounds': 'Ver um barulho', 'lights': 'Luz no painel', 'oil': 'Troca de óleo', 'symptoms': 'Ver meu carro', 'chooser': 'Ajuda para escolher pneus'}},
+    'es': {'my': 'Mi visita', 'add': 'Agregar a mi visita', 'send': 'Mandar todo por texto', 'clear': 'Borrar lista', 'remove': 'Quitar',
+           'added': 'Agregado a su visita:', 'already': 'Ya está en su lista.', 'hi': 'Hola L&M Tire, quiero hacer una cita para:',
+           'share': 'Compartir esta herramienta', 'copied': 'Enlace copiado. Péguelo en un texto.', 'link': 'Enlace:',
+           'items': {'penny': 'Revisar el dibujo', 'puncture': 'Llanta ponchada', 'age': 'Revisar la edad de la llanta', 'size': 'Llantas', 'pressure': 'Presión / revisión de invierno',
+                     'sounds': 'Revisar un ruido', 'lights': 'Luz del tablero', 'oil': 'Cambio de aceite', 'symptoms': 'Revisar mi carro', 'chooser': 'Ayuda para elegir llantas'}},
+}

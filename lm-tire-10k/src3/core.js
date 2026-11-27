@@ -286,3 +286,56 @@ document.addEventListener('click', function (e) {
   addEventListener('pagehide', save);
   want = get(KEY) === '1'; ui(); if (want) play();
 })();
+
+/* "My visit": add several jobs from the tools, then text them all at once. Kept for this browser tab only (sessionStorage). */
+(function () {
+  'use strict';
+  var d = document, tray = d.getElementById('visit'); if (!tray) return;
+  var KEY = 'lm-visit', items = [], D = tray.dataset;
+  try { items = JSON.parse(sessionStorage.getItem(KEY) || '[]'); if (!Array.isArray(items)) items = []; } catch (e) { items = []; }
+  var tab = tray.querySelector('.visit-tab'), panel = tray.querySelector('.visit-panel'), list = tray.querySelector('.visit-list'), toastEl = d.querySelector('.toast'), tt;
+  function toast(msg, b) {
+    if (!toastEl) return; toastEl.textContent = msg;
+    if (b) { var x = d.createElement('b'); x.textContent = ' ' + b; toastEl.appendChild(x); }
+    toastEl.classList.add('in'); clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('in'); }, 3600);
+  }
+  window.LM = window.LM || {}; window.LM.toast = toast;
+  function save() { try { sessionStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {} }
+  function sms(body) { return 'sms:' + D.tel + '?&body=' + encodeURIComponent(body); }
+  function render(bump) {
+    tray.hidden = !items.length; tray.querySelector('.visit-n').textContent = items.length;
+    list.textContent = '';
+    items.forEach(function (t, i) {
+      var li = d.createElement('li'), s = d.createElement('span'), x = d.createElement('button');
+      s.textContent = t; x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', D.remove + ': ' + t);
+      x.addEventListener('click', function () { items.splice(i, 1); save(); render(); if (items.length) tab.focus(); });
+      li.appendChild(s); li.appendChild(x); list.appendChild(li);
+    });
+    tray.querySelector('.visit-send').href = sms(D.hi + '\n' + items.map(function (t) { return '- ' + t; }).join('\n'));
+    if (!items.length) { panel.hidden = true; tab.setAttribute('aria-expanded', 'false'); }
+    if (bump) { tab.classList.remove('bump'); void tab.offsetWidth; tab.classList.add('bump'); }
+  }
+  tab.addEventListener('click', function () { var o = panel.hidden; panel.hidden = !o; tab.setAttribute('aria-expanded', String(o)); });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { panel.hidden = true; tab.setAttribute('aria-expanded', 'false'); tab.focus(); } });
+  tray.querySelector('.visit-clear').addEventListener('click', function () { items = []; save(); render(); });
+  function add(t) {
+    t = String(t || '').trim().slice(0, 120); if (!t) return;
+    if (items.indexOf(t) > -1) { toast(D.already); return; }
+    if (items.length >= 12) items.shift();
+    items.push(t); save(); render(true); toast(D.added, t);
+  }
+  window.LM.addToVisit = add;
+  d.querySelectorAll('.add-visit').forEach(function (b) {
+    b.addEventListener('click', function () { var base = b.getAttribute('data-visit'); add(window.LM_VISIT ? window.LM_VISIT(base) : base); });
+  });
+  /* "Share this tool": phone share sheet, or copy the link on a computer */
+  d.querySelectorAll('.share-tool').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = location.href.split('#')[0], title = (b.getAttribute('data-title') || '') + ' | L&M Tire';
+      if (navigator.share && matchMedia('(pointer: coarse)').matches) { navigator.share({ title: title, url: url }).catch(function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { toast(D.copied); }, function () { toast(D.link, url); });
+      else toast(D.link, url);
+    });
+  });
+  render();
+})();

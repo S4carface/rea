@@ -19,7 +19,7 @@ from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIM
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
 from business import DELIVERY, INVENTORY, MUSIC  # noqa
-from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED, SYMPTOMS, TIPS  # noqa
+from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED, SYMPTOMS, TIPS, VISIT  # noqa
 
 HP = sys.argv[sys.argv.index('--hp') + 1] if '--hp' in sys.argv else ''
 REPO = 'S4carface/rea'
@@ -289,6 +289,17 @@ def crumbs(lang, items):
     return f'<nav class="crumbs" aria-label="{E(t["breadcrumb"])}"><ol>{lis}</ol></nav>'
 
 
+def visit_tray(lang):
+    """'My visit' list: hidden until something is added; sends one text to the routed number"""
+    v, r = VISIT[lang], route(lang)
+    return (f'<div class="visit" id="visit" role="region" aria-label="{E(v["my"])}" data-tel="{E(r["phone"])}" data-hi="{E(v["hi"])}" '
+            f'data-added="{E(v["added"])}" data-already="{E(v["already"])}" data-remove="{E(v["remove"])}" data-copied="{E(v["copied"])}" data-link="{E(v["link"])}" hidden>'
+            f'<button type="button" class="visit-tab" aria-expanded="false" aria-controls="visitP"><b class="visit-n">0</b><span>{E(v["my"])}</span></button>'
+            f'<div class="visit-panel" id="visitP" hidden><p class="mono">{E(v["my"])}</p><ul class="visit-list"></ul>'
+            f'<a class="btn btn-red btn-sm visit-send" href="#">{icon("text")}{E(v["send"])}</a><button type="button" class="visit-clear">{E(v["clear"])}</button></div></div>\n'
+            f'<div class="toast" role="status" aria-live="polite"></div>\n')
+
+
 def footer(lang, here):
     t = T[lang]
     r = route(lang)
@@ -319,7 +330,7 @@ def footer(lang, here):
   </div>
   <div class="fine"><span>© <span data-year>2026</span> {E(B['name'])} · {E(B['city'])}, {B['region']}</span><span>{E(t['speak'])}</span></div>
 </footer>
-<nav class="bar" id="bar" aria-label="{E(t['bar'])}">
+{visit_tray(lang)}<nav class="bar" id="bar" aria-label="{E(t['bar'])}">
   <a href="{E(sms(r['phone'], t['sms_hello']))}" data-track="text">{icon('text')}{E(t['text'])}</a>
   <a class="hot" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{E(t['call'])}</a>
   <a href="{E(DIRECTIONS)}" target="_blank" rel="noopener">{icon('pin')}{E(t['bar_dir'])}</a>
@@ -621,8 +632,11 @@ def build_tool(k, ic, svc_key, lang):
     if VIDEOS.get(k):
         vid = f'<section class="sec sec-tight"><div class="wrap"><button type="button" class="video-lite" data-yt="{E(VIDEOS[k])}">{icon("play")}<span>{E(g["video"])}</span><small>{E(g["video_note"])}</small></button></div></section>'
     s = SVC[svc_key]
-    body = crumbs(lang, items) + phead(c['h1'], c['lede']) + f"""
-<section class="sec sec-tight" aria-label="{E(c['name'])}"><div class="wrap">{tool}</div></section>
+    V = VISIT[lang]
+    share = f'<div class="btn-row"><button type="button" class="btn btn-ghost btn-sm share-tool" data-title="{E(c["name"])}">{icon("share")}{E(V["share"])}</button></div>'
+    addv = f'<div class="btn-row add-row"><button type="button" class="add-visit" data-visit="{E(V["items"][k])}"><span aria-hidden="true">+</span> {E(V["add"])}</button></div>' if k in V['items'] else ''
+    body = crumbs(lang, items) + phead(c['h1'], c['lede'], share) + f"""
+<section class="sec sec-tight" aria-label="{E(c['name'])}"><div class="wrap">{tool}{addv}</div></section>
 <section class="sec sec-tight"><div class="wrap"><div class="prose">{tool_static(k, lang, here)}</div>
 <p class="box-amber" style="margin-top:22px">{E(g['disclaimer'])}</p>
 <div class="btn-row" style="margin-top:18px"><a class="btn btn-red" href="{E(href(ppath('book', lang)))}#svc={E(svc_key)}">{icon('cal')}{E(g['book'])}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(g['text_us'])}</a></div></div></section>

@@ -388,4 +388,16 @@
   };
 
   var k = root.getAttribute('data-tool'); if (T[k]) T[k]();
+
+  /* what this tool adds to "My visit": the plain job name plus what the customer picked, when there is something */
+  function txt(sel) { var el = d.querySelector(sel); return el && !el.closest('[hidden]') ? el.textContent.trim() : ''; }
+  var DETAIL = {
+    penny: function () { return txt('#pnO'); },
+    puncture: function () { var i = root.querySelector('[name=zone]:checked'); return i ? (i.parentNode.textContent || '').trim() : ''; },
+    size: function () { var m = ($('#szA') || {}).value; m = String(m || '').toUpperCase().match(/\d{3}\s*\/?\s*\d{2}\s*Z?R?\s*\d{2}/); return m ? m[0].replace(/\s+/g, '') : ''; },
+    lights: function () { return txt('.dash-out h2'); },
+    symptoms: function () { return txt('.sy-svc'); },
+    chooser: function () { return txt('.ch-res h2'); }
+  };
+  window.LM_VISIT = function (base) { var f = DETAIL[k], x = f ? f() : ''; return x ? base + ': ' + x : base; };
 })();
