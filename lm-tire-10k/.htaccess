@@ -10,7 +10,7 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # keep build tools and preview files off the public site
-RewriteRule ^(tools|\.git)(/|$) - [F,L]
+RewriteRule ^(tools|preview|\.git)(/|$) - [F,L]
 RewriteRule ^(online|sound-picker)\.html$ - [F,L]
 </IfModule>
 
