@@ -116,12 +116,105 @@
     f.addEventListener('change', function (e) { show(e.target.name === 'zone' ? null : false); });
   };
 
+  /* ---------- dashboard warning lights: tap a real-looking symbol ---------- */
+  T.lights = function () {
+    var IC = [
+      ['a', '<path d="M8 27h6v-6h9v-5h14v5h7l4 6h5v-4h4v18h-4v-4h-5l-4 6H22l-6-6H8z"/><path d="M3 30v10"/>'],
+      ['a', '<path d="M15 47C8 41 6 32 8 24c1.5-5 5-9 5-9h38s3.5 4 5 9c2 8 0 17-7 23"/><path d="M11 53h5m6 0h5m6 0h5m6 0h5m6 0h4"/><path d="M32 22v14"/><circle cx="32" cy="42.5" r="1.6" fill="currentColor"/>'],
+      ['r', '<circle cx="32" cy="32" r="15"/><path d="M32 23v12"/><circle cx="32" cy="40.5" r="1.6" fill="currentColor"/><path d="M12 17a22 22 0 0 0 0 30M52 17a22 22 0 0 1 0 30"/>'],
+      ['r', '<path d="M6 30h9l6-5h17l18-6-13 19H21l-6-6H6z"/><path d="M27 25v-5h-6M24 20h8"/><path d="M58 41c0 3-2 5-4 5s-4-2-4-5 4-8 4-8 4 5 4 8z" fill="currentColor"/>'],
+      ['r', '<rect x="9" y="21" width="46" height="29" rx="3"/><path d="M17 21v-5h9v5M38 21v-5h9v5M17 35h9M39 35h9M43.5 30.5v9"/>'],
+      ['r', '<path d="M32 9v25"/><circle cx="32" cy="41" r="6"/><path d="M36 15h6M36 21h6M36 27h6"/><path d="M7 53c4 3 8 3 12 0s9-3 13 0 9 3 13 0 8-3 12 0"/>']
+    ];
+    var items = X.items || [];
+    root.innerHTML = '<div class="dash" role="group" aria-label="' + esc(X.cluster) + '"><svg class="dash-gauges" viewBox="0 0 600 150" aria-hidden="true"><path d="M40 140a120 120 0 0 1 220 -40" /><path d="M560 140a120 120 0 0 0 -220 -40"/>' +
+      Array.apply(null, Array(9)).map(function (_, i) { var a = Math.PI * (1 - i / 10) - 0.25, x = 150 + 112 * Math.cos(a), y = 150 - 112 * Math.sin(a); return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="2.4"/><circle cx="' + (600 - x).toFixed(1) + '" cy="' + y.toFixed(1) + '" r="2.4"/>'; }).join('') + '</svg>' +
+      '<div class="dash-row">' + items.map(function (it, i) {
+        return '<button type="button" class="dl dl-' + IC[i][0] + '" aria-pressed="false" data-i="' + i + '"><svg viewBox="0 0 64 64" aria-hidden="true">' + IC[i][1] + '</svg><span class="sr">' + esc(it[0]) + '</span></button>';
+      }).join('') + '</div><p class="dash-hint">' + esc(X.tap) + '</p></div>' +
+      '<div class="dash-out card" aria-live="polite" hidden><span class="dash-badge"></span><h2></h2><p class="note"></p><button type="button" class="btn btn-ghost btn-sm dash-flash" hidden aria-pressed="false"></button></div>';
+    var btns = root.querySelectorAll('.dl'), out = $('.dash-out'), fl = $('.dash-flash');
+    function pick(i) {
+      btns.forEach(function (b) { var on = +b.getAttribute('data-i') === i; b.classList.toggle('on', on); b.classList.remove('blink'); b.setAttribute('aria-pressed', on); });
+      var red = IC[i][0] === 'r';
+      out.hidden = false; out.className = 'dash-out card ' + (red ? 'is-r' : 'is-a');
+      out.querySelector('.dash-badge').textContent = red ? X.red : X.amber;
+      out.querySelector('h2').textContent = items[i][0]; out.querySelector('p').textContent = items[i][1];
+      fl.hidden = i !== 0; fl.textContent = X.flash; fl.setAttribute('aria-pressed', 'false');
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { pick(+b.getAttribute('data-i')); }); });
+    fl.addEventListener('click', function () { var b = btns[0], on = !b.classList.contains('blink'); b.classList.toggle('blink', on); fl.textContent = on ? X.steady : X.flash; fl.setAttribute('aria-pressed', on); });
+    // "bulb check": every light comes on for a moment, like turning the key
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('bulbs'); setTimeout(function () { root.classList.remove('bulbs'); }, 1400); }
+  };
+
+  /* ---------- symptom selector (restored from Sprint 2): tap what you notice ---------- */
+  T.symptoms = function () {
+    var out = $('.sy-out'), cur = null, curB = null;
+    function stop() { if (cur) { cur.pause(); cur = null; } if (curB) curB.setAttribute('aria-pressed', 'false'); curB = null; d.dispatchEvent(new CustomEvent('lm:sfx', { detail: 'end' })); }
+    root.querySelectorAll('.sy-b').forEach(function (b) {
+      b.addEventListener('click', function () {
+        root.querySelectorAll('.sy-b').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        stop(); out.hidden = false;
+        $('.sy-svc').textContent = b.getAttribute('data-svc'); $('.sy-why').textContent = b.getAttribute('data-why');
+        $('.sy-text').href = b.getAttribute('data-sms'); $('.sy-link').href = b.getAttribute('data-href');
+        var snd = b.getAttribute('data-snd'), box = $('.sy-snds');
+        $('.sy-hear').hidden = !snd; box.innerHTML = '';
+        (snd ? snd.split(',') : []).forEach(function (pair) {
+          var p = pair.split('|'), sb = d.createElement('button'); sb.type = 'button'; sb.className = 'btn btn-ghost btn-sm'; sb.setAttribute('aria-pressed', 'false'); sb.textContent = '▶ ' + p[0];
+          sb.addEventListener('click', function () { var same = curB === sb; stop(); if (same) return; cur = new Audio(p[1]); cur.volume = 0.7; curB = sb; sb.setAttribute('aria-pressed', 'true'); d.dispatchEvent(new CustomEvent('lm:sfx', { detail: 'start' })); cur.addEventListener('ended', stop); cur.play().catch(stop); });
+          box.appendChild(sb);
+        });
+        out.classList.remove('pop'); void out.offsetWidth; out.classList.add('pop');
+        if (innerWidth < 900) out.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      });
+    });
+    d.addEventListener('visibilitychange', function () { if (d.hidden) stop(); });
+  };
+
+  /* ---------- which tires fit you? (restored from Sprint 2) ---------- */
+  T.chooser = function () {
+    var f = $('.ch-form'), res = $('.ch-res'), R = X.res;
+    f.addEventListener('change', function () {
+      var v = {}; ['q1', 'q2', 'q3'].forEach(function (q) { var i = f.querySelector('[name=' + q + ']:checked'); v[q] = i ? i.value : ''; });
+      var n = (v.q1 ? 1 : 0) + (v.q2 ? 1 : 0) + (v.q3 ? 1 : 0); f.querySelector('.ch-prog i').style.width = (n / 3 * 100) + '%';
+      if (n < 3) return;
+      var k = v.q1 === 'lots' ? 'winter' : (v.q2 === 'cost' && v.q3 !== 'long') ? 'used' : (v.q2 === 'grip' && v.q1 === 'some') ? 'grip' : (v.q2 === 'life' || v.q3 === 'long') ? 'new' : 'both';
+      res.hidden = false; res.className = 'ch-res card k-' + k;
+      res.querySelector('h2').textContent = R[k][0]; res.querySelector('.note').textContent = R[k][1];
+      var tel = C.text || ''; var a = res.querySelector('.ch-text'); if (tel) a.href = 'sms:' + tel + '?&body=' + encodeURIComponent(fill(X.sms, { k: R[k][0].toLowerCase() })); else a.hidden = true;
+      res.classList.remove('pop'); void res.offsetWidth; res.classList.add('pop');
+      res.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+    });
+  };
+
+  /* ---------- tire care tips (Tire Help page): swipe cards + the rotation demo ---------- */
+  T.tips = function () {
+    var list = $('.tips');
+    var step = function (dir) { var c = list.querySelector('.tip'); list.scrollBy({ left: dir * (c ? c.offsetWidth + 16 : 300), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); };
+    $('.tips-p').addEventListener('click', function () { step(-1); }); $('.tips-n').addEventListener('click', function () { step(1); });
+    var box = $('.rot'); if (!box) return;
+    var POS = [[26, 38], [94, 38], [26, 112], [94, 112]], WEAR = ['#e8333b', '#e8333b', '#8a90ff', '#8a90ff'], state = [0, 1, 2, 3];
+    var tires = box.querySelectorAll('.rot-t');
+    tires.forEach(function (t, i) { t.querySelector('rect').style.fill = WEAR[i]; });
+    var place = function () { tires.forEach(function (t, i) { var p = POS[state[i]]; t.style.transform = 'translate(' + p[0] + 'px,' + p[1] + 'px)'; }); };
+    place();
+    box.querySelector('.rot-go').addEventListener('click', function () {
+      state = state.map(function (p) { return { 0: 2, 1: 3, 2: 1, 3: 0 }[p]; }); place();
+      var sr = box.querySelector('.sr'); sr.textContent = sr.getAttribute('data-done');
+    });
+  };
+
   /* ---------- tire age from DOT ---------- */
   T.age = function () {
-    root.innerHTML = '<div class="tool-card"><div class="field"><label for="agI">' + esc(X.label) + '</label><input id="agI" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="' + esc(X.ph) + '" style="max-width:220px;font:500 1.5rem var(--mono);letter-spacing:.12em"></div><p class="tool-res" id="agR" aria-live="polite"></p></div>';
+    var dot = '<svg class="sz-wall ag-wall" viewBox="0 0 600 200" aria-hidden="true"><defs><linearGradient id="agRub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2c36"/><stop offset="1" stop-color="#0c0c10"/></linearGradient><path id="agArc" d="M40 200 A330 330 0 0 1 560 200"/></defs>' +
+      '<path d="M0 210 A350 350 0 0 1 600 210 L560 210 A310 310 0 0 0 40 210Z" fill="url(#agRub)" stroke="#33364a" stroke-width="2"/>' +
+      '<text class="ag-txt"><textPath href="#agArc" startOffset="50%" text-anchor="middle">DOT U2LL LMLR <tspan class="ag-box" id="agW">24</tspan><tspan class="ag-box" id="agY">19</tspan></textPath></text></svg>';
+    root.innerHTML = '<div class="tool-card">' + dot + '<div class="field"><label for="agI">' + esc(X.label) + '</label><input id="agI" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="' + esc(X.ph) + '" style="max-width:220px;font:500 1.5rem var(--mono);letter-spacing:.12em"></div><p class="tool-res" id="agR" aria-live="polite"></p></div>';
     var i = $('#agI'), r = $('#agR');
     i.addEventListener('input', function () {
       var v = i.value.replace(/\D/g, ''); i.value = v; r.className = 'tool-res'; r.textContent = '';
+      var pv = (v + '2419'.slice(v.length)); $('#agW').textContent = pv.slice(0, 2); $('#agY').textContent = pv.slice(2, 4); root.querySelector('.ag-wall').classList.toggle('lit', v.length === 4);
       if (v.length < 4) return;
       var w = +v.slice(0, 2), y = 2000 + +v.slice(2), now = new Date();
       if (w < 1 || w > 53 || y > now.getFullYear()) { r.textContent = X.bad; return; }
@@ -137,7 +230,13 @@
   /* ---------- tire size read and compare ---------- */
   T.size = function () {
     var LI = window.LM_LI || {}, SR = window.LM_SR || {};
-    root.innerHTML = '<div class="tool-card"><div class="grid2"><div class="field"><label for="szA">' + esc(X.a) + '</label><input id="szA" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' + esc(X.ph) + '"></div>' +
+    var wall = '<svg class="sz-wall" viewBox="0 0 600 230" role="img" aria-label="' + esc(X.a) + '"><defs><linearGradient id="szRub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2c36"/><stop offset=".5" stop-color="#16171d"/><stop offset="1" stop-color="#0c0c10"/></linearGradient>' +
+      '<path id="szArc" d="M40 215 A330 330 0 0 1 560 215"/></defs>' +
+      '<path d="M-20 240 A390 390 0 0 1 620 240 L620 300 L-20 300Z" fill="#0d0e13"/><path d="M0 230 A350 350 0 0 1 600 230 L560 230 A310 310 0 0 0 40 230Z" fill="url(#szRub)" stroke="#33364a" stroke-width="2"/>' +
+      '<path d="M20 230 A330 330 0 0 1 580 230" fill="none" stroke="#24263a" stroke-width="1" stroke-dasharray="2 7"/>' +
+      '<text class="sz-txt"><textPath href="#szArc" startOffset="50%" text-anchor="middle"><tspan data-p="w">205</tspan><tspan>/</tspan><tspan data-p="a">55</tspan><tspan data-p="c">R</tspan><tspan data-p="d">16</tspan><tspan> </tspan><tspan data-p="li">91</tspan><tspan data-p="sr">V</tspan></textPath></text></svg>';
+    var pop = ['205/55R16', '215/60R16', '225/65R17', '235/65R17', '225/45R17'];
+    root.innerHTML = '<div class="tool-card">' + wall + '<div class="sz-pop">' + pop.map(function (x) { return '<button type="button" class="chip-b mono">' + x + '</button>'; }).join('') + '</div><div class="grid2"><div class="field"><label for="szA">' + esc(X.a) + '</label><input id="szA" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' + esc(X.ph) + '"></div>' +
       '<div class="field"><label for="szB">' + esc(X.b) + '</label><input id="szB" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="215/50R17"></div></div>' +
       '<div id="szOut" aria-live="polite"></div></div>';
     function parse(v) {
@@ -164,24 +263,73 @@
         out += '<p class="tool-res r-' + (Math.abs(p) <= 3 ? 'ok' : 'bad') + '">' + esc(fill(Math.abs(p) <= 3 ? X.cmp_ok : X.cmp_bad, { p: ap })) + ' ' + esc(fill(X.speedo, { v: (60 * a.dia / b.dia).toFixed(1) })) + '</p>';
       } else if (B.trim().length > 6 && !b) out += '<p class="tool-res r-bad">' + esc(X.bad) + '</p>';
       $('#szOut').innerHTML = out;
+      var show = a || { w: 205, a: 55, c: 'R', rim: 16, li: 91, sr: 'V' }, map = { w: show.w, a: show.a, c: show.c === 'ZR' ? 'ZR' : show.c, d: show.rim, li: show.li || '', sr: show.sr || '' };
+      root.querySelectorAll('.sz-txt tspan[data-p]').forEach(function (t) { t.textContent = map[t.getAttribute('data-p')]; });
+      root.querySelector('.sz-wall').classList.toggle('lit', !!a);
     }
     root.addEventListener('input', run);
+    root.querySelectorAll('.sz-pop button').forEach(function (b) { b.addEventListener('click', function () { $('#szA').value = b.textContent; run(); $('#szA').focus(); }); });
+    run();
   };
 
-  /* ---------- pressure and temperature ---------- */
+  /* ---------- tire pressure + winter check: live Worcester temperature, a real gauge, winter checklist ---------- */
   T.pressure = function () {
-    root.innerHTML = '<div class="tool-card"><div class="grid3">' +
-      '<div class="field"><label for="prS">' + esc(X.set) + '</label><input id="prS" type="number" inputmode="numeric" min="15" max="80" value="35"></div>' +
-      '<div class="field"><label for="prT">' + esc(X.then) + '</label><input id="prT" type="number" inputmode="numeric" min="-30" max="120" value="70"></div>' +
-      '<div class="field"><label for="prN">' + esc(X.now) + '</label><input id="prN" type="number" inputmode="numeric" min="-30" max="120" value="30"></div></div>' +
-      '<p class="tool-res" id="prR" aria-live="polite"></p></div>';
+    var month = new Date().getMonth(), winter = month >= 9 || month <= 3;
+    var ticks = '';
+    for (var p = 0; p <= 50; p += 5) { var a = Math.PI * (1 - p / 50), x1 = 150 + 112 * Math.cos(a), y1 = 150 - 112 * Math.sin(a), x2 = 150 + (p % 10 ? 102 : 94) * Math.cos(a), y2 = 150 - (p % 10 ? 102 : 94) * Math.sin(a);
+      ticks += '<path d="M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'L' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '"/>' + (p % 10 ? '' : '<text x="' + (150 + 78 * Math.cos(a)).toFixed(1) + '" y="' + (155 - 78 * Math.sin(a)).toFixed(1) + '">' + p + '</text>'); }
+    var sl = function (id, lab, min, max, val, unit) { return '<div class="pr-sl"><label for="' + id + '">' + esc(lab) + '</label><output for="' + id + '" id="' + id + 'O" class="mono">' + val + unit + '</output><input type="range" id="' + id + '" min="' + min + '" max="' + max + '" step="1" value="' + val + '"></div>'; };
+    root.innerHTML =
+      '<div class="pr-wx" hidden><div><small class="mono">' + esc(X.today) + '</small><b id="prWx">--°F</b><span>' + esc(X.out) + '</span></div><button type="button" class="btn btn-ghost btn-sm" id="prUse">' + esc(X.use) + '</button></div>' +
+      '<p class="pr-snow" hidden>' + esc(X.snow) + '</p>' +
+      '<div class="tool-card pr-card"><div class="pr-gauge"><svg viewBox="0 0 300 175" role="img" aria-labelledby="prGT"><title id="prGT">' + esc(X.gauge) + '</title>' +
+      '<defs><radialGradient id="prFace" cx="50%" cy="85%" r="80%"><stop offset="0" stop-color="#1f2233"/><stop offset="1" stop-color="#090a10"/></radialGradient></defs>' +
+      '<path d="M22 150a128 128 0 0 1 256 0" fill="url(#prFace)" stroke="#2b2f45" stroke-width="4"/>' +
+      '<path id="prRed" class="pr-red" d=""/><g class="pr-ticks">' + ticks + '</g>' +
+      '<path id="prSet" class="pr-set" d=""/>' +
+      '<g id="prNeedle" class="pr-needle"><path d="M150 150L150 46" /><circle cx="150" cy="150" r="10"/></g>' +
+      '</svg>' +
+      '<p class="pr-cap"><b class="pr-big" id="prBig">35</b> <span class="pr-unit">PSI</span><br>' + esc(X.gauge) + '</p></div>' +
+      '<div class="pr-sliders">' + sl('prS', X.set, 20, 50, 35, '') + sl('prT', X.then, -10, 100, 70, '°F') + sl('prN', X.now, -20, 100, 30, '°F') + '</div>' +
+      '<p class="tool-res" id="prR" aria-live="polite"></p><p class="hint" id="prTp"></p></div>' +
+      (winter ? '<div class="tool-card pr-win"><h2 class="th" style="margin-top:0">' + esc(X.win_h) + '</h2><ul class="pr-list">' + X.win_items.map(function (it, i) { return '<li><label><input type="checkbox" value="' + i + '"><span><b>' + esc(it[0]) + '</b><small>' + esc(it[1]) + '</small></span></label></li>'; }).join('') + '</ul><div class="pr-bar"><i></i></div><p class="pr-n" aria-live="polite"></p><a class="btn btn-red" id="prBook" href="#">' + esc(X.win_book) + '</a></div>' : '');
+    function pt(p, r) { var a = Math.PI * (1 - Math.max(0, Math.min(50, p)) / 50); return [150 + r * Math.cos(a), 150 - r * Math.sin(a)]; }
+    function arc(p0, p1, r) { var a = pt(p0, r), b = pt(p1, r); return 'M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + 'A' + r + ' ' + r + ' 0 0 1 ' + b[0].toFixed(1) + ' ' + b[1].toFixed(1); }
     function run() {
-      var t = +$('#prT').value, n = +$('#prN').value, drop = Math.round((t - n) / 10), r = $('#prR');
-      if (drop > 0) { r.className = 'tool-res r-watch'; r.textContent = fill(X.r_low, { v: drop }); }
+      var S = +$('#prS').value, t = +$('#prT').value, n = +$('#prN').value;
+      $('#prSO').textContent = S; $('#prTO').textContent = t + '°F'; $('#prNO').textContent = n + '°F';
+      var est = Math.round(S - (t - n) / 10), drop = S - est, low = Math.round(S * 0.75);
+      $('#prNeedle').style.transform = 'rotate(' + (Math.max(0, Math.min(50, est)) / 50 * 180 - 90) + 'deg)';
+      $('#prBig').textContent = est;
+      $('#prRed').setAttribute('d', arc(0, low, 116)); $('#prSet').setAttribute('d', arc(S - 0.6, S + 0.6, 116));
+      var r = $('#prR');
+      if (drop > 0) { r.className = 'tool-res ' + (est < low ? 'r-bad' : 'r-watch'); r.textContent = fill(X.r_low, { v: drop }); }
       else if (drop < 0) { r.className = 'tool-res r-ok'; r.textContent = fill(X.r_high, { v: -drop }); }
       else { r.className = 'tool-res r-ok'; r.textContent = X.r_same; }
+      $('#prTp').textContent = fill(X.tpms, { v: low });
+      root.classList.toggle('pr-low', est < low);
     }
     root.addEventListener('input', run); run();
+    // today's temperature and the week's snow from Open-Meteo (no key, no personal data); cached for the visit
+    var wx = $('.pr-wx'), temp = null;
+    function gotTemp(v) { temp = Math.round(v); $('#prWx').textContent = temp + '°F'; wx.hidden = false; }
+    $('#prUse').addEventListener('click', function () { if (temp == null) return; $('#prN').value = temp; run(); });
+    try { var c = JSON.parse(sessionStorage.getItem('lm-wx') || 'null'); if (c && Date.now() - c.t < 1800000) { gotTemp(c.temp); $('#prN').value = c.temp; run(); if (c.snow) $('.pr-snow').hidden = false; } else throw 0; } catch (e) {
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=42.2626&longitude=-71.8023&current=temperature_2m&daily=snowfall_sum&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=7')
+        .then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+          if (!j || !j.current) return;
+          var snow = (j.daily && j.daily.snowfall_sum || []).some(function (x) { return x >= 0.5; });
+          gotTemp(j.current.temperature_2m); $('#prN').value = Math.round(j.current.temperature_2m); run();
+          if (snow) $('.pr-snow').hidden = false;
+          try { sessionStorage.setItem('lm-wx', JSON.stringify({ t: Date.now(), temp: Math.round(j.current.temperature_2m), snow: snow })); } catch (e2) {}
+        }).catch(function () {});
+    }
+    var win = $('.pr-win');
+    if (win) {
+      var bk = d.querySelector('.btn-row a.btn-red'); $('#prBook').href = bk ? bk.getAttribute('href') : '#';
+      var upd = function () { var n = win.querySelectorAll('input:checked').length; win.querySelector('.pr-bar i').style.width = (n / 5 * 100) + '%'; win.querySelector('.pr-n').textContent = fill(X.win_n, { n: n }); win.classList.toggle('done', n === 5); };
+      win.addEventListener('change', upd); upd();
+    }
   };
 
   /* ---------- car sounds: one at a time; tells the music to pause ---------- */
@@ -204,17 +352,28 @@
   /* ---------- oil change reminder with calendar file ---------- */
   T.oil = function () {
     var today = new Date().toISOString().slice(0, 10);
-    root.innerHTML = '<div class="tool-card"><div class="grid3">' +
-      '<div class="field"><label for="olL">' + esc(X.last) + '</label><input id="olL" type="date" max="' + today + '"></div>' +
-      '<div class="field"><label for="olM">' + esc(X.miles) + '</label><select id="olM"><option value="100">~100</option><option value="200" selected>~200</option><option value="350">~350</option><option value="500">500+</option></select></div>' +
-      '<div class="field"><label for="olI">' + esc(X.interval) + '</label><select id="olI"><option value="3000">3,000</option><option value="5000" selected>5,000</option><option value="7500">7,500</option><option value="10000">10,000</option></select></div></div>' +
-      '<p class="hint">' + esc(X.interval_help) + '</p><p class="tool-res" id="olR" aria-live="polite">' + esc(X.pick) + '</p>' +
+    var d0 = new Date(); d0.setMonth(d0.getMonth() - 2); var def = d0.toISOString().slice(0, 10);
+    var chips = function (name, opts, sel) { return '<div class="chips">' + opts.map(function (o) { return '<label><input type="radio" name="' + name + '" value="' + o[0] + '"' + (o[0] === sel ? ' checked' : '') + '><span>' + o[1] + '</span></label>'; }).join('') + '</div>'; };
+    root.innerHTML = '<div class="tool-card ol-card"><div class="ol-in">' +
+      '<div class="field"><label for="olL">' + esc(X.last) + '</label><input id="olL" type="date" max="' + today + '" value="' + def + '"></div>' +
+      '<fieldset class="field"><legend class="lbl">' + esc(X.miles) + '</legend>' + chips('olM', [['100', '~100'], ['200', '~200'], ['350', '~350'], ['500', '500+']], '200') + '</fieldset>' +
+      '<fieldset class="field"><legend class="lbl">' + esc(X.interval) + '</legend>' + chips('olI', [['3000', '3,000'], ['5000', '5,000'], ['7500', '7,500'], ['10000', '10,000']], '5000') + '</fieldset>' +
+      '<p class="hint">' + esc(X.interval_help) + '</p></div>' +
+      '<div class="ol-out"><div class="ol-life"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="ol-bg"/><circle cx="60" cy="60" r="50" class="ol-fg" id="olArc" pathLength="100"/></svg><b id="olPct">--</b><small>' + esc(X.life) + '</small></div>' +
+      '<div class="ol-date"><small class="mono">' + esc(X.around) + '</small><b id="olD">--</b><span id="olIn"></span></div></div>' +
+      '<p class="tool-res" id="olR" aria-live="polite">' + esc(X.pick) + '</p>' +
       '<div class="btn-row"><a class="btn btn-ghost" id="olCal" href="#" download="oil-change.ics" hidden>' + esc(X.cal) + '</a></div></div>';
+    function val(n) { var i = root.querySelector('[name=' + n + ']:checked'); return i ? +i.value : 0; }
     function run() {
       var l = $('#olL').value, r = $('#olR'), cal = $('#olCal'); cal.hidden = true;
-      if (!l) { r.className = 'tool-res'; r.textContent = X.pick; return; }
-      var days = Math.min(365, Math.round(+$('#olI').value / +$('#olM').value * 7));
-      var due = new Date(l + 'T12:00:00Z'); due.setUTCDate(due.getUTCDate() + days);
+      if (!l || l > today) { r.className = 'tool-res'; r.textContent = X.pick; $('#olD').textContent = '--'; $('#olPct').textContent = '--'; $('#olIn').textContent = ''; return; }
+      var days = Math.min(365, Math.round(val('olI') / val('olM') * 7));
+      var start = new Date(l + 'T12:00:00Z'), due = new Date(start); due.setUTCDate(due.getUTCDate() + days);
+      var left = Math.round((due - new Date()) / 864e5), pct = Math.max(0, Math.min(100, Math.round(left / days * 100)));
+      $('#olArc').style.strokeDasharray = pct + ' 100'; $('#olPct').textContent = pct + '%';
+      root.querySelector('.ol-life').className = 'ol-life ' + (pct <= 15 ? 'is-bad' : pct <= 35 ? 'is-low' : '');
+      $('#olD').textContent = due.toLocaleDateString(LOC, { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+      $('#olIn').textContent = left <= 0 ? '' : left > 60 ? fill(X.in_m, { n: Math.round(left / 30.4) }) : fill(X.in_w, { n: Math.max(1, Math.round(left / 7)) });
       if (due < new Date()) { r.className = 'tool-res r-bad'; r.textContent = X.past; return; }
       r.className = 'tool-res r-ok';
       r.textContent = fill(X.next, { d: due.toLocaleDateString(LOC, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) });
@@ -224,6 +383,7 @@
         'LOCATION:598 West Boylston Street\\, Worcester\\, MA 01606', 'BEGIN:VALARM', 'TRIGGER:-P2D', 'ACTION:DISPLAY', 'DESCRIPTION:' + X.cal_title, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
       cal.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics); cal.hidden = false;
     }
+    run();
     root.addEventListener('input', run); root.addEventListener('change', run);
   };
 

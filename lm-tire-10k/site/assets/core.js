@@ -254,3 +254,35 @@ document.addEventListener('click', function (e) {
   document.dispatchEvent(new CustomEvent('lm:sfx', { detail: 'start' }));
   b.replaceWith(f);
 });
+
+/* Background music: off unless the visitor turns it on (remembered on this device). It picks up where it left off on the
+   next page, waits for a tap where the browser blocks sound, pauses for diagnostic sounds and while the page is hidden. */
+(function () {
+  var btn = document.querySelector('.music-btn'), SRC = btn && btn.getAttribute('data-src');
+  if (!SRC) return;
+  var KEY = 'lm-music', POS = 'lm-music-t', a = null, want = false, sfx = false, saveT = null;
+  function get(k, s) { try { return (s ? sessionStorage : localStorage).getItem(k); } catch (e) { return null; } }
+  function put(k, v, s) { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch (e) {} }
+  function ui() { btn.setAttribute('aria-pressed', String(want)); btn.setAttribute('aria-label', btn.getAttribute(want ? 'data-on' : 'data-off')); btn.classList.toggle('on', want); }
+  function save() { if (a && !isNaN(a.currentTime)) put(POS, String(a.currentTime), true); }
+  function fade(to, ms, done) { var from = a.volume, t0 = performance.now(); (function step(t) { var k = Math.min(1, (t - t0) / ms); a.volume = from + (to - from) * k; if (k < 1) requestAnimationFrame(step); else if (done) done(); })(t0); }
+  function ensure() {
+    if (a) return a;
+    a = new Audio(SRC); a.loop = true; a.preload = 'auto'; a.crossOrigin = 'anonymous'; a.volume = 0;
+    var t = +get(POS, true) || 0; a.addEventListener('loadedmetadata', function () { if (t && t < a.duration) a.currentTime = t; }, { once: true });
+    return a;
+  }
+  function play() {
+    if (!want || sfx || document.hidden) return;
+    ensure(); var p = a.play();
+    if (p && p.catch) p.then(function () { fade(0.35, 900); }).catch(function () { waitTap(); });
+    clearInterval(saveT); saveT = setInterval(save, 2000);
+  }
+  function pause(soft) { if (!a) return; save(); clearInterval(saveT); if (soft) fade(0, 250, function () { a.pause(); }); else a.pause(); }
+  function waitTap() { var go = function () { document.removeEventListener('pointerdown', go, true); document.removeEventListener('keydown', go, true); play(); }; document.addEventListener('pointerdown', go, true); document.addEventListener('keydown', go, true); }
+  btn.addEventListener('click', function () { want = !want; put(KEY, want ? '1' : '0'); ui(); if (want) play(); else pause(true); });
+  document.addEventListener('lm:sfx', function (e) { sfx = e.detail === 'start'; if (sfx) pause(true); else play(); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); else play(); });
+  addEventListener('pagehide', save);
+  want = get(KEY) === '1'; ui(); if (want) play();
+})();

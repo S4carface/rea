@@ -127,6 +127,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
   </url>
   <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/o-que-o-carro-esta-fazendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-hace-mi-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+  </url>
+  <url>
     <loc>https://YOUR-LIVE-DOMAIN/tire-help/penny-test/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
@@ -139,6 +146,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/which-tires/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/qual-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
   </url>
   <url>
     <loc>https://YOUR-LIVE-DOMAIN/tire-help/tire-age/</loc>
@@ -309,6 +323,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
   </url>
   <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/o-que-o-carro-esta-fazendo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/o-que-o-carro-esta-fazendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-hace-mi-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+  </url>
+  <url>
     <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
@@ -321,6 +342,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/qual-pneu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/qual-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
   </url>
   <url>
     <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/idade-do-pneu/</loc>
@@ -491,6 +519,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
   </url>
   <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/que-hace-mi-carro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/o-que-o-carro-esta-fazendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-hace-mi-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/what-is-my-car-doing/"/>
+  </url>
+  <url>
     <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/prueba-del-centavo/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
@@ -503,6 +538,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/que-llantas/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/qual-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/que-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/which-tires/"/>
   </url>
   <url>
     <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/edad-de-la-llanta/</loc>

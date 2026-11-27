@@ -23,6 +23,7 @@ const ck = (cond, w, m) => { checks++; if (!cond) bad(w, m); };
   for (const path of PAGES) for (const [vn, ctx] of VIEWS) {
     const w = (path || '/') + ' @' + vn;
     const c = await b.newContext({ ...ctx, serviceWorkers: 'block' });
+    await c.route(/open-meteo/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"current":{"temperature_2m":30},"daily":{"snowfall_sum":[0,1,0,0,0,0,0]}}' }));
     await c.route(/vpic\.nhtsa/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"Results":[{"Model_Name":"Camry"}]}' }));
     const p = await c.newPage();
     p.on('pageerror', e => bad(w, 'JS error: ' + e.message));

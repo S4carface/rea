@@ -18,8 +18,8 @@ import business as BZ  # noqa
 from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIMA, REVIEWS, PHOTO_TEXT, CONTACTS, ROUTE, SOCIAL, STATS, EMAIL  # noqa
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
-from business import DELIVERY, INVENTORY  # noqa
-from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED  # noqa
+from business import DELIVERY, INVENTORY, MUSIC  # noqa
+from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED, SYMPTOMS, TIPS  # noqa
 
 HP = sys.argv[sys.argv.index('--hp') + 1] if '--hp' in sys.argv else ''
 REPO = 'S4carface/rea'
@@ -223,6 +223,33 @@ def head(lang, here, title, desc, alts, lds=(), extra_css='', preload=''):
 """
 
 
+MUSIC_T = {'en': ('Background music', 'Music is off. Tap to play.', 'Music is on. Tap to stop.'),
+           'pt': ('Música de fundo', 'Música desligada. Toque para tocar.', 'Música ligada. Toque para parar.'),
+           'es': ('Música de fondo', 'Música apagada. Toque para escuchar.', 'Música encendida. Toque para parar.')}
+
+
+def music_on():
+    return bool(MUSIC.get('licensed') or HP)
+
+
+def music_url(here):
+    """production: only when licensed (file copied into site/assets). Preview: the legacy copy on jsDelivr, never in site/."""
+    if MUSIC.get('licensed'):
+        return asset(MUSIC['file'], here)
+    if HP:
+        sha = git_sha('assets/' + MUSIC['file'])
+        return f'https://cdn.jsdelivr.net/gh/{REPO}@{sha}/{SUB}/assets/{MUSIC["file"]}' if sha else ''
+    return ''
+
+
+def music_btn(lang, here=''):
+    src = music_url(here)
+    if not src:
+        return ''
+    m = MUSIC_T[lang]
+    return f'<button type="button" class="hbtn music-btn" data-src="{E(src)}" aria-pressed="false" data-off="{E(m[1])}" data-on="{E(m[2])}" aria-label="{E(m[1])}" title="{E(m[0])}">{icon("sound", "i i-sound")}{icon("mute", "i i-mute")}</button>'
+
+
 def header(lang, here, key, lang_links):
     t = T[lang]
     cur = lambda k: ' aria-current="page"' if k == key else ''
@@ -237,7 +264,7 @@ def header(lang, here, key, lang_links):
   <nav class="nav" aria-label="{E(t['menu'])}">{nav}</nav>
   <button type="button" class="hbtn" aria-controls="srch" aria-expanded="false" aria-label="{E(t['search_label'])}">{icon('search')}</button>
   <div class="lng" role="group" aria-label="{E(t['lang_label'])}">{lng}</div>
-  <a class="btn btn-red btn-sm call" href="tel:{shop['phone']}">{icon('phone')}{E(t['call'])}</a>
+  {music_btn(lang, here)}<a class="btn btn-red btn-sm call" href="tel:{shop['phone']}">{icon('phone')}{E(t['call'])}</a>
   <button type="button" class="hbtn menu-btn" aria-controls="mMenu" aria-expanded="false" aria-label="{E(t['menu'])}">{icon('menu')}</button>
 </header>
 <div class="m-menu" id="mMenu" role="dialog" aria-modal="true" aria-label="{E(t['menu'])}" hidden>
@@ -524,8 +551,20 @@ def build_help(lang):
     items = ''.join(f'<li><a class="tile" href="{E(href(tpath(k, lang)))}"><span class="ic">{icon(ic)}</span><span><b>{E(v[lang][0])}</b><small>{E(v[lang][1])}</small></span></a></li>' for k, ic, v in HELP_TOOLS)
     body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], here)]) + phead(t['help_h1'], t['help_lede']) + f"""
 <section class="sec sec-tight" aria-label="{E(t['help_h1'])}"><div class="wrap"><ul class="tiles">{items}</ul></div></section>"""
+    tp = TIPS[lang]
+    cards = ''
+    for i, (h, p_, link, lab) in enumerate(tp['items']):
+        u = href(ppath('book', lang)) if link == 'book' else href(tpath(link, lang))
+        rot = ''
+        if i == 1:
+            rot = (f'<div class="rot"><svg viewBox="0 0 120 150" aria-hidden="true"><rect x="32" y="12" width="56" height="126" rx="22" class="rot-car"/><rect x="40" y="34" width="40" height="26" rx="6" class="rot-glass"/>'
+                   + ''.join(f'<g class="rot-t" data-p="{j}"><rect x="-8" y="-14" width="16" height="28" rx="5"/></g>' for j in range(4))
+                   + f'</svg><button type="button" class="btn btn-ghost btn-sm rot-go">{E(tp["rotate"])}</button><span class="sr" aria-live="polite" data-done="{E(tp["rotated"])}"></span></div>')
+        cards += f'<li class="tip card"><span class="tip-n">{i + 1:02d}</span><h3>{E(h)}</h3><p class="note">{E(p_)}</p>{rot}<a class="link-arrow" href="{E(u)}">{E(lab)}</a></li>'
+    body += f"""<section class="sec" aria-labelledby="tips-h"><div class="wrap" data-tool="tips"><p class="kicker mono">{E(tp['kicker'])}</p><div class="tips-head"><h2 id="tips-h">{E(tp['h'])}</h2><div class="tips-nav"><button type="button" class="btn btn-ghost btn-sm tips-p" aria-label="{E(tp['prev'])}">←</button><button type="button" class="btn btn-ghost btn-sm tips-n" aria-label="{E(tp['next'])}">→</button></div></div><ul class="tips">{cards}</ul></div></section>"""
     lds = [crumbs_ld([(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], here)])]
-    return page(lang, 'help', here, alts_of('help'), t['help_title'], t['help_desc'], body, lds)
+    extra = f'<script>window.LM_TXT={{}};</script><script src="{asset("help.js", here)}" defer></script>\n'
+    return page(lang, 'help', here, alts_of('help'), t['help_title'], t['help_desc'], body, lds, extra_js=extra)
 
 
 def tool_static(k, lang, here):
@@ -550,10 +589,27 @@ def build_tool(k, ic, svc_key, lang):
     r = route(lang)
     items = [(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], ppath('help', lang)), (c['name'], here)]
     if k == 'sounds':
-        tool = '<div class="sfx-list">' + ''.join(f'<div class="card sfx"><button type="button" class="btn btn-ghost" aria-pressed="false" data-sfx="{E(asset("sfx-" + key + ".mp3", here))}">{icon("play")}<span>{E(c["play"])}</span></button><div><h2>{E(n)}</h2><p class="note">{E(desc)}</p><a class="link-arrow" href="{E(href(spath(SVC[sk], lang)))}">{E(SVC[sk][lang]["name"])}</a></div></div>' for key, n, desc, sk in c['items']) + f'<p class="hint">{E(c["audio_note"])}</p></div>'
+        tool = '<div class="sfx-list">' + ''.join(f'<div class="card sfx"><button type="button" class="btn btn-ghost" aria-pressed="false" data-sfx="{E(asset("sfx-" + key + ".mp3", here))}">{icon("play")}<span>{E(c["play"])}</span><b class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></b></button><div><h2>{E(n)}</h2><p class="note">{E(desc)}</p><a class="link-arrow" href="{E(href(spath(SVC[sk], lang)))}">{E(SVC[sk][lang]["name"])}</a></div></div>' for key, n, desc, sk in c['items']) + f'<p class="hint">{E(c["audio_note"])}</p></div>'
         tool = f'<div data-tool="sounds">{tool}</div>'
+    elif k == 'symptoms':
+        btns = ''
+        for key, ic_, sk, snds in SYMPTOMS:
+            it = c['items'][key]
+            sv = SVC[sk]
+            snd = ','.join(f'{c["snd"][x]}|{asset("sfx-" + x + ".mp3", here)}' for x in snds)
+            btns += (f'<button type="button" class="sy-b" aria-pressed="false" data-svc="{E(sv[lang]["name"])}" data-href="{E(href(spath(sv, lang)))}" '
+                     f'data-why="{E(it[2])}" data-sms="{E(sms(r["phone"], it[3]))}" data-snd="{E(snd)}"><span class="ic">{icon(ic_)}</span><span><b>{E(it[0])}</b><small>{E(it[1])}</small></span></button>')
+        tool = (f'<div data-tool="symptoms" class="tool-mount tm-sy"><div class="sy-grid" role="group" aria-label="{E(c["pick"])}">{btns}</div>'
+                f'<div class="sy-out card" aria-live="polite" hidden><p class="kicker mono">{E(c["fits"])}</p><h2 class="sy-svc"></h2><p class="note sy-why"></p>'
+                f'<div class="sy-hear" hidden><p class="lbl">{E(c["hear"])}</p><div class="sy-snds"></div></div>'
+                f'<div class="btn-row"><a class="btn btn-red sy-text" href="#">{icon("text")}{E(c["text_it"])}</a><a class="btn btn-ghost sy-link" href="#">{E(c["see_svc"])}</a></div></div></div>')
+    elif k == 'chooser':
+        qs = ''.join(f'<fieldset class="field ch-q"><legend class="lbl"><span class="ch-n mono">{i + 1}</span>{E(q)}</legend><div class="chips">' + ''.join(f'<label><input type="radio" name="q{i + 1}" value="{v}"><span>{E(lab)}</span></label>' for v, lab in opts) + '</div></fieldset>' for i, (q, opts) in enumerate(c['qs']))
+        tool = (f'<div data-tool="chooser" class="tool-mount"><form class="tool-card ch-form" onsubmit="return false">{qs}<div class="ch-prog" aria-hidden="true"><i></i></div></form>'
+                f'<div class="ch-res card" aria-live="polite" hidden><p class="kicker mono">{E(c["tip"])}</p><h2></h2><p class="note"></p>'
+                f'<div class="btn-row"><a class="btn btn-red" href="{E(href(ppath("tires", lang)))}">{icon("tread")}{E(c["quote"])}</a><a class="btn btn-ghost ch-text" href="#">{icon("text")}{E(g["text_us"])}</a></div></div></div>')
     elif k == 'lights':
-        tool = '<ul class="lights">' + ''.join(f'<li class="card"><h2>{E(n)}</h2><p class="note">{E(desc)}</p></li>' for n, desc in c['items']) + '</ul>' + f'<div class="card" style="margin-top:16px"><h2 class="th" style="margin-top:0">{E(c["remind_h"])}</h2>' + ''.join(f'<p class="note" style="margin-top:10px">{E(x)}</p>' for x in c['remind']) + '</div>'
+        tool = '<div data-tool="lights" class="tool-mount tm-lights"><ul class="lights">' + ''.join(f'<li class="card"><h2>{E(n)}</h2><p class="note">{E(desc)}</p></li>' for n, desc in c['items']) + '</ul></div>' + f'<div class="card" style="margin-top:16px"><h2 class="th" style="margin-top:0">{E(c["remind_h"])}</h2>' + ''.join(f'<p class="note" style="margin-top:10px">{E(x)}</p>' for x in c['remind']) + '</div>'
     else:
         imgs = {}
         if k == 'penny':
@@ -577,7 +633,7 @@ def build_tool(k, ic, svc_key, lang):
     if k == 'size':
         js += 'window.LM_LI=' + json.dumps(LOAD_INDEX) + ';window.LM_SR=' + json.dumps(SPEED) + ';'
     js += '</script>\n'
-    extra = cfg_js(lang, here, txt=False) + js + (f'<script src="{asset("help.js", here)}" defer></script>\n' if k != 'lights' else '')
+    extra = cfg_js(lang, here, txt=False) + js + f'<script src="{asset("help.js", here)}" defer></script>\n'
     lds = [crumbs_ld(items)]
     return page(lang, 'help', here, alts, c['title'], c['desc'], body, lds, extra_js=extra)
 
@@ -774,7 +830,7 @@ def copy_assets():
     for f in os.listdir(SRC):
         if f.endswith(('.css', '.js')):
             shutil.copy2(os.path.join(SRC, f), os.path.join(A, f))
-    for f in ['hero-poster.webp', 'logo.webp', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'og-card.jpg', 'penny.webp', 'sfx-squeal.mp3', 'sfx-grind.mp3', 'sfx-clunk.mp3']:
+    for f in ['hero-poster.webp', 'logo.webp', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'og-card.jpg', 'penny.webp', 'sfx-squeal.mp3', 'sfx-grind.mp3', 'sfx-clunk.mp3'] + ([MUSIC['file']] if MUSIC.get('licensed') else []):
         shutil.copy2(os.path.join(ROOT, 'assets', f), os.path.join(A, f))
     if PHOTOS:
         shutil.copytree(os.path.join(ROOT, 'assets', 'photos'), os.path.join(A, 'photos'), dirs_exist_ok=True)

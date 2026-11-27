@@ -83,7 +83,7 @@ C = {
    'kw': 'pressure psi cold tpms light low air inflate',
    'title': 'Tire Pressure in Cold Weather | L&M Tire, Worcester MA', 'desc': 'Tire pressure drops about 1 PSI for every 10°F colder. Estimate your pressure and learn where to find the right number.',
    'h1': 'Tire pressure and cold weather', 'lede': 'Tire pressure drops about 1 PSI for every 10°F the air gets colder. That is why the pressure light often comes on during the first cold mornings.',
-   'set': 'Pressure you set (PSI)', 'then': 'Temperature when you filled (°F)', 'now': 'Temperature now (°F)',
+   'today': 'Today in Worcester', 'out': 'outside now', 'use': "Use today's temperature", 'snow': 'Snow is in the Worcester forecast this week. A good time for winter tires and a pressure check.', 'gauge': 'Estimated pressure now', 'tpms': 'Most cars turn on the pressure light below about {v} PSI (25% under the door-sticker number).', 'win_h': 'Winter-ready checklist', 'win_items': [['Winter tires on', 'Or all-season tires with good tread'], ['Tread is deep enough', 'Use the penny test'], ['Tire pressure checked', 'Cold air lowers the pressure'], ['Brakes feel strong', 'No grinding, no squealing'], ['Oil change is up to date', 'Before the long cold months']], 'win_n': '{n} of 5 ready.', 'win_book': 'Book a winter check', 'set': 'Pressure you set (PSI)', 'then': 'Temperature when you filled (°F)', 'now': 'Temperature now (°F)',
    'r_low': 'Your tires may be about {v} PSI lower now, just from the cold.', 'r_high': 'It is warmer now, so pressure may read about {v} PSI higher.', 'r_same': 'About the same temperature, so pressure should be close to where you set it.',
    'tips_h': 'How to get it right', 'tips': ['Use the number on the sticker inside the driver\'s door, not the maximum printed on the tire.', 'Check when the tires are cold, before driving or after the car sat a few hours.', 'Check once a month and before long trips, including the spare if you have one.', 'If the pressure light stays on after filling, or one tire keeps losing air, have it checked: it may be a leak.'],
   },
@@ -113,7 +113,7 @@ C = {
      ('Battery / charging light', 'The charging system may not be charging the battery. The car can run out of power. Get it checked soon.'),
      ('Engine temperature light', 'The engine is overheating. Pull over safely and turn it off. Don\'t open the radiator cap while it is hot.'),
    ],
-   'remind_h': 'Maintenance reminder or warning code?', 'remind': [
+   'tap': 'Tap a light on the dashboard.', 'red': 'Red: stop soon, safely', 'amber': 'Amber: get it checked soon', 'flash': 'Show it flashing', 'steady': 'Show it steady', 'cluster': 'Dashboard with warning lights you can tap', 'remind_h': 'Maintenance reminder or warning code?', 'remind': [
      '"Oil change due", "Service" or an oil life percentage is a maintenance reminder. You reset it after the service is done. The steps are different for every car: your owner\'s manual shows how for your model.',
      'A warning light like check engine means the car stored a trouble code. Clearing the code with a scanner turns the light off but does not fix anything, and it erases information that helps find the problem.',
      'We read the codes, explain what they mean and give you the price before any repair.'],
@@ -124,7 +124,7 @@ C = {
    'title': 'When Is My Next Oil Change? Reminder Tool | L&M Tire, Worcester MA', 'desc': 'Tell us when you last changed the oil and how much you drive. Get a date and add a reminder to your phone calendar.',
    'h1': 'When is your next oil change?', 'lede': 'Tell us roughly when you last changed the oil and how much you drive. We work out a date you can add to your phone\'s calendar. Nothing is sent to us.',
    'last': 'Last oil change', 'miles': 'Miles you drive in a week', 'interval': 'Your oil change interval (miles)',
-   'interval_help': 'Not sure? Check the sticker on your windshield, the oil life on your dashboard, or the owner\'s manual.',
+   'around': 'Next oil change around', 'in_m': 'In about {n} months.', 'in_w': 'In about {n} weeks.', 'life': 'Estimated oil life left', 'interval_help': 'Not sure? Check the sticker on your windshield, the oil life on your dashboard, or the owner\'s manual.',
    'next': 'Next oil change around {d}.', 'past': 'It may already be due. Book an oil change soon.', 'pick': 'Pick the date of your last oil change.',
    'cal': 'Add to my calendar', 'cal_title': 'Oil change at L&M Tire', 'cal_desc': 'Oil change due. Book: call 508-853-3322 or text {num}.',
    'note': 'If your car shows an oil life percentage, follow that. Short trips, cold weather and towing can mean more frequent changes.',
@@ -195,7 +195,7 @@ C = {
    'kw': 'calibragem pressão psi frio tpms luz baixo ar encher',
    'title': 'Calibragem do pneu no frio | L&M Tire, Worcester MA', 'desc': 'A pressão do pneu cai cerca de 1 PSI a cada 10°F de frio. Calcule a sua pressão e veja onde achar o número certo.',
    'h1': 'Calibragem e tempo frio', 'lede': 'A pressão do pneu cai cerca de 1 PSI a cada 10°F que o ar esfria. Por isso a luz de pressão costuma acender nas primeiras manhãs frias.',
-   'set': 'Pressão que você colocou (PSI)', 'then': 'Temperatura quando calibrou (°F)', 'now': 'Temperatura agora (°F)',
+   'today': 'Hoje em Worcester', 'out': 'lá fora agora', 'use': 'Usar a temperatura de hoje', 'snow': 'Tem neve na previsão de Worcester esta semana. Boa hora para pneus de inverno e calibragem.', 'gauge': 'Pressão estimada agora', 'tpms': 'A maioria dos carros acende a luz de pressão abaixo de uns {v} PSI (25% abaixo do número da etiqueta da porta).', 'win_h': 'Checklist para o inverno', 'win_items': [['Pneus de inverno colocados', 'Ou pneus para todas as estações com bom sulco'], ['Sulco fundo o bastante', 'Faça o teste da moeda'], ['Pressão dos pneus conferida', 'O frio baixa a pressão'], ['Freios firmes', 'Sem rangido, sem chiado'], ['Troca de óleo em dia', 'Antes dos meses de frio']], 'win_n': '{n} de 5 prontos.', 'win_book': 'Agendar revisão de inverno', 'set': 'Pressão que você colocou (PSI)', 'then': 'Temperatura quando calibrou (°F)', 'now': 'Temperatura agora (°F)',
    'r_low': 'Seus pneus podem estar cerca de {v} PSI mais baixos agora, só por causa do frio.', 'r_high': 'Está mais quente agora, então a pressão pode marcar cerca de {v} PSI a mais.', 'r_same': 'Temperatura parecida, então a pressão deve estar perto do que você colocou.',
    'tips_h': 'Como acertar', 'tips': ['Use o número do adesivo dentro da porta do motorista, não o máximo escrito no pneu.', 'Calibre com os pneus frios, antes de rodar ou depois de o carro ficar parado algumas horas.', 'Confira uma vez por mês e antes de viagens, incluindo o estepe se tiver.', 'Se a luz continuar acesa depois de calibrar, ou um pneu viver perdendo ar, peça para verificar: pode ser um furo.'],
   },
@@ -225,7 +225,7 @@ C = {
      ('Luz da bateria / carga', 'O sistema de carga pode não estar carregando a bateria. O carro pode ficar sem energia. Verifique logo.'),
      ('Luz da temperatura do motor', 'O motor está superaquecendo. Pare com segurança e desligue. Não abra a tampa do radiador com o motor quente.'),
    ],
-   'remind_h': 'Lembrete de manutenção ou código de falha?', 'remind': [
+   'tap': 'Toque numa luz do painel.', 'red': 'Vermelha: pare logo, com segurança', 'amber': 'Amarela: verifique logo', 'flash': 'Mostrar piscando', 'steady': 'Mostrar fixa', 'cluster': 'Painel com luzes de alerta para tocar', 'remind_h': 'Lembrete de manutenção ou código de falha?', 'remind': [
      '"Troca de óleo", "Service" ou a porcentagem de vida do óleo é um lembrete de manutenção. Ele é zerado depois que o serviço é feito. O jeito muda de carro para carro: o manual mostra como fazer no seu modelo.',
      'Uma luz de alerta como a da injeção quer dizer que o carro guardou um código de falha. Apagar o código com um scanner desliga a luz, mas não conserta nada, e apaga informações que ajudam a achar o problema.',
      'Lemos os códigos, explicamos o que querem dizer e passamos o preço antes de qualquer conserto.'],
@@ -236,7 +236,7 @@ C = {
    'title': 'Quando é a próxima troca de óleo? Lembrete | L&M Tire, Worcester MA', 'desc': 'Diga quando trocou o óleo e quanto roda. Receba uma data e coloque um lembrete na agenda do celular.',
    'h1': 'Quando é a próxima troca de óleo?', 'lede': 'Diga mais ou menos quando trocou o óleo e quanto você roda. Calculamos uma data para colocar na agenda do celular. Nada é enviado para nós.',
    'last': 'Última troca de óleo', 'miles': 'Milhas que você roda por semana', 'interval': 'Intervalo de troca (milhas)',
-   'interval_help': 'Não sabe? Veja o adesivo no para-brisa, a vida do óleo no painel ou o manual do carro.',
+   'around': 'Próxima troca de óleo por volta de', 'in_m': 'Daqui a uns {n} meses.', 'in_w': 'Daqui a umas {n} semanas.', 'life': 'Vida estimada do óleo', 'interval_help': 'Não sabe? Veja o adesivo no para-brisa, a vida do óleo no painel ou o manual do carro.',
    'next': 'Próxima troca por volta de {d}.', 'past': 'Talvez já esteja na hora. Agende a troca de óleo logo.', 'pick': 'Escolha a data da última troca de óleo.',
    'cal': 'Colocar na minha agenda', 'cal_title': 'Troca de óleo na L&M Tire', 'cal_desc': 'Hora da troca de óleo. Agende: ligue 508-853-3322 ou mande mensagem para {num}.',
    'note': 'Se o seu carro mostra a porcentagem de vida do óleo, siga ela. Trajetos curtos, frio e reboque podem pedir trocas mais frequentes.',
@@ -307,7 +307,7 @@ C = {
    'kw': 'presión aire psi frío tpms luz baja inflar',
    'title': 'Presión de llantas con el frío | L&M Tire, Worcester MA', 'desc': 'La presión de las llantas baja como 1 PSI por cada 10°F de frío. Calcule su presión y vea dónde encontrar el número correcto.',
    'h1': 'Presión de llantas y el frío', 'lede': 'La presión de las llantas baja como 1 PSI por cada 10°F que se enfría el aire. Por eso la luz de presión se prende muchas veces en las primeras mañanas frías.',
-   'set': 'Presión que les puso (PSI)', 'then': 'Temperatura cuando les puso aire (°F)', 'now': 'Temperatura ahora (°F)',
+   'today': 'Hoy en Worcester', 'out': 'afuera ahora', 'use': 'Usar la temperatura de hoy', 'snow': 'Hay nieve en el pronóstico de Worcester esta semana. Buen momento para llantas de invierno y revisar la presión.', 'gauge': 'Presión estimada ahora', 'tpms': 'La mayoría de los carros prenden la luz de presión por debajo de unos {v} PSI (25% menos que el número de la etiqueta de la puerta).', 'win_h': 'Lista para el invierno', 'win_items': [['Llantas de invierno puestas', 'O llantas para toda temporada con buena banda'], ['La banda es suficiente', 'Haga la prueba del centavo'], ['Presión revisada', 'El frío baja la presión'], ['Los frenos se sienten firmes', 'Sin rechinidos ni chirridos'], ['Cambio de aceite al día', 'Antes de los meses fríos']], 'win_n': '{n} de 5 listos.', 'win_book': 'Pedir revisión de invierno', 'set': 'Presión que les puso (PSI)', 'then': 'Temperatura cuando les puso aire (°F)', 'now': 'Temperatura ahora (°F)',
    'r_low': 'Sus llantas pueden tener unos {v} PSI menos ahora, solo por el frío.', 'r_high': 'Hace más calor ahora, así que la presión puede marcar unos {v} PSI más.', 'r_same': 'Casi la misma temperatura, así que la presión debe estar cerca de lo que puso.',
    'tips_h': 'Cómo hacerlo bien', 'tips': ['Use el número de la etiqueta dentro de la puerta del conductor, no el máximo que dice la llanta.', 'Revise con las llantas frías, antes de manejar o después de que el carro estuvo parado unas horas.', 'Revise una vez al mes y antes de viajes largos, también la de repuesto si tiene.', 'Si la luz sigue prendida después de ponerles aire, o una llanta pierde aire seguido, que la revisen: puede ser una ponchadura.'],
   },
@@ -337,7 +337,7 @@ C = {
      ('Luz de batería / carga', 'El sistema de carga puede no estar cargando la batería. El carro se puede quedar sin corriente. Revíselo pronto.'),
      ('Luz de temperatura del motor', 'El motor se está calentando de más. Oríllese con cuidado y apáguelo. No abra el tapón del radiador en caliente.'),
    ],
-   'remind_h': '¿Recordatorio de mantenimiento o código de falla?', 'remind': [
+   'tap': 'Toque una luz del tablero.', 'red': 'Roja: deténgase pronto, con cuidado', 'amber': 'Ámbar: revísela pronto', 'flash': 'Mostrar parpadeando', 'steady': 'Mostrar fija', 'cluster': 'Tablero con luces de advertencia para tocar', 'remind_h': '¿Recordatorio de mantenimiento o código de falla?', 'remind': [
      '"Cambio de aceite", "Service" o el porcentaje de vida del aceite es un recordatorio de mantenimiento. Se reinicia después de hacer el servicio. Los pasos cambian en cada carro: el manual muestra cómo hacerlo en su modelo.',
      'Una luz de advertencia como check engine quiere decir que el carro guardó un código de falla. Borrar el código con un escáner apaga la luz pero no arregla nada, y borra información que ayuda a encontrar el problema.',
      'Leemos los códigos, le explicamos qué quieren decir y le damos el precio antes de cualquier reparación.'],
@@ -348,7 +348,7 @@ C = {
    'title': '¿Cuándo es mi próximo cambio de aceite? Recordatorio | L&M Tire, Worcester MA', 'desc': 'Díganos cuándo cambió el aceite y cuánto maneja. Reciba una fecha y póngala de recordatorio en el calendario de su teléfono.',
    'h1': '¿Cuándo es su próximo cambio de aceite?', 'lede': 'Díganos más o menos cuándo cambió el aceite y cuánto maneja. Calculamos una fecha que puede poner en el calendario de su teléfono. No se nos envía nada.',
    'last': 'Último cambio de aceite', 'miles': 'Millas que maneja por semana', 'interval': 'Intervalo de cambio (millas)',
-   'interval_help': '¿No sabe? Revise la calcomanía del parabrisas, la vida del aceite en el tablero o el manual del carro.',
+   'around': 'Próximo cambio de aceite alrededor del', 'in_m': 'En unos {n} meses.', 'in_w': 'En unas {n} semanas.', 'life': 'Vida estimada del aceite', 'interval_help': '¿No sabe? Revise la calcomanía del parabrisas, la vida del aceite en el tablero o el manual del carro.',
    'next': 'Próximo cambio alrededor del {d}.', 'past': 'Puede que ya le toque. Pida su cambio de aceite pronto.', 'pick': 'Elija la fecha de su último cambio de aceite.',
    'cal': 'Poner en mi calendario', 'cal_title': 'Cambio de aceite en L&M Tire', 'cal_desc': 'Toca cambio de aceite. Pida cita: llame al 508-853-3322 o mande texto al {num}.',
    'note': 'Si su carro muestra el porcentaje de vida del aceite, sígalo. Viajes cortos, frío y remolque pueden pedir cambios más seguidos.',
@@ -361,3 +361,139 @@ LOAD_INDEX = {70: 739, 71: 761, 72: 783, 73: 805, 74: 827, 75: 853, 76: 882, 77:
               99: 1709, 100: 1764, 101: 1819, 102: 1874, 103: 1929, 104: 1984, 105: 2039, 106: 2094, 107: 2149, 108: 2205, 109: 2271, 110: 2337,
               111: 2403, 112: 2469, 113: 2535, 114: 2601, 115: 2679, 116: 2756, 117: 2833, 118: 2910, 119: 2998, 120: 3086}
 SPEED = {'L': 75, 'M': 81, 'N': 87, 'P': 93, 'Q': 99, 'R': 106, 'S': 112, 'T': 118, 'U': 124, 'H': 130, 'V': 149, 'W': 168, 'Y': 186}
+
+
+# ---- Stage 3.1: restored Sprint 2 tools (symptom selector, tire chooser) ----
+TOOLS.insert(0, ('symptoms', 'ask', 'diagnostics'))
+TOOLS.insert(3, ('chooser', 'snow', 'new-tires'))
+
+# symptom key, icon, related service key, sound clips to offer
+SYMPTOMS = [('brakes', 'brakelamp', 'brakes', ['squeal', 'grind']), ('shake', 'balance', 'new-tires', []), ('clunk', 'spring', 'suspension', ['clunk']),
+            ('light', 'engine', 'diagnostics', []), ('pull', 'align', 'wheel-alignment', []), ('flat', 'tpms', 'flat-tire-repair', []),
+            ('tread', 'snow', 'new-tires', []), ('oil', 'oil', 'oil-change', []), ('other', 'ask', 'diagnostics', [])]
+
+C['en']['symptoms'] = {
+    'slug': 'what-is-my-car-doing', 'name': 'What is your car doing?', 'blurb': 'Tap what you notice and see which service fits.',
+    'kw': 'symptom noise grinding squeal shake vibration clunk pulls warning light flat oil help',
+    'title': 'What Is Your Car Doing? Symptom Guide | L&M Tire, Worcester MA', 'desc': 'Tap what you hear, feel or see, and see which service usually fits: brakes, balancing, suspension, alignment, flat repair, tires or an oil change.',
+    'h1': 'What is your car doing?', 'lede': 'Tap what you notice. We\'ll show you which service usually fits, and you can text us about it in one tap.',
+    'items': {
+        'brakes': ['Grinding or squealing', 'when I press the brakes', 'Grinding or squealing when you stop usually means the brakes need a look. It is safer to check it soon.', 'Hi L&M Tire, my brakes are grinding or squealing. Can I book a time to check them?'],
+        'shake': ['Shaking or vibrating', 'at higher speeds', 'A shake at higher speeds is often a wheel that needs balancing. We can check the tires and balance them.', 'Hi L&M Tire, my car shakes at higher speeds. Can I book a tire check and balance?'],
+        'clunk': ['Clunks over bumps', 'or the steering feels loose', 'Clunks over bumps or loose steering point to parts under the car. We work on suspension and steering.', 'Hi L&M Tire, my car clunks over bumps / the steering feels loose. Can I book a check?'],
+        'light': ['A warning light is on', 'on the dashboard', 'A warning light is the car telling you something. Bring it in and we will read what the light means.', 'Hi L&M Tire, a warning light is on in my car. Can I book a check?'],
+        'pull': ['Pulls to one side', 'steering wheel off-center or uneven tire wear', 'A car that pulls to one side, a steering wheel that sits off-center, or tires wearing on one edge often point to wheel alignment. We do alignments.', 'Hi L&M Tire, my car pulls to one side / the steering wheel is off-center. Can I book a wheel alignment?'],
+        'flat': ['Flat or losing air', 'a tire keeps going low', 'A tire that keeps losing air may have a puncture. Bring it in: we check the tire inside and tell you if it can be repaired or needs replacing.', 'Hi L&M Tire, I have a flat / a tire losing air. When can I come in?'],
+        'tread': ['Thin tread or snow coming', 'time for new, used or winter tires', 'Thin tread grips less, most of all on wet and snowy roads. We sell new, used and winter tires.', 'Hi L&M Tire, I need tires. My size is: '],
+        'oil': ['Due for an oil change', 'or the oil light came on', 'Keeping up with oil changes keeps the engine healthy. If the red oil pressure light is on, stop driving and check the oil first.', 'Hi L&M Tire, I would like to book an oil change.'],
+        'other': ['Something else', 'tell us in your own words', 'Describe what you hear, feel or see. A short text is enough, and we will tell you if it is something we fix.', 'Hi L&M Tire, my car is doing this: '],
+    },
+    'pick': 'Pick what you notice.', 'fits': 'Usually fits', 'hear': 'Hear it', 'text_it': 'Text us about this', 'see_svc': 'About this service',
+    'snd': {'squeal': 'Squeal', 'grind': 'Grind', 'clunk': 'Clunk'},
+}
+C['pt']['symptoms'] = {
+    'slug': 'o-que-o-carro-esta-fazendo', 'name': 'O que o seu carro está fazendo?', 'blurb': 'Toque no que você percebe e veja qual serviço combina.',
+    'kw': 'sintoma barulho rangido chiado tremor vibração batida puxando luz pneu furado óleo ajuda',
+    'title': 'O que o seu carro está fazendo? Guia de sintomas | L&M Tire, Worcester MA', 'desc': 'Toque no que você ouve, sente ou vê e veja qual serviço costuma resolver: freios, balanceamento, suspensão, alinhamento, pneu furado, pneus ou troca de óleo.',
+    'h1': 'O que o seu carro está fazendo?', 'lede': 'Toque no que você percebe. Mostramos qual serviço costuma resolver, e você manda uma mensagem com um toque.',
+    'items': {
+        'brakes': ['Rangido ou chiado', 'quando eu freio', 'Rangido ou chiado ao frear geralmente quer dizer que os freios precisam de uma olhada. É mais seguro verificar logo.', 'Olá L&M Tire, meus freios estão rangendo ou chiando. Posso marcar um horário para verificar?'],
+        'shake': ['Tremendo ou vibrando', 'em velocidade alta', 'Tremor em velocidade alta muitas vezes é roda precisando de balanceamento. Podemos verificar os pneus e balancear.', 'Olá L&M Tire, meu carro treme em velocidade alta. Posso marcar uma verificação e balanceamento?'],
+        'clunk': ['Batidas nos buracos', 'ou a direção parece solta', 'Batidas nos buracos ou direção solta indicam peças embaixo do carro. Trabalhamos com suspensão e direção.', 'Olá L&M Tire, meu carro bate nos buracos / a direção está solta. Posso marcar uma verificação?'],
+        'light': ['Uma luz de aviso acendeu', 'no painel', 'A luz de aviso é o carro dizendo algo. Traga o carro e lemos o que a luz quer dizer.', 'Olá L&M Tire, acendeu uma luz de aviso no meu carro. Posso marcar uma verificação?'],
+        'pull': ['Puxa para um lado', 'volante torto ou pneu gastando de um lado', 'Carro puxando para um lado, volante torto ou pneus gastando de um lado só geralmente indicam alinhamento. Fazemos alinhamento.', 'Olá L&M Tire, meu carro puxa para um lado / o volante está torto. Posso marcar um alinhamento?'],
+        'flat': ['Furado ou perdendo ar', 'um pneu sempre esvazia', 'Um pneu que sempre perde ar pode estar furado. Traga: olhamos o pneu por dentro e dizemos se tem conserto ou se precisa trocar.', 'Olá L&M Tire, estou com um pneu furado / perdendo ar. Quando posso ir?'],
+        'tread': ['Pneu gasto ou neve chegando', 'hora de pneus novos, usados ou de inverno', 'Pneu gasto segura menos, principalmente na chuva e na neve. Vendemos pneus novos, usados e de inverno.', 'Olá L&M Tire, preciso de pneus. A medida é: '],
+        'oil': ['Hora da troca de óleo', 'ou a luz do óleo acendeu', 'Trocar o óleo em dia mantém o motor saudável. Se a luz vermelha de pressão do óleo acender, pare e confira o óleo antes.', 'Olá L&M Tire, quero marcar uma troca de óleo.'],
+        'other': ['Outra coisa', 'conte com suas palavras', 'Descreva o que você ouve, sente ou vê. Uma mensagem curta basta, e dizemos se é algo que consertamos.', 'Olá L&M Tire, meu carro está fazendo isto: '],
+    },
+    'pick': 'Escolha o que você percebe.', 'fits': 'Costuma ser', 'hear': 'Ouça', 'text_it': 'Mandar mensagem sobre isso', 'see_svc': 'Sobre este serviço',
+    'snd': {'squeal': 'Chiado', 'grind': 'Rangido', 'clunk': 'Batida'},
+}
+C['es']['symptoms'] = {
+    'slug': 'que-hace-mi-carro', 'name': '¿Qué está haciendo su carro?', 'blurb': 'Toque lo que nota y vea qué servicio le corresponde.',
+    'kw': 'síntoma ruido rechina chirría vibra tiembla golpe se jala luz ponchada aceite ayuda',
+    'title': '¿Qué está haciendo su carro? Guía de síntomas | L&M Tire, Worcester MA', 'desc': 'Toque lo que oye, siente o ve, y vea qué servicio suele corresponder: frenos, balanceo, suspensión, alineación, ponchaduras, llantas o cambio de aceite.',
+    'h1': '¿Qué está haciendo su carro?', 'lede': 'Toque lo que nota. Le mostramos qué servicio suele corresponder, y nos puede mandar un texto con un toque.',
+    'items': {
+        'brakes': ['Rechina o chirría', 'cuando freno', 'Si rechina o chirría al frenar, normalmente hay que revisar los frenos. Es más seguro revisarlos pronto.', 'Hola L&M Tire, mis frenos rechinan o chirrían. ¿Puedo hacer una cita para revisarlos?'],
+        'shake': ['Tiembla o vibra', 'a más velocidad', 'Una vibración a más velocidad muchas veces es una rueda que necesita balanceo. Podemos revisar las llantas y balancearlas.', 'Hola L&M Tire, mi carro vibra a más velocidad. ¿Puedo hacer cita para revisión y balanceo?'],
+        'clunk': ['Golpes en los baches', 'o la dirección se siente floja', 'Golpes en los baches o dirección floja apuntan a piezas debajo del carro. Trabajamos en suspensión y dirección.', 'Hola L&M Tire, mi carro golpea en los baches / la dirección está floja. ¿Puedo hacer una cita?'],
+        'light': ['Se prendió una luz', 'en el tablero', 'La luz de aviso es el carro diciéndole algo. Tráigalo y leemos qué significa.', 'Hola L&M Tire, se prendió una luz en mi carro. ¿Puedo hacer una cita?'],
+        'pull': ['Se jala a un lado', 'volante chueco o llantas gastadas de un lado', 'Un carro que se jala a un lado, el volante chueco o llantas gastadas de un lado suelen indicar alineación. Hacemos alineaciones.', 'Hola L&M Tire, mi carro se jala a un lado / el volante está chueco. ¿Puedo hacer cita para alineación?'],
+        'flat': ['Ponchada o pierde aire', 'una llanta se baja seguido', 'Una llanta que pierde aire puede estar ponchada. Tráigala: la revisamos por dentro y le decimos si tiene arreglo o hay que cambiarla.', 'Hola L&M Tire, tengo una llanta ponchada / que pierde aire. ¿Cuándo puedo ir?'],
+        'tread': ['Banda gastada o viene la nieve', 'hora de llantas nuevas, usadas o de invierno', 'Una llanta gastada agarra menos, sobre todo con lluvia y nieve. Vendemos llantas nuevas, usadas y de invierno.', 'Hola L&M Tire, necesito llantas. La medida es: '],
+        'oil': ['Toca cambio de aceite', 'o se prendió la luz del aceite', 'Cambiar el aceite a tiempo mantiene el motor sano. Si se prende la luz roja de presión de aceite, deje de manejar y revise el aceite primero.', 'Hola L&M Tire, quiero hacer cita para cambio de aceite.'],
+        'other': ['Otra cosa', 'cuéntenos con sus palabras', 'Describa lo que oye, siente o ve. Un texto corto basta, y le decimos si es algo que arreglamos.', 'Hola L&M Tire, mi carro está haciendo esto: '],
+    },
+    'pick': 'Elija lo que nota.', 'fits': 'Suele ser', 'hear': 'Escúchelo', 'text_it': 'Mandarnos un texto', 'see_svc': 'Sobre este servicio',
+    'snd': {'squeal': 'Chirrido', 'grind': 'Rechinido', 'clunk': 'Golpe'},
+}
+
+C['en']['chooser'] = {
+    'slug': 'which-tires', 'name': 'Which tires fit you?', 'blurb': 'Three quick questions: new, used or winter tires.',
+    'kw': 'which tires new used winter snow all season choose recommend quiz',
+    'title': 'Which Tires Fit You? New, Used or Winter | L&M Tire, Worcester MA', 'desc': 'Three quick questions about snow, budget and how long you will keep the car point you to new, used or winter tires.',
+    'h1': 'Which tires fit you?', 'lede': 'Three quick questions. No right or wrong answers.',
+    'qs': [['How much do you drive in snow?', [['lots', 'A lot'], ['some', 'Sometimes'], ['rare', 'Rarely']]],
+           ['What matters most?', [['cost', 'Lowest cost'], ['life', 'Lasts longest'], ['grip', 'Best grip']]],
+           ['How long will you keep this car?', [['short', 'Under a year'], ['mid', '1 to 3 years'], ['long', 'Longer']]]],
+    'res': {'winter': ['Winter tires', 'If you drive in snow a lot, winter tires grip far better on snow and ice. Many people keep a second set on wheels and switch each season.'],
+            'used': ['Used tires', 'Good used tires keep the cost down, which makes sense if you will not keep the car long. We check the tread and age before they go on.'],
+            'grip': ['New tires, or winter tires', 'For the best grip with some snow driving, new tires with deep tread are a strong pick, and winter tires are better still in a snowy month.'],
+            'new': ['New tires', 'New tires last the longest, which pays off when you keep the car for years.'],
+            'both': ['New or used: we can show you both', 'Your answers sit in the middle. Text us your size and we will tell you what we have.']},
+    'tip': 'Our tip', 'quote': 'Get a tire quote', 'sms': 'Hi L&M Tire, I\'m looking for {k}. My size is: ',
+}
+C['pt']['chooser'] = {
+    'slug': 'qual-pneu', 'name': 'Qual pneu combina com você?', 'blurb': 'Três perguntas rápidas: pneu novo, usado ou de inverno.',
+    'kw': 'qual pneu novo usado inverno neve escolher recomendação',
+    'title': 'Qual pneu combina com você? Novo, usado ou de inverno | L&M Tire, Worcester MA', 'desc': 'Três perguntas rápidas sobre neve, orçamento e quanto tempo você vai ficar com o carro indicam pneu novo, usado ou de inverno.',
+    'h1': 'Qual pneu combina com você?', 'lede': 'Três perguntas rápidas. Não existe resposta certa ou errada.',
+    'qs': [['Quanto você dirige na neve?', [['lots', 'Muito'], ['some', 'Às vezes'], ['rare', 'Quase nunca']]],
+           ['O que importa mais?', [['cost', 'Menor preço'], ['life', 'Durar mais'], ['grip', 'Melhor aderência']]],
+           ['Quanto tempo vai ficar com este carro?', [['short', 'Menos de um ano'], ['mid', '1 a 3 anos'], ['long', 'Mais tempo']]]],
+    'res': {'winter': ['Pneus de inverno', 'Se você dirige muito na neve, pneus de inverno seguram muito melhor na neve e no gelo. Muita gente deixa um segundo jogo montado em rodas e troca a cada estação.'],
+            'used': ['Pneus usados', 'Bons pneus usados saem mais em conta, o que faz sentido se você não vai ficar muito tempo com o carro. Conferimos o sulco e a idade antes de montar.'],
+            'grip': ['Pneus novos, ou de inverno', 'Para a melhor aderência dirigindo às vezes na neve, pneus novos com sulco fundo são uma ótima escolha, e os de inverno são melhores ainda num mês de neve.'],
+            'new': ['Pneus novos', 'Pneus novos duram mais, o que compensa quando você fica anos com o carro.'],
+            'both': ['Novo ou usado: mostramos os dois', 'Suas respostas ficaram no meio. Mande a medida e dizemos o que temos.']},
+    'tip': 'Nossa dica', 'quote': 'Pedir orçamento de pneus', 'sms': 'Olá L&M Tire, estou procurando {k}. A medida é: ',
+}
+C['es']['chooser'] = {
+    'slug': 'que-llantas', 'name': '¿Qué llantas le convienen?', 'blurb': 'Tres preguntas rápidas: llantas nuevas, usadas o de invierno.',
+    'kw': 'qué llantas nuevas usadas invierno nieve escoger recomendación',
+    'title': '¿Qué llantas le convienen? Nuevas, usadas o de invierno | L&M Tire, Worcester MA', 'desc': 'Tres preguntas rápidas sobre nieve, presupuesto y cuánto tiempo tendrá el carro le indican llantas nuevas, usadas o de invierno.',
+    'h1': '¿Qué llantas le convienen?', 'lede': 'Tres preguntas rápidas. No hay respuestas buenas ni malas.',
+    'qs': [['¿Cuánto maneja en la nieve?', [['lots', 'Mucho'], ['some', 'A veces'], ['rare', 'Casi nunca']]],
+           ['¿Qué le importa más?', [['cost', 'El menor precio'], ['life', 'Que duren más'], ['grip', 'El mejor agarre']]],
+           ['¿Cuánto tiempo tendrá este carro?', [['short', 'Menos de un año'], ['mid', '1 a 3 años'], ['long', 'Más tiempo']]]],
+    'res': {'winter': ['Llantas de invierno', 'Si maneja mucho en la nieve, las llantas de invierno agarran mucho mejor en nieve y hielo. Mucha gente tiene un segundo juego en rines y las cambia cada temporada.'],
+            'used': ['Llantas usadas', 'Unas buenas llantas usadas cuestan menos, lo que conviene si no va a tener el carro mucho tiempo. Revisamos la banda y la edad antes de montarlas.'],
+            'grip': ['Llantas nuevas, o de invierno', 'Para el mejor agarre manejando a veces en nieve, unas llantas nuevas con banda profunda son buena opción, y las de invierno son aún mejores en un mes de nieve.'],
+            'new': ['Llantas nuevas', 'Las llantas nuevas duran más, lo que vale la pena si va a tener el carro por años.'],
+            'both': ['Nuevas o usadas: le mostramos ambas', 'Sus respuestas quedaron en medio. Mándenos su medida y le decimos qué tenemos.']},
+    'tip': 'Nuestro consejo', 'quote': 'Pedir precio de llantas', 'sms': 'Hola L&M Tire, busco {k}. La medida es: ',
+}
+
+# Tire care tips on the Tire Help page (restored from Sprint 2). link: a tool key or 'book'
+TIPS = {
+    'en': {'kicker': 'Tire care in 30 seconds', 'h': 'Five habits that save you money.', 'rotate': 'Rotate', 'rotated': 'Front tires moved to the back, back tires crossed to the front.', 'prev': 'Previous tip', 'next': 'Next tip', 'items': [
+        ['Check the pressure once a month', "Use the number on the sticker inside the driver's door, not the one on the tire. Check when the tires are cold.", 'pressure', 'Cold-tire calculator'],
+        ['Rotate the tires', "Moving the tires around helps them wear evenly, so the set lasts longer. Your owner's manual says how often.", 'book', 'Book a rotation'],
+        ['Watch the tread', 'Thin tread slips on wet and snowy roads. The penny test takes ten seconds.', 'penny', 'Try the penny test'],
+        ["Don't ignore a shake", 'A steering wheel that shakes at speed often means a wheel needs balancing.', 'book', 'Book a balance'],
+        ['Deal with small flats early', 'A slow leak from a nail is easier to deal with before the tire is driven flat.', 'puncture', 'Plug, patch or new tire?']]},
+    'pt': {'kicker': 'Cuidado com pneus em 30 segundos', 'h': 'Cinco hábitos que economizam dinheiro.', 'rotate': 'Fazer rodízio', 'rotated': 'Os pneus da frente foram para trás, os de trás cruzaram para a frente.', 'prev': 'Dica anterior', 'next': 'Próxima dica', 'items': [
+        ['Calibre uma vez por mês', 'Use o número da etiqueta na porta do motorista, não o do pneu. Calibre com os pneus frios.', 'pressure', 'Calculadora de pneu frio'],
+        ['Faça o rodízio dos pneus', 'Trocar os pneus de lugar ajuda a gastar por igual, e o jogo dura mais. O manual do carro diz de quanto em quanto tempo.', 'book', 'Agendar rodízio'],
+        ['Fique de olho no sulco', 'Pneu gasto escorrega na chuva e na neve. O teste da moeda leva dez segundos.', 'penny', 'Fazer o teste da moeda'],
+        ['Não ignore o tremor', 'Volante que treme em velocidade muitas vezes é roda precisando de balanceamento.', 'book', 'Agendar balanceamento'],
+        ['Cuide de furos pequenos cedo', 'Um vazamento lento de prego é mais fácil de resolver antes de rodar com o pneu vazio.', 'puncture', 'Tarugo, remendo ou pneu novo?']]},
+    'es': {'kicker': 'Cuidado de llantas en 30 segundos', 'h': 'Cinco hábitos que le ahorran dinero.', 'rotate': 'Rotar', 'rotated': 'Las llantas de adelante pasaron atrás, las de atrás cruzaron adelante.', 'prev': 'Consejo anterior', 'next': 'Siguiente consejo', 'items': [
+        ['Revise la presión una vez al mes', 'Use el número de la etiqueta en la puerta del conductor, no el de la llanta. Revise con las llantas frías.', 'pressure', 'Calculadora de llanta fría'],
+        ['Rote las llantas', 'Cambiar las llantas de lugar ayuda a que se gasten parejo y duren más. El manual dice cada cuánto.', 'book', 'Pedir rotación'],
+        ['Vigile la banda', 'Una banda gastada resbala con lluvia y nieve. La prueba del centavo toma diez segundos.', 'penny', 'Hacer la prueba del centavo'],
+        ['No ignore una vibración', 'Un volante que vibra a velocidad muchas veces es una rueda que necesita balanceo.', 'book', 'Pedir balanceo'],
+        ['Atienda las ponchaduras pequeñas a tiempo', 'Una fuga lenta por un clavo es más fácil de atender antes de manejar con la llanta vacía.', 'puncture', '¿Tapón, parche o llanta nueva?']]},
+}

@@ -206,3 +206,7 @@ DELIVERY = {'endpoint': ''}
 #       'tire_price' (price per tire), 'installed_price' (installed price), 'both' (tire and installed price).
 # Prices and stock are published only after the owner verifies the data and approves the mode.
 INVENTORY = {'mode': 'quote', 'feed': ''}
+
+# Background music (optional for visitors, off by default). The track's commercial rights are NOT confirmed yet
+# (see MEDIA-LICENSES.md), so it stays out of the production site until LICENSED is True. Preview builds show it for review.
+MUSIC = {'file': 'ambient-loop.mp3', 'licensed': False}
