@@ -15,7 +15,7 @@ ROOT = os.path.dirname(HERE)
 SRC = os.path.join(ROOT, 'src3')
 sys.path.insert(0, HERE)
 import business as BZ  # noqa
-from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIMA, REVIEWS, PHOTO_TEXT, CONTACTS, ROUTE, SOCIAL, STATS, EMAIL  # noqa
+from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIMA, REVIEWS, PHOTO_TEXT, CONTACTS, ROUTE, SOCIAL, STATS, EMAIL, TEAM  # noqa
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
 from business import DELIVERY, INVENTORY, MUSIC  # noqa
@@ -273,7 +273,7 @@ def header(lang, here, key, lang_links):
   <div class="lng" role="group" aria-label="{E(t['lang_label'])}">{lng}</div>
   <a class="btn btn-red m-call" href="tel:{shop['phone']}">{icon('phone')}{E(t['call_shop'])} {shop['label']}</a></nav>
 </div>
-<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="{E(t['search_label'])}" data-index="{E(asset('hp/search-' + lang + '.json', here) if HP else asset('search-' + lang + '.json'))}" data-none="{E(t['search_none'].format(shop=CONTACTS['shop']['label'], pt=CONTACTS['leo']['label']))}" hidden>
+<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="{E(t['search_label'])}" data-index="{E(asset('hp/search-' + lang + '.json', here) if HP else asset('search-' + lang + '.json'))}" data-none="{E(t['search_none'].format(shop=CONTACTS['shop']['label'], pt=CONTACTS[ROUTE['pt']]['label']))}" hidden>
   <div class="srch-box">
     <div class="srch-in">{icon('search')}<label for="srchIn" class="sr">{E(t['search_label'])}</label><input id="srchIn" type="search" autocomplete="off" enterkeyhint="search" placeholder="{E(t['search_ph'])}" role="combobox" aria-expanded="true" aria-controls="srchRes"><button type="button" class="hbtn" data-close aria-label="{E(t['close'])}">{icon('x')}</button></div>
     <div class="srch-pop" id="srchPop"><span>{E(t['search_hint'])}</span>{''.join(f'<button type="button">{E(p)}</button>' for p in t['search_pop'])}</div>
@@ -369,12 +369,23 @@ def hours_table(lang):
 
 
 def people(lang):
+    """'Contact Our Team': customer support channels (jobs, not people), then the customer care email"""
     t = T[lang]
-    c = CONTACTS
-    def row(who, langs, k, lang_attr=''):
-        wa = f' · <a href="https://wa.me/{c[k]["phone"][1:]}" target="_blank" rel="noopener">WhatsApp</a>' if c[k]['whatsapp'] else ''
-        return f'<div class="person"><div><b>{E(who)}</b><small{lang_attr}>{E(langs)}{wa}</small></div><a href="tel:{c[k]["phone"]}">{c[k]["label"]}</a></div>'
-    return row(t['shop'], t['langs_shop'], 'shop') + row(t['owner'], t['langs_owner'], 'cid') + row(t['partner'], t['langs_partner'], 'leo', ' lang="pt"' if lang != 'pt' else '')
+    out = ''
+    for k in TEAM:
+        c = CONTACTS[k]
+        name, sub = t['team'][k]
+        links = []
+        if c['sms']:
+            links.append(f'<a href="{E(sms(c["phone"], t["sms_hello"]))}">{E(t["text"])}</a>')
+        if c['whatsapp']:
+            links.append(f'<a href="https://wa.me/{c["phone"][1:]}" target="_blank" rel="noopener">WhatsApp</a>')
+        extra = (' · ' + ' · '.join(links)) if links else ''
+        out += f'<div class="person" data-channel="{k}"><div><b>{E(name)}</b><small>{E(sub)}{extra}</small></div><a href="tel:{c["phone"]}">{c["label"]}</a></div>'
+    if EMAIL:
+        name, sub = t['team']['email']
+        out += f'<div class="person" data-channel="email"><div><b>{E(name)}</b><small>{E(sub)}</small></div><a href="mailto:{E(EMAIL)}">{E(EMAIL)}</a></div>'
+    return out
 
 
 def visit_card(lang, here):
@@ -676,15 +687,15 @@ def vcard(lang):
     """contact card for phones; the routed texting contact comes first. Public email only (never the corporate one)."""
     ct, t = CONTACT_TOOLS[lang], T[lang]
     esc_v = lambda x: str(x).replace('\\', '\\\\').replace(',', '\\,').replace(';', '\\;').replace('\n', '\\n')
-    order = [ROUTE[lang]] + [k for k in ('cid', 'leo') if k != ROUTE[lang]]
-    lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:;' + esc_v(B['name']) + ';;;', 'FN:' + esc_v(B['name']), 'ORG:' + esc_v(B['name']),
-             'item1.TEL;TYPE=WORK,VOICE:' + CONTACTS['shop']['phone'], 'item1.X-ABLabel:' + esc_v(ct['v_shop'])]
-    for i, k in enumerate(order, 2):
+    # a business contact (shows as the company on iPhone), numbers labeled by customer service function, never by person
+    order = ['shop', ROUTE[lang]] + [k for k in TEAM if k not in ('shop', ROUTE[lang])]
+    lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:;;;;', 'FN:' + esc_v(B['name']), 'ORG:' + esc_v(B['name']), 'X-ABShowAs:COMPANY']
+    for i, k in enumerate(order, 1):
         c = CONTACTS[k]
-        lab = c['name'] + ' · ' + ' / '.join(ct['v_langs'][l] for l in c['langs']) + (' · ' + ct['v_text'] if c['sms'] else '')
-        lines += [f'item{i}.TEL;TYPE=CELL' + (',TEXT' if c['sms'] else '') + ':' + c['phone'], f'item{i}.X-ABLabel:' + esc_v(lab)]
+        lines += [f'item{i}.TEL;TYPE=WORK,' + ('CELL,TEXT' if c['sms'] else 'VOICE') + ':' + c['phone'], f'item{i}.X-ABLabel:' + esc_v(t['team'][k][0])]
     if EMAIL:
-        lines.append('EMAIL;TYPE=INTERNET,WORK:' + EMAIL)
+        n = len(order) + 1
+        lines += [f'item{n}.EMAIL;TYPE=INTERNET,WORK:' + EMAIL, f'item{n}.X-ABLabel:' + esc_v(t['team']['email'][0])]
     lines.append('ADR;TYPE=WORK:;;' + esc_v(B['street']) + ';' + esc_v(B['city']) + ';' + B['region'] + ';' + B['zip'] + ';USA')
     if SITE['domain']:
         lines.append('URL:' + SITE['domain'].rstrip('/') + '/' + ppath('home', lang))
@@ -927,7 +938,23 @@ def main():
     if not HP:
         build_seo(pages)
         build_404()
+    audit_identity()
     print('built', len(pages), 'pages into', OUT)
+
+
+def audit_identity():
+    """stop the build if a public file names a person or an internal role (the site speaks as one company)"""
+    from urllib.parse import unquote
+    bad = re.compile(r"(?<![^\W\d_])(Cid|Leo|Netto)(?![^\W\d_])|\b(owner|partner|co-owner|founder|officer|president|ceo)\b(?!'s manual|&#x27;s manual|\\'s manual)|\b(dono|sócio|sócios|dueño|socio|socios|fundador)\b|lmtirecorp", re.I)
+    hits = []
+    for dp, _, fs in os.walk(OUT):
+        for f in fs:
+            if f.endswith(('.html', '.js', '.json', '.xml', '.txt', '.webmanifest', '.css', '.vcf')):
+                txt = unquote(open(os.path.join(dp, f), encoding='utf-8', errors='ignore').read())
+                for m in bad.finditer(txt):
+                    hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: ...{txt[max(0, m.start() - 40):m.end() + 20]}...')
+    if hits:
+        raise SystemExit('identity audit failed:\n' + '\n'.join(hits[:20]))
 
 
 if __name__ == '__main__':

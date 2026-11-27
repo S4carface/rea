@@ -20,16 +20,16 @@ BUSINESS = {
     'google_profile_url': 'https://g.page/r/CTVdw0UmvaHLEBM',
     'google_review_url': 'https://g.page/r/CTVdw0UmvaHLEBM/review',
     'google_maps_url': 'https://www.google.com/maps/search/?api=1&query=L%26M+Tire+Auto+Repair+598+West+Boylston+Street+Worcester+MA+01606',
-    # Google rating: leave None until the owner confirms the numbers from the Google Business Profile.
+    # Google rating: leave None until the shop confirms the numbers from the Google Business Profile.
     'google_rating': None, 'google_review_count': None,
-    # Acima merchant application link: leave empty until the owner sends it (a Contact Us button shows instead).
+    # Acima merchant application link: leave empty until the shop sends it (a Contact Us button shows instead).
     'acima_url': '',
 }
 
 # Hours. Times are Worcester time. Day 0 = Sunday. Missing day = closed.
 HOURS = {
     'weekly': {1: ('08:00', '18:00'), 2: ('08:00', '18:00'), 3: ('08:00', '18:00'), 4: ('08:00', '18:00'), 5: ('08:00', '18:00'), 6: ('08:00', '12:00')},
-    # Holiday schedule: 'YYYY-MM-DD': 'closed' or ('08:00', '12:00'). Waiting for the owner to confirm.
+    # Holiday schedule: 'YYYY-MM-DD': 'closed' or ('08:00', '12:00'). Waiting for the shop to confirm.
     'holidays': {},
     'holiday_names': {},
 }
@@ -84,7 +84,7 @@ DEPOSIT = {
     },
 }
 
-# Policies page categories. Wording follows the owner's list; "subject to applicable law" kept where the owner wrote it.
+# Policies page categories. Wording follows the shop's list; "subject to applicable law" kept where the shop wrote it.
 POLICIES = {
     'en': {
         'title': 'Shop policies', 'h1': 'Shop policies',
@@ -168,18 +168,21 @@ PHOTO_TEXT = {
 
 # ---------------------------------------------------------------- Sprint 3 settings
 
-# Who gets what. Change a number here and every page, form and text message follows.
-# 'whatsapp': True only for numbers the owner confirmed use WhatsApp (Cid and Leo confirmed 2026-11-26; the shop landline has none).
-# Future: add employees or a central business number/messaging service here; forms read 'route'.
+# Customer support CHANNELS. Each one is a job, not a person: the public site never names who answers it.
+# To hand a channel to another employee or a central business line, change its phone/label here and rebuild;
+# every page, form, text message, WhatsApp link and the contact card follow. Names shown to customers are in text3.py 'team'.
+# 'whatsapp': True only for numbers confirmed to use WhatsApp (both support lines confirmed 2026-11-26; the shop landline has none).
 CONTACTS = {
-    'shop':  {'name': 'L&M Tire Auto Repair', 'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'sms': False, 'whatsapp': False},
-    'cid':   {'name': 'Cid', 'role': 'owner', 'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': True},
-    'leo':   {'name': 'Leo', 'role': 'partner', 'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': True},
+    'shop':          {'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'sms': False, 'whatsapp': False},
+    'support_en_es': {'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': True},
+    'support_pt':    {'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': True},
 }
-# Which contact answers texts and website requests in each language.
-ROUTE = {'en': 'cid', 'es': 'cid', 'pt': 'leo'}
+# Order on the Contact page and the contact card.
+TEAM = ['shop', 'support_en_es', 'support_pt']
+# Which channel answers texts and website requests in each language.
+ROUTE = {'en': 'support_en_es', 'es': 'support_en_es', 'pt': 'support_pt'}
 
-# Public customer service email (confirmed by the owner 2026-11-26): requests, quotes, questions, feedback, Contact page, contact card.
+# Public customer service email (confirmed by the shop 2026-11-26): requests, quotes, questions, feedback, Contact page, contact card.
 # The corporate email is kept OFF the website on purpose.
 EMAIL = 'care.lmtire@gmail.com'
 
@@ -188,7 +191,7 @@ SOCIAL = {'youtube': '', 'instagram': '', 'facebook': ''}
 
 # Numbers shown on the site. Only verified facts. None = hidden.
 STATS = {
-    'since': '2013',          # confirmed by the owner
+    'since': '2013',          # confirmed by the shop
     'languages': 3,           # English, Portuguese, Spanish (confirmed)
     'google_reviews': None,   # fill from the Google Business Profile only
     'carfax_reviews': None,   # fill from CARFAX only
@@ -204,7 +207,7 @@ DELIVERY = {'endpoint': ''}
 # Tire inventory from the shop app (future). See tools/inventory.py for the public data contract.
 # mode: 'quote' (no stock or prices shown, customers ask by text), 'availability' (in stock / can order),
 #       'tire_price' (price per tire), 'installed_price' (installed price), 'both' (tire and installed price).
-# Prices and stock are published only after the owner verifies the data and approves the mode.
+# Prices and stock are published only after the shop verifies the data and approves the mode.
 INVENTORY = {'mode': 'quote', 'feed': ''}
 
 # Background music (optional for visitors, off by default). The track's commercial rights are NOT confirmed yet

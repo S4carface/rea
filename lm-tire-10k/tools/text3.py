@@ -38,8 +38,9 @@ T = {
         'hours_rows': [('Monday to Friday', '8:00 AM to 6:00 PM'), ('Saturday', '8:00 AM to 12:00 PM'), ('Sunday', 'Closed')],
         'hours_note': 'Worcester time.',
         'hours': 'Hours', 'address': 'Address',
-        'who': 'Who to contact', 'shop': 'The shop', 'owner': 'Cid, owner', 'partner': 'Leo, partner',
-        'langs_shop': 'English', 'langs_owner': 'English · Español · Texts for appointments', 'langs_partner': 'Português',
+        'who': 'Contact Our Team', 'shop': 'The shop',
+        'team': {'shop': ('Shop & Customer Service', 'Calls · English'), 'support_en_es': ('English & Spanish Customer Support', 'Appointments and questions'),
+                 'support_pt': ('Portuguese Customer Support', 'Appointments and questions, in Portuguese'), 'email': ('Customer Care Email', 'Quotes, questions and feedback')},
         'speak': 'We speak English, Português and Español.', 'no_body': "We don't do body work or paint.",
         'sms_hello': "Hi L&M Tire, I have a question.",
         'sms_book': "Hi L&M Tire, I'd like to book: {svc}.",
@@ -123,7 +124,7 @@ T = {
         'privacy_title': 'Privacy Policy | L&M Tire Auto Repair',
         'privacy_desc': 'How the L&M Tire Auto Repair website handles your information.',
         'privacy_h1': 'Privacy policy',
-        'privacy_draft': 'Draft for the owner\'s review. Not published yet.',
+        'privacy_draft': 'Draft for review. Not published yet.',
         # 404
         'nf_title': 'Page not found | L&M Tire Auto Repair', 'nf_h1': 'That page took a wrong turn.',
         'nf_p': 'Try the menu or search, or call us at {shop}.',
@@ -144,8 +145,9 @@ T = {
         'hours_rows': [('Segunda a sexta', '8h às 18h'), ('Sábado', '8h às 12h'), ('Domingo', 'Fechado')],
         'hours_note': 'Horário de Worcester.',
         'hours': 'Horário', 'address': 'Endereço',
-        'who': 'Com quem falar', 'shop': 'A oficina', 'owner': 'Cid, dono', 'partner': 'Leo, sócio',
-        'langs_shop': 'Inglês', 'langs_owner': 'Inglês · Espanhol · Agendamento por mensagem', 'langs_partner': 'Português',
+        'who': 'Fale com a nossa equipe', 'shop': 'A oficina',
+        'team': {'shop': ('Oficina e atendimento ao cliente', 'Ligações · em inglês'), 'support_en_es': ('Atendimento em inglês e espanhol', 'Agendamentos e dúvidas'),
+                 'support_pt': ('Atendimento em português', 'Agendamentos e dúvidas'), 'email': ('Email de atendimento ao cliente', 'Orçamentos, dúvidas e sugestões')},
         'speak': 'Falamos inglês, português e espanhol.', 'no_body': 'Não fazemos funilaria nem pintura.',
         'sms_hello': 'Olá L&M Tire, tenho uma dúvida.',
         'sms_book': 'Olá L&M Tire, quero agendar: {svc}.',
@@ -219,7 +221,7 @@ T = {
         'privacy_title': 'Política de privacidade | L&M Tire Auto Repair',
         'privacy_desc': 'Como o site da L&M Tire Auto Repair trata as suas informações.',
         'privacy_h1': 'Política de privacidade',
-        'privacy_draft': 'Rascunho para revisão do dono. Ainda não publicado.',
+        'privacy_draft': 'Rascunho para revisão. Ainda não publicado.',
         'nf_title': 'Página não encontrada | L&M Tire Auto Repair', 'nf_h1': 'Essa página pegou o caminho errado.',
         'nf_p': 'Use o menu ou a busca, ou ligue para {pt}.',
     },
@@ -239,8 +241,9 @@ T = {
         'hours_rows': [('Lunes a viernes', '8:00 AM a 6:00 PM'), ('Sábado', '8:00 AM a 12:00 PM'), ('Domingo', 'Cerrado')],
         'hours_note': 'Hora de Worcester.',
         'hours': 'Horario', 'address': 'Dirección',
-        'who': 'Con quién hablar', 'shop': 'El taller', 'owner': 'Cid, dueño', 'partner': 'Leo, socio',
-        'langs_shop': 'Inglés', 'langs_owner': 'Inglés · Español · Citas por texto', 'langs_partner': 'Portugués',
+        'who': 'Contacte a nuestro equipo', 'shop': 'El taller',
+        'team': {'shop': ('Taller y servicio al cliente', 'Llamadas · en inglés'), 'support_en_es': ('Atención al cliente en inglés y español', 'Citas y preguntas'),
+                 'support_pt': ('Atención al cliente en portugués', 'Citas y preguntas, en portugués'), 'email': ('Correo de atención al cliente', 'Cotizaciones, preguntas y comentarios')},
         'speak': 'Hablamos inglés, portugués y español.', 'no_body': 'No hacemos hojalatería ni pintura.',
         'sms_hello': 'Hola L&M Tire, tengo una pregunta.',
         'sms_book': 'Hola L&M Tire, quiero pedir cita: {svc}.',
@@ -314,13 +317,13 @@ T = {
         'privacy_title': 'Política de privacidad | L&M Tire Auto Repair',
         'privacy_desc': 'Cómo el sitio de L&M Tire Auto Repair maneja su información.',
         'privacy_h1': 'Política de privacidad',
-        'privacy_draft': 'Borrador para revisión del dueño. Todavía no publicado.',
+        'privacy_draft': 'Borrador para revisión. Todavía no publicado.',
         'nf_title': 'Página no encontrada | L&M Tire Auto Repair', 'nf_h1': 'Esta página tomó el camino equivocado.',
         'nf_p': 'Use el menú o la búsqueda, o llámenos al {shop}.',
     },
 }
 
-# Privacy policy draft (needs owner approval before launch). Written for the site as built:
+# Privacy policy draft (needs approval before launch). Written for the site as built:
 # no cookies, no ads, no tracking unless analytics is turned on, and form data only goes where the customer sends it.
 PRIVACY = {
     'en': [

@@ -1,4 +1,4 @@
-/* Appointment request. Sends by text (always available) or online (only when the owner sets up delivery).
+/* Appointment request. Sends by text (always available) or online (only when online delivery is set up).
    Success is shown only when the server confirms it received the request. A request is never called a confirmed appointment.
    Remembering details is off unless the customer turns it on. */
 (function () {

@@ -63,7 +63,7 @@
   if (sz.value) readSize();
   if (!sz.value && f.querySelector('#tvY').value) tab(1);
 
-  /* ---- inventory display (only when the owner turns on a mode other than quote and a feed exists) ---- */
+  /* ---- inventory display (only when a mode other than quote and a feed exists) ---- */
   var inv = null;
   if (C.inv && C.inv.mode !== 'quote' && C.inv.feed) {
     fetch(C.inv.feed).then(function (r) { return r.json(); }).then(function (j) { inv = j; show(); }).catch(function () {});
