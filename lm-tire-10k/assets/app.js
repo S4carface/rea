@@ -2228,6 +2228,16 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   }
 })();
 
+/* S2-4: tool pictures (tire photo, nail, penny) load only when the Tire Help view opens */
+(() => {
+  const imgs = [...document.querySelectorAll('image[data-href]')];
+  if (!imgs.length) return;
+  const load = () => { imgs.forEach(i => { if (!i.getAttribute('href')) i.setAttribute('href', i.dataset.href); }); mo.disconnect(); };
+  const mo = new MutationObserver(() => { if (document.documentElement.classList.contains('view-help')) load(); });
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  if (document.documentElement.classList.contains('view-help') || !window.LM_CALM) load();
+})();
+
 /* S2-2: the hero's "Tires" pick goes straight to the tire quote */
 (() => {
   document.addEventListener('click', e => {

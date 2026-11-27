@@ -1,6 +1,6 @@
 /* L&M Tire service worker: network first, so the site is always fresh online,
    with a saved copy of the page shell so phone numbers and hours still open offline. */
-const CACHE = 'lm-tire-v4';
+const CACHE = 'lm-tire-v5';
 const SHELL = ['./', 'index.html', 'assets/app.css', 'assets/app.js', 'assets/logo.webp', 'assets/hero-poster.webp', 'assets/icon-192.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
