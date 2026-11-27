@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /tools/
+Disallow: /sound-picker.html
+Disallow: /online.html
 
-# DEPLOY STEP: replace YOUR-LIVE-DOMAIN with the real address
 Sitemap: https://YOUR-LIVE-DOMAIN/sitemap.xml
