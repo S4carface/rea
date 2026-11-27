@@ -555,7 +555,12 @@ def build_tool(k, ic, svc_key, lang):
     elif k == 'lights':
         tool = '<ul class="lights">' + ''.join(f'<li class="card"><h2>{E(n)}</h2><p class="note">{E(desc)}</p></li>' for n, desc in c['items']) + '</ul>' + f'<div class="card" style="margin-top:16px"><h2 class="th" style="margin-top:0">{E(c["remind_h"])}</h2>' + ''.join(f'<p class="note" style="margin-top:10px">{E(x)}</p>' for x in c['remind']) + '</div>'
     else:
-        tool = f'<div data-tool="{k}" data-penny="{E(asset("penny.webp", here))}" class="tool-mount tm-{k}"></div>'
+        imgs = {}
+        if k == 'penny':
+            imgs = {'tread820': asset('tread-820.webp', here), 'tread1400': asset('tread-1400.webp', here)}
+        elif k == 'puncture':
+            imgs = {'tire': asset('tire-real.webp', here), 'nailHead': asset('nail-head2.webp', here), 'zoomNail': asset('zoom-nail.webp', here), 'zoomShoulder': asset('zoom-shoulder.webp', here), 'zoomSide': asset('zoom-side.webp', here)}
+        tool = f'<div data-tool="{k}" data-penny="{E(asset("penny.webp", here))}" data-img="{E(json.dumps(imgs))}" class="tool-mount tm-{k}"></div>'
     vid = ''
     if VIDEOS.get(k):
         vid = f'<section class="sec sec-tight"><div class="wrap"><button type="button" class="video-lite" data-yt="{E(VIDEOS[k])}">{icon("play")}<span>{E(g["video"])}</span><small>{E(g["video_note"])}</small></button></div></section>'

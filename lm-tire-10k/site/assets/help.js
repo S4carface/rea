@@ -9,73 +9,93 @@
   function fill(s, o) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return o[k] != null ? o[k] : m; }); }
   var T = {};
 
-  /* ---------- penny test: true scale, 1/32 inch = 9 px, penny = 24/32 inch ---------- */
+  /* ---------- penny test: a real penny standing in a real tread groove ----------
+     Layers: tread photo (back) > penny > groove shadow > the same photo cut at the front rib's top edge (front).
+     So the front rib really hides the lower part of the penny. Scale: penny = 24/32", so 1/32" = 1/24 of the penny. */
   T.penny = function () {
-    var U = 9, yb = 262, R = 12 * U, cx = 170, cy = yb - R;
+    var I = JSON.parse(root.getAttribute('data-img') || '{}');
+    var EDGE = 52.4, D = 56; // front rib top edge and penny diameter, in % of the picture height
+    var u = D / 24; // 1/32 inch in % of height
+    var src = I.tread820, set = I.tread820 + ' 820w, ' + I.tread1400 + ' 1400w';
+    var img = function (c) { return '<img class="' + c + '" src="' + esc(src) + '" srcset="' + esc(set) + '" sizes="(max-width:760px) 100vw, 720px" alt="" width="1400" height="791" decoding="async">'; };
+    var ticks = ''; for (var n = 0; n <= 10; n += 2) ticks += '<span style="top:' + (EDGE + n * u) + '%"><i></i>' + n + '/32</span>';
     root.innerHTML =
-      '<div class="tool-card"><svg class="penny-svg" viewBox="0 0 400 290" role="img" aria-labelledby="pnT"><title id="pnT">' + esc(X.penny_img) + '</title>' +
-      '<defs><linearGradient id="rub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3c48"/><stop offset=".08" stop-color="#23242c"/><stop offset="1" stop-color="#14151a"/></linearGradient>' +
-      '<pattern id="sipe" width="22" height="200" patternUnits="userSpaceOnUse"><rect width="22" height="200" fill="url(#rub)"/><path d="M11 0v200" stroke="#0c0c10" stroke-width="2" opacity=".55"/></pattern>' +
-      '<clipPath id="pc"><circle cx="' + cx + '" cy="' + cy + '" r="' + R + '"/></clipPath></defs>' +
-      '<rect x="0" y="0" width="400" height="290" fill="#0d0e18"/>' +
-      '<rect x="20" y="' + (yb - 10 * U - 6) + '" width="300" height="' + (10 * U + 6) + '" fill="#0a0a0e" opacity=".9"/>' +
-      '<g clip-path="url(#pc)"><image href="' + esc(root.getAttribute('data-penny')) + '" x="' + (cx - R) + '" y="' + (cy - R) + '" width="' + 2 * R + '" height="' + 2 * R + '" transform="rotate(180 ' + cx + ' ' + cy + ')"/></g>' +
-      '<g id="pnRib"><rect id="pnRect" x="20" width="300" fill="url(#sipe)"/><rect id="pnTop" x="20" width="300" height="3" fill="#5b5e6e"/></g>' +
-      '<rect x="20" y="' + yb + '" width="300" height="4" fill="#4a4c58"/>' +
-      '<g font-family="JetBrains Mono, monospace" font-size="12" fill="#b9bbd1">' +
-      [0, 2, 4, 6, 8, 10].map(function (n) { var y = yb - n * U; return '<path d="M332 ' + y + 'h12" stroke="#b9bbd1"/><text x="350" y="' + (y + 4) + '">' + n + '/32</text>'; }).join('') +
-      '<path d="M338 ' + yb + 'V' + (yb - 10 * U) + '" stroke="#b9bbd1" opacity=".5"/>' +
-      '<path id="pnHead" d="M24 ' + (yb - 2.6 * U) + 'H316" stroke="#ffd27a" stroke-dasharray="4 5" opacity=".7"/></g>' +
-      '</svg>' +
-      '<label class="lbl" for="pnR">' + esc(X.depth) + ': <output id="pnO">6/32"</output></label>' +
+      '<div class="tool-card pn-card"><div class="pn-stage" role="img" aria-label="' + esc(X.penny_img) + '">' + img('pn-bg') +
+      '<div class="pn-coin" style="height:' + D + '%"><img src="' + esc(root.getAttribute('data-penny')) + '" alt="" width="520" height="520" decoding="async"><b class="pn-shine"></b></div>' +
+      '<b class="pn-shade" style="top:' + (EDGE - 9) + '%"></b>' + img('pn-fg') +
+      '<div class="pn-ghost" style="height:' + D + '%"></div><b class="pn-floor"><em>' + esc(X.floor) + '</em></b>' +
+      '<b class="pn-surf" style="top:' + EDGE + '%"><em>' + esc(X.surface) + '</em></b>' +
+      '<div class="pn-ruler" aria-hidden="true">' + ticks + '</div><small class="illus">' + esc(X.illus) + '</small></div>' +
+      '<div class="pn-read"><label class="lbl" for="pnR">' + esc(X.depth) + '</label><output id="pnO" class="mono">6/32"</output><span id="pnH" class="pn-head"></span></div>' +
       '<input type="range" id="pnR" min="1" max="10" step="1" value="6" aria-describedby="pnM">' +
       '<div class="range-ticks" aria-hidden="true"><span>1/32"</span><span>4/32"</span><span>10/32" (' + esc(X.new) + ')</span></div>' +
       '<p class="tool-res" id="pnM" aria-live="polite"></p></div>';
-    var r = $('#pnR'), rect = $('#pnRect'), top = $('#pnTop'), o = $('#pnO'), m = $('#pnM');
+    var st = $('.pn-stage'), coin = $('.pn-coin'), ghost = $('.pn-ghost'), floor = $('.pn-floor'), r = $('#pnR'), o = $('#pnO'), m = $('#pnM'), h = $('#pnH');
+    st.style.setProperty('--edge', EDGE + '%');
     function draw() {
-      var v = +r.value, h = v * U;
-      rect.setAttribute('y', yb - h); rect.setAttribute('height', h); top.setAttribute('y', yb - h);
-      o.textContent = v + '/32"';
+      var v = +r.value, top = EDGE - D + v * u; // penny bottom sits on the groove floor, v/32" below the surface
+      coin.style.top = top + '%'; ghost.style.top = top + '%'; ghost.style.setProperty('--gm', ((EDGE - top) / D * 100) + '%'); floor.style.top = (EDGE + v * u) + '%';
+      root.querySelectorAll('.pn-ruler span').forEach(function (s, i) { s.classList.toggle('on', i * 2 === v || (i * 2 === v - 1)); });
+      o.textContent = v + '/32"'; r.setAttribute('aria-valuetext', v + '/32"');
       var k = v <= 2 ? 'bad' : v <= 4 ? 'low' : v <= 6 ? 'watch' : 'ok';
       m.className = 'tool-res r-' + k; m.textContent = X['r_' + k];
+      h.textContent = v <= 2 ? X.head_vis : X.head_hid; h.className = 'pn-head ' + (v <= 2 ? 'vis' : '');
+      coin.classList.remove('press'); void coin.offsetWidth; coin.classList.add('press');
     }
     r.addEventListener('input', draw); draw();
+    // the penny drops into the groove when it first comes into view
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      st.classList.add('pn-wait');
+      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); setTimeout(function () { st.classList.remove('pn-wait'); st.classList.add('pn-drop'); }, 200); } }, { threshold: 0.5 });
+      io.observe(st);
+    }
   };
 
-  /* ---------- puncture: where is the damage ---------- */
+  /* ---------- puncture: tap the damage on the tire picture ---------- */
   T.puncture = function () {
-    var Z = X.zones;
+    var Z = X.zones, I = JSON.parse(root.getAttribute('data-img') || '{}');
+    var ZOOM = { tread: I.zoomNail, shoulder: I.zoomShoulder, sidewall: I.zoomSide };
+    var SPOT = { tread: [500, 560], shoulder: [622, 400], sidewall: [835, 620] };
     root.innerHTML =
-      '<div class="tool-card"><svg class="punct-svg" viewBox="0 0 420 300" role="img" aria-labelledby="puT"><title id="puT">' + esc(X.pick) + '</title>' +
-      '<defs><linearGradient id="tr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34363f"/><stop offset="1" stop-color="#17181d"/></linearGradient></defs>' +
-      // tire cross-section (cut view): outer casing and inner liner
-      '<path d="M70 270 C58 200 52 140 64 96 C74 60 104 44 140 40 L280 40 C316 44 346 60 356 96 C368 140 362 200 350 270 L322 270 C330 210 334 150 324 110 C316 82 296 72 270 70 L150 70 C124 72 104 82 96 110 C86 150 90 210 98 270 Z" fill="url(#tr)" stroke="#5b5e6e" stroke-width="2"/>' +
-      '<path d="M140 40 v-6 M170 40 v-6 M200 40 v-6 M230 40 v-6 M260 40 v-6" stroke="#0c0c10" stroke-width="6"/>' +
-      '<path d="M98 270 h-34 M322 270 h34" stroke="#8a8ca0" stroke-width="5" stroke-linecap="round"/>' +
-      // nail embedded in the tread: head flush on the surface, shaft through the rubber (cut view)
-      '<g id="puNail" transform="translate(206 0)"><rect x="-2.2" y="38" width="4.4" height="40" fill="#9aa0ad"/><path d="M-2.2 78 L0 86 L2.2 78Z" fill="#9aa0ad"/><ellipse cx="0" cy="38" rx="9" ry="2.6" fill="#c8ccd6" stroke="#6b7080"/></g>' +
-      // zones
-      '<g class="zones" font-family="Barlow, sans-serif" font-size="15" font-weight="600">' +
-      '<path data-z="tread" class="z" d="M140 30 L280 30 L280 80 L140 80 Z"/>' +
-      '<path data-z="shoulder" class="z" d="M60 70 C70 44 100 30 140 30 L140 80 C112 82 96 96 90 120 L58 112 Z"/><path data-z="shoulder" class="z" d="M360 70 C350 44 320 30 280 30 L280 80 C308 82 324 96 330 120 L362 112 Z"/>' +
-      '<path data-z="sidewall" class="z" d="M58 112 L90 120 C84 160 88 220 98 270 L66 270 C54 210 50 150 58 112 Z"/><path data-z="sidewall" class="z" d="M362 112 L330 120 C336 160 332 220 322 270 L354 270 C366 210 370 150 362 112 Z"/>' +
-      '<text x="210" y="20" text-anchor="middle" fill="#f3f2f6">' + esc(Z.tread) + '</text>' +
-      '<text x="30" y="58" fill="#f3f2f6">' + esc(Z.shoulder.split(' (')[0]) + '</text><text x="390" y="58" text-anchor="end" fill="#f3f2f6">' + esc(Z.shoulder.split(' (')[0]) + '</text>' +
-      '<text x="12" y="200" fill="#f3f2f6">' + esc(Z.sidewall.split(' (')[0]) + '</text><text x="408" y="200" text-anchor="end" fill="#f3f2f6">' + esc(Z.sidewall.split(' (')[0]) + '</text>' +
-      '</g></svg>' +
+      '<div class="tool-card pu-card"><div class="pu-stage"><svg class="pu-svg" viewBox="0 0 1200 904" role="group" aria-label="' + esc(X.pick) + '">' +
+      '<defs><radialGradient id="puSpot" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".10"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>' +
+      '<filter id="puGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<filter id="puSh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="5" dy="7" stdDeviation="5" flood-color="#000" flood-opacity=".75"/></filter></defs>' +
+      '<image href="' + esc(I.tire) + '" x="0" y="0" width="1200" height="904" preserveAspectRatio="xMidYMid slice"/>' +
+      '<rect width="1200" height="904" fill="url(#puSpot)" pointer-events="none"/>' +
+      '<path class="pz" data-z="sidewall" tabindex="0" role="button" aria-label="' + esc(Z.sidewall) + '" fill-rule="evenodd" d="M752 14a128 438 0 1 1 0 876a128 438 0 1 1 0-876zM746 160a84 286 0 1 0 0 572a84 286 0 1 0 0-572z"/>' +
+      '<path class="pz" data-z="shoulder" tabindex="0" role="button" aria-label="' + esc(Z.shoulder) + '" d="M408 62Q176 438 392 862L418 866Q299 444 432 46ZM598 22Q527.5 454 575 870L660 862Q638 452 684 34Z"/>' +
+      '<path class="pz" data-z="tread" tabindex="0" role="button" aria-label="' + esc(Z.tread) + '" d="M432 46Q299 444 418 866L575 870Q527.5 454 598 22Z"/>' +
+      '<g class="pu-lbl" aria-hidden="true"><text x="505" y="150" text-anchor="middle">' + esc(Z.tread.split(' (')[0]) + '</text><text x="250" y="300" text-anchor="middle">' + esc(Z.shoulder.split(' (')[0]) + '</text><path d="M300 312L404 372"/><text x="1035" y="470" text-anchor="middle">' + esc(Z.sidewall.split(' (')[0]) + '</text><path d="M975 452H880"/></g>' +
+      '<g class="pu-nail" aria-hidden="true"><ellipse class="pu-ring" rx="44" ry="44"/><g class="pu-head" filter="url(#puSh)"><image href="' + esc(I.nailHead) + '" x="-40" y="-40" width="80" height="80"/></g><path class="pu-cut" d="M-34 6 C-14 -6 12 -8 34 -4" /></g>' +
+      '</svg><small class="illus">' + esc(X.illus) + '</small></div>' +
+      '<div class="pu-lens" hidden><div class="pu-lens-c"><img alt="" width="720" height="720" decoding="async"></div><p><span></span></p></div>' +
       '<form class="tool-form" onsubmit="return false">' +
       '<fieldset class="field"><legend class="lbl">' + esc(X.pick) + '</legend><div class="chips">' +
       ['tread', 'shoulder', 'sidewall'].map(function (z) { return '<label><input type="radio" name="zone" value="' + z + '"><span>' + esc(Z[z]) + '</span></label>'; }).join('') + '</div></fieldset>' +
       '<fieldset class="field"><legend class="lbl">' + esc(X.size_q) + '</legend><div class="chips"><label><input type="radio" name="hole" value="small" checked><span>' + esc(X.small) + '</span></label><label><input type="radio" name="hole" value="big"><span>' + esc(X.big) + '</span></label></div></fieldset>' +
       '<fieldset class="field"><legend class="lbl">' + esc(X.flat_q) + '</legend><div class="chips"><label><input type="radio" name="flat" value="no" checked><span>' + esc(X.no) + '</span></label><label><input type="radio" name="flat" value="yes"><span>' + esc(X.yes) + '</span></label></div></fieldset>' +
-      '</form><p class="tool-res" id="puR" aria-live="polite">' + esc(X.pick) + '</p></div>';
-    var f = $('.tool-form'), res = $('#puR'), nail = $('#puNail');
-    var NAIL = { tread: 'translate(206 0)', shoulder: 'translate(318 64) rotate(52)', sidewall: 'translate(344 190) rotate(90)' };
-    function show() {
+      '</form><p class="tool-res" id="puR" aria-live="polite">' + esc(X.pick) + '</p>' +
+      '<a class="btn btn-ghost btn-photo" href="#">' + esc(X.photo) + '</a></div>';
+    var svg = $('.pu-svg'), f = $('.tool-form'), res = $('#puR'), nail = $('.pu-nail'), lens = $('.pu-lens');
+    var tel = C.text || '';
+    var ph = $('.btn-photo'); if (tel) ph.href = 'sms:' + tel + '?&body=' + encodeURIComponent(X.photo_sms); else ph.hidden = true;
+    function place(z, x, y) {
+      var p = (x != null) ? [x, y] : SPOT[z];
+      // flatten the nail head to follow the curve of the tire at that spot
+      var sx = z === 'tread' ? 0.62 : z === 'shoulder' ? 0.42 : 0.9;
+      nail.setAttribute('transform', 'translate(' + p[0] + ' ' + p[1] + ')');
+      nail.querySelector('.pu-head').setAttribute('transform', 'scale(' + sx + ' 1)');
+      nail.querySelector('.pu-cut').setAttribute('transform', 'rotate(-62) scale(.9 1)');
+      nail.className.baseVal = 'pu-nail z-' + z; void nail.getBoundingClientRect(); nail.className.baseVal = 'pu-nail z-' + z + ' in';
+    }
+    function show(x, y) {
       var z = (f.querySelector('[name=zone]:checked') || {}).value, hole = f.querySelector('[name=hole]:checked').value, flat = f.querySelector('[name=flat]:checked').value;
-      root.querySelectorAll('.z').forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-z') === z); });
+      root.querySelectorAll('.pz').forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-z') === z); p.setAttribute('aria-pressed', p.getAttribute('data-z') === z); });
       if (!z) return;
-      nail.setAttribute('transform', NAIL[z]);
+      if (x !== false) place(z, x, y);
+      lens.hidden = false; lens.className = 'pu-lens z-' + z; lens.querySelector('img').src = ZOOM[z]; lens.querySelector('span').textContent = X.lens[z];
+      void lens.offsetWidth; lens.classList.add('in');
       var msg = [], k;
       if (z === 'sidewall') { k = 'bad'; msg.push(X.r_sidewall); }
       else if (z === 'shoulder') { k = 'bad'; msg.push(X.r_shoulder); }
@@ -83,11 +103,17 @@
       else { k = 'ok'; msg.push(X.r_tread); }
       if (flat === 'yes') { msg.push(X.r_flat); if (k === 'ok') k = 'watch'; }
       res.className = 'tool-res r-' + k; res.textContent = msg.join(' ');
+      root.setAttribute('data-k', k);
     }
-    f.addEventListener('change', show);
-    root.querySelectorAll('.z').forEach(function (p) {
-      p.addEventListener('click', function () { var i = f.querySelector('[name=zone][value=' + p.getAttribute('data-z') + ']'); i.checked = true; show(); });
+    function pick(z, x, y) { f.querySelector('[name=zone][value=' + z + ']').checked = true; show(x, y); }
+    svg.addEventListener('click', function (e) {
+      var p = e.target.closest('.pz'); if (!p) return;
+      var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      var loc = pt.matrixTransform(svg.getScreenCTM().inverse());
+      pick(p.getAttribute('data-z'), e.clientX || e.clientY ? Math.round(loc.x) : null, Math.round(loc.y));
     });
+    svg.addEventListener('keydown', function (e) { var p = e.target.closest('.pz'); if (p && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pick(p.getAttribute('data-z')); } });
+    f.addEventListener('change', function (e) { show(e.target.name === 'zone' ? null : false); });
   };
 
   /* ---------- tire age from DOT ---------- */
