@@ -165,3 +165,43 @@ PHOTO_TEXT = {
     'pt': {'kicker': 'A oficina', 'title': 'Por dentro da L&M Tire', 'cats': {'exterior': 'Fachada', 'bays': 'Boxes de serviço', 'tires': 'Estoque de pneus', 'alignment': 'Alinhamento', 'equipment': 'Equipamentos', 'team': 'Nossa equipe'}},
     'es': {'kicker': 'El taller', 'title': 'Por dentro de L&M Tire', 'cats': {'exterior': 'Fachada', 'bays': 'Áreas de servicio', 'tires': 'Inventario de llantas', 'alignment': 'Alineación', 'equipment': 'Equipo de reparación', 'team': 'Nuestro equipo'}},
 }
+
+# ---------------------------------------------------------------- Sprint 3 settings
+
+# Who gets what. Change a number here and every page, form and text message follows.
+# 'whatsapp': True only after the owner confirms that number uses WhatsApp (buttons stay hidden until then).
+# Future: add employees or a central business number/messaging service here; forms read 'route'.
+CONTACTS = {
+    'shop':  {'name': 'L&M Tire Auto Repair', 'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'sms': False, 'whatsapp': False},
+    'cid':   {'name': 'Cid', 'role': 'owner', 'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': False},
+    'leo':   {'name': 'Leo', 'role': 'partner', 'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': False},
+}
+# Which contact answers texts and website requests in each language.
+ROUTE = {'en': 'cid', 'es': 'cid', 'pt': 'leo'}
+
+# Business email: empty until the owner confirms one (it then shows on the contact card and Contact page).
+EMAIL = ''
+
+# Social pages: links stay hidden until a real address is filled in. Nothing loads from these sites.
+SOCIAL = {'youtube': '', 'instagram': '', 'facebook': ''}
+
+# Numbers shown on the site. Only verified facts. None = hidden.
+STATS = {
+    'since': '2013',          # confirmed by the owner
+    'languages': 3,           # English, Portuguese, Spanish (confirmed)
+    'google_reviews': None,   # fill from the Google Business Profile only
+    'carfax_reviews': None,   # fill from CARFAX only
+    'vehicles_serviced': None,
+    'tires_in_stock': None,   # later from the shop app
+}
+
+# Website appointment and quote requests. Until a delivery method is set up, requests go by text only.
+# 'endpoint': the address the form posts to (for example '/api/request.php' on Hostinger). Empty = no online sending.
+# The form only says "received" when the endpoint answers {"ok": true}.
+DELIVERY = {'endpoint': ''}
+
+# Tire inventory from the shop app (future). See tools/inventory.py for the public data contract.
+# mode: 'quote' (no stock or prices shown, customers ask by text), 'availability' (in stock / can order),
+#       'tire_price' (price per tire), 'installed_price' (installed price), 'both' (tire and installed price).
+# Prices and stock are published only after the owner verifies the data and approves the mode.
+INVENTORY = {'mode': 'quote', 'feed': ''}
