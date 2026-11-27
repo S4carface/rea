@@ -318,20 +318,26 @@ document.addEventListener('click', function (e) {
   tab.addEventListener('click', function () { var o = panel.hidden; panel.hidden = !o; tab.setAttribute('aria-expanded', String(o)); });
   d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { panel.hidden = true; tab.setAttribute('aria-expanded', 'false'); tab.focus(); } });
   tray.querySelector('.visit-clear').addEventListener('click', function () { items = []; save(); render(); });
-  function add(t) {
+  // one line per job: adding the same job again with a new detail (e.g. another tread depth) updates that line
+  function add(t, base) {
     t = String(t || '').trim().slice(0, 120); if (!t) return;
     if (items.indexOf(t) > -1) { toast(D.already); return; }
+    for (var i = 0; base && i < items.length; i++) {
+      if (items[i] === base || items[i].indexOf(base + ': ') === 0) { items[i] = t; save(); render(true); toast(D.updated, t); return; }
+    }
     if (items.length >= 12) items.shift();
     items.push(t); save(); render(true); toast(D.added, t);
   }
   window.LM.addToVisit = add;
   d.querySelectorAll('.add-visit').forEach(function (b) {
-    b.addEventListener('click', function () { var base = b.getAttribute('data-visit'); add(window.LM_VISIT ? window.LM_VISIT(base) : base); });
+    b.addEventListener('click', function () { var base = b.getAttribute('data-visit'); add(window.LM_VISIT ? window.LM_VISIT(base) : base, base); });
   });
   /* "Share this tool": phone share sheet, or copy the link on a computer */
   d.querySelectorAll('.share-tool').forEach(function (b) {
     b.addEventListener('click', function () {
-      var url = location.href.split('#')[0], title = (b.getAttribute('data-title') || '') + ' | L&M Tire';
+      // the official address from the page's canonical link once the domain is set; the current address until then (previews)
+      var can = d.querySelector('link[rel=canonical]'), cu = can && can.href;
+      var url = cu && !/YOUR-LIVE-DOMAIN/.test(cu) ? cu : location.href.split('#')[0], title = (b.getAttribute('data-title') || '') + ' | L&M Tire';
       if (navigator.share && matchMedia('(pointer: coarse)').matches) { navigator.share({ title: title, url: url }).catch(function () {}); return; }
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { toast(D.copied); }, function () { toast(D.link, url); });
       else toast(D.link, url);

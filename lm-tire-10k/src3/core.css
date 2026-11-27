@@ -372,9 +372,9 @@ input[type=range]{width:100%;accent-color:var(--accent-btn);height:44px}
 .dash-gauges path{fill:none;stroke:#2b2f45;stroke-width:5;stroke-linecap:round}.dash-gauges circle{fill:#3a3f5c}
 .dash-row{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,2.5vw,18px);max-width:520px;margin:clamp(24px,7vw,46px) auto 0}
 @media (min-width:640px){.dash-row{grid-template-columns:repeat(6,1fr);max-width:none}}
-.dl{appearance:none;background:radial-gradient(circle at 50% 40%,#12131b,#07070b);border:1px solid #1e2130;border-radius:16px;aspect-ratio:1;display:grid;place-items:center;cursor:pointer;color:#2d3042;transition:color .25s,box-shadow .25s,transform .15s;-webkit-tap-highlight-color:transparent}
+.dl{appearance:none;background:radial-gradient(circle at 50% 40%,#12131b,#07070b);border:1px solid #1e2130;border-radius:16px;aspect-ratio:1;display:grid;place-items:center;cursor:pointer;color:#4a4e66;transition:color .25s,box-shadow .25s,transform .15s;-webkit-tap-highlight-color:transparent}
 .dl svg{width:62%;height:62%;fill:none;stroke:currentColor;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;transition:filter .25s}
-.dl:hover{color:#4a4e66}.dl:active{transform:scale(.96)}
+.dl:hover{filter:brightness(1.35)}.dl:active{transform:scale(.96)}
 .dl:focus-visible{outline:3px solid var(--blue-bright,#8a90ff);outline-offset:3px}
 .dl.on.dl-a,.bulbs .dl-a{color:#ffb020}.dl.on.dl-r,.bulbs .dl-r{color:#ff3b3b}
 .dl.on svg,.bulbs .dl svg{filter:drop-shadow(0 0 4px currentColor) drop-shadow(0 0 12px currentColor)}
@@ -526,3 +526,11 @@ input[type=range]{width:100%;accent-color:var(--accent-btn);height:44px}
 @media (min-width:900px){.visit{left:24px;bottom:24px}.toast{bottom:32px}}
 @media (prefers-reduced-motion:reduce){.visit-tab.bump{animation:none}.toast{transition:none}}
 .phead .share-tool{margin-top:14px}
+
+/* iPhone review fixes */
+.dl-a{color:#6b5a35}.dl-r{color:#6a3a3e}
+.pn-marks{margin-top:12px}
+.pn-marks[aria-pressed=false]{opacity:.8;text-decoration:line-through}
+.pn-clean .pn-ghost,.pn-clean .pn-floor,.pn-clean .pn-surf,.pn-clean .pn-ruler{opacity:0;visibility:hidden}
+.ol-ld{display:block;margin-top:6px}
+input[aria-invalid=true]{border-color:#ff5a5a}

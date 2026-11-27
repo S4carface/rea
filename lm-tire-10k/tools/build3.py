@@ -293,7 +293,7 @@ def visit_tray(lang):
     """'My visit' list: hidden until something is added; sends one text to the routed number"""
     v, r = VISIT[lang], route(lang)
     return (f'<div class="visit" id="visit" role="region" aria-label="{E(v["my"])}" data-tel="{E(r["phone"])}" data-hi="{E(v["hi"])}" '
-            f'data-added="{E(v["added"])}" data-already="{E(v["already"])}" data-remove="{E(v["remove"])}" data-copied="{E(v["copied"])}" data-link="{E(v["link"])}" hidden>'
+            f'data-added="{E(v["added"])}" data-already="{E(v["already"])}" data-updated="{E(v["updated"])}" data-remove="{E(v["remove"])}" data-copied="{E(v["copied"])}" data-link="{E(v["link"])}" hidden>'
             f'<button type="button" class="visit-tab" aria-expanded="false" aria-controls="visitP"><b class="visit-n">0</b><span>{E(v["my"])}</span></button>'
             f'<div class="visit-panel" id="visitP" hidden><p class="mono">{E(v["my"])}</p><ul class="visit-list"></ul>'
             f'<a class="btn btn-red btn-sm visit-send" href="#">{icon("text")}{E(v["send"])}</a><button type="button" class="visit-clear">{E(v["clear"])}</button></div></div>\n'

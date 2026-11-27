@@ -29,7 +29,8 @@
       '<div class="pn-read"><label class="lbl" for="pnR">' + esc(X.depth) + '</label><output id="pnO" class="mono">6/32"</output><span id="pnH" class="pn-head"></span></div>' +
       '<input type="range" id="pnR" min="1" max="10" step="1" value="6" aria-describedby="pnM">' +
       '<div class="range-ticks" aria-hidden="true"><span>1/32"</span><span>4/32"</span><span>10/32" (' + esc(X.new) + ')</span></div>' +
-      '<p class="tool-res" id="pnM" aria-live="polite"></p></div>';
+      '<p class="tool-res" id="pnM" aria-live="polite"></p>' +
+      '<button type="button" class="btn btn-ghost btn-sm pn-marks" aria-pressed="true">' + esc(X.marks) + '</button></div>';
     var st = $('.pn-stage'), coin = $('.pn-coin'), ghost = $('.pn-ghost'), floor = $('.pn-floor'), r = $('#pnR'), o = $('#pnO'), m = $('#pnM'), h = $('#pnH');
     st.style.setProperty('--edge', EDGE + '%');
     function draw() {
@@ -43,6 +44,10 @@
       coin.classList.remove('press'); void coin.offsetWidth; coin.classList.add('press');
     }
     r.addEventListener('input', draw); draw();
+    var mk = $('.pn-marks'), off = false; try { off = localStorage.getItem('lm-penny-marks') === '0'; } catch (e) {}
+    function marks() { st.classList.toggle('pn-clean', off); mk.setAttribute('aria-pressed', String(!off)); }
+    mk.addEventListener('click', function () { off = !off; try { localStorage.setItem('lm-penny-marks', off ? '0' : '1'); } catch (e) {} marks(); });
+    marks();
     // the penny drops into the groove when it first comes into view
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
       st.classList.add('pn-wait');
@@ -236,9 +241,25 @@
       '<path d="M20 230 A330 330 0 0 1 580 230" fill="none" stroke="#24263a" stroke-width="1" stroke-dasharray="2 7"/>' +
       '<text class="sz-txt"><textPath href="#szArc" startOffset="50%" text-anchor="middle"><tspan data-p="w">205</tspan><tspan>/</tspan><tspan data-p="a">55</tspan><tspan data-p="c">R</tspan><tspan data-p="d">16</tspan><tspan> </tspan><tspan data-p="li">91</tspan><tspan data-p="sr">V</tspan></textPath></text></svg>';
     var pop = ['205/55R16', '215/60R16', '225/65R17', '235/65R17', '225/45R17'];
-    root.innerHTML = '<div class="tool-card">' + wall + '<div class="sz-pop">' + pop.map(function (x) { return '<button type="button" class="chip-b mono">' + x + '</button>'; }).join('') + '</div><div class="grid2"><div class="field"><label for="szA">' + esc(X.a) + '</label><input id="szA" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' + esc(X.ph) + '"></div>' +
-      '<div class="field"><label for="szB">' + esc(X.b) + '</label><input id="szB" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="215/50R17"></div></div>' +
+    root.innerHTML = '<div class="tool-card">' + wall + '<div class="sz-pop">' + pop.map(function (x) { return '<button type="button" class="chip-b mono">' + x + '</button>'; }).join('') + '</div><div class="grid2"><div class="field"><label for="szA">' + esc(X.a) + '</label><input id="szA" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" aria-describedby="szF" placeholder="' + esc(X.ph) + '"><small class="hint" id="szF">' + esc(X.fmt) + '</small></div>' +
+      '<div class="field"><label for="szB">' + esc(X.b) + '</label><input id="szB" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="215/50R17"></div></div>' +
       '<div id="szOut" aria-live="polite"></div></div>';
+    // "2055516" or "205 55 16" becomes "205/55R16" while typing (only when typing at the end, so editing in the middle is left alone)
+    function tidy(el) {
+      var v = el.value, atEnd = el.selectionStart == null || el.selectionStart === v.length, up = v.toUpperCase();
+      if (/^[\d\s\/R-]*$/.test(up) && atEnd) {
+        var g = up.replace(/\D/g, '').slice(0, 10), o = g.slice(0, 3);
+        if (g.length > 3) o += '/' + g.slice(3, 5);
+        if (g.length > 5) o += 'R' + g.slice(5, 7);
+        if (g.length > 7) o += ' ' + g.slice(7);
+        up = o;
+      }
+      if (up !== v) el.value = up;
+    }
+    function why(v) {
+      var m = String(v || '').toUpperCase().match(/(\d{3})\D*(\d{2})\D*(\d{2})/); if (!m) return X.bad;
+      if (+m[1] < 125 || +m[1] > 395) return X.bad_w; if (+m[2] < 25 || +m[2] > 90) return X.bad_a; if (+m[3] < 12 || +m[3] > 26) return X.bad_r; return X.bad;
+    }
     function parse(v) {
       var s = String(v || '').toUpperCase().replace(/\s+/g, ' ').trim();
       var m = s.match(/^(P|LT)?\s*(\d{3})\s*[\/ -]?\s*(\d{2})\s*(Z?R|D|B)?\s*(\d{2})(?:\s*(\d{2,3})\s*([A-Z])?)?/);
@@ -256,18 +277,19 @@
     }
     function run() {
       var A = $('#szA').value, B = $('#szB').value, a = parse(A), b = parse(B), out = '';
-      if (A.trim().length > 6 && !a) out += '<p class="tool-res r-bad">' + esc(X.bad) + '</p>';
+      if (A.trim().length > 6 && !a) out += '<p class="tool-res r-bad">' + esc(why(A)) + '</p>';
+      $('#szA').setAttribute('aria-invalid', String(A.trim().length > 6 && !a)); $('#szB').setAttribute('aria-invalid', String(B.trim().length > 6 && !b));
       if (a) out += one(a);
       if (a && b) {
         var p = (b.dia - a.dia) / a.dia * 100, ap = Math.abs(p).toFixed(1);
         out += '<p class="tool-res r-' + (Math.abs(p) <= 3 ? 'ok' : 'bad') + '">' + esc(fill(Math.abs(p) <= 3 ? X.cmp_ok : X.cmp_bad, { p: ap })) + ' ' + esc(fill(X.speedo, { v: (60 * a.dia / b.dia).toFixed(1) })) + '</p>';
-      } else if (B.trim().length > 6 && !b) out += '<p class="tool-res r-bad">' + esc(X.bad) + '</p>';
+      } else if (B.trim().length > 6 && !b) out += '<p class="tool-res r-bad">' + esc(why(B)) + '</p>';
       $('#szOut').innerHTML = out;
       var show = a || { w: 205, a: 55, c: 'R', rim: 16, li: 91, sr: 'V' }, map = { w: show.w, a: show.a, c: show.c === 'ZR' ? 'ZR' : show.c, d: show.rim, li: show.li || '', sr: show.sr || '' };
       root.querySelectorAll('.sz-txt tspan[data-p]').forEach(function (t) { t.textContent = map[t.getAttribute('data-p')]; });
       root.querySelector('.sz-wall').classList.toggle('lit', !!a);
     }
-    root.addEventListener('input', run);
+    root.addEventListener('input', function (e) { if (e.target.id === 'szA' || e.target.id === 'szB') tidy(e.target); run(); });
     root.querySelectorAll('.sz-pop button').forEach(function (b) { b.addEventListener('click', function () { $('#szA').value = b.textContent; run(); $('#szA').focus(); }); });
     run();
   };
@@ -355,7 +377,7 @@
     var d0 = new Date(); d0.setMonth(d0.getMonth() - 2); var def = d0.toISOString().slice(0, 10);
     var chips = function (name, opts, sel) { return '<div class="chips">' + opts.map(function (o) { return '<label><input type="radio" name="' + name + '" value="' + o[0] + '"' + (o[0] === sel ? ' checked' : '') + '><span>' + o[1] + '</span></label>'; }).join('') + '</div>'; };
     root.innerHTML = '<div class="tool-card ol-card"><div class="ol-in">' +
-      '<div class="field"><label for="olL">' + esc(X.last) + '</label><input id="olL" type="date" max="' + today + '" value="' + def + '"></div>' +
+      '<div class="field"><label for="olL">' + esc(X.last) + '</label><input id="olL" type="date" max="' + today + '" value="' + def + '" aria-describedby="olLd"><small class="hint ol-ld" id="olLd"></small></div>' +
       '<fieldset class="field"><legend class="lbl">' + esc(X.miles) + '</legend>' + chips('olM', [['100', '~100'], ['200', '~200'], ['350', '~350'], ['500', '500+']], '200') + '</fieldset>' +
       '<fieldset class="field"><legend class="lbl">' + esc(X.interval) + '</legend>' + chips('olI', [['3000', '3,000'], ['5000', '5,000'], ['7500', '7,500'], ['10000', '10,000']], '5000') + '</fieldset>' +
       '<p class="hint">' + esc(X.interval_help) + '</p></div>' +
@@ -366,6 +388,8 @@
     function val(n) { var i = root.querySelector('[name=' + n + ']:checked'); return i ? +i.value : 0; }
     function run() {
       var l = $('#olL').value, r = $('#olR'), cal = $('#olCal'); cal.hidden = true;
+      // the phone shows the date box in its own language/region; repeat it here in the page language
+      $('#olLd').textContent = /^\d{4}-\d{2}-\d{2}$/.test(l) ? new Date(l + 'T12:00:00Z').toLocaleDateString(LOC, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
       if (!l || l > today) { r.className = 'tool-res'; r.textContent = X.pick; $('#olD').textContent = '--'; $('#olPct').textContent = '--'; $('#olIn').textContent = ''; return; }
       var days = Math.min(365, Math.round(val('olI') / val('olM') * 7));
       var start = new Date(l + 'T12:00:00Z'), due = new Date(start); due.setUTCDate(due.getUTCDate() + days);
@@ -377,9 +401,13 @@
       if (due < new Date()) { r.className = 'tool-res r-bad'; r.textContent = X.past; return; }
       r.className = 'tool-res r-ok';
       r.textContent = fill(X.next, { d: due.toLocaleDateString(LOC, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) });
-      var ds = due.toISOString().slice(0, 10).replace(/-/g, ''), nx = new Date(due.getTime() + 864e5).toISOString().slice(0, 10).replace(/-/g, '');
-      var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LM Tire//Oil reminder//EN', 'BEGIN:VEVENT', 'UID:oil-' + ds + '@lmtire', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
-        'DTSTART;VALUE=DATE:' + ds, 'DTEND;VALUE=DATE:' + nx, 'SUMMARY:' + X.cal_title, 'DESCRIPTION:' + fill(X.cal_desc, { num: C.textLabel || '' }),
+      var ds = due.toISOString().slice(0, 10).replace(/-/g, '');
+      /* A 9:00 AM reminder in the shop's time zone, not an "all-day" event: iPhone Calendar showed all-day dates
+         one day early (Dec 5 to Dec 6 for Dec 6). The time zone is spelled out so every calendar app agrees. */
+      var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LM Tire//Oil reminder//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+        'BEGIN:VTIMEZONE', 'TZID:America/New_York', 'BEGIN:DAYLIGHT', 'TZOFFSETFROM:-0500', 'TZOFFSETTO:-0400', 'TZNAME:EDT', 'DTSTART:19700308T020000', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU', 'END:DAYLIGHT',
+        'BEGIN:STANDARD', 'TZOFFSETFROM:-0400', 'TZOFFSETTO:-0500', 'TZNAME:EST', 'DTSTART:19701101T020000', 'RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU', 'END:STANDARD', 'END:VTIMEZONE', 'BEGIN:VEVENT', 'UID:oil-' + ds + '@lmtire', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+        'DTSTART;TZID=America/New_York:' + ds + 'T090000', 'DTEND;TZID=America/New_York:' + ds + 'T093000', 'TRANSP:TRANSPARENT', 'SUMMARY:' + X.cal_title, 'DESCRIPTION:' + fill(X.cal_desc, { num: C.textLabel || '' }),
         'LOCATION:598 West Boylston Street\\, Worcester\\, MA 01606', 'BEGIN:VALARM', 'TRIGGER:-P2D', 'ACTION:DISPLAY', 'DESCRIPTION:' + X.cal_title, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
       cal.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics); cal.hidden = false;
     }
