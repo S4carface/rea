@@ -77,8 +77,8 @@ const ck = (cond, w, m) => { checks++; if (!cond) bad(w, m); };
     const st = await p.evaluate(() => [...document.querySelectorAll('[data-status] span')].map(s => s.textContent.trim()));
     ck(!st.includes(''), w, 'open/closed status is empty');
     // phone bar steps aside while typing
-    if ((vn === 'phone' || vn === 'small-phone') && await p.locator('main input:visible:not([type=radio]):not([type=checkbox]):not(.sr)').count()) {
-      await p.locator('main input:visible:not([type=radio]):not([type=checkbox]):not(.sr)').first().focus(); await p.waitForTimeout(350);
+    if ((vn === 'phone' || vn === 'small-phone') && await p.locator('main input:visible:not([type=radio]):not([type=checkbox]):not([type=range]):not(.sr)').count()) {
+      await p.locator('main input:visible:not([type=radio]):not([type=checkbox]):not([type=range]):not(.sr)').first().focus(); await p.waitForTimeout(350);
       ck(await p.evaluate(() => document.getElementById('bar').classList.contains('away')), w, 'phone bar stays over the keyboard while typing');
     }
     await c.close();
