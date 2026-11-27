@@ -279,3 +279,32 @@ legend{padding:0;margin-bottom:8px}
 .inv img{width:72px;height:72px;object-fit:cover;border-radius:10px}
 @media (max-width:420px){.btn{white-space:normal;text-align:center}.btn-row .btn{flex:1 1 100%}}
 [data-book]:empty{min-height:920px}[data-tire-search]:empty{min-height:650px}@media (max-width:760px){[data-book]:empty{min-height:1640px}[data-tire-search]:empty{min-height:930px}}
+
+/* Tire Help tools */
+.tool-card{background:linear-gradient(170deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:20px;padding:clamp(18px,2.6vw,30px);display:grid;gap:16px}
+.tool-mount:empty{min-height:420px}
+.tool-res{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#0f1020;font-weight:600;min-height:52px}
+.tool-res.r-ok{border-color:rgba(53,208,127,.5);background:rgba(53,208,127,.08)}
+.tool-res.r-watch{border-color:rgba(255,210,122,.5);background:rgba(255,210,122,.08)}
+.tool-res.r-low,.tool-res.r-bad{border-color:rgba(255,107,114,.6);background:rgba(232,51,59,.1)}
+.penny-svg,.punct-svg{width:100%;max-width:560px;height:auto;margin:0 auto;border-radius:14px}
+input[type=range]{width:100%;accent-color:var(--accent-btn);height:44px}
+.range-ticks{display:flex;justify-content:space-between;color:var(--text-2);font:500 .875rem var(--mono)}
+.punct-svg .z{fill:rgba(138,144,255,.0);stroke:rgba(138,144,255,.35);stroke-dasharray:4 4;cursor:pointer;transition:fill .2s}
+.punct-svg .z:hover{fill:rgba(138,144,255,.18)}
+.punct-svg .z.on{fill:rgba(232,51,59,.3);stroke:#ff6b72;stroke-dasharray:none}
+.tool-form{display:grid;gap:16px}
+.sz-t{width:100%;border-collapse:collapse}.sz-t th,.sz-t td{text-align:left;padding:10px 8px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}.sz-t td.mono{font-size:1rem;white-space:nowrap}
+.th{font-size:clamp(1.3rem,2.4vw,1.7rem);margin:26px 0 12px}
+.steps{list-style:none;counter-reset:s;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;padding:4px 0 4px 46px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--accent-btn);color:#fff;font:500 .95rem var(--mono)}
+.sfx-list{display:grid;gap:14px}
+.sfx{display:flex;gap:18px;align-items:flex-start}
+.sfx h2{font-size:1.2rem;margin-bottom:6px}
+.sfx .btn{flex:none;min-width:120px}
+.sfx .btn[aria-pressed="true"]{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff}
+@media (max-width:520px){.sfx{flex-direction:column}}
+.lights{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.lights h2{font-size:1.15rem;margin-bottom:8px}
+.video-lite{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;aspect-ratio:16/9;border-radius:18px;border:1px solid var(--line-strong);background:#07070d;color:var(--text);cursor:pointer;font-weight:700}
