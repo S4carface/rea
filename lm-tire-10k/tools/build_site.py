@@ -19,6 +19,15 @@ from content import UI, SERVICES, LANGS, NEARBY  # noqa
 
 PREVIEW = '--preview' in sys.argv
 OUT = sys.argv[sys.argv.index('--preview') + 1] if PREVIEW else ROOT
+# --htmlpreview BRANCH: pages go to preview/ with links through htmlpreview.github.io (phone preview of the GitHub copy)
+HP = sys.argv[sys.argv.index('--htmlpreview') + 1] if '--htmlpreview' in sys.argv else ''
+HP_BASE = f'https://htmlpreview.github.io/?https://github.com/S4carface/rea/blob/{HP}/lm-tire-10k/'
+if HP:
+    OUT = os.path.join(ROOT, 'preview')
+
+
+def aup(here):
+    return '../' * (here.count('/') + (1 if HP else 0))
 DOMAIN = (SITE['domain'] or 'https://YOUR-LIVE-DOMAIN').rstrip('/')
 E = lambda s: html.escape(str(s), quote=True)
 SVC = {s['key']: s for s in SERVICES}
@@ -41,6 +50,8 @@ def path_of(lang, slug):
 
 def rel(frm, to):
     """relative link from page path `frm` to page path `to` ('' = home)"""
+    if HP:
+        return HP_BASE + ('preview/' + to + 'index.html' if to else 'online.html')
     up = '../' * frm.count('/')
     target = up + to
     if PREVIEW and (to == '' or to.endswith('/')):
@@ -50,6 +61,8 @@ def rel(frm, to):
 
 def home_link(frm, lang, hash_=''):
     t = rel(frm, '')
+    if HP:
+        return t + hash_
     if lang != 'en':
         t += ('&' if '?' in t else '?') + 'lang=' + lang
     return t + hash_
@@ -302,7 +315,7 @@ def icon(n):
 
 
 def head(lang, title, desc, here, alternates, extra_ld):
-    up = '../' * here.count('/')
+    up = aup(here)
     canon = DOMAIN + '/' + here
     alt = ''.join(f'<link rel="alternate" hreflang="{HREFLANG[l]}" href="{DOMAIN}/{p}">\n' for l, p in alternates.items())
     if 'en' in alternates:
@@ -348,7 +361,7 @@ def header(lang, here, lang_links):
     return f"""<a class="skip" href="#main">{E(u['skip'])}</a>
 <div class="env" aria-hidden="true"></div>
 <header class="top solid" id="topbar">
-  <a class="brand" href="{E(home)}"><img src="{'../' * here.count('/')}assets/logo.webp" alt="{E(B['name'])}, {E(u['home'])}" width="440" height="266"></a>
+  <a class="brand" href="{E(home)}"><img src="{aup(here)}assets/logo.webp" alt="{E(B['name'])}, {E(u['home'])}" width="440" height="266"></a>
   <nav aria-label="Main">
     <a class="link" href="{E(svc_home)}">{E(u['services'])}</a>
     <a class="link" href="{E(home_link(here, lang, '#help'))}">{E(u['help'])}</a>
@@ -403,7 +416,7 @@ def footer(lang, here):
     return f"""<footer>
   <div class="foot">
     <div>
-      <img src="{'../' * here.count('/')}assets/logo.webp" alt="{E(B['name'])}" width="440" height="266" loading="lazy">
+      <img src="{aup(here)}assets/logo.webp" alt="{E(B['name'])}" width="440" height="266" loading="lazy">
       <p style="margin-top:14px">{E(u['since'])} {E(u['footer_line'])}</p>
     </div>
     <div><h3>{E(u['services'])}</h3><ul>{svc}</ul></div>
@@ -765,6 +778,22 @@ def main():
         if os.path.exists(OUT):
             shutil.rmtree(OUT)
         shutil.copytree(ROOT, OUT, ignore=shutil.ignore_patterns('tools', '.git', 'online.html', 'sound-picker.html'))
+    if HP:
+        h = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
+        spr = sprite(h)
+        for s_ in SERVICES:
+            for l in LANGS:
+                build_service(s_, l, spr)
+        for l in LANGS:
+            build_policies(l, spr)
+        # htmlpreview runs every <script> as JS: add Google data from JS instead
+        for dp, dn, fn in os.walk(OUT):
+            for f in fn:
+                p = os.path.join(dp, f); t = open(p, encoding='utf-8').read()
+                t = re.sub(r'<script type="application/ld\+json">(.*?)</script>', lambda m: '<script>(function(){var s=document.createElement("script");s.type="application/ld+json";s.text=' + json.dumps(m.group(1)) + ';document.head.appendChild(s)})()</script>', t, flags=re.S)
+                open(p, 'w', encoding='utf-8').write(t)
+        print('built htmlpreview pages into', OUT)
+        return
     index_path = os.path.join(ROOT, 'index.html')
     h = open(index_path, encoding='utf-8').read()
     build_hours_js()
