@@ -19,7 +19,7 @@ from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIM
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
 from business import DELIVERY, INVENTORY, MUSIC  # noqa
-from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED, SYMPTOMS, TIPS, VISIT  # noqa
+from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED, SYMPTOMS, TIPS, VISIT, CONTACT_TOOLS  # noqa
 
 HP = sys.argv[sys.argv.index('--hp') + 1] if '--hp' in sys.argv else ''
 REPO = 'S4carface/rea'
@@ -672,6 +672,37 @@ def build_financing(lang):
     return page(lang, 'financing', here, alts_of('financing'), t['fin_title'], t['fin_desc'], body, lds)
 
 
+def vcard(lang):
+    """contact card for phones; the routed texting contact comes first. Public email only (never the corporate one)."""
+    ct, t = CONTACT_TOOLS[lang], T[lang]
+    esc_v = lambda x: str(x).replace('\\', '\\\\').replace(',', '\\,').replace(';', '\\;').replace('\n', '\\n')
+    order = [ROUTE[lang]] + [k for k in ('cid', 'leo') if k != ROUTE[lang]]
+    lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:;' + esc_v(B['name']) + ';;;', 'FN:' + esc_v(B['name']), 'ORG:' + esc_v(B['name']),
+             'item1.TEL;TYPE=WORK,VOICE:' + CONTACTS['shop']['phone'], 'item1.X-ABLabel:' + esc_v(ct['v_shop'])]
+    for i, k in enumerate(order, 2):
+        c = CONTACTS[k]
+        lab = c['name'] + ' · ' + ' / '.join(ct['v_langs'][l] for l in c['langs']) + (' · ' + ct['v_text'] if c['sms'] else '')
+        lines += [f'item{i}.TEL;TYPE=CELL' + (',TEXT' if c['sms'] else '') + ':' + c['phone'], f'item{i}.X-ABLabel:' + esc_v(lab)]
+    if EMAIL:
+        lines.append('EMAIL;TYPE=INTERNET,WORK:' + EMAIL)
+    lines.append('ADR;TYPE=WORK:;;' + esc_v(B['street']) + ';' + esc_v(B['city']) + ';' + B['region'] + ';' + B['zip'] + ';USA')
+    if SITE['domain']:
+        lines.append('URL:' + SITE['domain'].rstrip('/') + '/' + ppath('home', lang))
+    lines.append('NOTE:' + esc_v(ct['v_hours'] + ': ' + '; '.join(f'{a} {b}' for a, b in t['hours_rows'])))
+    lines.append('END:VCARD')
+    assert 'lmtirecorp' not in ''.join(lines)
+    return '\r\n'.join(lines) + '\r\n'
+
+
+def contact_tools(lang):
+    ct = CONTACT_TOOLS[lang]
+    data = 'data:text/vcard;charset=utf-8,' + quote(vcard(lang), safe='')
+    return (f'<div class="grid2 ct-tools"><div class="card ct-card"><span class="ic">{icon("user") if "user" in ICONS else icon("phone")}</span><h2>{E(ct["save_h"])}</h2><p class="note">{E(ct["save_p"])}</p>'
+            f'<a class="btn btn-red" href="{E(data)}" download="LM-Tire.vcf" data-track="vcard">{icon("phone")}{E(ct["save_btn"])}</a></div>'
+            f'<div class="card ct-card"><span class="ic">{icon("share")}</span><h2>{E(ct["share_h"])}</h2><p class="note">{E(ct["share_p"])}</p>'
+            f'<button type="button" class="btn btn-ghost share-tool" data-title="{E(B["name"])}" data-home="{E(href(ppath("home", lang)))}" data-track="share-shop">{icon("share")}{E(ct["share_btn"])}</button></div></div>')
+
+
 def build_contact(lang):
     t = T[lang]
     here = ppath('contact', lang)
@@ -679,7 +710,7 @@ def build_contact(lang):
     body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['contact'], here)]) + phead(t['contact_h1'], t['contact_lede'], f"""<div class="btn-row"><a class="btn btn-red" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{E(t['call'])} {CONTACTS['shop']['label']}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(t['text'])} {r['label']}</a><a class="btn btn-ghost" href="{E(DIRECTIONS)}" target="_blank" rel="noopener">{icon('pin')}{E(t['directions'])}</a></div>""") + f"""
 <section class="sec sec-tight" aria-label="{E(t['visit_h'])}"><div class="wrap">{visit_card(lang, here)}</div></section>
 <section class="sec sec-tight" aria-labelledby="who-h"><div class="wrap card"><h2 id="who-h" style="font-size:1.4rem;margin-bottom:6px">{E(t['who'])}</h2>{people(lang)}<p class="hint" style="margin-top:14px">{E(t['speak'])} {E(t['no_body'])}</p></div></section>
-<section class="sec sec-tight" id="save" aria-label="vCard"><div class="wrap" data-contact-tools></div></section>"""
+<section class="sec sec-tight" id="save" aria-label="{E(CONTACT_TOOLS[lang]['save_h'])}"><div class="wrap" data-contact-tools>{contact_tools(lang)}</div></section>"""
     lds = [crumbs_ld([(t['crumb_home'], ppath('home', lang)), (t['nav']['contact'], here)]), business_ld()]
     return page(lang, 'contact', here, alts_of('contact'), t['contact_title'], t['contact_desc'], body, lds)
 

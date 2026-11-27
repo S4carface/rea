@@ -516,3 +516,16 @@ VISIT = {
            'items': {'penny': 'Revisar el dibujo', 'puncture': 'Llanta ponchada', 'age': 'Revisar la edad de la llanta', 'size': 'Llantas', 'pressure': 'Presión / revisión de invierno',
                      'sounds': 'Revisar un ruido', 'lights': 'Luz del tablero', 'oil': 'Cambio de aceite', 'symptoms': 'Revisar mi carro', 'chooser': 'Ayuda para elegir llantas'}},
 }
+
+# Contact page: "Save our contact" (vCard) and "Share our shop"
+CONTACT_TOOLS = {
+    'en': {'save_h': 'Save our contact', 'save_p': "Adds the shop phone, our text line and our email to your phone's contacts.", 'save_btn': 'Save to my phone',
+           'share_h': 'Share our shop', 'share_p': 'Know someone who needs tires or a repair? Send them our page.', 'share_btn': 'Share',
+           'v_shop': 'Shop', 'v_text': 'Text / WhatsApp', 'v_langs': {'en': 'English', 'es': 'Español', 'pt': 'Português'}, 'v_hours': 'Hours'},
+    'pt': {'save_h': 'Salve nosso contato', 'save_p': 'Adiciona o telefone da oficina, o número para mensagens e nosso email nos contatos do seu celular.', 'save_btn': 'Salvar no celular',
+           'share_h': 'Indique a nossa oficina', 'share_p': 'Conhece alguém que precisa de pneus ou de conserto? Mande nossa página.', 'share_btn': 'Compartilhar',
+           'v_shop': 'Oficina', 'v_text': 'Mensagem / WhatsApp', 'v_langs': {'en': 'English', 'es': 'Español', 'pt': 'Português'}, 'v_hours': 'Horário'},
+    'es': {'save_h': 'Guarde nuestro contacto', 'save_p': 'Agrega el teléfono del taller, el número para textos y nuestro correo a los contactos de su teléfono.', 'save_btn': 'Guardar en mi teléfono',
+           'share_h': 'Comparta nuestro taller', 'share_p': '¿Conoce a alguien que necesita llantas o una reparación? Mándele nuestra página.', 'share_btn': 'Compartir',
+           'v_shop': 'Taller', 'v_text': 'Texto / WhatsApp', 'v_langs': {'en': 'English', 'es': 'Español', 'pt': 'Português'}, 'v_hours': 'Horario'},
+}

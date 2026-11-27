@@ -337,7 +337,8 @@ document.addEventListener('click', function (e) {
     b.addEventListener('click', function () {
       // the official address from the page's canonical link once the domain is set; the current address until then (previews)
       var can = d.querySelector('link[rel=canonical]'), cu = can && can.href;
-      var url = cu && !/YOUR-LIVE-DOMAIN/.test(cu) ? cu : location.href.split('#')[0], title = (b.getAttribute('data-title') || '') + ' | L&M Tire';
+      var ok = cu && !/your-live-domain/i.test(cu), home = b.getAttribute('data-home');
+      var url = home ? new URL(home, ok ? cu : location.href).href : ok ? cu : location.href.split('#')[0], title = (b.getAttribute('data-title') || '') + ' | L&M Tire';
       if (navigator.share && matchMedia('(pointer: coarse)').matches) { navigator.share({ title: title, url: url }).catch(function () {}); return; }
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { toast(D.copied); }, function () { toast(D.link, url); });
       else toast(D.link, url);
