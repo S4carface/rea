@@ -19,6 +19,7 @@ from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIM
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
 from business import DELIVERY, INVENTORY  # noqa
+from tools3 import TOOLS, VIDEOS, C as TC, LOAD_INDEX, SPEED  # noqa
 
 HP = sys.argv[sys.argv.index('--hp') + 1] if '--hp' in sys.argv else ''
 REPO = 'S4carface/rea'
@@ -510,17 +511,70 @@ def build_book(lang):
                 extra_js=cfg_js(lang, here) + f'<script src="{asset("vehicle.js", here)}" defer></script>\n<script src="{asset("book.js", here)}" defer></script>\n')
 
 
-HELP_TOOLS = []  # filled by Stage 3: (key, icon, {lang: (name, blurb, slug)})
+HELP_TOOLS = [(k, ic, {l: (TC[l][k]['name'], TC[l][k]['blurb'], TC[l][k]['slug'], TC[l][k]['kw']) for l in LANGS}) for k, ic, _ in TOOLS]
+
+
+def tpath(k, lang):
+    return ppath('help', lang) + TC[lang][k]['slug'] + '/'
 
 
 def build_help(lang):
     t = T[lang]
     here = ppath('help', lang)
-    items = ''.join(f'<li><a class="tile" href="{E(href(here + v[lang][2] + "/"))}"><span class="ic">{icon(ic)}</span><span><b>{E(v[lang][0])}</b><small>{E(v[lang][1])}</small></span></a></li>' for k, ic, v in HELP_TOOLS)
+    items = ''.join(f'<li><a class="tile" href="{E(href(tpath(k, lang)))}"><span class="ic">{icon(ic)}</span><span><b>{E(v[lang][0])}</b><small>{E(v[lang][1])}</small></span></a></li>' for k, ic, v in HELP_TOOLS)
     body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], here)]) + phead(t['help_h1'], t['help_lede']) + f"""
-<section class="sec sec-tight" aria-label="{E(t['help_h1'])}"><div class="wrap">{f'<ul class="tiles">{items}</ul>' if items else f'<p class="note">{E(t["help_soon"])}</p>'}</div></section>"""
+<section class="sec sec-tight" aria-label="{E(t['help_h1'])}"><div class="wrap"><ul class="tiles">{items}</ul></div></section>"""
     lds = [crumbs_ld([(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], here)])]
     return page(lang, 'help', here, alts_of('help'), t['help_title'], t['help_desc'], body, lds)
+
+
+def tool_static(k, lang, here):
+    c = TC[lang][k]
+    lst = lambda xs, cls='ticks': f'<ul class="{cls}">' + ''.join(f'<li>{E(x)}</li>' for x in xs) + '</ul>'
+    h2 = lambda x: f'<h2 class="th">{E(x)}</h2>'
+    if k == 'penny':
+        return h2(c['steps_h']) + '<ol class="steps">' + ''.join(f'<li>{E(x)}</li>' for x in c['steps']) + '</ol>' + h2(c['limits_h']) + lst(c['limits']) + f'<p class="hint" style="margin-top:12px">{E(c["source"])}</p>'
+    if k == 'puncture':
+        return h2(c['plug_h']) + f'<p class="note">{E(c["plug_p"])}</p>' + h2(c['drive_h']) + lst(c['drive']) + f'<p class="hint" style="margin-top:12px">{E(c["source"])}</p>'
+    if k in ('age', 'pressure'):
+        return h2(c['tips_h']) + lst(c['tips'])
+    if k in ('size', 'oil'):
+        return f'<p class="note">{E(c["note"])}</p>'
+    return ''
+
+
+def build_tool(k, ic, svc_key, lang):
+    t, c, g = T[lang], TC[lang][k], TC[lang]
+    here = tpath(k, lang)
+    alts = {l: tpath(k, l) for l in LANGS}
+    r = route(lang)
+    items = [(t['crumb_home'], ppath('home', lang)), (t['nav']['help'], ppath('help', lang)), (c['name'], here)]
+    if k == 'sounds':
+        tool = '<div class="sfx-list">' + ''.join(f'<div class="card sfx"><button type="button" class="btn btn-ghost" aria-pressed="false" data-sfx="{E(asset("sfx-" + key + ".mp3", here))}">{icon("play")}<span>{E(c["play"])}</span></button><div><h2>{E(n)}</h2><p class="note">{E(desc)}</p><a class="link-arrow" href="{E(href(spath(SVC[sk], lang)))}">{E(SVC[sk][lang]["name"])}</a></div></div>' for key, n, desc, sk in c['items']) + f'<p class="hint">{E(c["audio_note"])}</p></div>'
+        tool = f'<div data-tool="sounds">{tool}</div>'
+    elif k == 'lights':
+        tool = '<ul class="lights">' + ''.join(f'<li class="card"><h2>{E(n)}</h2><p class="note">{E(desc)}</p></li>' for n, desc in c['items']) + '</ul>' + f'<div class="card" style="margin-top:16px"><h2 class="th" style="margin-top:0">{E(c["remind_h"])}</h2>' + ''.join(f'<p class="note" style="margin-top:10px">{E(x)}</p>' for x in c['remind']) + '</div>'
+    else:
+        tool = f'<div data-tool="{k}" data-penny="{E(asset("penny.webp", here))}" class="tool-mount tm-{k}"></div>'
+    vid = ''
+    if VIDEOS.get(k):
+        vid = f'<section class="sec sec-tight"><div class="wrap"><button type="button" class="video-lite" data-yt="{E(VIDEOS[k])}">{icon("play")}<span>{E(g["video"])}</span><small>{E(g["video_note"])}</small></button></div></section>'
+    s = SVC[svc_key]
+    body = crumbs(lang, items) + phead(c['h1'], c['lede']) + f"""
+<section class="sec sec-tight" aria-label="{E(c['name'])}"><div class="wrap">{tool}</div></section>
+<section class="sec sec-tight"><div class="wrap"><div class="prose">{tool_static(k, lang, here)}</div>
+<p class="box-amber" style="margin-top:22px">{E(g['disclaimer'])}</p>
+<div class="btn-row" style="margin-top:18px"><a class="btn btn-red" href="{E(href(ppath('book', lang)))}#svc={E(svc_key)}">{icon('cal')}{E(g['book'])}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(g['text_us'])}</a></div></div></section>
+{vid}<section class="sec sec-tight"><div class="wrap grid2"><a class="tile" href="{E(href(spath(s, lang)))}"><span class="ic">{icon(s['icon'])}</span><span><small>{E(g['related'])}</small><b>{E(s[lang]['name'])}</b></span></a><a class="tile" href="{E(href(ppath('help', lang)))}"><span class="ic">{icon(ic)}</span><span><b>{E(g['all_tools'])}</b></span></a></div></section>"""
+    txt = dict(c)
+    txt['penny_img'] = c.get('h1', '')
+    js = '<script>window.LM_TXT=' + json.dumps(txt, ensure_ascii=False) + ';'
+    if k == 'size':
+        js += 'window.LM_LI=' + json.dumps(LOAD_INDEX) + ';window.LM_SR=' + json.dumps(SPEED) + ';'
+    js += '</script>\n'
+    extra = cfg_js(lang, here, txt=False) + js + (f'<script src="{asset("help.js", here)}" defer></script>\n' if k != 'lights' else '')
+    lds = [crumbs_ld(items)]
+    return page(lang, 'help', here, alts, c['title'], c['desc'], body, lds, extra_js=extra)
 
 
 def build_financing(lang):
@@ -692,7 +746,7 @@ def build_search(lang):
     for i, (ti, its) in enumerate([(DEPOSIT[lang]['title'], DEPOSIT[lang]['items'])] + p['cats']):
         items.append({'t': ti, 'u': href(ppath('policies', lang)) + f'#p{i}', 'k': 'policy', 'x': its[0], 'w': ' '.join(its) + ' ' + SYN[lang]['policies']})
     for k, ic, v in HELP_TOOLS:
-        items.append({'t': v[lang][0], 'u': href(ppath('help', lang) + v[lang][2] + '/'), 'k': 'tool', 'x': v[lang][1], 'w': v[lang][3] if len(v[lang]) > 3 else '', 'b': 2})
+        items.append({'t': v[lang][0], 'u': href(tpath(k, lang)), 'k': 'tool', 'x': v[lang][1], 'w': v[lang][3], 'b': 2})
     data = json.dumps({'kinds': t['kinds'], 'items': items}, ensure_ascii=False, separators=(',', ':'))
     write(('search-' if HP else 'assets/search-') + lang + '.json', data)
 
@@ -715,7 +769,7 @@ def copy_assets():
     for f in os.listdir(SRC):
         if f.endswith(('.css', '.js')):
             shutil.copy2(os.path.join(SRC, f), os.path.join(A, f))
-    for f in ['hero-poster.webp', 'logo.webp', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'og-card.jpg']:
+    for f in ['hero-poster.webp', 'logo.webp', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'og-card.jpg', 'penny.webp', 'sfx-squeal.mp3', 'sfx-grind.mp3', 'sfx-clunk.mp3']:
         shutil.copy2(os.path.join(ROOT, 'assets', f), os.path.join(A, f))
     if PHOTOS:
         shutil.copytree(os.path.join(ROOT, 'assets', 'photos'), os.path.join(A, 'photos'), dirs_exist_ok=True)
@@ -759,6 +813,8 @@ def main():
                 pages.append((here, alts))
         for s in SERVICES:
             pages.append(build_service(s, lang))
+        for k, ic, sk in TOOLS:
+            pages.append(build_tool(k, ic, sk, lang))
         build_search(lang)
     seen = set()
     pages = [p for p in pages if not (p[0] in seen or seen.add(p[0]))]

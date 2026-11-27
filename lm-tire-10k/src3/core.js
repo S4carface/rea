@@ -244,3 +244,13 @@
   var y = $('[data-year]'); if (y) y.textContent = new Date().getFullYear();
   window.LM = { store: store, lang: L, fmt: fmt, nowNY: nowNY, restore: restoreForms };
 })();
+/* future LM Tire videos: load YouTube only when the visitor taps play */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('.video-lite'); if (!b) return;
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+  f.title = b.textContent.trim(); f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true;
+  f.style.cssText = 'width:100%;aspect-ratio:16/9;border:0;border-radius:18px';
+  document.dispatchEvent(new CustomEvent('lm:sfx', { detail: 'start' }));
+  b.replaceWith(f);
+});

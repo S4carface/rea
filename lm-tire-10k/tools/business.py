@@ -169,18 +169,19 @@ PHOTO_TEXT = {
 # ---------------------------------------------------------------- Sprint 3 settings
 
 # Who gets what. Change a number here and every page, form and text message follows.
-# 'whatsapp': True only after the owner confirms that number uses WhatsApp (buttons stay hidden until then).
+# 'whatsapp': True only for numbers the owner confirmed use WhatsApp (Cid and Leo confirmed 2026-11-26; the shop landline has none).
 # Future: add employees or a central business number/messaging service here; forms read 'route'.
 CONTACTS = {
     'shop':  {'name': 'L&M Tire Auto Repair', 'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'sms': False, 'whatsapp': False},
-    'cid':   {'name': 'Cid', 'role': 'owner', 'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': False},
-    'leo':   {'name': 'Leo', 'role': 'partner', 'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': False},
+    'cid':   {'name': 'Cid', 'role': 'owner', 'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': True},
+    'leo':   {'name': 'Leo', 'role': 'partner', 'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': True},
 }
 # Which contact answers texts and website requests in each language.
 ROUTE = {'en': 'cid', 'es': 'cid', 'pt': 'leo'}
 
-# Business email: empty until the owner confirms one (it then shows on the contact card and Contact page).
-EMAIL = ''
+# Public customer service email (confirmed by the owner 2026-11-26): requests, quotes, questions, feedback, Contact page, contact card.
+# The corporate email is kept OFF the website on purpose.
+EMAIL = 'care.lmtire@gmail.com'
 
 # Social pages: links stay hidden until a real address is filled in. Nothing loads from these sites.
 SOCIAL = {'youtube': '', 'instagram': '', 'facebook': ''}

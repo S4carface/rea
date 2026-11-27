@@ -45,6 +45,7 @@
     (C.endpoint ? '<button class="btn btn-blue" type="button" id="bOnline">' + esc(X.send_online) + '</button>' : '') + '</div>' +
     '<p class="hint" id="bStatus" role="status" aria-live="polite" style="margin-top:12px"></p>' +
     '</form>';
+  var shownAt = Date.now();
   var f = box.querySelector('#bookForm'), veh = window.LM_vehicle(box.querySelector('[data-veh]'), 'bv');
   var other = f.querySelector('#bOtherW'), err = f.querySelector('#bErr'), st = f.querySelector('#bStatus');
   f.addEventListener('change', function (e) {
@@ -121,7 +122,7 @@
     on.disabled = true; st.textContent = X.sending;
     var body = { kind: 'appointment', lang: document.documentElement.lang, reply_lang: f.querySelector('#bLang').value, services: picked(), other: f.querySelector('#bOther').value.trim(),
       vehicle: veh.text(), day: f.querySelector('#bDay').value, time: f.querySelector('#bTime').value, name: f.querySelector('#bName').value.trim(),
-      phone: f.querySelector('#bPhone').value.trim(), notes: f.querySelector('#bNotes').value.trim(), website: f.querySelector('[name=website]').value };
+      phone: f.querySelector('#bPhone').value.trim(), notes: f.querySelector('#bNotes').value.trim(), website: f.querySelector('[name=website]').value, elapsed: Date.now() - shownAt };
     var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
     fetch(C.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl ? ctl.signal : undefined })
       .then(function (r) { return r.ok ? r.json() : { ok: false }; })

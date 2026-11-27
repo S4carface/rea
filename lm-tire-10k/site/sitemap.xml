@@ -127,6 +127,62 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
   </url>
   <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/penny-test/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/prueba-del-centavo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/tire-age/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/idade-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/edad-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/tire-size/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/medida-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/medida-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/calibragem/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/presion-de-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/barulhos-do-carro/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/ruidos-del-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/luzes-do-painel/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/luces-del-tablero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/lembrete-troca-de-oleo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/recordatorio-cambio-de-aceite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
+  </url>
+  <url>
     <loc>https://YOUR-LIVE-DOMAIN/pt/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/"/>
@@ -253,6 +309,62 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
   </url>
   <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/prueba-del-centavo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/idade-do-pneu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/idade-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/edad-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/medida-do-pneu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/medida-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/medida-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/calibragem/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/calibragem/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/presion-de-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/barulhos-do-carro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/barulhos-do-carro/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/ruidos-del-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/luzes-do-painel/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/luzes-do-painel/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/luces-del-tablero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/pt/ajuda/lembrete-troca-de-oleo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/lembrete-troca-de-oleo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/recordatorio-cambio-de-aceite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
+  </url>
+  <url>
     <loc>https://YOUR-LIVE-DOMAIN/es/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/"/>
@@ -377,5 +489,61 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/luz-de-injecao/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/luz-de-check-engine/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/check-engine-light/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/prueba-del-centavo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/teste-da-moeda/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/prueba-del-centavo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/penny-test/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/tarugo-ou-remendo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/tapon-o-parche/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/plug-or-patch/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/edad-de-la-llanta/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/idade-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/edad-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-age/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/medida-de-la-llanta/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/medida-do-pneu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/medida-de-la-llanta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-size/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/presion-de-llantas/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/calibragem/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/presion-de-llantas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/tire-pressure/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/ruidos-del-carro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/barulhos-do-carro/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/ruidos-del-carro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/car-sounds/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/luces-del-tablero/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/luzes-do-painel/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/luces-del-tablero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/warning-lights/"/>
+  </url>
+  <url>
+    <loc>https://YOUR-LIVE-DOMAIN/es/ayuda/recordatorio-cambio-de-aceite/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://YOUR-LIVE-DOMAIN/pt/ajuda/lembrete-troca-de-oleo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://YOUR-LIVE-DOMAIN/es/ayuda/recordatorio-cambio-de-aceite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://YOUR-LIVE-DOMAIN/tire-help/oil-change-reminder/"/>
   </url>
 </urlset>
