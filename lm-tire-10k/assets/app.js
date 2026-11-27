@@ -21,13 +21,14 @@ const dur = m => (m >= 60 ? Math.floor(m / 60) + 'h ' : '') + (m % 60) + 'm';
 LM.closedDates = new Set();
 const nyDateStr = k => { const d = new Date(Date.now() + k * 864e5); const p = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d); return p; };
 function shopState(){
-  const n = nyNow(), shut = k => LM.closedDates.has(nyDateStr(k));
-  const t = shut(0) ? null : OPEN[n.day];
-  if (t && n.mins >= t[0] && n.mins < t[1]) return { open: true, closesIn: t[1] - n.mins, closeAt: t[1], now: n };
+  const n = nyNow(), H = window.LM_HOURS;
+  const on = k => (LM.closedDates.has(nyDateStr(k)) ? null : (H ? H.on(k) : OPEN[(n.day + k) % 7]));
+  const t = on(0);
+  if (t && n.mins >= t[0] && n.mins < t[1]) return { open: true, closesIn: t[1] - n.mins, closeAt: t[1], now: n, special: !!(H && H.isHoliday(0)) };
   if (t && n.mins < t[0]) return { open: false, opensLabel: 'today', openAt: t[0], nextDay: n.day, now: n, holiday: false };
-  let k = 0, d = n.day;
-  do { k++; d = (n.day + k) % 7; } while ((!OPEN[d] || shut(k)) && k < 21);
-  return { open: false, opensLabel: k === 1 ? 'tomorrow' : DAYS[d], openAt: OPEN[d][0], nextDay: d, now: n, holiday: shut(0) };
+  let k = 0, d = n.day, nx = null;
+  do { k++; d = (n.day + k) % 7; nx = on(k); } while (!nx && k < 21);
+  return { open: false, opensLabel: k === 1 ? 'tomorrow' : DAYS[d], openAt: nx ? nx[0] : 480, nextDay: d, now: n, holiday: !t && !!(H && H.isHoliday(0)) || LM.closedDates.has(nyDateStr(0)) };
 }
 LM.shopState = shopState; LM.fmt = fmt; LM.nyNow = nyNow;
 
@@ -94,18 +95,30 @@ function updSize(){
   });
   const fd = new FormData(szForm);
   const size = p ? `${p.w}/${p.a}R${p.d}` : '';
-  const body = size
-    ? `Hi L&M Tire, can I get a quote? Tire size: ${size}. Kind: ${fd.get('kind')}. How many: ${fd.get('qty')}.`
-    : `Hi L&M Tire, can I get a tire quote? Kind: ${fd.get('kind')}. How many: ${fd.get('qty')}. I'll send a photo of my tire size.`;
-  szSend.href = sms(SHOP.text, body);
-  szSend.textContent = size ? `Text ${size} for a quote` : 'Text us for a tire quote';
-  szHint.textContent = szIn.value && !p ? 'That does not look like a full size yet. It should look like 205/55R16.' : 'Not sure of the size? Text us a photo of the side of your tire instead.';
+  const car = String(fd.get('car') || '').trim().slice(0, 60);
+  const L = (window.LM && LM.lang) || 'en';
+  const KIND = { pt: { New: 'Novo', Used: 'Usado', Winter: 'De inverno', 'Not sure': 'Não sei' }, es: { New: 'Nueva', Used: 'Usada', Winter: 'De invierno', 'Not sure': 'No sé' } };
+  const kind = (KIND[L] && KIND[L][fd.get('kind')]) || fd.get('kind');
+  const T = {
+    en: [`Hi L&M Tire, can I get a tire quote?`, `Tire size: `, `Kind: `, `How many: `, `Car: `, `I'll send a photo of my tire size.`],
+    pt: [`Olá L&M Tire, pode me passar um orçamento de pneus?`, `Medida: `, `Tipo: `, `Quantos: `, `Carro: `, `Vou mandar uma foto da medida do pneu.`],
+    es: [`Hola L&M Tire, ¿me puede dar un precio de llantas?`, `Medida: `, `Tipo: `, `Cuántas: `, `Carro: `, `Le mando una foto de la medida de la llanta.`]
+  }[L] || [];
+  const body = [T[0], size ? T[1] + size + '.' : '', T[2] + kind + '.', T[3] + fd.get('qty') + '.', car ? T[4] + car + '.' : '', size ? '' : T[5]].filter(Boolean).join(' ');
+  szSend.href = sms(L === 'pt' ? SHOP.pt : SHOP.text, body);
+  szSend.dataset.track = 'quote';
+  const LBL = { en: [s => `Text ${s} for a quote`, 'Text us for a tire quote'], pt: [s => `Pedir orçamento de ${s}`, 'Pedir orçamento por mensagem'], es: [s => `Pedir precio de ${s}`, 'Pedir precio por texto'] }[L] || [];
+  szSend.textContent = size ? LBL[0](size) : LBL[1];
+  const HINT = { en: ['That does not look like a full size yet. It should look like 205/55R16.', 'Not sure of the size? Text us a photo of the side of your tire instead.'], pt: ['Ainda não parece uma medida completa. Deve ser assim: 205/55R16.', 'Não sabe a medida? Mande uma foto da lateral do pneu.'], es: ['Todavía no parece una medida completa. Debe verse así: 205/55R16.', '¿No sabe la medida? Mándenos una foto del costado de la llanta.'] }[L] || [];
+  szHint.textContent = szIn.value && !p ? HINT[0] : HINT[1];
   hot(szIn.value && p ? null : null);
 }
 szIn.addEventListener('input', updSize);
 szIn.addEventListener('focus', () => hot('w'));
 szIn.addEventListener('blur', () => hot(null));
 szForm.addEventListener('change', updSize);
+szForm.addEventListener('input', updSize);
+document.addEventListener('lm:lang', () => updSize());
 szForm.addEventListener('submit', e => { e.preventDefault(); location.href = szSend.href; });
 updSize();
 
@@ -348,7 +361,12 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     '#symptoms .kicker': ['Não sabe o que precisa?', '¿No sabe qué necesita?'],
     '#symp-h': ['O que seu carro está fazendo?', '¿Qué está haciendo su carro?'],
     '#size .kicker': ['Orçamento de pneus por mensagem', 'Precio de llantas por texto'],
-    '#size-h': ['Digite a medida do pneu. Mande para nós.', 'Escriba la medida de su llanta. Mándenosla.'],
+    '#size-h': ['Peça o preço dos pneus por mensagem.', 'Pida el precio de llantas por texto.'],
+    '.size-more summary': ['O que os números querem dizer?', '¿Qué significan los números?'],
+    'label[for="sz-car"]': ['Seu carro <span class="opt">(se não souber a medida)</span>', 'Su carro <span class="opt">(si no sabe la medida)</span>'],
+    '.how-line li:nth-child(1)': ['Mande a mensagem', 'Mande el texto'],
+    '.how-line li:nth-child(2)': ['Traga o carro no seu horário', 'Traiga el carro a su hora'],
+    '.how-line li:nth-child(3)': ['Peça o preço antes de começarmos', 'Pida el precio antes de empezar'],
     '#how .kicker': ['Como agendar', 'Cómo reservar'],
     '#how-h': ['Agendar leva uma mensagem.', 'Reservar toma un solo mensaje.'],
     '#visit .kicker': ['Horário e endereço', 'Horario y dirección'],
@@ -1404,7 +1422,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
 /* ---- R67: "What changes a tire quote?" honest explainer under the tire-size tool (no prices, just what moves them) ---- */
 (() => {
   const form = $('#sizeForm'); if (!form) return;
-  const box = document.createElement('div'); box.className = 'qf rv in';
+  const box = document.createElement('details'); box.className = 'qf rv in';
   const F = [
     ['Tire size', 'Bigger wheels and wider tires cost more.', 'rim'],
     ['New or used', 'Used tires cost less up front. New tires last longer.', 'tread'],
@@ -1412,7 +1430,7 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
     ['How many', 'One tire, a pair, or a full set of four.', 'four'],
     ['Installation', 'Mounting and balancing so the ride is smooth.', 'balance']
   ];
-  box.innerHTML = '<h3>What changes a tire quote?</h3><ul>' + F.map(f => `<li><svg class="i" aria-hidden="true"><use href="#i-${f[2]}"/></svg><div><b>${f[0]}</b><span>${f[1]}</span></div></li>`).join('') + '</ul><p class="qf-note">Text us your size and ask for your options and the price.</p>';
+  box.innerHTML = '<summary><h3>What changes a tire quote?</h3></summary><ul>' + F.map(f => `<li><svg class="i" aria-hidden="true"><use href="#i-${f[2]}"/></svg><div><b>${f[0]}</b><span>${f[1]}</span></div></li>`).join('') + '</ul><p class="qf-note">Text us your size and ask for your options and the price.</p>';
   form.after(box);
 })();
 
@@ -2167,4 +2185,76 @@ $$('.odo[data-n]').forEach(o => reduced() ? o.querySelectorAll('.dg i').forEach(
   if (HELP.has(h)) show(h, false);
 })();
 
+})();
+
+/* S2-3: holiday hours from assets/hours.js: list the next 45 days of changes under the hours table, and tell Google */
+(() => {
+  const H = window.LM_HOURS; if (!H) return;
+  const f = m => { const h = Math.floor(m / 60), mm = m % 60; return ((h + 11) % 12 + 1) + (mm ? ':' + String(mm).padStart(2, '0') : '') + (h < 12 ? ' AM' : ' PM'); };
+  const rows = [];
+  for (let k = 0; k <= 45; k++) if (H.isHoliday(k)) rows.push([H.dateStr(k), H.on(k)]);
+  const T = { en: ['Holiday hours', 'Closed', ' to '], pt: ['Horário de feriado', 'Fechado', ' às '], es: ['Horario de días festivos', 'Cerrado', ' a '] };
+  const table = document.querySelector('#visit .hours');
+  if (rows.length && table) {
+    const box = document.createElement('div'); box.className = 'holi';
+    const paint = () => {
+      const l = (window.LM && LM.lang) || 'en', t = T[l] || T.en, loc = { en: 'en-US', pt: 'pt-BR', es: 'es-US' }[l] || 'en-US';
+      box.innerHTML = '';
+      const h = document.createElement('h3'); h.textContent = t[0]; box.appendChild(h);
+      const ul = document.createElement('ul');
+      rows.forEach(([ds, on]) => {
+        const li = document.createElement('li');
+        const d = new Date(ds + 'T12:00:00Z').toLocaleDateString(loc, { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
+        const name = (H.holidayNames || {})[ds];
+        const b = document.createElement('b'); b.textContent = d + (name ? ' (' + name + ')' : '');
+        const sp = document.createElement('span'); sp.textContent = on ? f(on[0]) + t[2] + f(on[1]) : t[1];
+        li.append(b, sp); ul.appendChild(li);
+      });
+      box.appendChild(ul);
+    };
+    paint(); document.addEventListener('lm:lang', paint);
+    table.after(box);
+  }
+  const all = Object.keys(H.holidays);
+  if (all.length) {
+    const spec = all.map(ds => { const v = H.holidays[ds]; const o = Array.isArray(v) ? v : ['00:00', '00:00']; return { '@type': 'OpeningHoursSpecification', validFrom: ds, validThrough: ds, opens: o[0], closes: o[1] }; });
+    const sc = document.createElement('script'); sc.type = 'application/ld+json';
+    sc.text = JSON.stringify({ '@context': 'https://schema.org', '@type': 'AutoRepair', '@id': (document.querySelector('link[rel=canonical]') || location).href.split('#')[0] + '#shop', specialOpeningHoursSpecification: spec });
+    document.head.appendChild(sc);
+  }
+})();
+
+/* S2-2: the hero's "Tires" pick goes straight to the tire quote */
+(() => {
+  document.addEventListener('click', e => {
+    const b = e.target.closest && e.target.closest('.hero-picks button[data-svc="New tires"]');
+    const q = document.getElementById('size');
+    if (!b || !q) return;
+    e.stopImmediatePropagation(); e.preventDefault();
+    q.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    setTimeout(() => { const i = document.getElementById('sz'); if (i) i.focus({ preventScroll: true }); }, 500);
+  }, true);
+})();
+
+/* S2-1: in-page links. Links that scripts add later (phone menu, search) are plain "#id" links.
+   Some preview hosts set a <base> to another site, so the browser would leave the page and show raw code.
+   We scroll to the section ourselves and keep the address bar in step. */
+(() => {
+  document.addEventListener('click', e => {
+    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const raw = a.getAttribute('href');
+    let id = a.dataset.hash || (raw.charAt(0) === '#' ? raw.slice(1) : '');
+    if (!id && raw.indexOf('#') > 0) { try { const u = new URL(a.href, location.href); if (u.pathname === location.pathname) id = u.hash.slice(1); } catch (x) {} }
+    if (!id) return;
+    const t = document.getElementById(decodeURIComponent(id));
+    if (!t) return;
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    try { history.pushState(null, '', '#' + id); } catch (x) {}
+    if (!t.hasAttribute('tabindex') && !/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) t.setAttribute('tabindex', '-1');
+    try { t.focus({ preventScroll: true }); } catch (x) {}
+  });
 })();

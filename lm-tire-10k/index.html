@@ -30,6 +30,7 @@
 <link rel="preload" as="image" href="assets/hero-poster.webp" type="image/webp" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 <script>window.LM_CALM=true</script>
+<script src="assets/hours.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AutoRepair","name":"L&M Tire Auto Repair","foundingDate":"2013","telephone":"+1-508-853-3322","address":{"@type":"PostalAddress","streetAddress":"598 West Boylston Street","addressLocality":"Worcester","addressRegion":"MA","postalCode":"01606","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"12:00"}],"knowsLanguage":["en","pt","es"],"geo":{"@type":"GeoCoordinates","latitude":42.3119935,"longitude":-71.7974734},"hasMap":"https://www.openstreetmap.org/?mlat=42.3119935&mlon=-71.7974734#map=18/42.3119935/-71.7974734","areaServed":{"@type":"City","name":"Worcester, MA"},"image":"assets/hero-poster.jpg","logo":"assets/icon-512.png","contactPoint":[{"@type":"ContactPoint","telephone":"+1-508-853-3322","contactType":"customer service","availableLanguage":["English"]},{"@type":"ContactPoint","telephone":"+1-304-806-6047","contactType":"reservations","availableLanguage":["English","Spanish"]},{"@type":"ContactPoint","telephone":"+1-774-288-9675","contactType":"customer service","availableLanguage":["Portuguese"]}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Tire and auto repair services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"New tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Used tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Winter tires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Tire installation and balancing"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Flat tire repair: plugs and patches"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Tire rotation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Wheel alignment"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Brake repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Oil change"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Suspension and steering repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Check engine light diagnosis"}}]}}
 </script>
@@ -56,8 +57,8 @@ p{margin:0}
 .skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--accent-btn);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;transition:top .25s var(--ease-out)}
 .skip:focus{top:12px}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
-.mono{font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem}
-.kicker{color:var(--accent);display:inline-block}
+.mono{font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:.875rem}
+.kicker{color:#ff5c63;display:inline-block}
 
 /* one environment behind everything */
 .env{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--canvas)}
@@ -255,7 +256,7 @@ main section{scroll-margin-top:64px;position:relative;padding:clamp(72px,10vw,14
 .hours th,.hours td{padding:12px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:500}
 .hours td{text-align:right;font-family:var(--mono);font-size:.95rem}
 .hours tr.today th,.hours tr.today td{color:var(--text-primary)}
-.hours tr.today th::after{content:"Today";margin-left:10px;font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);vertical-align:middle}
+.hours tr.today th::after{content:"Today";margin-left:10px;font:500 .875rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);vertical-align:middle}
 .hours tr:not(.today){color:var(--text-secondary)}
 .addr{font-size:1.15rem;font-weight:600;margin-bottom:14px}
 .contact{margin-top:30px;background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:22px;padding:8px 24px}
@@ -415,7 +416,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
         <div class="hero-picks"><span class="mono">I need</span><button type="button" data-svc="New tires">Tires</button><button type="button" data-svc="Flat tire repair: plugs and patches">Flat fix</button><button type="button" data-svc="Wheel alignment">Alignment</button><button type="button" data-svc="Brakes">Brakes</button><button type="button" data-svc="Oil change">Oil change</button><button type="button" data-svc="Check engine light">Warning light</button></div>
         <p class="closed-note" hidden>We're closed right now. Send a text and book your time.</p>
-        <script>/* decide open/closed before first paint, so nothing jumps */(function(){try{var p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()),g=function(t){for(var i=0;i<p.length;i++)if(p[i].type===t)return p[i].value},d=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday')),m=(+g('hour')%24)*60+ +g('minute'),o=d>=1&&d<=5?m>=480&&m<1080:d===6?m>=480&&m<720:false;document.body.classList.add(o?'is-open':'is-closed');var n=document.currentScript.previousElementSibling;n.hidden=o;var b=document.querySelectorAll('.b1 [data-cta]');for(var i=0;i<b.length;i++){var pr=o?b[i].getAttribute('data-cta')==='call':b[i].getAttribute('data-cta')==='book';b[i].classList.toggle('btn-red',pr);b[i].classList.toggle('btn-ghost',!pr)}}catch(e){}})();</script>
+        <script>/* decide open/closed before first paint, so nothing jumps */(function(){try{var H=window.LM_HOURS,p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()),g=function(t){for(var i=0;i<p.length;i++)if(p[i].type===t)return p[i].value},m=(+g('hour')%24)*60+ +g('minute'),t=H.on(0),o=!!t&&m>=t[0]&&m<t[1];document.body.classList.add(o?'is-open':'is-closed');var n=document.currentScript.previousElementSibling;n.hidden=o;var b=document.querySelectorAll('.b1 [data-cta]');for(var i=0;i<b.length;i++){var pr=o?b[i].getAttribute('data-cta')==='call':b[i].getAttribute('data-cta')==='book';b[i].classList.toggle('btn-red',pr);b[i].classList.toggle('btn-ghost',!pr)}}catch(e){}})();</script>
         <p class="langs-line mono chip" style="display:inline-block">Text to book · English · Português · Español</p>
       </div>
     </div>
@@ -455,17 +456,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </ul>
 </section>
 
-<section id="start" class="start" aria-labelledby="start-h">
-  <div class="wrap">
-    <h2 id="start-h" class="start-h rv">What brings you in today?</h2>
-    <div class="start-grid">
-      <a class="st rv" style="--i:1" href="#pick"><svg class="i st-ic" aria-hidden="true"><use href="#i-tread"/></svg><b>I need tires</b><small>New, used or winter: find what fits</small></a>
-      <a class="st rv" style="--i:2" href="#patch"><svg class="i st-ic" aria-hidden="true"><use href="#i-nail"/></svg><b>I have a flat</b><small>Plug, patch or new tire? Tap to see</small></a>
-      <a class="st rv" style="--i:3" href="#symptoms"><svg class="i st-ic" aria-hidden="true"><use href="#i-brakelamp"/></svg><b>Something sounds wrong</b><small>Brakes, shakes, clunks, warning lights</small></a>
-      <a class="st st-book rv" style="--i:4" href="#book"><svg class="i st-ic" aria-hidden="true"><use href="#i-textok"/></svg><b>I know what I need</b><small>Book it in 4 taps</small></a>
-    </div>
-  </div>
-</section>
+
 
 <div class="marquee" aria-hidden="true">
   <div class="mq-track mq-a"><span>New tires</span><i></i><span>Used tires</span><i></i><span>Winter tires</span><i></i><span>Balancing</span><i></i><span>Plugs &amp; patches</span><i></i><span>Rotation</span><i></i><span>Wheel alignment</span><i></i></div>
@@ -496,6 +487,45 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </article>
       <p class="note rv" style="--i:4">We don't do body work or paint.</p>
     </div>
+  </div>
+</section>
+
+<section id="size" class="size" aria-labelledby="size-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker mono rv">Tire quote by text</p>
+      <h2 id="size-h" class="rv" style="--i:1">Get a tire price by text.</h2>
+      <p class="lede rv" style="--i:2">The size is printed on the side of your tire, and on the sticker inside the driver's door. It looks like 205/55R16.</p>
+    </div>
+    <div class="size-wall rv" style="--i:3" aria-hidden="true">
+      <div class="wall-arc"></div>
+      <p class="wall-text"><span class="seg" data-p="w">205</span><span class="sl">/</span><span class="seg" data-p="a">55</span><span class="seg" data-p="r">R</span><span class="seg" data-p="d">16</span></p>
+    </div>
+    <details class="size-more rv" style="--i:4"><summary>What do the numbers mean?</summary>
+    <div class="size-legend rv" style="--i:4">
+      <div class="leg" data-p="w"><b class="mono">205</b><span>Width in millimeters</span></div>
+      <div class="leg" data-p="a"><b class="mono">55</b><span>Sidewall height, as % of width</span></div>
+      <div class="leg" data-p="r"><b class="mono">R</b><span>Radial build</span></div>
+      <div class="leg" data-p="d"><b class="mono">16</b><span>Wheel size in inches</span></div>
+    </div>
+    </details>
+    <form class="size-form rv" style="--i:5" id="sizeForm" novalidate>
+      <div class="field"><label for="sz">Your tire size</label><div class="sz-pop" role="group" aria-label="Common sizes"><button type="button">205/55R16</button><button type="button">215/60R16</button><button type="button">225/65R17</button><button type="button">235/65R17</button><button type="button">225/45R17</button></div><input id="sz" name="sz" inputmode="text" autocomplete="off" placeholder="205/55R16" maxlength="16"></div>
+      <div class="field"><label for="sz-car">Your car <span class="opt">(if you don't know the size)</span></label><input id="sz-car" name="car" autocomplete="off" placeholder="Year, make and model" maxlength="60"></div>
+      <fieldset class="chips"><legend>What kind?</legend>
+        <label><input type="radio" name="kind" value="New" checked><span>New</span></label>
+        <label><input type="radio" name="kind" value="Used"><span>Used</span></label>
+        <label><input type="radio" name="kind" value="Winter"><span>Winter</span></label>
+        <label><input type="radio" name="kind" value="Not sure"><span>Not sure</span></label>
+      </fieldset>
+      <fieldset class="chips"><legend>How many?</legend>
+        <label><input type="radio" name="qty" value="1"><span>1</span></label>
+        <label><input type="radio" name="qty" value="2"><span>2</span></label>
+        <label><input type="radio" name="qty" value="4" checked><span>4</span></label>
+      </fieldset>
+      <a class="btn btn-red size-send" href="#">Text this size for a quote</a>
+      <p class="form-note size-hint" aria-live="polite">Not sure of the size? Text us a photo of the tire's side instead.</p>
+    </form>
   </div>
 </section>
 
@@ -575,44 +605,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<div class="tread" aria-hidden="true"><i></i></div>
-
-<section data-tab="help" id="size" class="size" aria-labelledby="size-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker mono rv">Tire quote by text</p>
-      <h2 id="size-h" class="rv" style="--i:1">Type your tire size. Text it to us.</h2>
-      <p class="lede rv" style="--i:2">The size is printed on the side of your tire, and on the sticker inside the driver's door. It looks like 205/55R16.</p>
-    </div>
-    <div class="size-wall rv" style="--i:3" aria-hidden="true">
-      <div class="wall-arc"></div>
-      <p class="wall-text"><span class="seg" data-p="w">205</span><span class="sl">/</span><span class="seg" data-p="a">55</span><span class="seg" data-p="r">R</span><span class="seg" data-p="d">16</span></p>
-    </div>
-    <div class="size-legend rv" style="--i:4">
-      <div class="leg" data-p="w"><b class="mono">205</b><span>Width in millimeters</span></div>
-      <div class="leg" data-p="a"><b class="mono">55</b><span>Sidewall height, as % of width</span></div>
-      <div class="leg" data-p="r"><b class="mono">R</b><span>Radial build</span></div>
-      <div class="leg" data-p="d"><b class="mono">16</b><span>Wheel size in inches</span></div>
-    </div>
-    <form class="size-form rv" style="--i:5" id="sizeForm" novalidate>
-      <div class="field"><label for="sz">Your tire size</label><div class="sz-pop" role="group" aria-label="Common sizes"><button type="button">205/55R16</button><button type="button">215/60R16</button><button type="button">225/65R17</button><button type="button">235/65R17</button><button type="button">225/45R17</button></div><input id="sz" name="sz" inputmode="text" autocomplete="off" placeholder="205/55R16" maxlength="16"></div>
-      <fieldset class="chips"><legend>What kind?</legend>
-        <label><input type="radio" name="kind" value="New" checked><span>New</span></label>
-        <label><input type="radio" name="kind" value="Used"><span>Used</span></label>
-        <label><input type="radio" name="kind" value="Winter"><span>Winter</span></label>
-        <label><input type="radio" name="kind" value="Not sure"><span>Not sure</span></label>
-      </fieldset>
-      <fieldset class="chips"><legend>How many?</legend>
-        <label><input type="radio" name="qty" value="1"><span>1</span></label>
-        <label><input type="radio" name="qty" value="2"><span>2</span></label>
-        <label><input type="radio" name="qty" value="4" checked><span>4</span></label>
-      </fieldset>
-      <a class="btn btn-red size-send" href="#">Text this size for a quote</a>
-      <p class="form-note size-hint" aria-live="polite">Not sure of the size? Text us a photo of the tire's side instead.</p>
-    </form>
   </div>
 </section>
 
@@ -744,43 +736,13 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="tread" aria-hidden="true"><i></i></div>
 
-<section id="how" aria-labelledby="how-h">
-  <div class="wrap">
-    <div class="sec-head" style="text-align:center">
-      <p class="kicker mono rv">How booking works</p>
-      <h2 id="how-h" class="rv" style="--i:1">Booking takes one text.</h2>
-    </div>
-    <ol class="steps">
-      <li class="step rv" style="--i:2">
-        <div class="ic"><svg class="i" aria-hidden="true"><use href="#i-text"/></svg></div>
-        <p class="mono">Step 01</p>
-        <h3>Text or call</h3>
-        <p>Send a text to <a href="sms:+13048066047">304-806-6047</a> or call the shop at <a href="tel:+15088533322">508-853-3322</a>.</p>
-      </li>
-      <li class="step rv" style="--i:3">
-        <div class="ic"><svg class="i" aria-hidden="true"><use href="#i-rim"/></svg></div>
-        <p class="mono">Step 02</p>
-        <h3>Bring it in</h3>
-        <p>Come to 598 West Boylston Street at your time.</p>
-      </li>
-      <li class="step rv" style="--i:4">
-        <div class="ic"><svg class="i" aria-hidden="true"><use href="#i-road"/></svg></div>
-        <p class="mono">Step 03</p>
-        <h3>Drive away</h3>
-        <p>Ask for a quote before we start, so you know what you're paying.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<div class="tread" aria-hidden="true"><i></i></div>
-
 <section id="book" aria-labelledby="book-h">
   <div class="wrap book-grid">
     <div class="sec-head">
       <p class="kicker mono rv">Book an appointment</p>
       <h2 id="book-h" class="rv" style="--i:1">Tell us what your car needs.</h2>
       <p class="lede rv" style="--i:2">Four quick taps. Then your phone's texting app opens with the message ready to send. Rather talk? Call the shop.</p>
+      <ol class="how-line rv" style="--i:3"><li>Send the text</li><li>Bring the car at your time</li><li>Ask for a price before we start</li></ol>
       <div class="big-call rv" style="--i:3">
         <a class="btn btn-red" href="tel:+15088533322"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call Now 508-853-3322</a>
       </div>
@@ -815,47 +777,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <button class="btn btn-ghost btn-sm" type="button" id="again">Edit the message</button>
       </div>
     </form>
-  </div>
-</section>
-
-<div class="tread" aria-hidden="true"><i></i></div>
-
-<section id="languages" class="lang" aria-labelledby="lang-h">
-  <div class="wrap">
-    <p class="kicker mono rv">Speak your language</p>
-    <h2 id="lang-h" class="sr">Languages we speak</h2>
-    <div class="greet rv" style="--i:1" aria-hidden="true">
-      <span class="on" data-t="Hello">Hello</span><span data-t="Olá" lang="pt">Olá</span><span data-t="Hola" lang="es">Hola</span>
-    </div>
-    <div class="tabs rv" style="--i:2" role="tablist" aria-label="Choose your language">
-      <button class="tab" role="tab" id="t-en" aria-selected="true" aria-controls="p-en" data-g="0">English</button>
-      <button class="tab" role="tab" id="t-pt" aria-selected="false" aria-controls="p-pt" data-g="1" tabindex="-1" lang="pt">Português</button>
-      <button class="tab" role="tab" id="t-es" aria-selected="false" aria-controls="p-es" data-g="2" tabindex="-1" lang="es">Español</button>
-    </div>
-    <div class="panel show settled" id="p-en" role="tabpanel" aria-labelledby="t-en">
-      <p class="say lit">We speak English. Call the shop, or text us to book.</p>
-      <a class="num lit" href="tel:+15088533322">508-853-3322</a>
-      <div class="cta-row lit">
-        <a class="btn btn-red" href="tel:+15088533322">Call the shop</a>
-        <a class="btn btn-ghost" href="sms:+13048066047?&amp;body=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20L%26M%20Tire.">Text 304-806-6047</a>
-      </div>
-    </div>
-    <div class="panel" id="p-pt" role="tabpanel" aria-labelledby="t-pt" lang="pt" hidden>
-      <p class="say lit">Falamos português. Ligue ou mande mensagem.</p>
-      <a class="num lit" href="tel:+17742889675">774-288-9675</a>
-      <div class="cta-row lit">
-        <a class="btn btn-red" href="tel:+17742889675">Ligar</a>
-        <a class="btn btn-ghost" href="sms:+17742889675?&amp;body=Ol%C3%A1%2C%20quero%20marcar%20um%20hor%C3%A1rio%20na%20L%26M%20Tire.">Mandar mensagem</a>
-      </div>
-    </div>
-    <div class="panel" id="p-es" role="tabpanel" aria-labelledby="t-es" lang="es" hidden>
-      <p class="say lit">Hablamos español. Llame o mande un mensaje de texto para hacer su cita.</p>
-      <a class="num lit" href="tel:+13048066047">304-806-6047</a>
-      <div class="cta-row lit">
-        <a class="btn btn-red" href="tel:+13048066047">Llamar</a>
-        <a class="btn btn-ghost" href="sms:+13048066047?&amp;body=Hola%2C%20quiero%20hacer%20una%20cita%20en%20L%26M%20Tire.">Mandar texto</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -907,12 +828,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <details><summary>What do you fix besides tires?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Wheel alignment, brakes, oil changes, suspension and steering, and check engine lights.</p></details>
       <details><summary>Do you do body work or paint?<span class="pm" aria-hidden="true"></span></summary><p class="ans">No. We don't do body work or paint.</p></details>
       <details><summary>How much will it cost?<span class="pm" aria-hidden="true"></span></summary><p class="ans">It depends on your car and your tire size. Call or text us and ask for a quote.</p></details>
-      <details><summary>How do I book?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Text <a href="sms:+13048066047">304-806-6047</a> or call the shop at <a href="tel:+15088533322">508-853-3322</a>. You can also use the form below.</p></details>
       <details><summary>Do you speak Portuguese or Spanish?<span class="pm" aria-hidden="true"></span></summary><p class="ans"><span lang="pt">Sim.</span> <span lang="es">Sí.</span> For Portuguese, call or text <a href="tel:+17742889675">774-288-9675</a>. For Spanish, call or text <a href="tel:+13048066047">304-806-6047</a>.</p></details>
-      <details data-x="sat"><summary>Are you open on Saturday?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Yes. Saturday 8:00 AM to 12:00 PM. We are closed on Sunday.</p></details>
-      <details data-x="text"><summary>Can I text instead of calling?<span class="pm" aria-hidden="true"></span></summary><p class="ans">Yes. Text <a href="sms:+13048066047">304-806-6047</a> to book, in English or Spanish. For Portuguese, text <a href="sms:+17742889675">774-288-9675</a>.</p></details>
-      <details data-x="where"><summary>Where are you?<span class="pm" aria-hidden="true"></span></summary><p class="ans">598 West Boylston Street, Worcester, MA 01606. <a href="#visit">See the map and directions</a>.</p></details>
-      <details data-x="since"><summary>How long have you been open?<span class="pm" aria-hidden="true"></span></summary><p class="ans">We opened on West Boylston Street in 2013.</p></details>
     </div>
   </div>
 </section>
