@@ -43,6 +43,7 @@
     '<div class="btn-row" style="margin-top:18px"><button class="btn btn-red" type="submit" id="bText">' + esc(X.send_text) + '</button>' +
     (C.wa ? '<button class="btn btn-ghost" type="button" id="bWa">' + esc(X.send_wa) + '</button>' : '') +
     (C.endpoint ? '<button class="btn btn-blue" type="button" id="bOnline">' + esc(X.send_online) + '</button>' : '') + '</div>' +
+    (C.msgShort ? '<p class="hint msg-only">' + esc(C.msgShort) + '</p>' : '') +
     '<p class="hint" id="bStatus" role="status" aria-live="polite" style="margin-top:12px"></p>' +
     '</form>';
   var shownAt = Date.now();

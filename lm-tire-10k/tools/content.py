@@ -1,11 +1,11 @@
 # Service page content for L&M Tire Auto Repair, in English, Portuguese (Brazil) and Spanish.
-# Rules: only facts the owner confirmed. No prices, no ratings, no brands, no certifications,
+# Rules: only facts the shop confirmed. No prices, no ratings, no brands, no certifications,
 # no "same day", no warranties, no years of experience other than "since 2013".
 # Confirmed facts: 598 West Boylston Street, Worcester MA 01606 (Route 12). Open since 2013.
 # New, used and winter tires; installation and balancing; rotation; wheel alignment;
 # flat repair with plugs AND patches (plug is quicker; sidewall damage = new tire);
 # brakes; oil changes; suspension and steering; check engine light. No body work or paint.
-# Book by text 304-806-6047 (EN/ES), Portuguese 774-288-9675, shop 508-853-3322.
+# Calls: shop 508-853-3322 only. Text/WhatsApp lines: 304-806-6047 (EN/ES), 774-288-9675 (PT). See business.py CONTACTS.
 # "Ask for a price before we start."
 
 LANGS = ['en', 'pt', 'es']
@@ -18,8 +18,6 @@ UI = {
         'how': 'How it works', 'how_steps': ['Text or call us', 'Bring the car in at your time', 'Ask for a price before we start'],
         'questions': 'Questions', 'visit': 'Visit the shop', 'directions': 'Get directions',
         'hours_rows': [('Monday to Friday', '8:00 AM to 6:00 PM'), ('Saturday', '8:00 AM to 12:00 PM'), ('Sunday', 'Closed')],
-        'who': 'Who to call', 'shop': 'The shop', 'owner': 'Cid, owner', 'partner': 'Leo, partner',
-        'langs_shop': 'English', 'langs_owner': 'English · Español · Text to book', 'langs_partner': 'Português',
         'other': 'Other services', 'menu': 'Menu', 'close': 'Close',
         'area_title': 'Easy to find on Route 12',
         'area': 'We are at 598 West Boylston Street (Route 12) in Worcester. Drivers come in from all over Worcester and nearby towns like West Boylston, Holden, Paxton, Boylston and Shrewsbury.',
@@ -39,8 +37,6 @@ UI = {
         'how': 'Como funciona', 'how_steps': ['Mande mensagem ou ligue', 'Traga o carro no seu horário', 'Peça o preço antes de começarmos'],
         'questions': 'Dúvidas', 'visit': 'Visite a oficina', 'directions': 'Como chegar',
         'hours_rows': [('Segunda a sexta', '8h às 18h'), ('Sábado', '8h às 12h'), ('Domingo', 'Fechado')],
-        'who': 'Para quem ligar', 'shop': 'A oficina', 'owner': 'Cid, dono', 'partner': 'Leo, sócio',
-        'langs_shop': 'Inglês', 'langs_owner': 'Inglês · Espanhol · Agendamento por mensagem', 'langs_partner': 'Português',
         'other': 'Outros serviços', 'menu': 'Menu', 'close': 'Fechar',
         'area_title': 'Fácil de achar na Route 12',
         'area': 'Estamos na 598 West Boylston Street (Route 12), em Worcester. Recebemos motoristas de toda Worcester e de cidades próximas como West Boylston, Holden, Paxton, Boylston e Shrewsbury.',
@@ -60,8 +56,6 @@ UI = {
         'how': 'Cómo funciona', 'how_steps': ['Mándenos un texto o llame', 'Traiga el carro a su hora', 'Pida el precio antes de empezar'],
         'questions': 'Preguntas', 'visit': 'Visite el taller', 'directions': 'Cómo llegar',
         'hours_rows': [('Lunes a viernes', '8:00 AM a 6:00 PM'), ('Sábado', '8:00 AM a 12:00 PM'), ('Domingo', 'Cerrado')],
-        'who': 'A quién llamar', 'shop': 'El taller', 'owner': 'Cid, dueño', 'partner': 'Leo, socio',
-        'langs_shop': 'Inglés', 'langs_owner': 'Inglés · Español · Reservas por texto', 'langs_partner': 'Portugués',
         'other': 'Otros servicios', 'menu': 'Menú', 'close': 'Cerrar',
         'area_title': 'Fácil de encontrar en la Route 12',
         'area': 'Estamos en 598 West Boylston Street (Route 12), en Worcester. Vienen conductores de todo Worcester y de pueblos cercanos como West Boylston, Holden, Paxton, Boylston y Shrewsbury.',
@@ -95,7 +89,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Pneus novos', 'title': 'Pneus novos em Worcester, MA | L&M Tire Auto Repair',
-            'desc': 'Pneus novos em Worcester, MA. Pneus para todas as estações e de inverno, montados e balanceados na 598 West Boylston Street. Orçamento em português: 774-288-9675.',
+            'desc': 'Pneus novos em Worcester, MA. Pneus para todas as estações e de inverno, montados e balanceados na 598 West Boylston Street. Orçamento por mensagem em português: 774-288-9675.',
             'h1': 'Pneus novos em Worcester',
             'intro': 'Diga a medida do pneu ou o modelo do carro, e passamos as opções e o preço. Montamos e balanceamos todos os pneus, e fazemos isso na West Boylston Street desde 2013.',
             'do': ['Pneus novos para todas as estações e de inverno', 'Montagem e balanceamento', 'Um pneu, um par ou o jogo de quatro', 'Rodízio e alinhamento, se o carro precisar'],
@@ -134,7 +128,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Pneus usados', 'title': 'Pneus usados em Worcester, MA | L&M Tire Auto Repair',
-            'desc': 'Pneus usados em Worcester, MA na L&M Tire, 598 West Boylston Street. Pergunte o que temos na sua medida: 774-288-9675 (português).',
+            'desc': 'Pneus usados em Worcester, MA na L&M Tire, 598 West Boylston Street. Pergunte por mensagem o que temos na sua medida: 774-288-9675 (português).',
             'h1': 'Pneus usados em Worcester',
             'intro': 'Pneu usado custa menos na hora. Mande a medida do seu pneu e dizemos o que temos em estoque e o preço. Montamos e balanceamos no seu carro.',
             'do': ['Pneus usados em muitas medidas comuns', 'Montagem e balanceamento', 'Troque um pneu, um par ou os quatro', 'Pneus novos também, se não tivermos usado na sua medida'],
@@ -173,14 +167,14 @@ SERVICES = [
         },
         'pt': {
             'name': 'Conserto de pneu furado', 'title': 'Conserto de pneu furado em Worcester, MA: tarugo e remendo | L&M Tire',
-            'desc': 'Conserto de pneu furado em Worcester, MA. Fazemos tarugo e remendo na 598 West Boylston Street. Atendimento em português: 774-288-9675.',
+            'desc': 'Conserto de pneu furado em Worcester, MA. Fazemos tarugo e remendo na 598 West Boylston Street. Mensagem em português: 774-288-9675.',
             'h1': 'Conserto de pneu furado em Worcester',
             'intro': 'Prego ou parafuso no pneu? Fazemos tarugo e remendo. Verificamos o pneu antes, por dentro e por fora, e dizemos se tem conserto. A orientação da indústria de pneus (USTMA) diz que o conserto definitivo é um remendo por dentro junto com um tarugo que preenche o furo. Só furos pequenos na banda de rodagem têm conserto; estrago no ombro ou na lateral quer dizer pneu novo.',
             'do': ['Inspeção por dentro e por fora antes do conserto', 'Tarugo e remendo para furos pequenos na banda de rodagem', 'Pneu novo ou usado quando o estrago não tem conserto', 'Uma olhada nos outros pneus enquanto o carro está aqui'],
             'signs': ['Prego ou parafuso na banda de rodagem', 'Pneu baixo toda manhã', 'A luz de pressão do pneu sempre acende'],
             'faq': [('Tarugo ou remendo: qual eu preciso?', 'O tarugo sozinho é um conserto rápido, mas a indústria de pneus diz que ele não é um conserto definitivo. O definitivo é remendo com tarugo, feito por dentro, com o pneu fora da roda. Olhamos o pneu e dizemos o que ele precisa. Só garantimos o conserto depois de examinar.'),
                     ('Furo na lateral tem conserto?', 'Não. Estrago na lateral quer dizer pneu novo. Temos pneus novos e usados.'),
-                    ('Posso rodar com ele?', 'Se o pneu está vazio ou muito baixo, rodar pode estragar o pneu. Use o estepe se tiver e ligue para 774-288-9675.')],
+                    ('Posso rodar com ele?', 'Se o pneu está vazio ou muito baixo, rodar pode estragar o pneu. Use o estepe se tiver e mande mensagem para 774-288-9675 ou ligue para a oficina: 508-853-3322.')],
             'related': ['new-tires', 'used-tires', 'wheel-alignment'],
             'tool': ('Tarugo, remendo ou pneu novo? Toque onde está o prego', 'patch'),
         },
@@ -193,7 +187,7 @@ SERVICES = [
             'signs': ['Un clavo o tornillo en la banda', 'Una llanta baja cada mañana', 'La luz de presión de llantas se prende seguido'],
             'faq': [('¿Tapón o parche: cuál necesito?', 'Un tapón solo es un arreglo rápido, pero la industria de llantas dice que no es una reparación permanente. La permanente es parche con tapón, hecha por dentro con la llanta fuera del rin. Revisamos la llanta y le decimos qué necesita. Solo podemos prometer la reparación después de revisarla.'),
                     ('¿Se puede arreglar un hoyo en el costado?', 'No. Un daño en el costado quiere decir llanta nueva. Tenemos llantas nuevas y usadas.'),
-                    ('¿Puedo manejar así?', 'Si la llanta está vacía o muy baja, manejar la puede arruinar. Use la de repuesto si tiene y llame al 304-806-6047.')],
+                    ('¿Puedo manejar así?', 'Si la llanta está vacía o muy baja, manejar la puede arruinar. Use la de repuesto si tiene y mande texto al 304-806-6047 o llame al taller: 508-853-3322.')],
             'related': ['new-tires', 'used-tires', 'wheel-alignment'],
             'tool': ('¿Tapón, parche o llanta nueva? Toque donde está el clavo', 'patch'),
         },
@@ -214,7 +208,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Alinhamento', 'title': 'Alinhamento em Worcester, MA | L&M Tire Auto Repair',
-            'desc': 'Alinhamento de rodas em Worcester, MA, na 598 West Boylston Street. Carro puxando para um lado? Agende em português: 774-288-9675.',
+            'desc': 'Alinhamento de rodas em Worcester, MA, na 598 West Boylston Street. Carro puxando para um lado? Agende por mensagem em português: 774-288-9675.',
             'h1': 'Alinhamento em Worcester',
             'intro': 'Quando as rodas apontam para o lado errado, os pneus gastam antes da hora e o carro puxa. O alinhamento deixa tudo reto de novo. Vale a pena com pneus novos ou depois de cair num buraco grande.',
             'do': ['Alinhamento de rodas', 'Verificação de desgaste irregular nos pneus', 'Conserto de suspensão e direção se uma peça gasta for a causa'],
@@ -252,7 +246,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Freios', 'title': 'Conserto de freios em Worcester, MA | L&M Tire Auto Repair',
-            'desc': 'Conserto de freios em Worcester, MA, na 598 West Boylston Street. Chiado ou rangido ao frear? Ligue em português: 774-288-9675.',
+            'desc': 'Conserto de freios em Worcester, MA, na 598 West Boylston Street. Chiado ou rangido ao frear? Mensagem em português: 774-288-9675.',
             'h1': 'Conserto de freios em Worcester',
             'intro': 'Chiado, rangido ou pedal mole são sinais de que os freios precisam de uma olhada. Traga o carro. Verificamos os freios e dizemos o que precisa e o preço antes de começar.',
             'do': ['Verificação dos freios', 'Conserto de freios', 'Uma resposta honesta sobre o que pode esperar e o que não pode'],
@@ -292,7 +286,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Troca de óleo', 'title': 'Troca de óleo em Worcester, MA | L&M Tire Auto Repair',
-            'desc': 'Troca de óleo em Worcester, MA, na 598 West Boylston Street. Agende em português: 774-288-9675.',
+            'desc': 'Troca de óleo em Worcester, MA, na 598 West Boylston Street. Agende por mensagem em português: 774-288-9675.',
             'h1': 'Troca de óleo em Worcester',
             'intro': 'Óleo novo mantém o motor saudável. Agende a troca de óleo por mensagem, traga o carro no seu horário, e podemos olhar os pneus enquanto ele está aqui.',
             'do': ['Troca de óleo', 'Uma olhada nos pneus enquanto o carro está aqui', 'Verificação de freios, suspensão e luzes de aviso, se você pedir'],
@@ -332,7 +326,7 @@ SERVICES = [
         },
         'pt': {
             'name': 'Suspensão e direção', 'title': 'Suspensão e direção em Worcester, MA | L&M Tire',
-            'desc': 'Conserto de suspensão e direção em Worcester, MA, na 598 West Boylston Street. Barulho nos buracos ou direção solta? Ligue em português: 774-288-9675.',
+            'desc': 'Conserto de suspensão e direção em Worcester, MA, na 598 West Boylston Street. Barulho nos buracos ou direção solta? Mensagem em português: 774-288-9675.',
             'h1': 'Suspensão e direção em Worcester',
             'intro': 'As ruas de Worcester castigam a suspensão. Batidas nos buracos, carro pulando ou direção solta indicam peças gastas embaixo do carro. Achamos a causa e passamos o preço antes de consertar.',
             'do': ['Conserto de suspensão', 'Conserto de direção', 'Alinhamento depois do conserto, se precisar'],
@@ -372,12 +366,12 @@ SERVICES = [
         },
         'pt': {
             'name': 'Luz de injeção e diagnóstico', 'title': 'Diagnóstico da luz de injeção em Worcester, MA | L&M Tire',
-            'desc': 'Diagnóstico da luz de injeção (check engine) e luzes de aviso em Worcester, MA, na 598 West Boylston Street. Português: 774-288-9675.',
+            'desc': 'Diagnóstico da luz de injeção (check engine) e luzes de aviso em Worcester, MA, na 598 West Boylston Street. Mensagem em português: 774-288-9675.',
             'h1': 'Diagnóstico da luz de injeção em Worcester',
             'intro': 'A luz de aviso é o carro dizendo algo. Traga o carro e verificamos o que a luz quer dizer. Depois dizemos o que ele precisa e o preço antes de consertar.',
             'do': ['Diagnóstico da luz de injeção (check engine)', 'Outras luzes de aviso no painel', 'Barulhos, tremores e cheiros estranhos'],
             'signs': ['A luz de injeção está acesa', 'A luz de injeção está piscando', 'Um barulho, tremor ou cheiro novo', 'O carro falha ou gasta mais gasolina'],
-            'faq': [('Posso dirigir com a luz de injeção acesa?', 'Luz fixa: verifique logo. Luz piscando é mais sério: diminua a velocidade e ligue para 774-288-9675.'),
+            'faq': [('Posso dirigir com a luz de injeção acesa?', 'Luz fixa: verifique logo. Luz piscando é mais sério: diminua a velocidade e mande mensagem para 774-288-9675 ou ligue para a oficina: 508-853-3322.'),
                     ('Vocês dizem na hora o que a luz quer dizer?', 'Primeiro verificamos o carro. Depois explicamos o que encontramos e o preço antes de qualquer conserto.')],
             'related': ['brakes', 'suspension', 'oil-change'],
             'tool': ('O que meu carro está fazendo? Veja os sinais', 'symptoms'),
@@ -389,7 +383,7 @@ SERVICES = [
             'intro': 'Una luz de aviso es su carro diciéndole algo. Tráigalo y revisamos qué significa la luz. Luego le decimos qué necesita el carro y el precio antes de arreglar nada.',
             'do': ['Diagnóstico de la luz de check engine', 'Otras luces de aviso del tablero', 'Ruidos, vibraciones y olores raros'],
             'signs': ['La luz de check engine está prendida', 'La luz de check engine parpadea', 'Un ruido, vibración u olor nuevo', 'El carro falla o gasta más gasolina'],
-            'faq': [('¿Puedo manejar con la luz de check engine prendida?', 'Si está fija, revíselo pronto. Si parpadea es más serio: baje la velocidad y llame al 304-806-6047.'),
+            'faq': [('¿Puedo manejar con la luz de check engine prendida?', 'Si está fija, revíselo pronto. Si parpadea es más serio: baje la velocidad y mande texto al 304-806-6047 o llame al taller: 508-853-3322.'),
                     ('¿Me dicen enseguida qué significa la luz?', 'Primero revisamos el carro. Luego le explicamos lo que encontramos y el precio antes de cualquier reparación.')],
             'related': ['brakes', 'suspension', 'oil-change'],
             'tool': ('¿Qué hace mi carro? Revise las señales', 'symptoms'),

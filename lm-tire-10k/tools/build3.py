@@ -15,7 +15,7 @@ ROOT = os.path.dirname(HERE)
 SRC = os.path.join(ROOT, 'src3')
 sys.path.insert(0, HERE)
 import business as BZ  # noqa
-from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIMA, REVIEWS, PHOTO_TEXT, CONTACTS, ROUTE, SOCIAL, STATS, EMAIL, TEAM  # noqa
+from business import SITE, BUSINESS as B, HOURS, PHOTOS, DEPOSIT, POLICIES, ACIMA, REVIEWS, PHOTO_TEXT, CONTACTS, ROUTE, SOCIAL, STATS, EMAIL, TEAM, CALL_LINE  # noqa
 from content import SERVICES, NEARBY  # noqa
 from text3 import LANGS, PAGES, NAV, NAV2, T, PRIVACY, MAKES, JS_TXT  # noqa
 from business import DELIVERY, INVENTORY, MUSIC  # noqa
@@ -99,8 +99,7 @@ def route(lang):
 # ---------------------------------------------------------------- icons
 
 def load_icons():
-    h = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
-    icons = dict(re.findall(r'<symbol id="i-([a-z0-9]+)"[^>]*>(.*?)</symbol>', h, re.S))
+    icons = json.load(open(os.path.join(HERE, 'icons3.json'), encoding='utf-8'))
     icons.update({
         'menu': '<path d="M4 7h16M4 12h16M4 17h16"/>',
         'x': '<path d="M6 6l12 12M18 6L6 18"/>',
@@ -153,7 +152,7 @@ def business_ld():
         'areaServed': [{'@type': 'City', 'name': n + ', MA'} for n in NEARBY],
         'image': DOMAIN + '/assets/og-card.jpg', 'logo': DOMAIN + '/assets/icon-512.png',
         'contactPoint': [{'@type': 'ContactPoint', 'telephone': '+1-' + c['label'], 'contactType': 'customer service',
-                          'availableLanguage': [{'en': 'English', 'pt': 'Portuguese', 'es': 'Spanish'}[x] for x in c['langs']]} for c in CONTACTS.values()],
+                          'availableLanguage': [{'en': 'English', 'pt': 'Portuguese', 'es': 'Spanish'}[x] for x in c['langs']]} for c in CONTACTS.values() if c.get('calls')],
         'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Tire and auto repair services', 'itemListElement': [
             {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': s['en']['name'], 'url': DOMAIN + '/' + spath(s, 'en')}} for s in SERVICES]},
     }
@@ -193,6 +192,7 @@ def head(lang, here, title, desc, alts, lds=(), extra_css='', preload=''):
     css = asset('hp/core.css', here) if HP else asset('core.css')
     fonts = '' if HP else f'<link rel="preload" href="{asset("fonts/archivo.woff2")}" as="font" type="font/woff2" crossorigin>\n<link rel="preload" href="{asset("fonts/barlow-400.woff2")}" as="font" type="font/woff2" crossorigin>\n'
     robots = '<meta name="robots" content="noindex">\n' if HP else ''
+    gsc = f'<meta name="google-site-verification" content="{E(SITE["search_console"])}">\n' if SITE.get('search_console') and not HP and here == '' else ''
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -200,7 +200,7 @@ def head(lang, here, title, desc, alts, lds=(), extra_css='', preload=''):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
-{robots}<link rel="canonical" href="{canon}">
+{robots}{gsc}<link rel="canonical" href="{canon}">
 {alt}<meta name="theme-color" content="#0c0d16">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="{asset('icon-192.png', here)}">
@@ -257,7 +257,7 @@ def header(lang, here, key, lang_links):
     lng = ''.join(f'<a href="{E(lang_links[l])}" hreflang="{l}" lang="{l}" title="{E(t["lang_names"][l])}"{" aria-current=" + chr(34) + "true" + chr(34) if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     main = ''.join(f'<li><a href="{E(href(ppath(k, lang)))}"{cur(k)}>{E(t["nav"][k])}{icon("arrow")}</a></li>' for k in NAV)
     sub = ''.join(f'<li><a href="{E(href(ppath(k, lang)))}">{E(t["nav"][k])}</a></li>' for k in NAV2)
-    shop = CONTACTS['shop']
+    shop = CONTACTS[CALL_LINE]
     return f"""<a class="skip" href="#main">{E(t['skip'])}</a>
 <header class="top">
   <a class="brand" href="{E(href(ppath('home', lang)))}"><img src="{asset('logo.webp', here)}" alt="{E(B['name'])}, {E(t['nav']['home'])}" width="440" height="266"></a>
@@ -273,7 +273,7 @@ def header(lang, here, key, lang_links):
   <div class="lng" role="group" aria-label="{E(t['lang_label'])}">{lng}</div>
   <a class="btn btn-red m-call" href="tel:{shop['phone']}">{icon('phone')}{E(t['call_shop'])} {shop['label']}</a></nav>
 </div>
-<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="{E(t['search_label'])}" data-index="{E(asset('hp/search-' + lang + '.json', here) if HP else asset('search-' + lang + '.json'))}" data-none="{E(t['search_none'].format(shop=CONTACTS['shop']['label'], pt=CONTACTS[ROUTE['pt']]['label']))}" hidden>
+<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="{E(t['search_label'])}" data-index="{E(asset('hp/search-' + lang + '.json', here) if HP else asset('search-' + lang + '.json'))}" data-none="{E(t['search_none'].format(shop=CONTACTS[CALL_LINE]['label'], pt=CONTACTS[ROUTE['pt']]['label']))}" hidden>
   <div class="srch-box">
     <div class="srch-in">{icon('search')}<label for="srchIn" class="sr">{E(t['search_label'])}</label><input id="srchIn" type="search" autocomplete="off" enterkeyhint="search" placeholder="{E(t['search_ph'])}" role="combobox" aria-expanded="true" aria-controls="srchRes"><button type="button" class="hbtn" data-close aria-label="{E(t['close'])}">{icon('x')}</button></div>
     <div class="srch-pop" id="srchPop"><span>{E(t['search_hint'])}</span>{''.join(f'<button type="button">{E(p)}</button>' for p in t['search_pop'])}</div>
@@ -296,7 +296,7 @@ def visit_tray(lang):
             f'data-added="{E(v["added"])}" data-already="{E(v["already"])}" data-updated="{E(v["updated"])}" data-remove="{E(v["remove"])}" data-copied="{E(v["copied"])}" data-link="{E(v["link"])}" hidden>'
             f'<button type="button" class="visit-tab" aria-expanded="false" aria-controls="visitP"><b class="visit-n">0</b><span>{E(v["my"])}</span></button>'
             f'<div class="visit-panel" id="visitP" hidden><p class="mono">{E(v["my"])}</p><ul class="visit-list"></ul>'
-            f'<a class="btn btn-red btn-sm visit-send" href="#">{icon("text")}{E(v["send"])}</a><button type="button" class="visit-clear">{E(v["clear"])}</button></div></div>\n'
+            f'<a class="btn btn-red btn-sm visit-send" href="#">{icon("text")}{E(v["send"])}</a><small class="hint msg-only">{E(msg_short(lang))}</small><button type="button" class="visit-clear">{E(v["clear"])}</button></div></div>\n'
             f'<div class="toast" role="status" aria-live="polite"></div>\n')
 
 
@@ -320,8 +320,8 @@ def footer(lang, here):
     <div><h2>L&amp;M Tire</h2><ul>{sub}{social}</ul></div>
     <div><h2>{E(t['nav']['contact'])}</h2><ul>
       <li>{E(B['street'])}, {E(B['city'])}, {B['region']} {B['zip']}</li>
-      <li><a href="tel:{CONTACTS['shop']['phone']}">{E(t['shop'])}: {CONTACTS['shop']['label']}</a></li>
-      <li><a href="{E(sms(r['phone'], t['sms_hello']))}">{E(t['text'])}: {r['label']}</a></li>
+      <li><a href="tel:{CONTACTS[CALL_LINE]['phone']}">{E(t['shop'])}: {CONTACTS[CALL_LINE]['label']}</a></li>
+      <li><a href="{E(sms(r['phone'], t['sms_hello']))}">{E(t['text'])}: {r['label']}</a><small class="msg-only">{E(msg_short(lang))}</small></li>
       {email}{rows}
     </ul>
     <h2 style="margin-top:18px">{E(t['a11y'])}</h2>
@@ -332,7 +332,7 @@ def footer(lang, here):
 </footer>
 {visit_tray(lang)}<nav class="bar" id="bar" aria-label="{E(t['bar'])}">
   <a href="{E(sms(r['phone'], t['sms_hello']))}" data-track="text">{icon('text')}{E(t['text'])}</a>
-  <a class="hot" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{E(t['call'])}</a>
+  <a class="hot" href="tel:{CONTACTS[CALL_LINE]['phone']}">{icon('phone')}{E(t['call'])}</a>
   <a href="{E(DIRECTIONS)}" target="_blank" rel="noopener">{icon('pin')}{E(t['bar_dir'])}</a>
 </nav>
 """
@@ -368,6 +368,11 @@ def hours_table(lang):
     return f'<table class="hours"><caption class="sr">{E(t["hours"])}</caption><tbody>{rows}</tbody></table><p class="hint" style="margin-top:8px">{E(t["hours_note"])}</p>'
 
 
+def msg_short(lang):
+    """one-line reminder next to text buttons: messaging lines are not for calls"""
+    return T[lang]['msg_short'].format(shop=CONTACTS[CALL_LINE]['label'])
+
+
 def people(lang):
     """'Contact Our Team': customer support channels (jobs, not people), then the customer care email"""
     t = T[lang]
@@ -381,10 +386,16 @@ def people(lang):
         if c['whatsapp']:
             links.append(f'<a href="https://wa.me/{c["phone"][1:]}" target="_blank" rel="noopener">WhatsApp</a>')
         extra = (' · ' + ' · '.join(links)) if links else ''
-        out += f'<div class="person" data-channel="{k}"><div><b>{E(name)}</b><small>{E(sub)}{extra}</small></div><a href="tel:{c["phone"]}">{c["label"]}</a></div>'
+        if c.get('calls'):
+            num = f'<a href="tel:{c["phone"]}">{icon("phone")}{c["label"]}</a>'
+        else:  # messaging line: no call link, no call icon
+            num = f'<span class="num"><span class="mono">{c["label"]}</span><em class="msg-badge">{icon("text")}{E(t["msg_only"])}</em></span>'
+        out += f'<div class="person" data-channel="{k}"><div><b>{E(name)}</b><small>{E(sub)}{extra}</small></div>{num}</div>'
     if EMAIL:
         name, sub = t['team']['email']
         out += f'<div class="person" data-channel="email"><div><b>{E(name)}</b><small>{E(sub)}</small></div><a href="mailto:{E(EMAIL)}">{E(EMAIL)}</a></div>'
+    if any(not CONTACTS[k].get('calls') for k in TEAM):
+        out += f'<p class="msg-notice" role="note">{icon("phone")}<span>{E(t["msg_notice"].format(shop=CONTACTS[CALL_LINE]["label"]))}</span></p>'
     return out
 
 
@@ -494,7 +505,7 @@ def build_home(lang):
     <h2 id="ct-h" style="font-size:clamp(1.5rem,3vw,2.1rem)">{E(t['contact_h'])}</h2>
     <p class="note" style="margin-top:8px">{E(t['contact_p'])} {E(t['speak'])}</p>
     <div class="btn-row" style="margin-top:18px">
-      <a class="btn btn-red" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{E(t['call'])} {CONTACTS['shop']['label']}</a>
+      <a class="btn btn-red" href="tel:{CONTACTS[CALL_LINE]['phone']}">{icon('phone')}{E(t['call'])} {CONTACTS[CALL_LINE]['label']}</a>
       <a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(t['text'])} {r['label']}</a>
       <a class="btn btn-ghost" href="{E(href(ppath('book', lang)))}">{icon('cal')}{E(t['nav']['book'])}</a>
     </div>
@@ -508,9 +519,9 @@ def cfg_js(lang, here, txt=True):
     """public settings for the page scripts (no secrets: phone numbers and display mode only)"""
     r = route(lang)
     rt = {l: {'num': route(l)['phone'], 'label': route(l)['label'], 'wa': route(l)['phone'] if route(l)['whatsapp'] else ''} for l in LANGS}
-    cfg = {'shop': CONTACTS['shop']['phone'], 'shopLabel': CONTACTS['shop']['label'], 'text': r['phone'], 'textLabel': r['label'],
+    cfg = {'shop': CONTACTS[CALL_LINE]['phone'], 'shopLabel': CONTACTS[CALL_LINE]['label'], 'text': r['phone'], 'textLabel': r['label'],
            'wa': r['phone'] if r['whatsapp'] else '', 'route': rt, 'endpoint': DELIVERY['endpoint'],
-           'inv': {'mode': INVENTORY['mode'], 'feed': INVENTORY['feed']}}
+           'inv': {'mode': INVENTORY['mode'], 'feed': INVENTORY['feed']}, 'msgShort': msg_short(lang)}
     out = '<script>window.LM_CFG=' + json.dumps(cfg, ensure_ascii=False) + ';'
     if txt:
         out += 'window.LM_TXT=' + json.dumps(JS_TXT[lang], ensure_ascii=False) + ';window.LM_MAKES=' + json.dumps(MAKES) + ';'
@@ -539,7 +550,7 @@ def build_repair(lang):
     def tl(keys):
         return ''.join(f'<li><a class="tile" href="{E(href(spath(SVC[k], lang)))}"><span class="ic">{icon(SVC[k]["icon"])}</span><span><b>{E(SVC[k][lang]["name"])}</b><small>{E(blurb(SVC[k][lang]))}</small></span></a></li>' for k in keys)
     d = DEPOSIT[lang]
-    body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['repair'], here)]) + phead(t['repair_h1'], t['repair_lede'], f'<div class="btn-row"><a class="btn btn-red" href="{E(href(ppath("book", lang)))}">{icon("cal")}{E(t["nav"]["book"])}</a><a class="btn btn-ghost" href="tel:{CONTACTS["shop"]["phone"]}">{icon("phone")}{E(t["call"])} {CONTACTS["shop"]["label"]}</a></div>') + f"""
+    body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['repair'], here)]) + phead(t['repair_h1'], t['repair_lede'], f'<div class="btn-row"><a class="btn btn-red" href="{E(href(ppath("book", lang)))}">{icon("cal")}{E(t["nav"]["book"])}</a><a class="btn btn-ghost" href="tel:{CONTACTS[CALL_LINE]["phone"]}">{icon("phone")}{E(t["call"])} {CONTACTS[CALL_LINE]["label"]}</a></div>') + f"""
 <section class="sec sec-tight" aria-label="{E(t['nav']['repair'])}"><div class="wrap"><ul class="tiles">{tl(REPAIR_KEYS)}</ul>
 <p class="note" style="margin-top:20px">{E(d['short'])} <a href="{E(href(ppath('policies', lang)))}">{E(t['nav']['policies'])}</a></p>
 <p class="note" style="margin-top:8px">{E(t['no_body'])}</p></div></section>
@@ -650,7 +661,7 @@ def build_tool(k, ic, svc_key, lang):
 <section class="sec sec-tight" aria-label="{E(c['name'])}"><div class="wrap">{tool}{addv}</div></section>
 <section class="sec sec-tight"><div class="wrap"><div class="prose">{tool_static(k, lang, here)}</div>
 <p class="box-amber" style="margin-top:22px">{E(g['disclaimer'])}</p>
-<div class="btn-row" style="margin-top:18px"><a class="btn btn-red" href="{E(href(ppath('book', lang)))}#svc={E(svc_key)}">{icon('cal')}{E(g['book'])}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(g['text_us'])}</a></div></div></section>
+<div class="btn-row" style="margin-top:18px"><a class="btn btn-red" href="{E(href(ppath('book', lang)))}#svc={E(svc_key)}">{icon('cal')}{E(g['book'])}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(g['text_us'])}</a></div><p class="hint msg-only">{E(msg_short(lang))}</p></div></section>
 {vid}<section class="sec sec-tight"><div class="wrap grid2"><a class="tile" href="{E(href(spath(s, lang)))}"><span class="ic">{icon(s['icon'])}</span><span><small>{E(g['related'])}</small><b>{E(s[lang]['name'])}</b></span></a><a class="tile" href="{E(href(ppath('help', lang)))}"><span class="ic">{icon(ic)}</span><span><b>{E(g['all_tools'])}</b></span></a></div></section>"""
     txt = dict(c)
     txt['penny_img'] = c.get('h1', '')
@@ -677,7 +688,7 @@ def build_financing(lang):
   <h2 id="ac-h" style="font-size:clamp(1.6rem,3.4vw,2.4rem)">{E(a['title'])}</h2>
   <p class="lede">{E(a['body'])}</p>
   <ul class="ticks blue" style="margin-top:16px">{''.join(f'<li>{E(x)}</li>' for x in a['points'])}</ul>
-  <div class="btn-row" style="margin-top:22px"><a class="btn btn-red" data-track="acima" href="{E(href_a)}"{ext}>{icon('text')}{E(label)}</a><a class="btn btn-ghost" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{CONTACTS['shop']['label']}</a></div>
+  <div class="btn-row" style="margin-top:22px"><a class="btn btn-red" data-track="acima" href="{E(href_a)}"{ext}>{icon('text')}{E(label)}</a><a class="btn btn-ghost" href="tel:{CONTACTS[CALL_LINE]['phone']}">{icon('phone')}{CONTACTS[CALL_LINE]['label']}</a></div>
 </div></section>"""
     lds = [crumbs_ld([(t['crumb_home'], ppath('home', lang)), (t['nav']['financing'], here)])]
     return page(lang, 'financing', here, alts_of('financing'), t['fin_title'], t['fin_desc'], body, lds)
@@ -692,17 +703,45 @@ def vcard(lang):
     lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:;;;;', 'FN:' + esc_v(B['name']), 'ORG:' + esc_v(B['name']), 'X-ABShowAs:COMPANY']
     for i, k in enumerate(order, 1):
         c = CONTACTS[k]
-        lines += [f'item{i}.TEL;TYPE=WORK,' + ('CELL,TEXT' if c['sms'] else 'VOICE') + ':' + c['phone'], f'item{i}.X-ABLabel:' + esc_v(t['team'][k][0])]
+        lines += [f'item{i}.TEL;TYPE=WORK,' + ('VOICE' if c.get('calls') else 'CELL,TEXT') + ':' + c['phone'], f'item{i}.X-ABLabel:' + esc_v(t['vc'][k])]
     if EMAIL:
         n = len(order) + 1
-        lines += [f'item{n}.EMAIL;TYPE=INTERNET,WORK:' + EMAIL, f'item{n}.X-ABLabel:' + esc_v(t['team']['email'][0])]
+        lines += [f'item{n}.EMAIL;TYPE=INTERNET,WORK:' + EMAIL, f'item{n}.X-ABLabel:' + esc_v(t['vc']['email'])]
     lines.append('ADR;TYPE=WORK:;;' + esc_v(B['street']) + ';' + esc_v(B['city']) + ';' + B['region'] + ';' + B['zip'] + ';USA')
     if SITE['domain']:
         lines.append('URL:' + SITE['domain'].rstrip('/') + '/' + ppath('home', lang))
-    lines.append('NOTE:' + esc_v(ct['v_hours'] + ': ' + '; '.join(f'{a} {b}' for a, b in t['hours_rows'])))
+    lines.append('NOTE:' + esc_v(t['vc_note'].format(shop=CONTACTS[CALL_LINE]['label']) + '\n' + ct['v_hours'] + ': ' + '; '.join(f'{a} {b}' for a, b in t['hours_rows'])))
+    lines.append('PHOTO;ENCODING=b;TYPE=JPEG:' + vcard_logo())
     lines.append('END:VCARD')
-    assert 'lmtirecorp' not in ''.join(lines)
-    return '\r\n'.join(lines) + '\r\n'
+    return '\r\n'.join(fold(x) for x in lines) + '\r\n'
+
+
+def fold(line):
+    """vCard lines longer than 75 characters continue on the next line after a space (RFC 2425)"""
+    out = []
+    while len(line.encode('utf-8')) > 74:
+        cut = 74
+        while len(line[:cut].encode('utf-8')) > 74:
+            cut -= 1
+        out.append(line[:cut]); line = ' ' + line[cut:]
+    out.append(line)
+    return '\r\n'.join(out)
+
+
+_LOGO = []
+def vcard_logo():
+    """the official logo as a small square JPEG for the contact picture (phones show it in the contact and on incoming texts)"""
+    if not _LOGO:
+        import base64, io
+        from PIL import Image
+        im = Image.open(os.path.join(ROOT, 'assets', 'logo.webp')).convert('RGBA')
+        side = 240
+        bg = Image.new('RGB', (side, side), (255, 255, 255))
+        im.thumbnail((side - 24, side - 24), Image.LANCZOS)
+        bg.paste(im, ((side - im.width) // 2, (side - im.height) // 2), im)
+        buf = io.BytesIO(); bg.save(buf, 'JPEG', quality=82, optimize=True)
+        _LOGO.append(base64.b64encode(buf.getvalue()).decode())
+    return _LOGO[0]
 
 
 def contact_tools(lang):
@@ -718,7 +757,7 @@ def build_contact(lang):
     t = T[lang]
     here = ppath('contact', lang)
     r = route(lang)
-    body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['contact'], here)]) + phead(t['contact_h1'], t['contact_lede'], f"""<div class="btn-row"><a class="btn btn-red" href="tel:{CONTACTS['shop']['phone']}">{icon('phone')}{E(t['call'])} {CONTACTS['shop']['label']}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(t['text'])} {r['label']}</a><a class="btn btn-ghost" href="{E(DIRECTIONS)}" target="_blank" rel="noopener">{icon('pin')}{E(t['directions'])}</a></div>""") + f"""
+    body = crumbs(lang, [(t['crumb_home'], ppath('home', lang)), (t['nav']['contact'], here)]) + phead(t['contact_h1'], t['contact_lede'], f"""<div class="btn-row"><a class="btn btn-red" href="tel:{CONTACTS[CALL_LINE]['phone']}">{icon('phone')}{E(t['call'])} {CONTACTS[CALL_LINE]['label']}</a><a class="btn btn-ghost" href="{E(sms(r['phone'], t['sms_hello']))}">{icon('text')}{E(t['text'])} {r['label']}</a><a class="btn btn-ghost" href="{E(DIRECTIONS)}" target="_blank" rel="noopener">{icon('pin')}{E(t['directions'])}</a></div>""") + f"""
 <section class="sec sec-tight" aria-label="{E(t['visit_h'])}"><div class="wrap">{visit_card(lang, here)}</div></section>
 <section class="sec sec-tight" aria-labelledby="who-h"><div class="wrap card"><h2 id="who-h" style="font-size:1.4rem;margin-bottom:6px">{E(t['who'])}</h2>{people(lang)}<p class="hint" style="margin-top:14px">{E(t['speak'])} {E(t['no_body'])}</p></div></section>
 <section class="sec sec-tight" id="save" aria-label="{E(CONTACT_TOOLS[lang]['save_h'])}"><div class="wrap" data-contact-tools>{contact_tools(lang)}</div></section>"""
@@ -792,7 +831,7 @@ def build_service(s, lang):
     items = [(t['crumb_home'], ppath('home', lang)), (t['nav'][parent], ppath(parent, lang)), (c['name'], here)]
     lds = [service_ld, faq_ld(c['faq']), crumbs_ld(items)]
     cta2 = (f'<a class="btn btn-ghost" href="{E(href(ppath("tires", lang)))}">{icon("tread")}{E(t["hero_tires"])}</a>' if s.get('tire')
-            else f'<a class="btn btn-ghost" href="tel:{CONTACTS["shop"]["phone"]}">{icon("phone")}{E(t["call"])} {CONTACTS["shop"]["label"]}</a>')
+            else f'<a class="btn btn-ghost" href="tel:{CONTACTS[CALL_LINE]["phone"]}">{icon("phone")}{E(t["call"])} {CONTACTS[CALL_LINE]["label"]}</a>')
     faq = ''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in c['faq'])
     rel = ''.join(f'<li><a class="tile" href="{E(href(spath(SVC[k], lang)))}"><span class="ic">{icon(SVC[k]["icon"])}</span><span><b>{E(SVC[k][lang]["name"])}</b></span></a></li>' for k in c['related'])
     dep = ''
@@ -819,8 +858,8 @@ def build_404():
     lang = 'en'
     t = T[lang]
     USED.clear()
-    body = phead(t['nf_h1'], t['nf_p'].format(shop=CONTACTS['shop']['label']), f'<div class="btn-row"><a class="btn btn-red" href="{E(href(""))}">{E(t["nav"]["home"])}</a><button type="button" class="btn btn-ghost" aria-controls="srch">{icon("search")}{E(t["search"])}</button></div>')
-    return page('en', '404', '', alts_of('home'), t['nf_title'], t['nf_p'].format(shop=CONTACTS['shop']['label']), body, fname='404.html')
+    body = phead(t['nf_h1'], t['nf_p'].format(shop=CONTACTS[CALL_LINE]['label']), f'<div class="btn-row"><a class="btn btn-red" href="{E(href(""))}">{E(t["nav"]["home"])}</a><button type="button" class="btn btn-ghost" aria-controls="srch">{icon("search")}{E(t["search"])}</button></div>')
+    return page('en', '404', '', alts_of('home'), t['nf_title'], t['nf_p'].format(shop=CONTACTS[CALL_LINE]['label']), body, fname='404.html')
 
 
 # ---------------------------------------------------------------- search index
@@ -891,8 +930,11 @@ def copy_assets():
     if PHOTOS:
         shutil.copytree(os.path.join(ROOT, 'assets', 'photos'), os.path.join(A, 'photos'), dirs_exist_ok=True)
     # hours and analytics helpers come from the Sprint 2 builder's generated files
-    for f in ['hours.js', 'track.js']:
-        shutil.copy2(os.path.join(ROOT, 'assets', f), os.path.join(A, f))
+    shutil.copy2(os.path.join(ROOT, 'assets', 'hours.js'), os.path.join(A, 'hours.js'))
+    # analytics settings and the phone-number -> support line map (for counts like "texts to the Portuguese line")
+    tj = os.path.join(A, 'track.js')
+    src = open(tj, encoding='utf-8').read().replace('/*CFG*/{}', json.dumps(SITE['analytics'])).replace('/*LINES*/{}', json.dumps({c['phone']: k for k, c in CONTACTS.items()}))
+    open(tj, 'w', encoding='utf-8').write(src)
     man = json.load(open(os.path.join(ROOT, 'manifest.webmanifest'), encoding='utf-8'))
     man['start_url'] = '/'
     man['scope'] = '/'
@@ -909,12 +951,55 @@ def build_seo(pages):
         items.append(f'  <url>\n    <loc>{DOMAIN}/{path}</loc>{alt}\n  </url>')
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(items) + '\n</urlset>\n')
     write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n')
-    hta = open(os.path.join(ROOT, '.htaccess'), encoding='utf-8').read() if os.path.exists(os.path.join(ROOT, '.htaccess')) else ''
-    hta = re.sub(r'# keep build tools.*?\n(RewriteRule.*\n)+', '', hta)
-    hta = hta.replace(" https://fonts.googleapis.com", '').replace('font-src https://fonts.gstatic.com', "font-src 'self'")
-    hta = hta.replace('https://api.open-meteo.com', 'https://vpic.nhtsa.dot.gov https://api.open-meteo.com')
-    hta = hta.replace('woff2)$', 'woff2|webmanifest)$')
-    write('.htaccess', hta)
+    write('.htaccess', htaccess())
+
+
+def htaccess():
+    """Apache / LiteSpeed settings (Hostinger). Security headers allow only what the site really uses."""
+    an = {'plausible': 'https://plausible.io', 'umami': 'https://cloud.umami.is https://api-gateway.umami.dev', 'goatcounter': 'https://gc.zgo.at https://*.goatcounter.com'}.get(SITE['analytics']['provider'], '')
+    csp = ("default-src 'self'; script-src 'self' 'unsafe-inline'" + (' ' + an if an else '') + "; style-src 'self' 'unsafe-inline'; font-src 'self'; "
+           "img-src 'self' data: blob: https://i.ytimg.com; media-src 'self'; "
+           "connect-src 'self' https://vpic.nhtsa.dot.gov https://api.open-meteo.com" + (' ' + an if an else '') + "; "
+           "frame-src https://www.google.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests")
+    return f"""# GENERATED by tools/build3.py. Apache / LiteSpeed hosting (Hostinger and similar).
+Options -Indexes
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+AddType application/manifest+json .webmanifest
+AddType text/vcard .vcf
+
+# never serve notes, source or settings files if they are uploaded by mistake
+<FilesMatch "\\.(md|py|sh|bak|log|ini|env|json\\.sample|php\\.sample)$">
+Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# always use https
+RewriteCond %{{HTTPS}} !=on
+RewriteCond %{{HTTP:X-Forwarded-Proto}} !https
+RewriteRule ^ https://%{{HTTP_HOST}}%{{REQUEST_URI}} [L,R=301]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Permissions-Policy "camera=(), microphone=(), payment=(), usb=(), geolocation=(), interest-cohort=()"
+Header always set Content-Security-Policy "{csp}"
+<FilesMatch "\\.(css|js|webp|jpg|png|svg|mp4|mp3|woff2|webmanifest)$">
+Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+<FilesMatch "(\\.html|hours\\.js|notice\\.json|sw\\.js)$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml text/plain
+</IfModule>
+"""
 
 
 def main():
@@ -945,16 +1030,40 @@ def main():
 def audit_identity():
     """stop the build if a public file names a person or an internal role (the site speaks as one company)"""
     from urllib.parse import unquote
-    bad = re.compile(r"(?<![^\W\d_])(?<!\\u[0-9a-fA-F]{4})(Cid|Leo|Netto)(?![^\W\d_])|\b(owner|partner|co-owner|founder|officer|president|ceo)\b(?!'s manual|&#x27;s manual|\\'s manual)|\b(dono|sócio|sócios|dueño|socio|socios|fundador)\b|lmtirecorp", re.I)
+    bad = re.compile(r"\b(owner|partner|co-owner|founder|officer|president|ceo)\b(?!'s manual|&#x27;s manual|\\'s manual)|\b(dono|sócio|sócios|dueño|socio|socios|fundador)\b", re.I)
     hits = []
     for dp, _, fs in os.walk(OUT):
         for f in fs:
             if f.endswith(('.html', '.js', '.json', '.xml', '.txt', '.webmanifest', '.css', '.vcf')):
                 txt = unquote(open(os.path.join(dp, f), encoding='utf-8', errors='ignore').read())
+                # the only email address allowed on the public site is the customer care inbox
+                for em in set(re.findall(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[A-Za-z.]{2,}', txt)):
+                    if em.lower().rstrip('.') != EMAIL.lower() and not em.lower().endswith(('.png', '.webp', '.jpg')):
+                        hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: email address {em} is not the customer care inbox')
+                # personal first names are kept out of this public code as hashes
+                for w in set(re.findall(r'(?<![^\W\d_])(?<!\\u[0-9a-fA-F]{4})[A-Z][a-z]{2,5}(?![^\W\d_])', txt)):
+                    if hashlib.sha256(w.lower().encode()).hexdigest()[:16] in {'8535e86c8118bbbb', '5424626b932a2ff9', 'e5d6ecd41d938acb'}:
+                        hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: personal name found')
                 for m in bad.finditer(txt):
                     hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: ...{txt[max(0, m.start() - 40):m.end() + 20]}...')
+    # messaging lines: never a call link, and never "call/ligue/llame" right before their number
+    noc = [c for c in CONTACTS.values() if not c.get('calls')]
+    verb = re.compile(r'(call|llam|ligu|ligar|phone)[^.]{0,25}$', re.I)
+    for dp, _, fs in os.walk(OUT):
+        for f in fs:
+            if not f.endswith(('.html', '.js', '.json')):
+                continue
+            txt = unquote(open(os.path.join(dp, f), encoding='utf-8', errors='ignore').read())
+            plain = re.sub(r'<[^>]+>', ' ', txt)
+            for c in noc:
+                if 'tel:' + c['phone'] in txt:
+                    hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: call link to messaging line {c["label"]}')
+                for m in re.finditer(re.escape(c['label']), plain):
+                    before = plain[max(0, m.start() - 40):m.start()]
+                    if verb.search(before) and not re.search(r'text|texto|mensag|mensaj|whatsapp|sms', before, re.I):
+                        hits.append(f'{os.path.relpath(os.path.join(dp, f), OUT)}: "...{before}{c["label"]}" invites a call to a messaging line')
     if hits:
-        raise SystemExit('identity audit failed:\n' + '\n'.join(hits[:20]))
+        raise SystemExit('identity/contact audit failed:\n' + '\n'.join(hits[:20]))
 
 
 if __name__ == '__main__':

@@ -37,7 +37,14 @@
     '<div class="btn-row" style="margin-top:14px"><button class="btn btn-red" type="submit">' + esc(X.send_text) + '</button>' +
     (C.wa ? '<button class="btn btn-ghost" type="button" id="tWa">' + esc(X.send_wa) + '</button>' : '') +
     '<a class="btn btn-ghost" href="tel:' + C.shop + '">' + esc(X.or_call) + ' ' + esc(C.shopLabel) + '</a></div>' +
+    (C.msgShort ? '<p class="hint msg-only">' + esc(C.msgShort) + '</p>' : '') +
     '<p class="hint" id="tOpened" role="status" hidden></p></div>' +
+    // online sending: shown only when the web host's email delivery is switched on (business.py DELIVERY)
+    (C.endpoint ? '<div class="quote-box q-online"><h2>' + esc(X.q_online_h) + '</h2><p class="note">' + esc(X.q_online_p) + '</p><div class="grid2">' +
+      '<div class="field"><label for="tName">' + esc(X.name) + '</label><input id="tName" name="name" autocomplete="given-name" maxlength="60" placeholder="' + esc(X.name_ph) + '"></div>' +
+      '<div class="field"><label for="tPhone">' + esc(X.phone) + '</label><input id="tPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="20" placeholder="' + esc(X.phone_ph) + '"></div></div>' +
+      '<input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">' +
+      '<div class="btn-row" style="margin-top:14px"><button class="btn btn-blue" type="button" id="tOnline">' + esc(X.send_online) + '</button></div><p class="hint" id="tSt" role="status" aria-live="polite"></p></div>' : '') +
     '</form></div>';
   var veh = window.LM_vehicle(box.querySelector('[data-veh]'), 'tv');
   var f = box.querySelector('#tireForm'), sz = f.querySelector('#tSize'), rd = f.querySelector('#tSizeR'), err = f.querySelector('#tErr');
@@ -109,12 +116,36 @@
   }
   f.addEventListener('submit', function (e) {
     e.preventDefault(); if (!check()) return;
-    if (window.LM_track) LM_track('Tire quote', { mode: cur ? 'vehicle' : 'size' });
+    if (window.LM_track) LM_track('Tire quote', { mode: cur ? 'vehicle' : 'size', via: 'text' });
     go('sms:' + C.text + '?&body=' + encodeURIComponent(message())); opened();
+  });
+  var shownAt = Date.now(), on = f.querySelector('#tOnline');
+  if (on) on.addEventListener('click', function () {
+    if (!check()) return;
+    var nm = f.querySelector('#tName'), ph = f.querySelector('#tPhone'), st = f.querySelector('#tSt');
+    if (!nm.value.trim()) { err.textContent = X.name_need; nm.focus(); return; }
+    if (ph.value.replace(/\D/g, '').replace(/^1/, '').length !== 10) { err.textContent = X.phone_need; ph.focus(); return; }
+    var p = parse(sz.value), cond = f.querySelector('[name=cond]:checked'), qty = f.querySelector('[name=qty]:checked');
+    var body = { kind: 'quote', lang: document.documentElement.lang, reply_lang: document.documentElement.lang, services: ['tires'], name: nm.value.trim(), phone: ph.value.trim(),
+      size: cur === 0 ? (p ? p.txt : sz.value.trim()) : '', vehicle: veh.text(),
+      other: [cond ? X.msg_cond.replace('{v}', { 'new': X.cond_new, used: X.cond_used, any: X.cond_new + ' / ' + X.cond_used }[cond.value]) : '', qty ? X.msg_qty.replace('{v}', qty.value) : ''].filter(Boolean).join(' · '),
+      notes: f.querySelector('#tNotes').value.trim(), website: f.querySelector('[name=website]').value, elapsed: Date.now() - shownAt };
+    on.disabled = true; st.textContent = X.sending;
+    var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+    fetch(C.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { return r.ok ? r.json() : { ok: false }; })
+      .then(function (j) {
+        clearTimeout(tm); on.disabled = false;
+        // "received" only when the server says the email really went out
+        if (j && j.ok === true) { st.textContent = X.q_ok; if (window.LM_track) LM_track('Request delivered', { form: 'quote' }); }
+        else throw new Error('not delivered');
+      })
+      .catch(function () { clearTimeout(tm); on.disabled = false; st.textContent = ''; err.textContent = X.sent_fail.replace('{shop}', C.shopLabel); if (window.LM_track) LM_track('Request failed', { form: 'quote' }); });
   });
   var wa = f.querySelector('#tWa');
   if (wa) wa.addEventListener('click', function () {
     if (!check()) return;
+    if (window.LM_track) LM_track('Tire quote', { mode: cur ? 'vehicle' : 'size', via: 'whatsapp' });
     window.open('https://wa.me/' + C.wa.replace(/\D/g, '') + '?text=' + encodeURIComponent(message()), '_blank', 'noopener'); opened();
   });
 })();

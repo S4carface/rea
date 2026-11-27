@@ -541,3 +541,14 @@ input[aria-invalid=true]{border-color:#ff5a5a}
 .ct-card .ic svg{width:24px;height:24px}
 .ct-card .btn{margin-top:auto}
 @media (max-width:560px){.person{flex-direction:column;align-items:flex-start;gap:6px}.person>a{font-size:1.1rem}}
+/* messaging-only lines */
+.person .num{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}
+.person .num .mono{font-size:1.05rem;color:var(--text-1,#f3f2f6)}
+.msg-badge{display:inline-flex;align-items:center;gap:6px;font:700 .8125rem/1 var(--body);font-style:normal;letter-spacing:.02em;text-transform:uppercase;color:#7ee2a8;background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.4);border-radius:999px;padding:6px 10px}
+.msg-badge svg{width:14px;height:14px}
+.person a svg{width:16px;height:16px;margin-right:6px;vertical-align:-2px}
+.msg-notice{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(138,144,255,.08);border:1px solid rgba(138,144,255,.3);font-size:.9375rem;line-height:1.5;color:var(--text-1,#f3f2f6)}
+.msg-notice svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--blue-bright,#8a90ff)}
+.msg-only{display:block;color:var(--text-2,#b9bbcc);font-size:.875rem;margin-top:4px}
+.visit-panel .msg-only{margin:8px 0 0;text-align:center}
+@media (max-width:560px){.person .num{align-items:flex-start;text-align:left}}

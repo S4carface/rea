@@ -7,6 +7,8 @@ SITE = {
     'domain': '',
     # Privacy-friendly analytics. Leave provider empty for none. Supported: 'plausible', 'umami', 'goatcounter'.
     'analytics': {'provider': '', 'id': '', 'src': ''},
+    # Google Search Console: paste only the content="..." code from the HTML-tag verification method. Empty = no tag.
+    'search_console': '',
 }
 
 BUSINESS = {
@@ -103,7 +105,7 @@ POLICIES = {
     'pt': {
         'title': 'Políticas da oficina', 'h1': 'Políticas da oficina',
         'desc': 'Agendamento, sinal, pagamento, pneus, peças, consertos e retirada na L&M Tire Auto Repair, Worcester, MA.',
-        'intro': 'Respostas claras sobre como trabalhamos. Toque num tema para abrir. Dúvidas? Ligue para 774-288-9675 (português).',
+        'intro': 'Respostas claras sobre como trabalhamos. Toque num tema para abrir. Dúvidas? Ligue para 508-853-3322 ou mande mensagem em português para 774-288-9675.',
         'law': 'Nada nesta página limita os seus direitos pelas leis de proteção ao consumidor de Massachusetts ou federais.',
         'cats': [
             ('Pagamento', ['Aceitamos dinheiro e cartão de crédito.', 'O pagamento completo é feito antes de retirar o carro.']),
@@ -173,10 +175,13 @@ PHOTO_TEXT = {
 # every page, form, text message, WhatsApp link and the contact card follow. Names shown to customers are in text3.py 'team'.
 # 'whatsapp': True only for numbers confirmed to use WhatsApp (both support lines confirmed 2026-11-26; the shop landline has none).
 CONTACTS = {
-    'shop':          {'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'sms': False, 'whatsapp': False},
-    'support_en_es': {'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'sms': True, 'whatsapp': True},
-    'support_pt':    {'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'sms': True, 'whatsapp': True},
+    # 'calls': True only for the number that answers phone calls. The messaging lines CAN ring, but voice/video calls
+    # are not answered, so the site never makes a call link or call icon for them and says so politely.
+    'shop':          {'phone': '+15088533322', 'label': '508-853-3322', 'langs': ['en'], 'calls': True, 'sms': False, 'whatsapp': False},
+    'support_en_es': {'phone': '+13048066047', 'label': '304-806-6047', 'langs': ['en', 'es'], 'calls': False, 'sms': True, 'whatsapp': True},
+    'support_pt':    {'phone': '+17742889675', 'label': '774-288-9675', 'langs': ['pt'], 'calls': False, 'sms': True, 'whatsapp': True},
 }
+CALL_LINE = 'shop'   # every Call button on the site goes here
 # Order on the Contact page and the contact card.
 TEAM = ['shop', 'support_en_es', 'support_pt']
 # Which channel answers texts and website requests in each language.

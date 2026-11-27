@@ -15,14 +15,14 @@ Public fields:
   condition        "new" or "used"
   tread_32nds      remaining tread in 32nds of an inch (used tires)
   photo            URL of a photo of THIS tire (real photo only)
-  quantity         how many in stock (shown only if the owner allows: SHOW_QUANTITY)
+  quantity         how many in stock (shown only if the shop allows: SHOW_QUANTITY)
   in_stock         true = in the shop, false = can be ordered from a supplier (supplier name is never sent)
   price_tire       retail price per tire (after any promotion or approved discount)
-  price_installed  installed price per tire (mounting, balancing, valve; owner decides)
+  price_installed  installed price per tire (mounting, balancing, valve; the shop decides)
   fees_note        short public note, e.g. "Plus $10 disposal per tire"
   promo            short public promotion label, e.g. "Winter special"
 
-Prices and stock reach the page only when INVENTORY['mode'] in business.py allows it and the owner approved it.
+Prices and stock reach the page only when INVENTORY['mode'] in business.py allows it and the shop approved it.
 """
 import json, re, sys
 
