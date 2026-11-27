@@ -469,7 +469,7 @@ input[type=range]{width:100%;accent-color:var(--accent-btn);height:44px}
 .tips-nav{display:flex;gap:8px}.tips-nav .btn{min-width:48px;font-size:1.1rem}
 .tips{list-style:none;padding:4px 0 10px;margin:18px 0 0;display:grid;grid-auto-flow:column;grid-auto-columns:min(82%,320px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .tips::-webkit-scrollbar{display:none}
-.tip{scroll-snap-align:start;display:flex;flex-direction:column;gap:8px;min-height:300px}
+.tip{scroll-snap-align:start;display:flex;flex-direction:column;gap:8px;min-height:250px}
 .tip-n{font:800 3rem/1 var(--display,sans-serif);color:transparent;-webkit-text-stroke:1.5px #e8333b}
 .tip h3{font-size:1.25rem;margin:0}
 .tip .link-arrow{margin-top:auto}
