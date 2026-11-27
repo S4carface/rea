@@ -540,3 +540,4 @@ input[aria-invalid=true]{border-color:#ff5a5a}
 .ct-card .ic{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(138,144,255,.12);color:var(--blue-bright,#8a90ff)}
 .ct-card .ic svg{width:24px;height:24px}
 .ct-card .btn{margin-top:auto}
+@media (max-width:560px){.person{flex-direction:column;align-items:flex-start;gap:6px}.person>a{font-size:1.1rem}}
