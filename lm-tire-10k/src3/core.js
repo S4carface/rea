@@ -265,7 +265,7 @@ document.addEventListener('click', function (e) {
   function put(k, v, s) { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch (e) {} }
   function ui() { btn.setAttribute('aria-pressed', String(want)); btn.setAttribute('aria-label', btn.getAttribute(want ? 'data-on' : 'data-off')); btn.classList.toggle('on', want); }
   function save() { if (a && !isNaN(a.currentTime)) put(POS, String(a.currentTime), true); }
-  function fade(to, ms, done) { var from = a.volume, t0 = performance.now(); (function step(t) { var k = Math.min(1, (t - t0) / ms); a.volume = from + (to - from) * k; if (k < 1) requestAnimationFrame(step); else if (done) done(); })(t0); }
+  function fade(to, ms, done) { var from = a.volume, t0 = performance.now(); (function step(t) { var k = Math.min(1, (t - t0) / ms); a.volume = Math.max(0, Math.min(1, from + (to - from) * k)); if (k < 1) requestAnimationFrame(step); else if (done) done(); })(t0); }
   function ensure() {
     if (a) return a;
     a = new Audio(SRC); a.loop = true; a.preload = 'auto'; a.crossOrigin = 'anonymous'; a.volume = 0;
