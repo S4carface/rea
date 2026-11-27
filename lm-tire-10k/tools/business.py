@@ -17,6 +17,7 @@ BUSINESS = {
     'phone': {'shop': '+15088533322', 'text': '+13048066047', 'pt': '+17742889675'},
     'phone_label': {'shop': '508-853-3322', 'text': '304-806-6047', 'pt': '774-288-9675'},
     'payment': ['Cash', 'Credit Card'],
+    'google_profile_url': 'https://g.page/r/CTVdw0UmvaHLEBM',
     'google_review_url': 'https://g.page/r/CTVdw0UmvaHLEBM/review',
     'google_maps_url': 'https://www.google.com/maps/search/?api=1&query=L%26M+Tire+Auto+Repair+598+West+Boylston+Street+Worcester+MA+01606',
     # Google rating: leave None until the owner confirms the numbers from the Google Business Profile.

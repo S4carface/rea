@@ -588,7 +588,7 @@ def region_reviews():
     def f(l):
         r = REVIEWS[l]
         stars = f'<p class="rv-score">{E(r["rating"].format(r=B["google_rating"], n=B["google_review_count"]))}</p>' if rv else ''
-        return f'''<div class="rv-row">{stars}<a class="btn btn-ghost btn-sm" href="{E(B["google_maps_url"])}" target="_blank" rel="noopener">{E(r["read"])}</a><a class="btn btn-ghost btn-sm" href="{E(B["google_review_url"])}" target="_blank" rel="noopener">{E(r["write"])}</a></div>'''
+        return f'''<div class="rv-row">{stars}<a class="btn btn-ghost btn-sm" href="{E(B["google_profile_url"])}" target="_blank" rel="noopener">{E(r["read"])}</a><a class="btn btn-ghost btn-sm" href="{E(B["google_review_url"])}" target="_blank" rel="noopener">{E(r["write"])}</a></div>'''
     return tri(f)
 
 

@@ -1089,3 +1089,19 @@ main section.acima{padding-top:clamp(32px,5vw,64px);padding-bottom:clamp(32px,5v
 .foot.four{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr}
 @media (max-width:1100px){.foot,.foot.four{grid-template-columns:1fr 1fr 1fr}}
 @media (max-width:760px){.foot,.foot.four{grid-template-columns:1fr 1fr;gap:24px 16px}.foot>div:first-child{grid-column:1/-1}}
+/* shorter phone page, round 2 */
+.reviews-link.in-final,.reviews-link.in-visit{display:none!important}
+@media (max-width:600px){
+  main section{padding-top:48px;padding-bottom:48px}
+  main section.reviews,main section.acima{padding-top:20px;padding-bottom:20px}
+  .svc-grid .lede{display:none}
+  .size .size-wall{display:none}
+  .size .cmp{display:none}
+  .book-grid .big-call{display:none}
+  .rv-ask{display:none}
+  main section.final{display:none}
+  .tread{display:none}
+}
+main section{padding-top:clamp(48px,7vw,104px);padding-bottom:clamp(48px,7vw,104px)}
+.help-promo{display:none}
+@media (max-width:600px){main section.reviews,main section.acima{padding-top:20px;padding-bottom:20px}}
